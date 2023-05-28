@@ -1,0 +1,55 @@
+#include <stdio.h>
+#define DIM(x) sizeof(x) / sizeof(x[0])
+#define SWAP(x, y) (x = (y + x) - (y = x))
+#define MID(x, y, z) (y < x && x < z) ? x : (x < y && y < z ? y : z)
+
+//冒泡排序: 
+//1. 将数组中的每个元素和下一个元素比较并交换位置, 大数放后面，小数放前面
+//2. 一直重复过程1，直到不再发生数据交换为止.
+
+void main()
+{
+	int x[] = {21, 23, 33, 2, 5, 20, 9, 3, 34, 13};
+
+	printf("排序前: ");
+	for (int m = 0; m < DIM(x); m++)
+	{
+		printf("%d ", x[m]);
+	}
+	printf("\r\n");
+	printf("\r\n");
+
+	int nTimes = 0;	//第几趟
+	while (1)
+	{
+		bool bSwitched = false;	//标识是否发生过交换, 初始为false表示没有交换
+		for (int i = 0; i < DIM(x)-1; i++)
+		{
+			if (x[i] > x[i+1])
+			{
+				int nTemp = x[i];
+				x[i] = x[i+1];
+				x[i+1] = nTemp;
+				bSwitched = true;
+			}
+		}
+
+		printf("第%02d趟: ", ++nTimes);
+		for (m = 0; m < DIM(x); m++)
+		{
+			printf("%d ", x[m]);
+		}
+		printf("\r\n");
+
+		if (!bSwitched) break;	//没有发生过交换, 说明排序完成, 则退出while循环
+	}
+
+	printf("\r\n");
+	printf("排序后: ");
+	for (m = 0; m < DIM(x); m++)
+	{
+		printf("%d ", x[m]);
+	}
+	printf("\r\n");
+	printf("\r\n");
+}

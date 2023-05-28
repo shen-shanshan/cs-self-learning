@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+
+#define dim(x) sizeof(x) / sizeof(x[0])
+
+struct Lsnode
+{
+	int iData;
+	Lsnode *pNext;
+};
+
+Lsnode * Push(Lsnode *pTop, int x)
+{
+	Lsnode *pNew = new Lsnode;
+	pNew->iData = x;
+
+	if (pTop == NULL)
+	{
+		pTop = pNew;
+		pTop->pNext = NULL;
+	}
+	else
+	{
+		pNew->pNext = pTop;
+		pTop = pNew;
+	}
+	return pTop;
+}
+
+int Pop(Lsnode **pTop)
+{
+	if (*pTop == NULL)
+	{
+		return -1;
+	}
+	else
+	{
+		int iTmp = (*pTop)->iData;
+		Lsnode *pTmp = (*pTop)->pNext;
+		delete *pTop;
+		*pTop = pTmp;
+		return iTmp;
+	}
+}
+
+void Print(Lsnode *pTop)
+{
+	Lsnode *pCurr = pTop;
+	while (pCurr != NULL)
+	{
+		printf("%d ", pCurr->iData);
+		pCurr = pCurr->pNext;
+	}
+	printf("\r\n");
+}
+
+void main()
+{
+	Lsnode *pTop = NULL;
+	pTop = Push(pTop, 11);
+	pTop = Push(pTop, 22);
+	pTop = Push(pTop, 33);
+	Print(pTop);
+
+	Pop(&pTop);
+	Print(pTop);
+	Pop(&pTop);
+	Print(pTop);
+	Pop(&pTop);
+	Print(pTop);
+}

@@ -1,0 +1,195 @@
+#include <stdio.h>
+#include <windows.h>
+#define DIM(x) sizeof(x) / sizeof(x[0])
+#define SWAP(x, y) x = (y + x) - (y = x)
+
+/* 
+* 使用1付扑克牌，共有52张，按照黑桃 红桃 梅花 方块 这4种花
+* 色的顺序排列, 使用一个一维数组中的数字0-53来存储这些牌.
+* 
+*  黑桃    红桃    梅花    方块	  小王  大王
+*  0-12    13-25   26-38   39-51  52    53
+*  
+* 这样，随便给定一个数字M(0-51)，求出其花色和点数的算法如下：
+* 
+*  M % 13 = X * 13 + Y    X+1即为其花色, Y+1即为其点数
+* 
+*  20 % 13 = 1 * 13 + 7， 得到其花色为2即黑桃, 点数为8, 即数字20表示黑桃8
+* 
+*  50 % 13 = 3 * 13 + 11  得到其花色为4即方块, 点数为12, 即数字50表示方块Q
+*
+*  M为52和53时直接判断为小王和大王
+*
+* 牌的大小为:
+*  黑桃
+*	A	2	3	4	5	6	7	8	9	10	J	Q	K
+*	47	51	3	7	11	15	19	23	27	31	35	39	43
+*  红桃
+*	A	2	3	4	5	6	7	8	9	10	J	Q	K
+*	46	50	2	6	10	14	18	22	26	30	34	38	42
+*  梅花
+*	A	2	3	4	5	6	7	8	9	10	J	Q	K
+*	45	49	1	5	9	13	17	21	25	29	33	37	41
+*  方块
+*	A	2	3	4	5	6	7	8	9	10	J	Q	K
+*	44	48	0	4	8	12	16	20	24	28	32	36	40
+*  小王	大王
+*  52	53
+*/
+
+#define RAND() (srand((unsigned int)GetCpuCycle()), rand())
+
+//获得CPU自上电以来的时间周期数
+__declspec (naked) unsigned __int64 GetCpuCycle()
+{
+	_asm
+	{
+		rdtsc
+		ret
+	}
+}
+
+const char m_iSort[54] = {47,51, 3, 7,11,15,19,23,27,31,35,39,43,
+					46,50, 2, 6,10,14,18,22,26,30,34,38,42,
+					45,49, 1, 5, 9,13,17,21,25,29,33,37,41,
+					44,48, 0, 4, 8,12,16,20,24,28,32,36,40,		52, 53};
+char m_iPoker[54];
+
+//简单排序
+void Sort(char x[], int iMin, int iMax)
+{
+	for (int i = iMin; i <= iMax-1; i++)
+	{
+		for (int j = i+1; j <= iMax; j++)
+		{
+			if (m_iSort[x[j]] > m_iSort[x[i]]) SWAP(x[i], x[j]);
+		}
+	}
+}
+
+void Reshuffle()	//重新洗牌
+{
+	//1. 将所有牌点置为-1
+	memset(m_iPoker, -1, 54);
+
+	//2. 洗牌: 将54张牌随机放到数组中
+	for (int iCard = 0; iCard < 54; iCard++)
+	{
+		int iPos = RAND() % 54;
+		while (m_iPoker[iPos] != -1)
+		{
+			iPos++;
+			if (iPos >= 54) iPos = 0;
+		}
+		m_iPoker[iPos] = iCard;
+	}
+
+//	//3. 发牌
+//	for (int i = 0; i < 48; i++)
+//	{
+//		SWAP(m_iPoker[i+0], m_iPoker[i+3]);
+//		SWAP(m_iPoker[i+1], m_iPoker[i+4]);
+//		SWAP(m_iPoker[i+2], m_iPoker[i+5]);
+//	}
+
+	//4. 简单排序
+	Sort(m_iPoker,  0, 16);	//玩家1的牌
+	Sort(m_iPoker, 17, 33);	//玩家2的牌
+	Sort(m_iPoker, 34, 50);	//玩家3的牌
+	Sort(m_iPoker, 51, 53);	//底牌
+}
+
+//M % 13 = X * 13 + Y		X+1即为其花色, Y+1即为其点数
+char *GetName(int n)
+{
+	if (n == 53)
+	{
+		return "大";
+	}
+	else if (n == 52)
+	{
+		return "小";
+	}
+
+	char *sName = new char[4];
+	memset(sName, 0, 4);
+
+	int y = n % 13;
+	int x = (n - y) / 13;
+	
+	x++;
+	y++;
+
+	switch (x)
+	{
+	case 1:
+		sName[0] = '\06';
+		break;
+	case 2:
+		sName[0] = '\03';
+		break;
+	case 3:
+		sName[0] = '\05';
+		break;
+	case 4:
+		sName[0] = '\04';
+		break;
+	}
+
+	switch (y)
+	{
+	case 1:
+		sName[1] = 'A';
+		break;
+	case 11:
+		sName[1] = 'J';
+		break;
+	case 12:
+		sName[1] = 'Q';
+		break;
+	case 13:
+		sName[1] = 'K';
+		break;
+	case 10:
+		sName[1] = '1';
+		sName[2] = '0';
+		break;
+	default:
+		sName[1] = '0' + y;
+		break;
+	}
+
+	return sName;
+}
+
+void ShowPoker(int iMin, int iMax)
+{
+	for (int i = iMin; i <= iMax; i++)
+	{
+		printf("%s ", GetName(m_iPoker[i]));
+	}
+	printf("\r\n\r\n");
+}
+
+void main()
+{
+	while (1)
+	{
+		Reshuffle();
+		
+		printf("玩家1的牌: \r\n");
+		ShowPoker(0, 16);
+
+		printf("玩家2的牌: \r\n");
+		ShowPoker(17, 33);
+
+		printf("玩家3的牌: \r\n");
+		ShowPoker(34, 50);
+
+		printf("3张底牌: \r\n");
+		ShowPoker(51, 53);
+
+		system("pause");
+		system("cls");
+	}
+}

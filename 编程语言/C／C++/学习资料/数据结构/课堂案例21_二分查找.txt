@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+//求数组元素个数
+#define dim(x) sizeof(x)/sizeof(x[0])
+
+/*
+二分查找又称折半查找，优点是比较次数少，查找速度快，平均性能好；
+其缺点是要求待查表为有序表，且插入删除困难。
+因此，折半查找方法适用于不经常变动而查找频繁的有序列表。
+首先，假设表中元素是按升序排列，将表中间位置记录的关键字与查找关键字比较，如果两者相等，则查找成功；
+否则利用中间位置记录将表分成前、后两个子表，如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，
+否则进一步查找后一子表。重复以上过程，直到找到满足条件的记录，使查找成功，或直到子表不存在为止，此时查找不成功。
+*/
+
+//递归二分查找
+int BiSearch(int nTarget, int *pSource, int nMin, int nMax)
+{
+	int nMid = (nMin + nMax) / 2;
+	if (nTarget < pSource[nMin] || nTarget > pSource[nMax])
+		return -1;
+	else if (nTarget == pSource[nMid])
+		return nMid;
+	else if (nTarget < pSource[nMid])
+		return BiSearch(nTarget, pSource, nMin, nMid - 1);	//nMid已经判断过, 要排除, 所以给值nMid - 1
+	else //if (nTarget > pSource[nMid])
+		return BiSearch(nTarget, pSource, nMid + 1, nMax);	//nMid已经判断过, 要排除, 所以给值nMid + 1
+}
+
+void main()
+{
+	int data[] = {1, 2, 3, 4, 6, 8, 22, 44, 99, 111, 112, 116};
+	int nMin = 0;
+	int nMax = dim(data) - 1;
+
+	while (1)
+	{
+		printf("\r\n请输入要查找的数(-1退出): ");
+		int nTarget = 0;
+		scanf("%d", &nTarget);
+		if (nTarget == -1) break;
+
+		int nFind = BiSearch(nTarget, data, nMin, nMax);
+		
+		if (nFind == -1)
+			printf("\n%d不在被查表中.\r\n", nTarget);
+		else
+			printf("\n%d在被查表中的位置是:%d\r\n", nTarget, nFind+1);
+	}
+}

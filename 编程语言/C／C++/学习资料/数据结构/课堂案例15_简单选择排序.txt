@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+#define DIM(x) sizeof(x) / sizeof(x[0])
+#define SWAP(x, y) (x = (y + x) - (y = x))
+
+//简单选择排序 
+//　　简单选择排序(simple selection sort)也是直接选择排序。是一种较为容易理解的方法。
+//1.算法思想
+//　　对于一组关键字{K1,K2,…,Kn}，首先从K1,K2,…,Kn中选择最小值，假如它是 Kz，则
+//将Kz与 K1对换；然后从K2，K3，… ，Kn中选择最小值 Kz，再将Kz与K2对换。如此进行选择
+//和调换n-2趟，第(n-1)趟，从Kn-1、Kn中选择最小值 Kz将Kz与Kn-1对换，最后剩下的就是该
+//序列中的最大值，一个由小到大的有序序列就这样形成。
+
+//??氏简单选择排序 ^_^
+//49, 38, 65, 97, 76, 13, 27
+void MySiSort (int a[], int n)
+{
+	for (int i = 0; i < n-1; i++)
+	{
+		int iMin = a[i];
+		for (int j = i+1; j < n; j++)
+		{
+			if (a[j] < a[i])
+				SWAP(a[i], a[j]);
+		}
+	}
+}
+
+//简单选择排序 
+void SiSort(int a[], int n)
+{
+	for (int i = 0; i < n-1; i++)
+	{
+		int iMinIndex = i+1;
+		int iMinValue = a[i+1];
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[j] < iMinValue)
+			{
+				iMinValue = a[j];
+				iMinIndex = j;
+			}
+		}
+		if (iMinValue < a[i])
+		{
+			SWAP(a[i], a[iMinIndex]);
+		}
+	}
+}
+
+void main()
+{
+	int a[] = {49, 38, 65, 97, 76, 13, 27};
+	SiSort(a, DIM(a));
+	for (int i = 0; i < DIM(a); i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\r\n");
+}

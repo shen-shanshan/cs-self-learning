@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+
+#define dim(x) sizeof(x) / sizeof(x[0])
+
+struct SqStack
+{
+	int elem[100]; //一维数组
+	int top;				//指针top指向栈顶元素的当前位置
+};
+
+void Push(SqStack *ps, int x)
+{
+	if (ps->top == 99)
+	{
+		printf("full.");
+	}
+	else
+	{
+		ps->elem[ps->top++] = x;
+	}
+}
+
+int Pop(SqStack *ps)
+{
+	if (ps->top == 0)
+		return -1;
+	else
+	{
+		return ps->elem[--ps->top];
+	}
+}
+
+void Print(SqStack *ps)
+{
+	int iCurr = ps->top;
+	while (--iCurr >= 0)
+	{
+		printf("%d ", ps->elem[iCurr]);
+	}
+	printf("\r\n");
+}
+
+void main()
+{
+	SqStack a;
+	a.top = 0;
+
+	Push(&a, 1);
+	Push(&a, 2);
+	Push(&a, 3);
+	
+	Print(&a);
+
+	Pop(&a);
+	Print(&a);
+	Pop(&a);
+	Print(&a);
+	Pop(&a);
+	Print(&a);
+}
+
+/*
+struct tagStack {
+	int iData;
+	tagStack *pPrev;
+};
+
+tagStack *Push(tagStack *pTop, tagStack *pNode)
+{
+	if (pTop == NULL)
+	{
+		pNode->pPrev = NULL;
+		pTop = pNode;
+	}
+	else
+	{
+		pNode->pPrev = pTop;
+		pTop = pNode;
+	}
+	return pTop;
+}
+
+tagStack *Pop(tagStack *pTop)
+{
+	tagStack *pReturn = pTop;
+	if (pTop == NULL)
+	{
+		return NULL;
+	}
+	else
+	{
+		pTop = pTop->pPrev;
+	}
+	return pReturn;
+}
+
+void main()
+{
+	tagStack *pTop = NULL;
+
+	printf("\r\n");
+}
+*/

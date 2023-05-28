@@ -1,0 +1,155 @@
+#include <stdio.h>
+
+#define dim(x) sizeof(x) / sizeof(x[0])
+
+struct NODE
+{
+	char iData;
+	NODE *pLChild;
+	NODE *pRChild;
+};
+
+//前序遍历: 根左右(先访问根, 然后从左至右访问所有子树)
+void PreOrder(NODE *node)
+{
+	if (node == NULL) return;
+	printf("%c ", node->iData);
+	PreOrder(node->pLChild);
+	PreOrder(node->pRChild);
+}
+
+//中序遍历: 左根右(先左边第一个子树, 然后访问根, 再从左至右访问剩下的其他子树)
+void InOrder(NODE *node)
+{
+	if (node == NULL) return;
+
+	InOrder(node->pLChild);
+
+	printf("%c ", node->iData);
+
+	InOrder(node->pRChild);
+}
+
+//后序遍历: 左右根(先从左至右访问所有子树, 然后访问根)
+void LastOrder(NODE *node)
+{
+	if (node == NULL) return;
+
+	LastOrder(node->pLChild);
+	LastOrder(node->pRChild);
+
+	printf("%c ", node->iData);
+}
+
+//求树的节点数量
+int GetNodeNum(NODE *node)
+{
+	int nCount = 0;
+	if (node != NULL)
+	{
+		nCount++;
+		nCount += GetNodeNum(node->pLChild);
+		nCount += GetNodeNum(node->pRChild);
+	}
+	return nCount;
+}
+
+//求二叉树的深度(高度)
+//1. 若二叉树为空, 则高度为0
+//2. 若二叉树不为空, 则高度应为其左右子树高度的最大值加1
+int GetNodeDepth(NODE *node)
+{
+	if(node == NULL) return 0;
+
+	int iLDepth = GetNodeDepth(node->pLChild);  //遍历左边
+	int iRDepth = GetNodeDepth(node->pRChild);  //遍历右边
+
+	int iDepth = iLDepth > iRDepth ? iLDepth : iRDepth;
+
+	return (iDepth + 1);  //加1表示根节点
+}
+
+/******************************************************************
+                A
+              *   *
+            B       C
+          *  *    *  *
+        D      E F	   G
+     *  *     *
+   H    I   J
+
+设树T的根为n, 其子树从左到右依次为T1,T2,..,Tk, 那么有:
+前序遍历: 先访问树根n,然后依次前序遍历T1, T2, .., Tk
+中序遍历: 先中序遍历T1, 然后访问树根n，接着依次对T2, T3, .., Tk进行中序遍历
+后序遍历: 先依次对T1, T2, .., Tk进行后序遍历, 最后访问树根n
+******************************************************************/
+
+void main()
+{
+	//1. 产生树tree, 其根为root
+	char data[] = {'A',  'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+	char pid[]  = {NULL, 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E'};
+	NODE *root = NULL;
+	NODE *tree[10];
+
+	//1.1 先根据data[]产生10个节点本身, 其子节点初始化为NULL, 存入tree[0]至tree[9]
+	int i, j;
+	for (i = 0; i < dim(data); i++)
+	{
+		tree[i] = new NODE();
+		tree[i]->iData = data[i];
+		tree[i]->pLChild = NULL;
+		tree[i]->pRChild = NULL;
+	}
+
+//	1.2至此, 只是产生了10个节点本身，但节点之间的关系还没有建立起来.
+//	下面代码就是建立节点间的父子关系.
+	for (i = 0; i < dim(data); i++)		//i对应于pid[i]
+	{
+		//对pid中的每个数据, 做以下工作:
+
+		if (pid[i] == NULL)	//NULL
+		{
+			root = tree[i];
+			continue;
+		}
+
+		for (j = 0; j < dim(data); j++)	//j对应于tree[j]或者data[j]
+		{
+			if (pid[i] == tree[j]->iData)	//A
+			{
+				if (tree[j]->pLChild == NULL)
+				{
+					tree[j]->pLChild = tree[i];
+					break;
+				}
+				else if (tree[j]->pRChild == NULL)
+				{
+					tree[j]->pRChild = tree[i];
+					break;
+				}
+			}
+		}
+	}
+
+	//2. 进行3种遍历访问
+	printf("前序遍历结果为:\n");
+	PreOrder(root);
+	printf("\n\n");
+
+	printf("中序遍历结果为:\n");
+	InOrder(root);
+	printf("\n\n");
+
+	printf("后序遍历结果为:\n");
+	LastOrder(root);
+	printf("\n\n");
+
+	//3. 计算树的节点数量
+	printf("树的节点数量为: %d", GetNodeNum(root));
+	printf("\n\n");
+
+	//4. 计算树的深度
+	printf("树的深度为: %d", GetNodeDepth(root));
+	printf("\n\n");
+}
