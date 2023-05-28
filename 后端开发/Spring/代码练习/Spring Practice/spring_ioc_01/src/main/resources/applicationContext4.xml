@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--util名称空间，用于定义一些公共集合-->
+    <util:list id="outerbookList">
+        <!--声明多个Book对象-->
+        <bean id="b1" class="com.msb.bean.Book" p:bname="JAVA" p:author="马士兵"></bean>
+        <bean id="b2" class="com.msb.bean.Book" p:bname="Go" p:author="马士兵"></bean>
+        <bean id="b3" class="com.msb.bean.Book" p:bname="JVM" p:author="马士兵"></bean>
+    </util:list>
+
+    <bean id="student1" class="com.msb.bean.Student">
+        <!--数组属性注入-->
+        <property name="books">
+            <array>
+                <value>JAVA</value>
+                <value>MySQL</value>
+                <value>Spring</value>
+            </array>
+        </property>
+        <!--set集合注入-->
+        <property name="bookSet">
+            <set>
+                <value>JAVA</value>
+                <value>MySQL</value>
+                <value>Spring</value>
+            </set>
+        </property>
+        <!--list集合注入-->
+        <property name="bookList">
+            <list>
+                <value>JAVA</value>
+                <value>MySQL</value>
+                <value>Spring</value>
+            </list>
+        </property>
+        <!--map集合注入-->
+        <property name="bookMap">
+            <map>
+                <entry key="JAVA" value="马士兵"></entry>
+                <entry key="Go" value="马士兵"></entry>
+                <entry key="JVM" value="马士兵"></entry>
+            </map>
+        </property>
+        <!--List对象集合注入-->
+        <property name="bookList2" ref="outerbookList"></property>
+    </bean>
+
+</beans>

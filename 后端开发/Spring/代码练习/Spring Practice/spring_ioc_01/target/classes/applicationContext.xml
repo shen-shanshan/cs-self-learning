@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="user1" class="com.msb.bean.User" lazy-init="true"></bean>
+
+       <!--通过对象的 set 方法实现 DI（依赖注入）-->
+       <bean id="user2" class="com.msb.bean.User">
+              <property name="userid" value="1"></property>
+              <property name="username" value="张三"></property>
+              <property name="password" value="123456"></property>
+       </bean>
+</beans>

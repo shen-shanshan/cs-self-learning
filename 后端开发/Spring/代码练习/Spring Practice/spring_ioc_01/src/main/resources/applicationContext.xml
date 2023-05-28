@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <!--通过类的无参构造方法创建对象-->
+       <bean id="user1" class="com.msb.bean.User" lazy-init="true"></bean>
+
+       <!--通过对象的 set 方法实现 DI（依赖注入）-->
+       <bean id="user2" class="com.msb.bean.User">
+              <property name="userid" value="2"></property>
+              <property name="username" value="张三"></property>
+              <property name="password" value="123456"></property>
+       </bean>
+
+       <!--通过类的有参构造方法创建对象并为对象的属性赋值-->
+       <bean id="user3" class="com.msb.bean.User">
+              <constructor-arg name="userid" value="3"></constructor-arg>
+              <constructor-arg name="username" value="吕晓克"></constructor-arg>
+              <constructor-arg name="password" value="123456"></constructor-arg>
+       </bean>
+
+       <bean id="user4" class="com.msb.bean.User">
+              <constructor-arg index="0" value="4"></constructor-arg>
+              <constructor-arg index="1" value="何信义"></constructor-arg>
+              <constructor-arg index="2" value="123456"></constructor-arg>
+       </bean>
+
+       <!---通过p名称空间和c名称空间给对象属性赋值-->
+       <!--p: 就是对 property 标签的简化-->
+       <!--c: 就是对 constructor-arg 标签的简化-->
+       <bean id="user5" class="com.msb.bean.User" p:userid="5" p:username="薛寅珊" p:password="456"></bean>
+       <bean id="user6" class="com.msb.bean.User" c:userid="6" c:username="马士兵" c:password="456"></bean>
+</beans>

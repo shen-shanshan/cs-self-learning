@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Adapter/Adapter.iml" filepath="$PROJECT_DIR$/Adapter/Adapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Design Pattern.iml" filepath="$PROJECT_DIR$/Design Pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Factory Method/Factory Method.iml" filepath="$PROJECT_DIR$/Factory Method/Factory Method.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Iterator/Iterator.iml" filepath="$PROJECT_DIR$/Iterator/Iterator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Prototype/Prototype.iml" filepath="$PROJECT_DIR$/Prototype/Prototype.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Singleton/Singleton.iml" filepath="$PROJECT_DIR$/Singleton/Singleton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Template Method/Template Method.iml" filepath="$PROJECT_DIR$/Template Method/Template Method.iml" />
+    </modules>
+  </component>
+</project>

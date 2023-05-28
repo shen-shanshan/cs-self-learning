@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/1.File类应用 - 文件名称过滤/1.File类应用 - 文件名称过滤.iml" filepath="$PROJECT_DIR$/6.IO流/1.File类应用 - 文件名称过滤/1.File类应用 - 文件名称过滤.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1.IDE/1.IDE.iml" filepath="$PROJECT_DIR$/1.IDE/1.IDE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.基础语法/1.基本数据类型/1.基本数据类型.iml" filepath="$PROJECT_DIR$/2.基础语法/1.基本数据类型/1.基本数据类型.iml" />
+      <module fileurl="file://$PROJECT_DIR$/7.多线程/1.多线程的实现方式一/1.多线程的实现方式一.iml" filepath="$PROJECT_DIR$/7.多线程/1.多线程的实现方式一/1.多线程的实现方式一.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/1.封装/1.封装.iml" filepath="$PROJECT_DIR$/3.面向对象/1.封装/1.封装.iml" />
+      <module fileurl="file://$PROJECT_DIR$/8.设计模式/1.简单工厂模式/1.简单工厂模式.iml" filepath="$PROJECT_DIR$/8.设计模式/1.简单工厂模式/1.简单工厂模式.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.集合/1.迭代器/1.迭代器.iml" filepath="$PROJECT_DIR$/5.集合/1.迭代器/1.迭代器.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10.网络编程/10.网络编程.iml" filepath="$PROJECT_DIR$/10.网络编程/10.网络编程.iml" />
+      <module fileurl="file://$PROJECT_DIR$/11.反射/11.反射.iml" filepath="$PROJECT_DIR$/11.反射/11.反射.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.基础语法/2.基础语法.iml" filepath="$PROJECT_DIR$/2.基础语法/2.基础语法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/7.多线程/2.多线程的实现方式二/2.多线程的实现方式二.iml" filepath="$PROJECT_DIR$/7.多线程/2.多线程的实现方式二/2.多线程的实现方式二.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/2.字节流 - 读写数据/2.字节流 - 读写数据.iml" filepath="$PROJECT_DIR$/6.IO流/2.字节流 - 读写数据/2.字节流 - 读写数据.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.基础语法/2.实现键盘录入/2.实现键盘录入.iml" filepath="$PROJECT_DIR$/2.基础语法/2.实现键盘录入/2.实现键盘录入.iml" />
+      <module fileurl="file://$PROJECT_DIR$/8.设计模式/2.工厂方法模式/2.工厂方法模式.iml" filepath="$PROJECT_DIR$/8.设计模式/2.工厂方法模式/2.工厂方法模式.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.集合/2.泛型/2.泛型.iml" filepath="$PROJECT_DIR$/5.集合/2.泛型/2.泛型.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/2.静态成员与静态方法/2.静态成员与静态方法.iml" filepath="$PROJECT_DIR$/3.面向对象/2.静态成员与静态方法/2.静态成员与静态方法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/3.代码块/3.代码块.iml" filepath="$PROJECT_DIR$/3.面向对象/3.代码块/3.代码块.iml" />
+      <module fileurl="file://$PROJECT_DIR$/8.设计模式/3.单例模式/3.单例模式.iml" filepath="$PROJECT_DIR$/8.设计模式/3.单例模式/3.单例模式.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.集合/3.可变参数/3.可变参数.iml" filepath="$PROJECT_DIR$/5.集合/3.可变参数/3.可变参数.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/3.字节流 - 复制文本文件/3.字节流 - 复制文本文件.iml" filepath="$PROJECT_DIR$/6.IO流/3.字节流 - 复制文本文件/3.字节流 - 复制文本文件.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.基础语法/3.数组/3.数组.iml" filepath="$PROJECT_DIR$/2.基础语法/3.数组/3.数组.iml" />
+      <module fileurl="file://$PROJECT_DIR$/7.多线程/3.锁/3.锁.iml" filepath="$PROJECT_DIR$/7.多线程/3.锁/3.锁.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/3.面向对象.iml" filepath="$PROJECT_DIR$/3.面向对象/3.面向对象.iml" />
+      <module fileurl="file://$PROJECT_DIR$/4.常用的类及方法/4.常用的类及方法.iml" filepath="$PROJECT_DIR$/4.常用的类及方法/4.常用的类及方法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/7.多线程/4.线程组/4.线程组.iml" filepath="$PROJECT_DIR$/7.多线程/4.线程组/4.线程组.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/4.继承/4.继承.iml" filepath="$PROJECT_DIR$/3.面向对象/4.继承/4.继承.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.集合/4.重写HashMap的方法/4.重写HashMap的方法.iml" filepath="$PROJECT_DIR$/5.集合/4.重写HashMap的方法/4.重写HashMap的方法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/4.高效字节流 - 复制单级目录/4.高效字节流 - 复制单级目录.iml" filepath="$PROJECT_DIR$/6.IO流/4.高效字节流 - 复制单级目录/4.高效字节流 - 复制单级目录.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/5.多态/5.多态.iml" filepath="$PROJECT_DIR$/3.面向对象/5.多态/5.多态.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/5.字符转换流 - 复制文本文件/5.字符转换流 - 复制文本文件.iml" filepath="$PROJECT_DIR$/6.IO流/5.字符转换流 - 复制文本文件/5.字符转换流 - 复制文本文件.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.集合/5.比较器排序/5.比较器排序.iml" filepath="$PROJECT_DIR$/5.集合/5.比较器排序/5.比较器排序.iml" />
+      <module fileurl="file://$PROJECT_DIR$/7.多线程/5.线程池/5.线程池.iml" filepath="$PROJECT_DIR$/7.多线程/5.线程池/5.线程池.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.集合/5.集合.iml" filepath="$PROJECT_DIR$/5.集合/5.集合.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/6.IO流.iml" filepath="$PROJECT_DIR$/6.IO流/6.IO流.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.集合/6.Map遍历/6.Map遍历.iml" filepath="$PROJECT_DIR$/5.集合/6.Map遍历/6.Map遍历.iml" />
+      <module fileurl="file://$PROJECT_DIR$/7.多线程/6.定时器/6.定时器.iml" filepath="$PROJECT_DIR$/7.多线程/6.定时器/6.定时器.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/6.抽象类/6.抽象类.iml" filepath="$PROJECT_DIR$/3.面向对象/6.抽象类/6.抽象类.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/6.高效字符流 - 复制文本文件/6.高效字符流 - 复制文本文件.iml" filepath="$PROJECT_DIR$/6.IO流/6.高效字符流 - 复制文本文件/6.高效字符流 - 复制文本文件.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/7.合并流/7.合并流.iml" filepath="$PROJECT_DIR$/6.IO流/7.合并流/7.合并流.iml" />
+      <module fileurl="file://$PROJECT_DIR$/7.多线程/7.多线程.iml" filepath="$PROJECT_DIR$/7.多线程/7.多线程.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/7.接口/7.接口.iml" filepath="$PROJECT_DIR$/3.面向对象/7.接口/7.接口.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.面向对象/8.内部类/8.内部类.iml" filepath="$PROJECT_DIR$/3.面向对象/8.内部类/8.内部类.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.IO流/8.序列化流/8.序列化流.iml" filepath="$PROJECT_DIR$/6.IO流/8.序列化流/8.序列化流.iml" />
+      <module fileurl="file://$PROJECT_DIR$/8.设计模式/8.设计模式.iml" filepath="$PROJECT_DIR$/8.设计模式/8.设计模式.iml" />
+      <module fileurl="file://$PROJECT_DIR$/9.GUI/9.GUI.iml" filepath="$PROJECT_DIR$/9.GUI/9.GUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java SE.iml" filepath="$PROJECT_DIR$/Java SE.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msb.mapper.ProjectMapper">
+
+    <!--Project findProjectJoinEmpsByPid(int pid);-->
+    <resultMap id="projectJoinEmps" type="project">
+        <id column="pid" property="pid"></id>
+        <result column="pname" property="pname"></result>
+        <result column="money" property="money"></result>
+        <!--一对多->集合属性->collection-->
+        <collection property="projectRecords" ofType="projectRecord">
+            <id column="empno" property="empno"></id>
+            <id column="pid" property="pid"></id>
+            <!--一对一-->
+            <association property="emp" javaType="emp">
+                <id property="empno" column="empno"></id>
+                <result property="name" column="ename"></result>
+                <result property="job" column="job"></result>
+                <result property="sal" column="sal"></result>
+                <result property="hiredate" column="hiredate"></result>
+                <result property="mgr" column="mgr"></result>
+                <result property="comm" column="comm"></result>
+                <result property="deptno" column="deptno"></result>
+            </association>
+        </collection>
+    </resultMap>
+
+    <select id="findProjectJoinEmpsByPid" resultMap="projectJoinEmps">
+        select *
+        from project p
+                 left join projectrecord pr
+                           on p.pid = pr.pid
+                 left join emp e
+                           on e.empno = pr.empno
+        where p.pid = #{pid}
+    </select>
+
+</mapper>

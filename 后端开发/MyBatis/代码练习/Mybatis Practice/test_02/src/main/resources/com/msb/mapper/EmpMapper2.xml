@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--动态SQL-->
+<mapper namespace="com.msb.mapper.EmpMapper2">
+
+    <!--List<Emp> findByCondition(Emp emp);-->
+    <select id="findByCondition" resultType="emp">
+        select * from emp
+        <where>
+            <if test="empno != null">
+                and empno =#{empno}
+            </if>
+            <if test="ename != null and ename != ''">
+                and ename like concat('%',#{ename},'%')
+            </if>
+            <if test="job != null and job != ''">
+                and job =#{job}
+            </if>
+            <if test="mgr != null">
+                and mgr =#{mgr}
+            </if>
+            <if test="hiredate != null">
+                and hiredate =#{hiredate}
+            </if>
+            <if test="sal != null">
+                and sal =#{sal}
+            </if>
+            <if test="comm != null">
+                and comm =#{comm}
+            </if>
+            <if test="deptno != null">
+                and deptno =#{deptno}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByCondition2" resultType="emp">
+        select * from emp
+        <trim prefix="where" prefixOverrides="and">
+            <if test="empno != null">
+                and empno= #{empno}
+            </if>
+            <if test="ename != null and ename != ''">
+                and ename= #{ename}
+            </if>
+            <if test="job != null and job != ''">
+                and job= #{job}
+            </if>
+            <if test="mgr != null ">
+                and mgr= #{mgr}
+            </if>
+            <if test="hiredate != null ">
+                and hiredate= #{hiredate}
+            </if>
+            <if test="sal != null">
+                and sal= #{sal}
+            </if>
+            <if test="comm != null ">
+                and comm =#{comm}
+            </if>
+            <if test="deptno != null ">
+                and deptno= #{deptno}
+            </if>
+        </trim>
+    </select>
+
+    <!--int updateEmpByCondtion(Emp emp);-->
+    <update id="updateEmpByCondition">
+        update emp
+        <set>
+            <if test="ename != null and ename != '' ">
+                , ename =#{ename}
+            </if>
+            <if test="job != null and ename != '' ">
+                , job =#{job}
+            </if>
+            <if test="mgr != null ">
+                , mgr =#{mgr}
+            </if>
+            <if test="hiredate != null ">
+                , hiredate =#{hiredate}
+            </if>
+            <if test="sal != null ">
+                , sal =#{sal}
+            </if>
+            <if test="comm != null ">
+                , comm =#{comm}
+            </if>
+            <if test="deptno != null ">
+                , deptno =#{deptno}
+            </if>
+        </set>
+        where empno =#{empno}
+    </update>
+
+    <update id="updateEmpByCondition2">
+        <!--
+        prefix          要增加什么前缀
+        prefixOverrides 要去除什么前缀
+        suffix          要增加什么后缀
+        suffixOverrides 要去除什么后缀
+        set是trim的一种特殊情况
+        -->
+        <trim prefix="set"  prefixOverrides=",">
+            <if test="ename != null and ename != ''">
+                ename= #{ename},
+            </if>
+            <if test="job != null and job != ''">
+                job= #{job},
+            </if>
+            <if test="mgr != null ">
+                mgr= #{mgr},
+            </if>
+            <if test="hiredate != null ">
+                hiredate= #{hiredate},
+            </if>
+            <if test="sal != null">
+                sal= #{sal},
+            </if>
+            <if test="comm != null ">
+                comm =#{comm},
+            </if>
+            <if test="deptno != null ">
+                deptno= #{deptno},
+            </if>
+        </trim>
+        where  empno = #{empno}
+    </update>
+
+    <!--List<Emp> findByEmpnos1(int[] empnos);
+     collection=""  遍历的集合或者数组
+                   （1）参数是数组,collection中名字指定为array
+                   （2）参数是List集合,collection中名字指定为list
+     separator=""   多个元素取出的时候 用什么文字分隔
+     open=""        以什么开头
+     close=""       以什么结尾
+     item=""        中间变量名
+     for(Person per:PersonList)
+    -->
+    <select id="findByEmpnos1" resultType="emp">
+        select * from emp  where empno in
+        <foreach collection="array" separator="," open="(" close=")" item="deptno">
+            #{deptno}
+        </foreach>
+    </select>
+
+    <!-- List<Emp> findByEmpnos2(List<Integer> empnos);-->
+    <select id="findByEmpnos2" resultType="emp">
+        select * from emp  where empno in
+        <foreach collection="list" separator="," open="(" close=")" item="deptno">
+            #{deptno}
+        </foreach>
+    </select>
+
+</mapper>

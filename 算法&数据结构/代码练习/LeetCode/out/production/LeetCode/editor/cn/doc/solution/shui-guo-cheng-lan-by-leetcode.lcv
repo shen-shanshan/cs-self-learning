@@ -1,0 +1,183 @@
+#### 方法 1：按块扫描
+
+**想法**
+
+问题等价于，找到最长的子序列，最多含有两种“类型”（`tree[i]` 的值）。
+
+不单独考虑每个元素，转而考虑相同类型的相连块。
+
+比如说，`tree = [1, 1, 1, 1, 2, 2, 3, 3, 3]` 可以看成是 `blocks = [(1, weight = 4), (2, weight = 2), (3, weight = 3)]`。
+
+现在可以使用暴力，从左往右扫描。我们会有类似于 `blocks = [1, _2_, 1, 2, 1, 2, _1_, 3, ...]` 以及对应权重。
+
+处理的核心思想是，当我们考虑 `3` 的时候，我们不需要从第二个元素 `2` （也就是标记成 `_2_` 的数字）开始考虑，我们可以从 `3` 之前的第一个元素开始考虑（`_1_`）。这是因为如果我们从前两个或更多元素开始，这个序列一定包含类型 `1` 和 `2`，所以序列一定会在 `3` 处停止，这就比已经考虑的序列更短了。
+
+从每个开始点（块的最左端点）开始考虑，这个结果一定是对的。
+
+**算法**
+
+Python 和 Java 的实现方法，符号和策略有所不同，可以查看代码内的注释。
+
+* []
+
+```Java
+class Solution {
+    public int totalFruit(int[] tree) {
+        // We'll make a list of indexes for which a block starts.
+        List<Integer> blockLefts = new ArrayList();
+
+        // Add the left boundary of each block
+        for (int i = 0; i < tree.length; ++i)
+            if (i == 0 || tree[i-1] != tree[i])
+                blockLefts.add(i);
+
+        // Add tree.length as a sentinel for convenience
+        blockLefts.add(tree.length);
+
+        int ans = 0, i = 0;
+        search: while (true) {
+            // We'll start our scan at block[i].
+            // types : the different values of tree[i] seen
+            // weight : the total number of trees represented
+            //          by blocks under consideration
+            Set<Integer> types = new HashSet();
+            int weight = 0;
+
+            // For each block from the i-th and going forward,
+            for (int j = i; j < blockLefts.size() - 1; ++j) {
+                // Add each block to consideration
+                types.add(tree[blockLefts.get(j)]);
+                weight += blockLefts.get(j+1) - blockLefts.get(j);
+
+                // If we have 3+ types, this is an illegal subarray
+                if (types.size() >= 3) {
+                    i = j - 1;
+                    continue search;
+                }
+
+                // If it is a legal subarray, record the answer
+                ans = Math.max(ans, weight);
+            }
+
+            break;
+        }
+
+        return ans;
+    }
+}
+```
+
+* []
+
+```Python
+class Solution(object):
+    def totalFruit(self, tree):
+        blocks = [(k, len(list(v)))
+                  for k, v in itertools.groupby(tree)]
+
+        ans = i = 0
+        while i < len(blocks):
+            # We'll start our scan at block[i].
+            # types : the different values of tree[i] seen
+            # weight : the total number of trees represented
+            #          by blocks under consideration
+            types, weight = set(), 0
+
+            # For each block from i and going forward,
+            for j in xrange(i, len(blocks)):
+                # Add each block to consideration
+                types.add(blocks[j][0])
+                weight += blocks[j][1]
+
+                # If we have 3 types, this is not a legal subarray
+                if len(types) >= 3:
+                    i = j-1
+                    break
+
+                ans = max(ans, weight)
+
+            # If we go to the last block, then stop
+            else:
+                break
+
+        return ans
+```
+
+**复杂度分析**
+
+* 时间复杂度：$O(N)$，其中 $N$ 是 `tree` 的长度。
+* 空间复杂度：$O(N)$。
+
+#### 方法 2：滑动窗口
+
+**想法**
+
+在*方法 1*中，我们希望找到最长的包含两种不同“类型”的子序列，我们称这样的子序列为*合法的*。
+
+假设我们考虑所有以下标 `j` 为结尾的合法子序列，那么一定有一个最小的开始下标 `i`：称之为 `opt(j) = i`。
+
+我们会发现这个 `opt(j)` 是一个单调递增的函数，这是因为所有合法子序列的子序列一定也是合法的。
+
+**算法**
+
+模拟一个滑动窗口，维护变量 `i` 是最小的下标满足 `[i, j]` 是合法的子序列。
+
+维护 `count` 是序列中各种类型的个数，这使得我们可以很快知道子序列中是否含有 3 中类型。
+
+* []
+
+```Java
+class Solution {
+    public int totalFruit(int[] tree) {
+        int ans = 0, i = 0;
+        Counter count = new Counter();
+        for (int j = 0; j < tree.length; ++j) {
+            count.add(tree[j], 1);
+            while (count.size() >= 3) {
+                count.add(tree[i], -1);
+                if (count.get(tree[i]) == 0)
+                    count.remove(tree[i]);
+                i++;
+            }
+
+            ans = Math.max(ans, j - i + 1);
+        }
+
+        return ans;
+    }
+}
+
+class Counter extends HashMap<Integer, Integer> {
+    public int get(int k) {
+        return containsKey(k) ? super.get(k) : 0;
+    }
+
+    public void add(int k, int v) {
+        put(k, get(k) + v);
+    }
+}
+```
+
+* []
+
+```Python
+class Solution(object):
+    def totalFruit(self, tree):
+        ans = i = 0
+        count = collections.Counter()
+        for j, x in enumerate(tree):
+            count[x] += 1
+            while len(count) >= 3:
+                count[tree[i]] -= 1
+                if count[tree[i]] == 0:
+                    del count[tree[i]]
+                i += 1
+            ans = max(ans, j - i + 1)
+        return ans
+```
+
+**复杂度分析**
+
+* 时间复杂度：$O(N)$，其中 $N$ 是 `tree` 的长度。
+* 空间复杂度：$O(N)$。
+

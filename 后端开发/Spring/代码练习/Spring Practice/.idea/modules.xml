@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Spring Practice.iml" filepath="$PROJECT_DIR$/.idea/Spring Practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_aop_01/spring_aop_01.iml" filepath="$PROJECT_DIR$/spring_aop_01/spring_aop_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_aop_02/spring_aop_02.iml" filepath="$PROJECT_DIR$/spring_aop_02/spring_aop_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_ioc_01/spring_ioc_01.iml" filepath="$PROJECT_DIR$/spring_ioc_01/spring_ioc_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_ioc_02/spring_ioc_02.iml" filepath="$PROJECT_DIR$/spring_ioc_02/spring_ioc_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_jdbctemplate_01/spring_jdbctemplate_01.iml" filepath="$PROJECT_DIR$/spring_jdbctemplate_01/spring_jdbctemplate_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_test_01/spring_test_01.iml" filepath="$PROJECT_DIR$/spring_test_01/spring_test_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_tx_01/spring_tx_01.iml" filepath="$PROJECT_DIR$/spring_tx_01/spring_tx_01.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msb.mapper.DeptMapper">
+
+    <!--Dept findDeptJoinEmpsByDeptno(int deptno);-->
+    <resultMap id="deptJoinEmps" type="dept">
+        <id column="deptno" property="deptno"></id>
+        <result column="dname" property="dname"></result>
+        <result column="loc" property="loc"></result>
+        <!--
+        collection：处理一对多关系的标签
+        一个dept对象里包含了多个emp对象
+        给dept实体类的empList属性赋值
+        ofType：集合里面的元素的数据类型
+        -->
+        <collection property="empList" ofType="emp" >
+            <!--设置emp本身的八个属性的映射关系-->
+            <id property="empno" column="empno"></id>
+            <result property="name" column="ename"></result>
+            <result property="job" column="job"></result>
+            <result property="sal" column="sal"></result>
+            <result property="hiredate" column="hiredate"></result>
+            <result property="mgr" column="mgr"></result>
+            <result property="comm" column="comm"></result>
+            <result property="deptno" column="deptno"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findDeptJoinEmpsByDeptno" resultMap="deptJoinEmps">
+        select * from dept d left join emp e on d.deptno = e.deptno where d.deptno = #{deptno}
+    </select>
+
+    <!--
+    Dept findDeptByDeptno(int deptno);
+    select="..."       调用的另一个SQL语句
+    javaType="list"    实体类的属性数据类型
+    column="deptno"    给另一个SQL语句传入的参数列表
+    jdbcType="INTEGER" 参数对应JDBC的数据类型
+    fetchType="eager"  加载方式：eager 积极加载；lazy 延迟加载
+    -->
+    <resultMap id="deptJoinEmps2" type="dept">
+        <id property="deptno" column="deptno"></id>
+        <result property="dname" column="dname"></result>
+        <result property="loc" column="loc"></result>
+        <collection property="empList"
+                    select="com.msb.mapper.EmpMapper.findEmpsByDeptno"
+                    javaType="list"
+                    column="deptno"
+                    jdbcType="INTEGER"
+                    fetchType="eager">
+        </collection>
+    </resultMap>
+
+    <select id="findDeptByDeptno" resultMap="deptJoinEmps2">
+        select * from dept where deptno =#{deptno}
+    </select>
+
+</mapper>

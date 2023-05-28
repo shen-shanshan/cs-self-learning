@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="16. 数值的整数次方" target="8" />
+      <module name="30. 包含min函数的栈" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

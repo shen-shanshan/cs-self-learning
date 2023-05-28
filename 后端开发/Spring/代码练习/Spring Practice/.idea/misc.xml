@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/spring_test_01/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_ioc_01/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_ioc_02/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_aop_01/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_aop_02/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_jdbctemplate_01/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_tx_01/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

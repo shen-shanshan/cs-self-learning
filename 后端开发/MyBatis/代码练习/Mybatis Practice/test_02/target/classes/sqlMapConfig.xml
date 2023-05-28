@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties resource="jdbc.properties"/>
+
+    <settings>
+        <!--指定日志方式，如果不配置默认也是用LOG4J-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--设置实体类别名-->
+    <typeAliases>
+        <!--
+        通过包扫描给这个包下的所有实体类起别名
+        默认每个实体类的别名是首字母小写的类名
+        如：Dept -> dept
+        -->
+        <package name="com.msb.pojo"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <!--配置事务的处理策略-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc_driver}"/>
+                <property name="url" value="${jdbc_url}"/>
+                <property name="username" value="${jdbc_username}"/>
+                <property name="password" value="${jdbc_password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--加载mapper映射文件-->
+    <mappers>
+        <!--方式一：<mapper resource="com/msb/mapper/EmpMapper.xml"/>-->
+        <!--方式二：通过接口的全路径去找mapper映射文件
+         <mapper class="com.msb.mapper.EmpMapper"/>
+        -->
+        <!--方式三：通过包扫描加载所有的mapper-->
+        <package name="com.msb.mapper"/>
+    </mappers>
+
+</configuration>

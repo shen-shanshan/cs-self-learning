@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/1.排序算法/1.冒泡排序/1.冒泡排序.iml" filepath="$PROJECT_DIR$/1.排序算法/1.冒泡排序/1.冒泡排序.iml" />
+      <module fileurl="file://$PROJECT_DIR$/8.二叉树/1.前中后序遍历/1.前中后序遍历.iml" filepath="$PROJECT_DIR$/8.二叉树/1.前中后序遍历/1.前中后序遍历.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.链表/1.单链表的反转/1.单链表的反转.iml" filepath="$PROJECT_DIR$/5.链表/1.单链表的反转/1.单链表的反转.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1.排序算法/1.排序算法.iml" filepath="$PROJECT_DIR$/1.排序算法/1.排序算法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10.有序表/10.有序表.iml" filepath="$PROJECT_DIR$/10.有序表/10.有序表.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.二分查找/2.二分查找.iml" filepath="$PROJECT_DIR$/2.二分查找/2.二分查找.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.链表/2.双链表的反转/2.双链表的反转.iml" filepath="$PROJECT_DIR$/5.链表/2.双链表的反转/2.双链表的反转.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1.排序算法/2.选择排序/2.选择排序.iml" filepath="$PROJECT_DIR$/1.排序算法/2.选择排序/2.选择排序.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3.异或运算/3.异或运算.iml" filepath="$PROJECT_DIR$/3.异或运算/3.异或运算.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1.排序算法/3.插入排序/3.插入排序.iml" filepath="$PROJECT_DIR$/1.排序算法/3.插入排序/3.插入排序.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.链表/3.链表中k个节点的组内逆序调整/3.链表中k个节点的组内逆序调整.iml" filepath="$PROJECT_DIR$/5.链表/3.链表中k个节点的组内逆序调整/3.链表中k个节点的组内逆序调整.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.链表/4.两个链表相加/4.两个链表相加.iml" filepath="$PROJECT_DIR$/5.链表/4.两个链表相加/4.两个链表相加.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1.排序算法/4.归并排序/4.归并排序.iml" filepath="$PROJECT_DIR$/1.排序算法/4.归并排序/4.归并排序.iml" />
+      <module fileurl="file://$PROJECT_DIR$/4.数组/4.数组.iml" filepath="$PROJECT_DIR$/4.数组/4.数组.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1.排序算法/5.快速排序/5.快速排序.iml" filepath="$PROJECT_DIR$/1.排序算法/5.快速排序/5.快速排序.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.链表/5.移除指定节点/5.移除指定节点.iml" filepath="$PROJECT_DIR$/5.链表/5.移除指定节点/5.移除指定节点.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.链表/5.链表.iml" filepath="$PROJECT_DIR$/5.链表/5.链表.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5.链表/6.合并两个有序链表/6.合并两个有序链表.iml" filepath="$PROJECT_DIR$/5.链表/6.合并两个有序链表/6.合并两个有序链表.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1.排序算法/6.堆排序/6.堆排序.iml" filepath="$PROJECT_DIR$/1.排序算法/6.堆排序/6.堆排序.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6.栈/6.栈.iml" filepath="$PROJECT_DIR$/6.栈/6.栈.iml" />
+      <module fileurl="file://$PROJECT_DIR$/7.队列/7.队列.iml" filepath="$PROJECT_DIR$/7.队列/7.队列.iml" />
+      <module fileurl="file://$PROJECT_DIR$/8.二叉树/8.二叉树.iml" filepath="$PROJECT_DIR$/8.二叉树/8.二叉树.iml" />
+      <module fileurl="file://$PROJECT_DIR$/9.哈希表/9.哈希表.iml" filepath="$PROJECT_DIR$/9.哈希表/9.哈希表.iml" />
+      <module fileurl="file://$PROJECT_DIR$/左程云算法课.iml" filepath="$PROJECT_DIR$/左程云算法课.iml" />
+    </modules>
+  </component>
+</project>
