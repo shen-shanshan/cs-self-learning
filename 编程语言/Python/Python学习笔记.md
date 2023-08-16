@@ -1736,6 +1736,460 @@ for key, group in itertools.groupby('AAABBBBCCCDDDAAABB'):
 
 # Numpy
 
+## 1  特点
+
+- 底层使用 C 语言实现。
+- Numpy 数组内的数据类型必须统一（Python 列表支持任意类型），且数据连续存储在内存中（Python 列表的数据分散在内存中），有利于底层的高效处理。
+- Python 有线程锁，无法实现真正的多线程并行，而 C 语言可以。
+
+> 当遇到需要使用 for 循环实现一些向量化、矩阵化操作的时候，要优先考虑使用 Numpy，如：两个向量的点乘、矩阵相乘。
+
+## 2  创建数组
+
+### 2.1  从列表创建
+
+```python
+import numpy as np
+
+# 创建一维数组
+x = np.array([1, 2, 3, 4, 5])
+
+# 设置数组的数据类型
+x = np.array([1, 2, 3, 4, 5], dtype="float32")
+
+# 创建二维数组
+x = np.array([[1, 2, 3],
+             [4, 5, 6],
+             [7, 8, 9]])
+```
+
+### 2.2  直接创建
+
+```python
+import numpy as np
+
+# 创建长度为5的数组，值全为0
+np.zeros(5, dtype=int)
+
+# 创建一个2*4的浮点型数组，值全为1
+np.ones((2, 4), dtype=float)
+
+# 创建一个3*5的数组，值全为8
+np.full((3, 5), 8)
+
+# 创建一个3*3的单位矩阵
+np.eye(3)
+
+# 创建一个线性序列数组，[1,15)，步长为2
+np.arange(1, 15, 2)
+
+# 创建一个有4个元素的数组，均匀分布在0到1之间
+np.linspace(0, 1, 4) # 0 0.33.. 0.66.. 1
+
+# 创建一个有10个元素的数组，从10的0次方到10的9次方
+np.logspace(0, 9, 10)
+
+# 创建一个3*3的数组，元素为在0到1之间均匀分布的随机数
+np.random.random((3, 3))
+
+# 创建一个3*3的数组，元素为均值为0且标准差为1的随机数
+np.random.normal(0, 1, (3, 3))
+
+# 创建一个3*3的数组，元素为[0,10)的随机数
+np.random.randint(0, 10, (3, 3))
+
+# 随机重排列
+x = np.array(...)
+np.random.permutation(x) # 不改变原数组
+np.random.shuffle(x) # 会改变原数组
+
+# 随机采样
+x = np.array(...)
+# 按指定形状采样
+np.random.choice(x, size=(4, 3))
+# 按概率采样
+np.random.choice(x, size=(4, 3), p=x/np.sum(x))
+```
+
+## 3  数组操作
+
+### 3.1  属性
+
+```python
+import numpy as np
+
+x = np.array(...) # 3*4
+
+# 形状
+x.shape # (3, 4)
+
+# 维度
+x.ndim # 2
+
+# 大小
+x.size # 12
+
+# 数据类型
+s.dtype # dtype('int32')
+```
+
+### 3.2  索引
+
+```python
+import numpy as np
+
+# 一维数组
+x1 = array(...)
+x1[0] = ...
+
+# 二维数组
+x2 = array # m*n
+x2[0, 0] = ...
+x2[0][0] = ...
+```
+
+> 注意：Numpy 数组的数据类型是固定的，当向一个整型数组插入一个浮点值时，浮点值会向下进行取整。
+
+### 3.3  切片
+
+```python
+import numpy as np
+
+# 一维数组
+x1 = np.arange(10) # 0 1 2 ... 9
+x1[:3] # 0 1 2
+x1[3:] # 3 4 5 ... 9
+x1[::-1] # 9 8 7 ... 0
+
+# 二维数组
+x2 = np.random.randint(20, size=(3, 4)) # 3*4，元素随机从0到20中取
+x2[:2, :3] # 取前2行，前3列
+x2[:2, 0:3:2] # 取前2行，前3列（步长为1列）
+x2[::-1, ::-1] # 行逆序，列逆序
+
+# 获取第1行
+x2[0, :]
+# 简写如下：
+x2[0]
+
+# 获取第1列
+x2[:, 0]
+```
+
+> 注意：切片获取的是「视图」，而非副本，若视图元素发生变化，则原数组也会进行相应的修改。
+>
+> 修改切片的安全方式：`x3 = x2[:2, :2].copy()`。
+
+### 3.4  变形
+
+```python
+import numpy as np
+
+# 一维向量
+x1 = np.random.randint(0, 10, (12,))
+
+# 一维向量转3*4的矩阵
+x2 = x1.reshape(3, 4) # 返回的是视图
+
+# 一维向量转行向量
+x3 = x1.reshape(1, x1.shape[0])
+# 或：
+x4 = x1[np.newaxis, :]
+
+# 一维向量转列向量
+x5 = x1.reshape(x1.shape[0], 1)
+# 或：
+x6 = x1[:, np.newaxis]
+
+# 多维向量
+x7 = np.random.randint(0, 10, (3, 4))
+
+# 多维向量转一维向量
+x8 = x7.flatten() # 返回的是副本
+x9 = x7.ravel() # 返回的是视图
+x10 = x7.reshape(-1) # 返回的是视图
+```
+
+### 3.5  拼接
+
+```python
+import numpy as np
+
+x1 = np.array([[1, 2, 3],
+              [4, 5, 6]])
+x2 = np.array([[7, 8, 9],
+              [0, 1, 2]])
+
+# 水平拼接（非视图）：要求两个矩阵行数相同
+x3 = np.hstack([x1, x2])
+# 或：
+x4 = np.c_[x1, x2]
+# [[1, 2, 3, 7, 8, 9],
+# [4, 5, 6, 0, 1, 2]]
+
+# 垂直（非视图）：要求两个矩阵列数相同
+x5 = np.vstack([x1, x2])
+# 或：
+x6 = np.r_[x1, x2]
+# [[1, 2, 3],
+# [4, 5, 6],
+# [7, 8, 9],
+# [0, 1, 2]]
+```
+
+### 3.6  分裂
+
+```python
+import numpy as np
+
+# 分割一维数组
+x1 = np.arrange(10) # [0 1 ... 9]
+x1, x2, x3 = np.split(x1, [2, 7]) # 分别以下标为2和7的元素进行分割
+# [0 1] [2 3 4 5 6] [7 8 9]
+
+# 垂直分割二维数组
+x4 = np.arange(1, 26).reshape(5, 5)
+left, middle, right = np.hsplit(x4, [2, 4])
+# left：第0-1列
+# middle：第2-3列
+# right：第4列
+
+# 水平分割二维数组
+upper, middle, lower = np.vsplit(x4, [2, 4])
+# left：第0-1行
+# middle：第2-3行
+# right：第4行
+```
+
+## 4  运算
+
+### 4.1  向量运算
+
+「向量运算」：每一次操作都是对矩阵中所有的元素进行操作。
+
+```python
+import numpy as np
+
+x1 = [...]
+
+# 加减乘除
+x1+5
+x1-5
+x1*5
+x1/5
+-x1
+x1**2
+x1//2 # 除后取整
+x1%2 # 取余
+
+# 取绝对值
+abs(x1)
+
+# 三角函数
+np.sin(x1)
+np.cos(x1)
+np.tan(x1)
+np.arcsin(x)
+np.arccos(x)
+np.arctan(x)
+
+# 指数运算
+np.exp(x)
+
+# 对数运算
+np.log(x) # ln(x)
+np.log2(x)
+np.log10(x)
+
+# 两个数组的运算
+x1 = [...]
+x2 = [...]
+x1+x2
+x1-x2
+x1*x2
+x1/x2
+```
+
+### 4.2  矩阵运算
+
+```python
+import numpy as np
+
+# 转置
+x = np.arange(9).reshape(3, 3)
+y = x.T
+
+# 相乘
+x = np.array([1, 0],
+            [1, 1])
+y = np.array([0, 1],
+            [1, 1])
+x.dot(y)
+```
+
+> 注意：`x.dot(y)` 是矩阵乘法，而 `x*y` 只是将两个矩阵对应位置上的元素直接相乘。
+
+### 4.3  广播运算
+
+如果两个数组的形状在维度上不匹配，那么数组的形式会沿着维度为 1 的维度进行扩展以匹配另一个数组的形状。
+
+原理如下：
+
+![Snipaste_2023-08-16_22-16-35](Python学习笔记.assets/Snipaste_2023-08-16_22-16-35.png)
+
+### 4.4  比较运算和掩码
+
+```python
+import numpy as np
+
+x1 = np.random.randint(10, size(10, 10))
+
+# 比较运算
+x1>5 # 10*10，布尔类型
+
+# 统计大于5的元素个数
+np.sum(x1>5)
+
+# 判断是否所有元素都大于0
+np.all(x1 > 0)
+
+# 判断是否有元素等于6
+np.any(x1 == 6)
+
+# 按行判断，是否每行的元素都小于8
+np.all(x1 < 8, axis=1)
+# 按列判断，...
+np.all(x1 < 8, axis=0)
+
+# 判断同时大于5且小于9的元素
+(x1 > 5) & (x1 < 9)
+
+# 掩码操作
+x2 = [...]
+# 获取x2中所有大于5的元素
+x2[x2 > 5]
+```
+
+### 4.5  索引补充
+
+```python
+import numpy as np
+
+# 一维数组
+x1 = [...]
+
+# 获取索引为2、6、9的元素
+ind = [2, 6, 9]
+x1[ind]
+
+# 二维数组
+x2 = [...] # 3*4
+row = np.array([0, 1, 2])
+col = np.array([1, 3, 0])
+# 获取：x2(0,1) x2(1,3) x2(2,0)
+x[row, col]
+
+row[:, np.newaxis] # 列向量
+# [[0],[1],[2]]
+
+# 获取：
+# x2(0,1) x2(0,3) x2(0,0)
+# x2(1,1) x2(1,3) x2(1,0)
+# x2(2,1) x2(2,3) x2(2,0)
+x[row[:, np.newaxis], col] # 广播机制
+```
+
+## 5  其它函数
+
+### 5.1  排序
+
+```python
+import numpy as np
+
+x = [...]
+
+# 产生新的排序数组
+np.sort(x)
+
+# 覆盖原数组
+s.sort()
+
+# 获得排序索引
+i = np.argsort(x)
+```
+
+### 5.2  极值
+
+```python
+import numpy as np
+
+x = [...]
+
+# 获取最大值
+np.max(x)
+
+# 获取最小值
+np.min(x)
+
+# 获取最大值的索引
+max_index = np.argmax(x)
+
+# 获取最小值的索引
+min_index = np.argmin(x)
+```
+
+### 5.3  求和
+
+```python
+import numpy as np
+
+x = [...]
+
+# 求和
+x.sum()
+np.sum(x)
+
+# 按行求和
+np.sum(x, axis=1)
+# 按列求和
+np.sum(x, axis=0)
+```
+
+### 5.4  求积
+
+```python
+import numpy as np
+
+x = [...]
+
+# 求积
+x.prod()
+np.prod(x)
+```
+
+### 5.5  统计
+
+```python
+import numpy as np
+
+x = [...]
+
+# 中位数
+np.median(x)
+
+# 均值
+x.mean()
+np.mean(x)
+
+# 方差
+x.var()
+np.var(x)
+
+# 标准差
+s.std()
+np.std(x)
+```
+
 # Pandas
 
 # Matplotlib
