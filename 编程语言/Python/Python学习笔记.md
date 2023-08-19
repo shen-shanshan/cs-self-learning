@@ -2192,6 +2192,654 @@ np.std(x)
 
 # Pandas
 
+## 1  对象创建
+
+### 1.1  Series
+
+Series 对象是带标签数据的一维数组。
+
+通用结构：`pd.Series(data, index=index, dtype=dtype)`。
+
+- `data`：数据，可以是列表、字典或 Numpy 数组。
+- `index`：索引，可选（默认为：0、1、2、...）。
+- `dtype`：数据类型，可选。
+
+#### 1.1.1  通过列表创建
+
+```python
+import pandas as pd
+
+data = pd.Series([1.5, 3, 4.5, 6])
+
+# 增加index
+data = pd.Series([1.5, 3, 4.5, 6], index=["a", "b", "c", "d"])
+
+# 增加dtype
+data = pd.Series([1.5, 3, 4.5, 6], index=["a", "b", "c", "d"], dtype="float")
+
+# 支持多种数据类型
+data = pd.Series([1, 2, "3", 4], index=["a", "b", "c", "d"])
+# dtype：object
+
+# 获取索引
+data["a"] # 1
+
+# 强制改变数据类型
+data = pd.Series([1, 2, "3", 4], index=["a", "b", "c", "d"], dtype=float)
+# "3"变为3.0
+```
+
+#### 1.1.2  通过Numpy一维数组创建
+
+```python
+import pandas as pd
+import numpy as np
+
+x = np.arange(5)
+pd.Series(x)
+```
+
+#### 1.1.3  通过字典创建
+
+```python
+import pandas as pd
+
+dict = {...}
+
+# 默认以字典的键为 index（标签），字典的值为 data
+pd.Series(dict)
+
+# 如果指定index，则会到字典的键中筛选，找不到的则将其值设为NaN
+pd.Series(dict, index=[...])
+```
+
+#### 1.1.4  通过标量创建
+
+```python
+import pandas as pd
+
+pd.Series(5, index=[1, 2, 3])
+# 标量值会自动进行复制：
+# 1 5
+# 2 5
+# 3 5
+```
+
+### 1.2  DataFrame
+
+DataFrame 对象是带标签数据的多维数组。
+
+通用结构：`pd.DataFrame(data, index=index, columns)`。
+
+- `data`：数据，可以是列表、字典或 Numpy 数组。
+- `index`：索引，可选。
+- `columns`：列标签，可选（默认为 0）。
+
+#### 1.2.1  通过Series对象创建
+
+```python
+import pandas as pd
+
+population_dict = {...}
+
+population = pd.Series(population_dict, columns=["population"])
+pd.DataFrame(population)
+```
+
+#### 1.2.2  通过Series对象字典创建
+
+```python
+import pandas as pd
+
+GDP = pd.Series(GDP_dict)
+pd.DataFrame({"population": population, "GDP": GDP})
+"""
+           population     GDP
+beijing       ...         ...
+shanghai      ...         ...
+shenzhen      ...         ...
+"""
+
+# 数量不够的会自动补齐
+pd.DataFrame({"population": population, "GDP": GDP, "country": "China"})
+"""
+            population     GDP     country
+beijing        ...         ...      China
+shanghai       ...         ...      China
+shenzhen       ...         ...      China
+"""
+```
+
+#### 1.2.3  通过字典列表对象创建
+
+```python
+import pandas as pd
+
+# 字典的索引为index，字典的键为columns
+data1 = [{"a": i, "b": 2*i} for i in range(3)]
+pd.DataFrame(data1)
+"""
+       a       b
+0      0       0
+1      1       2
+2      2       4
+"""
+
+# 不存在的键，其值默认为NaN
+data2 = [{"a": 1, "b": 1}, {"b": 3, "c": 4}]
+pd.DataFrame(data2)
+"""
+        a        b        c
+0       0        1       NaN
+1      NaN       3       4.0
+"""
+```
+
+#### 1.2.4  通过Numpy二维数组创建
+
+```python
+import pandas as pd
+
+pd.DataFrame(np.random.randint(10, size=(3, 2)), column=["foo", "bar"], index=["a", "b", "c"])
+```
+
+## 2  DataFrame的性质
+
+### 2.1  属性
+
+```python
+import pandas as pd
+
+data = pd.DataFrame(...)
+
+# 使用numpy数组表示的数据
+data.values
+
+# 行索引
+data.index
+
+# 列索引
+data.columns
+
+# 形状
+data.shape
+
+# 大小
+data.size
+
+# 每列的数据类型
+data.types
+```
+
+### 2.2  索引
+
+> 数据表如下：
+>
+> ![image-20230819125129760](Python学习笔记.assets/image-20230819125129760.png)
+
+```python
+import pandas as pd
+
+data = pd.DataFrame(...)
+
+# 获取列
+# 字典式：返回的数据带有标签，是Series类型
+data["pop"]
+# 一次获取多列
+data[["pop", "GDP"]]
+# 对象属性式：将列当作对象的属性
+data.GDP
+
+# 获取行
+# 绝对索引
+data.loc["BeiJing"]
+data.loc[["BeiJing", "HangZhou"]]
+# 相对索引
+data.iloc[0]
+data.iloc[[1, 3]]
+
+# 获取标量值
+# 通过[行,列]索引
+data.loc["BeiJing", "GDP"]
+data.iloc[0, 1]
+# 先获取numpy数组再索引
+data.values[0][1]
+# 先获取Series对象再索引
+data.GDP["BeiJing"]
+```
+
+### 2.3  切片
+
+> 数据表如下：
+>
+> ![image-20230819130838288](Python学习笔记.assets/image-20230819130838288.png)
+
+```python
+import pandas as pd
+import numpy as np
+
+dates = pd.date_range(start='2019-01-01', periods=6)
+df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns["A", "B", "C", "D"])
+
+# 行切片
+df["2019-01-01": "2019-01-03"]
+df.loc["2019-01-01": "2019-01-03"]
+df.iloc[0: 3]
+
+# 列切片（取所有的行）
+df.loc[:, "A": "C"]
+df.iloc[:, 0: 3]
+
+# 行列同时切片
+df.loc["2019-01-01": "2019-01-02", "C": "D"]
+df.iloc[1: 3, 2:]
+
+# 行切片，列分散取值
+df.loc["2019-01-04": "2019-01-06", ["A", "C"]]
+df.iloc[3:, [0, 2]]
+
+# 行分散取值，列切片
+df.loc[["2019-01-04", "2019-01-06"], "C": "D"] # 报错
+df.iloc[[1, 5], 0: 3]
+
+# 行、列均分散取值
+df.loc[["2019-01-04", "2019-01-06"], ["A", "C"]] # 报错
+df.iloc[[1, 5], [0, 2]]
+```
+
+### 2.4  布尔索引
+
+布尔索引：即掩码操作。
+
+```python
+import pandas as pd
+import numpy as np
+
+dates = pd.date_range(start='2019-01-01', periods=6)
+df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns["A", "B", "C", "D"])
+
+# 获取掩码
+df > 0
+# 获取元素，掩码为False的元素的位置上为NaN
+df[df > 0]
+
+# 获取某一列的掩码
+df.A > 0
+# 获取元素
+df[df.A > 0]
+
+# 新增一列
+df2 = df.copy()
+df2['E'] = ['one', 'one', 'two', 'tree', 'four', 'tree']
+
+# 获取掩码
+ind = df2["E"].isin(["two", "four"])
+# 获取元素
+df2[ind]
+```
+
+### 2.5  赋值
+
+```python
+import pandas as pd
+import numpy as np
+
+dates = pd.date_range(start='2019-01-01', periods=6)
+df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns["A", "B", "C", "D"])
+
+# 增加新列
+s1 = pd.Series([1, 2, 3, 4, 5, 6], index=pd.date_range('20190101', periods=6))
+df["E"] = s1
+
+# 修改赋值
+df.loc["2019-01-01", "A"] = 0
+df.iloc[0, 1] = np.nan # 即NaN，表示空
+
+# 修改一列的值
+df["D"] = np.array([5]*len(df))
+# 或：
+df["D"] = 5
+
+# 修改index
+df.index = [i for i in range(len(df))]
+
+# 修改columns
+df.columns = [i for i in range(df.shape[1])]
+```
+
+## 3  数值运算及统计分析
+
+### 3.1  查看数据
+
+```python
+import pandas as pd
+import numpy as np
+
+dates = pd.date_range(start='2019-01-01', periods=6)
+df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns["A", "B", "C", "D"])
+
+# 查看前面的行（默认5行）
+df.head()
+# 指定具体行数
+df.head(2)
+
+# 查看后面的行（默认5行）
+df.tail()
+# 指定具体行数
+df.tail(3)
+
+# 查看总体信息
+df.info()
+```
+
+### 3.2  Numpy通用函数
+
+#### 3.2.1  向量化运算
+
+```python
+import pandas as pd
+import numpy as np
+
+x = pd.DataFrame(np.arange(4).reshape(1, 4))
+x+5
+
+np.exp(x)
+
+y = pd.DataFrame(np.arange(4, 8).reshape(1, 4))
+x*y
+```
+
+#### 3.2.2  矩阵化运算
+
+```python
+import pandas as pd
+import numpy as np
+
+# 创建DataFrame对象
+x = ... # 30*30
+y = ... # 30*30
+
+# 矩阵点乘
+x.dot(y)
+
+# 性能对比
+%timeit x.dot(y)
+%timeit np.dot(x, y) # 更快！
+```
+
+> 注意：
+>
+> - Numpy 更侧重于计算，计算速度快。
+> - Pandas 是基于 Numpy 的，计算速度比 Numpy 慢，更侧重于数据的分析和处理。
+
+#### 3.2.3  广播运算
+
+> 数据表如下：
+>
+> ![image-20230819154734702](Python学习笔记.assets/image-20230819154734702.png)
+
+```python
+import pandas as pd
+import numpy as np
+
+# 按行广播：每一行都除以第一行
+x/x.iloc[0]
+x.div(x.iloc[0], axis=1) # axis默认为1，即按行广播
+
+# 按列广播：每一列都除以第一列
+x.div(x.A, axis=0)
+x.div(x.iloc[0], axis=1)
+# add() sub() div() mul()
+```
+
+### 3.3  特有方法
+
+#### 3.3.1  索引对齐
+
+```python
+import pandas as pd
+import numpy as np
+
+A = pd.DataFrame(...) # 2*2
+B = pd.DataFrame(...) # 3*3
+
+# pandas会自动对齐两个对象的索引，A中没有的值，在结果中用np.nan表示
+A+B
+
+# A中没有的值也可以指定填充值
+A.add(B, fill_value=0)
+```
+
+#### 3.3.2  统计
+
+```python
+import pandas as pd
+import numpy as np
+from collections import Counter
+
+# 数据种类统计
+y = np.random.randint(3, size=20)
+np.unique(y) # array([0, 1, 2])
+
+# 分别统计0、1、2的数量
+Counter(y)
+
+# 将numpy对象装换pandas对象
+y1 = pd.DataFrame(y, columns=["A"])
+# 数据种类统计
+np.unique(y1)
+# 或：
+y1["A"].value_counts()
+
+# 按某一列进行排序（默认递增）
+y.sort_values(by="列名")
+# 递减排序
+y.sort_values(by="列名", ascending=False)
+
+# 行排序
+y.sort_index()
+
+# 列排序
+y.sort_index(axis=1)
+# 递减排序
+y.sort_index(axis=1, ascending=False)
+
+# 非空个数
+y.count()
+
+# 求和
+# 对每一行求和，即对每一行的所有列求和
+y.sum()
+# 对每一列求和，即对每一列的所有行求和
+y.sum(axis=1)
+
+# 极值
+# 求每一行的最大值、最小值
+y.max()
+y.min()
+# 求每一行的最大值、最小值的坐标
+y.idmax()
+y.idmin()
+# 求每一列的最大值、最小值
+y.max(axis=1)
+y.min(axis=1)
+
+# 求每一行的均值
+y.mean()
+
+# 求每一行的方差
+y.var()
+
+# 求每一行的标准差
+y.std()
+
+# 求每一行的中位数
+y.median()
+
+# 求每一行的众数
+y.mode()
+
+# 求每一行的75%分位数
+y.quantile(0.75)
+
+# 获取以上信息的汇总
+y.describe()
+
+# 相关性系数和协方差
+y.corr()
+y.corrwith(df["A"])
+
+# 自定义输出
+def my_describe(x):
+    return pd.Series([x.count(), x.mean(), x.max(), x.idxmin(), x.std()], index=["count", "mean", "max", "min", "idxmin", "std"])
+# apply(method)：使用method方法对每一列进行相应的操作
+y.apply(my_describe)
+```
+
+## 4  缺失值处理
+
+### 4.1  发现缺失值
+
+```python
+import pandas as pd
+import numpy as np
+
+# 判断哪些元素是缺失值
+data.isnull()
+
+# 判断哪些元素不是缺失值
+data.notnull()
+```
+
+> 注意：
+>
+> - `NaN` 即 `np.nan`，是一种特殊的浮点数。
+> - 有 `None`、字符串等类型时，数据类型将全部变为 `object` 类型，它比 `int` 和 `float` 更加消耗资源。
+
+### 4.2  删除缺失值
+
+```python
+import pandas as pd
+import numpy as np
+
+# 删除有缺失值（NaN）的一整行
+data.dropna()
+
+# 删除有缺失值（NaN）的一整列
+data.dropna(axis="columns")
+
+# 当某一列全为缺失值（NaN）时才删除该列
+data.dropna(axis="columns", how="all")
+
+# 当某一列只要有一个缺失值（NaN）就删除该列
+data.dropna(axis="columns", how="any")
+```
+
+### 4.3  填充缺失值
+
+```python
+import pandas as pd
+import numpy as np
+
+# 使用固定值填充
+data.fillna(value=5)
+
+# 使用每一行的均值填充
+data.fillna(value=data.mean())
+
+# 使用所有数据的均值填充
+data.fillna(value=data.stack().mean())
+```
+
+## 5  合并数据
+
+```python
+import pandas as pd
+
+# 垂直合并（在行的方向上扩展）
+# 前提：df_1和df_2具有相同的列标签
+pd.concat([df_1, df_2])
+
+# 水平合并（在列的方向上扩展）
+# 前提：df_3和df_4具有相同的行标签
+pd.concat([df_3, df_4], axis=1)
+
+# 垂直合并，且重新设置行标签
+pd.concat([df_5, df_6], ignore_index=True)
+
+# 对齐合并（根据相同的列进行合并）
+pd.merge(df_7, df_8)
+```
+
+> 对齐合并：
+>
+> ![image-20230819172202089](Python学习笔记.assets/image-20230819172202089.png)
+>
+> ![image-20230819172223034](Python学习笔记.assets/image-20230819172223034.png)
+
+## 6  分组
+
+```python
+import pandas as pd
+
+# 分组
+df.groupby("列名")
+# 按行计算
+df.groupby("列名").sum()
+df.groupby("列名").mean()
+
+# 按列计算
+df.groupby("列名")["列名2"].sum()
+
+# 按组迭代
+for data, group in df.groupby("列名"):
+    # ...
+    
+# 调用方法
+df.groupby("列名")["列名2"].describe()
+
+# 自定义输出
+df.groupby("列名").aggregate(["min", "median", "max"])
+
+# 过滤（筛选标准差大于3的组）
+def filter_func(x):
+    return x["列名"].std() > 3
+
+df.groupby("列名").filter(filter_func)
+
+# 转换（每组元素都减去本组的平均值）
+df.groupby("列名").transforms(lambda x: x - x.mean())
+
+# apply()方法
+def func(x):
+    x["列名1"] /= x["列名2"].sum()
+    return x
+
+df.groupby("列名").apply(func)
+
+# 自定义分组键
+L = [0, 1, 0, 1, 2, 0]
+df.groupby(L).sum()
+```
+
+## 7  数据透视表
+
+```python
+import pandas as pd
+
+data.pivot_table("要分析的列名", index="列名1", columns="列名2")
+
+# aggfunc：设置对数据要应用的方法
+# margins：添加一列总和列
+data.pivot_table("要分析的列名", index="列名1", columns="列名2", aggfunc="mean", margins=True)
+
+# 需要分析的数据包含多个列
+# 分别为每一个列设置要应用的方法
+data.pivot_table(index="列名1", columns="列名2", aggfunc={"列名3": "sum", "列名4": "mean"})
+```
+
+## 8  其它
+
 # Matplotlib
 
 # Sklearn
