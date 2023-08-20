@@ -2842,4 +2842,714 @@ data.pivot_table(index="列名1", columns="列名2", aggfunc={"列名3": "sum", 
 
 # Matplotlib
 
+## 1  环境配置
+
+### 1.1  自动显示
+
+在 Jupiter 中，可以通过在代码开头加上 `%matplotlib inline`，使我们绘制的图像自动进行显示。
+
+在 pycharm 中需要手动添加 `plt.show()`。
+
+### 1.2  设置样式
+
+```python
+import matplotlib.pyplot as plt
+
+# 显示可用样式
+plt.style.available[:5]
+
+# 设置临时样式
+with plt.style.context("seaborn-white"):
+    plt.plot(x, y)
+    
+# 设置永久样式
+plt.style.use("seaborn-whitegrid")
+```
+
+### 1.3  保存文件
+
+```python
+import matplotlib.pyplot as plt
+
+plt.savefig("my_figure.png") # 需要加上文件后缀
+```
+
+## 2  库函数
+
+### 2.1  折线图
+
+#### 2.1.1  线条样式
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 100)
+plt.plot(x, np.sin(x))
+plt.plot(x, np.cos(x))
+plt.show()
+
+# 设置线条颜色
+plt.plot(x, np.sin(x), color="...")
+# color可以简写为c
+# color包括："blue"、"g"、"r"、"yellow"、"pink"、……（某些颜色可以简写为一个字母，具体地需要查阅官方文档）
+
+# 设置线条风格
+plt.plot(x, np.sin(x), linestyle="...")
+# linestyle可以简写为ls
+# linestyle包括："solid"、"dashed"、"dashdot"、"dotted"、"-"、"--"、"-."、"："、……
+
+# 设置线条宽度
+plt.plot(x, np.sin(x), linewidth="数字")
+# linewidth可以简写为lw
+
+# 设置数据点样式
+plt.plot(x, np.sin(x), marker="...")
+# marker包括："*"、"+"、"o"、"s"（方形）、……
+# 同时设置大小
+plt.plot(x, np.sin(x), marker="...", markersize=10)
+# markersize可以简写为ms
+
+# 同时设置线条颜色+线条风格
+plt.plot(x, np.sin(x), color_linestyle)
+# color_linestyle可以是："g-"、"b--"、"r:"、……
+
+# 同时设置线条颜色+标记形状+线条风格
+plt.plot(x, np.sin(x), color_marker_linestyle)
+# color_linestyle可以是："g*-"、"b+--"、"rs:"、……
+```
+
+#### 2.1.2  坐标轴
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 100)
+plt.plot(x, np.sin(x))
+
+# 限制坐标范围
+plt.xlim(-1, 7)
+plt.ylim(-1.5, 1.5)
+# 同时设置x和y的范围
+plt.axis([-2, 8, -2, 2])
+
+# 设置坐标轴样式
+plt.axis("tight") # 紧凑
+plt.axis("equal") # 扁平
+
+# 查看帮助
+?plt.axis
+
+# 设置对数坐标（1、1的10次方，1的100次方、……）
+plt.xscale("log")
+
+# 设置坐标轴刻度
+plt.xticks(np.arange(0, 12, step=1), fontsize=15)
+plt.yticks(...)
+
+# 设置刻度样式
+plt.tick_params(axis="both", labelsize=15)
+```
+
+#### 2.1.3  图形标签
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 100)
+plt.plot(x, np.sin(x))
+
+# 设置图像标题
+plt.title("...", fontsize=20)
+
+# 设置刻度标签
+plt.xlabel("x", fontsize=15)
+plt.ylabel("sin(x)", fontsize=15)
+```
+
+#### 2.1.4  图例
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 100)
+plt.plot(x, np.sin(x))
+
+# 设置图例
+plt.plot(x, np.sin(x), "b--", label="sin")
+plt.plot(x, np.cos(x), "r--", label="cos")
+# 显示图例
+plt.legend()
+
+# 设置图例属性
+plt.legend(loc="upper center", frameon=True, fontsize=15)
+# loc：位置
+# frameon：边框
+# fontsize：大小
+```
+
+#### 2.1.5  文字
+
+```python
+import matplotlib.pyplot as plt
+
+plt.text(3.5, 0.5, "y=sin(x)", fontsize=15)
+# 3.5、0.5：文字的位置
+# "..."：文字的内容
+# fontsize：文字的大小
+```
+
+#### 2.1.6  箭头
+
+### 2.2  散点图
+
+```python
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 2*np.pi, 100)
+
+plt.scatter(x, np.sin(x), marker="o", s=30, c="r")
+# s：数据点大小
+# c：颜色
+
+# 设置颜色随数据动态变化
+y = x**2
+plt.scatter(x, y, c=y, cmap="Blues")
+# 设置颜色随y变化而变化
+# cmap：映射关系
+# 显示映射关系柱状图
+plt.colorbar()
+
+# 设置数据点大小随数据动态变化
+plt.scatter(x, y, c=y, s="数组", cmap="Blues")
+
+# 设置透明度
+plt.scatter(x, y, c=y, s="数组", cmap="Blues", alpha=0.3)
+# alpha：0-1，默认为1，0为完全透明
+```
+
+### 2.3  柱形图
+
+#### 2.3.1  普通柱形图
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(1, 6)
+
+plt.bar(x, x*2, align="center", width=0.5, alpha=0.5, color="yellow", edgecolor="red")
+# align="center"：使横坐标位于柱体中间
+# edgecolor：边框颜色
+
+# 设置刻度大小
+plt.tick_params(axis="both", labelsize=15)
+# 为横坐标的数字设置别名
+plt.xticks(x, ("G1", "G2", ...))
+```
+
+#### 2.3.2  累加柱形图
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(5)
+y1 = np.random.randint(20, 30, size=5)
+y2 = np.random.randint(20, 30, size=5)
+
+plt.bar(x, y1, width=0.5, label="man")
+plt.bar(x, y2, width=0.5, bottom=y1, label="woman")
+plt.legend()
+```
+
+#### 2.3.3  并列柱形图
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(5)
+y1 = np.random.randint(20, 30, size=5)
+y2 = np.random.randint(20, 30, size=5)
+
+plt.bar(x, y1, width=0.5, label="man")
+plt.bar(x+0.5, y2, width=0.5, label="woman")
+plt.legend()
+```
+
+#### 2.3.4  横向柱形图
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = ['G1', 'G2', ..., 'G5']
+y = 2*np.arange(1, 6)
+
+plt.barh(x, y, align="center", height=0.5, alpha=0.8, color="blue", edgecolor="red")
+
+plt.tick_params(axis="both", labelsize=15)
+```
+
+### 2.4  多子图
+
+#### 2.4.1  普通多子图
+
+```python
+import matplotlib.pyplot as plt
+
+# 绘制2*2的第一个子图
+plt.subplot(221)
+# ...
+
+# 绘制2*2的第二个子图
+plt.subplot(222)
+# ...
+
+# 绘制2*2的第三个子图
+plt.subplot(223)
+# ...
+
+# 绘制2*2的第四个子图
+plt.subplot(224)
+# ...
+```
+
+#### 2.4.2  不规则多子图
+
+```python
+import matplotlib.pyplot as plt
+
+# 创建网格
+grid = plt.GridSpec(2, 3, wspace=0.4, hspace=0.3)
+
+# 绘制子图
+plt.subplot(grid[0, 0])
+plt.subplot(grid[0, 1:])
+plt.subplot(grid[1, :])
+```
+
+### 2.5  直方图
+
+#### 2.5.1  普通直方图
+
+```python
+import matplotlib.pyplot as plt
+
+plt.hist(x, bins=50, facecolor='g', alpha=0.75)
+```
+
+#### 2.5.2  概率
+
+```python
+import matplotlib.pyplot as plt
+
+# 概率密度图
+plt.hist(x, 50, destiny=True, color="r")
+
+# 累计概率分布图
+plt.hist(x, 50, destiny=True, cumulative=True, color="r")
+```
+
+### 2.6  误差图
+
+### 2.7  面向对象
+
+### 2.8  三维图像
+
+```python
+from mpl_toolkits import mplot3d
+
+# 三维线条
+ax = plt.axes(projection="3d")
+zline = np.linespace(0, 15, 1000)
+xline = np.sin(zline)
+yline = np.cos(zline)
+ax.plot3D(xline, yline, zline)
+
+# 三维散点
+zdata = 15*np.random.random(100)
+xdata = np.sin(zdata)
+ydata = np.sin(zdata)
+ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap="spring")
+
+# 三维曲面
+def f(x, y):
+    return np.sin(np.sqrt(x**2 + y**2))
+
+x = np.linspace(-6, 6, 30)
+y = np.linspace(-6, 6, 30)
+X, Y = np.meshgrid(x, y)
+Z = f(X, Y)
+
+ax = plt.axes(projection="3d")
+ax.plot_surface(X, Y, Z, camp="viridis")
+```
+
+## 3  Seaborn
+
+Seaborn 是一个基于 matplotlib 且数据结构与 pandas 统一的统计图制作库。
+
+## 4  Pandas绘图函数
+
+```python
+import pandas as pd
+
+df = pd.DataFrame(...)
+
+# 线形图
+df.plot()
+
+# 柱状图
+df.plot.bar()
+# 累加柱状图
+df.plot.bar(stacked=True)
+# 累加柱状图（横向）
+df.plot.barh(stacked=True)
+
+# 直方图
+df.plot.hist(bins=20)
+# 累加直方图
+df['列名'].plot.hist(cumulative=True)
+
+# 概率密度图
+df['列名'].plot(kind="kde")
+
+# 散点图
+df.plot(kind="scatter", x="median_income", y="median_house_value", alpha=0.8)
+
+# 多子图
+df.plot(subplot=True, figsize=(6, 16))
+# 自定义布局
+df.plot(subplot=True, layout=(2, 2), figsize=(6, 16), sharex=False)
+```
+
 # Sklearn
+
+## 1  数据预处理
+
+```python
+import seaborn as sns
+import pandas as pd
+
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+
+# 导入数据集
+iris = sns.load_dataset("iris")
+
+# 查看数据集
+type(iris)
+iris.head()
+iris.info()
+iris.describe()
+iris.species.value_counts()
+sns.pairplot(data=iris, hue="species")
+
+# 标签清洗
+# 丢弃对分类效果不明显的特征
+iris_simple = iris.drop(["sepal_length", "sepal_width"], axis=1)
+
+# 标签编码
+# 将花的三种种类分别编码为：0、1、2
+encoder = LabelEncoder()
+iris_simple["species"] = encoder.fit_transform(iris_simple["species"])
+
+# 数据集标准化
+# 防止一些值比较大的特征掩盖掉值比较小的特征的影响
+trans = StandardScaler()
+_iris_simple = trans.fit_transform(iris_simple[["petal_length", "petal_width"]])
+_iris_simple = pd.DataFrame(_iris_simple, columns = ["petal_length", "petal_width"])
+
+# 构建训练集（80%）和测试集（20%）
+train_set, test_set = train_test_split(iris_simple, test_size=0.2)
+
+iris_x_train = train_set[["petal_length", "petal_width"]]
+iris_y_train = train_set["species"].copy()
+
+iris_x_test = test_set[["petal_length", "petal_width"]]
+iris_y_test = test_set["species"].copy()
+```
+
+## 2  基本分类算法
+
+### 2.1  k近邻算法
+
+#### 2.1.1  基本思想
+
+在训练数据集中，找到与带预测点最近的 k 个邻居，把这 k 个邻居中最常见的类别预测为该待预测点的类别。
+
+#### 2.1.2  sklearn实现
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+
+# 构建分类器对象
+clf = KNeighborsClassifier()
+
+# 训练（特征值，标签）
+clf.fit(iris_x_train, iris_y_train)
+
+# 预测
+res = clf.predict(iris_x_test)
+print(res)
+print(iris_y_test.values)
+
+# 翻转（标签反编码：数字->字符串）
+encoder.inverse_transform(res)
+
+# 评估
+accuracy = clf.score(iris_x_test, iris_y_test)
+
+# 保存数据
+out = iris_x_test.copy()
+out["y"] = iris_y_test
+out["pre"] = res
+out.to_csv("iris_predict.csv")
+
+# 可视化
+draw(clf)
+```
+
+### 2.2  朴素贝叶斯算法
+
+#### 2.2.1  基本思想
+
+当 X=(x1, x2, ...)（特征）发生的时候，求哪一个 yk（类别）发生的概率最大。
+
+#### 2.2.2  sklearn实现
+
+```python
+from sklearn.naive_bayes import GaussianNB
+
+# 构建分类器对象
+clf = GaussianNB()
+
+# 训练
+clf.fit(iris_x_train, iris_y_train)
+
+# 预测
+res = clf.predict(iris_x_test)
+print(res)
+print(iris_y_test.values)
+
+# 评估
+accuracy = clf.score(iris_x_test, iris_y_test)
+
+# 可视化
+draw(clf)
+```
+
+### 2.3  决策树算法
+
+#### 2.3.1  基本思想
+
+CART 算法：每次通过一个特征，将数据尽可能的分为纯净的两类，并一直递归地分下去。
+
+#### 2.3.2  sklearn实现
+
+```python
+from sklearn.tree import DecisionTreeClassifier
+
+# 构建分类器对象
+clf = DecisionTreeClassifier()
+
+# 训练
+clf.fit(iris_x_train, iris_y_train)
+
+# 预测
+res = clf.predict(iris_x_test)
+print(res)
+print(iris_y_test.values)
+
+# 评估
+accuracy = clf.score(iris_x_test, iris_y_test)
+
+# 可视化
+draw(clf)
+```
+
+### 2.4  逻辑回归算法
+
+#### 2.4.1  基本思想
+
+- 训练：通过一种映射方式，将特征 X=(x1, x2) 映射为概率 P(y=ck)，并求使得所有概率之积最大化的映射方式里的参数。
+- 预测：计算 P(y=ck)，并取概率最大的那个类别作为预测对象的分类。
+
+#### 2.4.2  sklearn实现
+
+```python
+from sklearn.linear_model import LogisticRegression
+
+# 构建分类器对象
+clf = LogisticRegression(solver='saga', max_iter=1000)
+# solver：解决器
+# max_iter：最大迭代次数
+
+# 训练
+clf.fit(iris_x_train, iris_y_train)
+
+# 预测
+res = clf.predict(iris_x_test)
+print(res)
+print(iris_y_test.values)
+
+# 评估
+accuracy = clf.score(iris_x_test, iris_y_test)
+
+# 可视化
+draw(clf)
+```
+
+### 2.5  支持向量机算法
+
+#### 2.5.1  基本思想
+
+以二分类为例，假设数据集可以完全分开。
+
+用一个超平面将两类数据完全分开，且最近点到平面的距离最大。
+
+#### 2.5.2  sklearn实现
+
+```python
+from sklearn.svm import SVM
+
+# 构建分类器对象
+clf = SVM()
+
+# 训练
+clf.fit(iris_x_train, iris_y_train)
+
+# 预测
+res = clf.predict(iris_x_test)
+print(res)
+print(iris_y_test.values)
+
+# 评估
+accuracy = clf.score(iris_x_test, iris_y_test)
+
+# 可视化
+draw(clf)
+```
+
+## 3  集成方法
+
+### 3.1  随机森林
+
+#### 3.1.1  基本思想
+
+对于训练集 m，有放回地随机抽取 m 个数据构成一组，共抽取 n 组采样集。
+
+n 组采样集训练得到 n 个弱分类器，弱分类器一般用决策树或神经网络。
+
+将 n 个弱分类器进行组合得到强分类器。
+
+#### 3.1.2  sklearn实现
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+# 构建分类器对象
+clf = RandomForestClassifier()
+
+# 训练
+clf.fit(iris_x_train, iris_y_train)
+
+# 预测
+res = clf.predict(iris_x_test)
+print(res)
+print(iris_y_test.values)
+
+# 评估
+accuracy = clf.score(iris_x_test, iris_y_test)
+
+# 可视化
+draw(clf)
+```
+
+### 3.2  Adaboost
+
+#### 3.2.1  基本思想
+
+对于训练集 m，用初始数据权重训练得到第一个弱分类器，根据误差率计算弱分类器的系数，并更新数据的权重。
+
+使用新的权重来训练数据，得到第二个弱分类器，以此类推。
+
+根据各自的系数，将所有弱分类器加权求和获得强分类器。
+
+#### 3.2.2  sklearn实现
+
+```python
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.naive_bayes import GaussianNB
+
+# 构建分类器对象
+clf = AdaBoostClassifier()
+
+# 训练
+clf.fit(iris_x_train, iris_y_train)
+
+# 预测
+res = clf.predict(iris_x_test)
+print(res)
+print(iris_y_test.values)
+
+# 评估
+accuracy = clf.score(iris_x_test, iris_y_test)
+
+# 可视化
+draw(clf)
+```
+
+### 3.3  梯度提升树
+
+#### 3.3.1  基本思想
+
+对于训练集 m，获得第一个弱分类器，计算残差，然后不断地拟合残差。
+
+将所有的弱分类器相加得到强分类器。
+
+#### 3.3.2  sklearn实现
+
+```python
+from sklearn.ensemble import GradientBoostingClassifier
+
+# 构建分类器对象
+clf = GradientBoostingClassifier()
+
+# 训练
+clf.fit(iris_x_train, iris_y_train)
+
+# 预测
+res = clf.predict(iris_x_test)
+print(res)
+print(iris_y_test.values)
+
+# 评估
+accuracy = clf.score(iris_x_test, iris_y_test)
+
+# 可视化
+draw(clf)
+```
+
+## 4  改进方法
+
+### 4.1  XGBoost
+
+- 梯度提升树的损失函数只对误差部分做负梯度（一阶泰勒）展开。
+- XGBoost 的损失函数对误差部分做二阶泰勒展开，更加准确，更加收敛。
+
+### 4.2  lightgbm
+
+lightgbm 是由微软发布的，快速的、分布式的、高性能的基于决策树算法的梯度提升框架。
+
+### 4.3  stacking
+
+堆叠（模型融合）是指先建立几个简单的模型进行训练，第二级学习器会基于前级模型的预测结果进行再训练。
+
+### 4.4  神经网络
