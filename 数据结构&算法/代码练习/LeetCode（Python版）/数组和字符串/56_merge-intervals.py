@@ -1,8 +1,7 @@
-from typing import List
-
 """
 56. 合并区间
 """
+from typing import List
 
 
 class Solution:

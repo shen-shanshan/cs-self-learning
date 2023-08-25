@@ -1,8 +1,7 @@
-from typing import List
-
 """
 35. 搜索插入位置
 """
+from typing import List
 
 
 class Solution:

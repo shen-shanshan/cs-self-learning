@@ -1,8 +1,7 @@
-from typing import List
-
 """
 1991. 找到数组的中间位置
 """
+from typing import List
 
 
 class Solution:
