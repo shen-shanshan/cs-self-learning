@@ -3556,108 +3556,346 @@ lightgbm 是由微软发布的，快速的、分布式的、高性能的基于�
 
 # 刷题常用
 
-## 1  自定义排序
+## 1  常用数据结构
 
-### 1.1  lambda
-
-```python
-# 按每组的第一个元素排序
-ls = [[1, 2], [3, 4], [5, 6]]
-ls.sort(key=lambda x: x[0])
-
-# 按每个人的age排序
-students = [st1, st2, ...]
-students.sort(key=lambda x: x.age)
-```
-
-### 1.2  cmp_to_key
+### 1.1  列表
 
 ```python
-from functools import cmp_to_key
+import copy
 
-a = [3,8,14,6,7]
+# 创建列表
+ls = [0, 1, 2, 3, 4, 5]
 
-# 自定义排序规则
-def compare_personal(x, y):
-    return x%7 - y%7
+# 获取列表的最大值、最小值
+max(ls)
+min(ls)
 
-# 根据规则进行排序
-a.sort(key=cmp_to_key(compare_personal))
+# 列表翻转、部分翻转（切片法）
+# 列表[终点:起点:-1] -> 翻转(起点,终点]
+ls_1 = ls[5::-1]
+print(ls_1) # [5, 4, 3, 2, 1, 0]
+ls_2 = ls[4:2:-1]
+print(ls_2) # [4, 3]
+
+# 创建二维数组
+grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+# 浅拷贝
+# 当列表嵌套时，只有第一层是深拷贝，实际拷贝的是地址，修改内层元素，实际修改的是同一份数据。
+grid_1 = grid.copy()
+grid_1[0][1] = 0
+print(grid) # [[1, 0, 3], [4, 5, 6], [7, 8, 9]]
+print(grid_1) # [[1, 0, 3], [4, 5, 6], [7, 8, 9]]
+
+# 深拷贝
+grid_2 = copy.deepcopy(grid)
+grid_2[1][1] = 0
+print(grid) # [[1, 0, 3], [4, 5, 6], [7, 8, 9]]
+print(grid_2) # [[1, 0, 3], [4, 0, 6], [7, 8, 9]]
 ```
 
-## 2  堆
+### 1.2  集合
 
-### 2.1  基本操作
+特点：无序、去重。
+
+```python
+# 创建集合
+# 方式一
+set_1 = {1, 2, 3}
+# 方式二
+# 注意：创建一个空集合必须用set()，因为{}创建的是一个空字典。
+set_2 = set()
+
+# 判断元素是否在集合中
+if 4 in set_1:
+    print("4 is in set_1")
+
+# 可以直接传入一个字符串，并对其中的字符去重
+set_3 = set('abracadabra')
+print(set_3) # {'c', 'a', 'd', 'b', 'r'}
+
+# 集合推导式
+set_4 = {x for x in 'abracadabra' if x not in 'abc'}
+print(set_4) # {'r', 'd'}
+
+# 添加元素
+# 方式一：如果元素已存在，则不进行任何操作。
+set_1.add(4)
+# 方式二：参数可以是列表，元组，字典等
+set_1.add({5, 6})
+print(set_1) # {1, 2, 3, 4, 5, 6}
+
+# 移除元素
+# 方式一：如果元素不存在，则会发生错误。
+set_1.remove(7) # 报错
+# 方式二：如果元素不存在，不会发生错误。
+set_1.discard(7)
+# 方式三：随机删除集合中的一个元素。
+set_1.pop()
+
+# 清空集合
+set_1.clear()
+```
+
+### 1.3  字典
+
+```python
+# 创建空字典
+dict_1 = {}
+dict_2 = dict()
+"""
+注意：
+1.字典值可以是任何的python对象，既可以是标准的对象，也可以是用户自定义的，但键不行。
+2.键必须是唯一的，但值则不必。
+3.键必须不可变，所以可以用数字、字符串或元组充当，而用列表就不行。
+"""
+dict_3 = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
+
+# 访问元素
+print(dict_3['Name']) # Runoob
+
+# 修改元素
+dict_3['Name'] = 'W3'
+print(dict_3['Name']) # W3
+
+# 删除元素（键）
+del dict_3['Name']
+print(dict_3) # {'Age': 7, 'Class': 'First'}
+
+# 清空字典
+dict_3.clear()
+# 或：del dict_3
+print(dict_3) # {}
+
+# 遍历字典
+dict_4 = {'Name': 'Runoob', 'Age': "7", 'Class': 'First'}
+# 方式一：默认遍历的是key
+for k in dict_4:
+    print(k)
+# 方式二：遍历key
+for k in dict_4.keys():
+    print(k)
+# 方式三：遍历value
+for v in dict_4.values():
+    print(v)
+# 方式四：遍历entry
+print(dict_4.items()) # [('Name', 'Runoob'), ('Age', "7"), ('Class', 'First')]
+for k, v in dict_4.items():
+    print(k + ": " + v)
+# 方式五：
+for k, v in zip(dict_4.keys(), dict_4.values()):
+    print(k + ": " + v)
+    
+# 为字典中的键赋值时，一定要先判断这个键是否存在，否则会出现错误（KeyError:1）
+if 'Score' not in dict_4:
+    dict_4['Score'] = 10
+else:
+    dict_4['Score'] += 10
+    print(dict_4) # {'Name': 'Runoob', 'Age': '7', 'Class': 'First', 'Score': 10}
+```
+
+### 1.4  栈
+
+```python
+# 可以直接使用列表来模拟栈
+stack = []
+
+# 压栈
+stack.append(1)
+stack.append(2)
+stack.append(3)
+print(stack) # [1, 2, 3]
+
+# 弹栈
+print(stack.pop()) # 3
+
+# 获取栈顶元素
+print(stack[-1]) # 2
+
+# 判空
+if len(stack) != 0:
+    print("stack is not empty")
+```
+
+### 1.5  队列
+
+```python
+import collections
+import queue
+
+# 普通列表可以作为队列，但从性能角度来看并不理想，因此不推荐用列表来实现队列（除非只处理少量元素）。
+queue_list = [1, 2, 3]
+# 入队
+queue_list.append(4)
+print(queue_list) # [1, 2, 3, 4]
+# 出队
+print(queue_list.pop(0)) # 1
+
+# 先进先出队列（默认）
+queue_1 = queue.Queue()
+# 入队
+queue_1.put(1)
+queue_1.put(2)
+queue_1.put(3)
+# 出队
+print(queue_1.get()) # 1
+
+# 后进先出队列（栈）
+queue_2 = queue.LifoQueue()
+
+# 优先级队列（堆）
+queue_3 = queue.PriorityQueue()
+
+# 双端队列
+queue_4 = collections.deque()
+# 右边入队
+queue_4.append(1)
+queue_4.append(2)
+# 右边出队
+print(queue_4.pop()) # 2
+# 左边入队
+queue_4.appendleft(3)
+queue_4.appendleft(4)
+# 左边出队
+print(queue_4.popleft()) # 4
+```
+
+### 1.6  堆
 
 ```python
 import heapq
 
-# 创建堆
-heap = []
+# 创建堆（默认是小根堆）
+heap_1 = []
 
 # 添加元素
-heapq.heappush(heap, 1)
-heapq.heappush(heap, 5)
-heapq.heappush(heap, 2)
-# heap: [1 2 5]，默认是小根堆
+heapq.heappush(heap_1, 1)
+heapq.heappush(heap_1, 5)
+heapq.heappush(heap_1, 2)
+print(heap_1) # [1, 5, 2]
 
 # 根据列表创建堆
-list = [2, 3, 1, 4]
-heapq.heapify(list)
+heap_2 = [2, 3, 1, 4]
+heapq.heapify(heap_2)
+print(heap_2) # [1, 3, 2, 4]
 
-# 弹出堆头
-heapq.heappop(list, 1) # 1
-heapq.heappop(list, 1) # 2
-heapq.heappop(list, 1) # 3
+# 弹出堆顶元素
+print(heapq.heappop(heap_2)) # 1
+print(heapq.heappop(heap_2)) # 2
+print(heapq.heappop(heap_2)) # 3
+
+heap_3 = [7, 6, 3, 2, 9, 0, 1, 5, 4]
+
+# 返回堆中最大的n个元素
+print(heapq.nlargest(3, heap_3)) # [9, 7, 6]
+
+# 返回堆中最小的n个元素
+print(heapq.nsmallest(3, heap_3)) # [0, 1, 2]
 ```
 
-### 2.2  自定义排序
+### 1.7  排序
 
-如何自定义堆中元素的排序规则？
-
-## 3  集合
-
-### 3.1  增加元素
+#### 1.7.1  列表排序
 
 ```python
-s = set()
+# 按每组的第二个元素排序（默认为升序）
+ls = [[1, 9], [2, 8], [3, 7]]
+ls.sort(key=lambda x: x[1])
+print(ls)  # [[3, 7], [2, 8], [1, 9]]
 
-# 方式一
-s.add(1)
+# 按每组的第二个元素排序（降序）
+ls_1 = sorted(ls, key=lambda x: x[1], reverse=True)
+print(ls_1)  # [[1, 9], [2, 8], [3, 7]]
+print(ls)  # [[3, 7], [2, 8], [1, 9]]
 
-# 方式二
-s.update([2, 3, 4])
+"""
+注意：
+1.sort() 是直接原地修改列表。
+2.sorted() 会创建一个新的列表（浅拷贝）-> 内部嵌套的数组实际复制的是其地址，指向的还是同一块内存。
+"""
+ls_1[0][1] = 6
+print(ls_1)  # [[1, 6], [2, 8], [3, 7]]
+print(ls)  # [[3, 7], [2, 8], [1, 6]]，原数组也发生了变化
 ```
 
-### 3.2  获取元素
-
-我们无法直接获取集合中的元素，可以通过先将集合转换为列表，再通过下标索引其中的元素。
+#### 1.7.2  字典排序
 
 ```python
-list_a = {"张三", "李四", "王五"}
+import functools
 
-# 先把集合转换成列表
-list_b = list(list_a)
-print(list_b)
+# 注意：在my_cmp()函数中只能用"-"进行判断，不能用"<"，否则得到的排序结果不正确。
+def my_cmp(o1, o2):
+    if o1[1] != o2[1]:
+        return o1[1] - o2[1]
+    else:
+        return o2[0] - o1[0]
 
-# 然后再使用索引获取内容
-print(list_b[0])
-print(list_b[1])
+# 创建字典
+dict_1 = {1: 100, 2: 98, 3: 99}
+
+# 按键排序（默认升序）
+dict_2 = sorted(dict_1.items(), key=lambda x: x[0])
+print(dict_2) # [(1, 100), (2, 98), (3, 99)]
+
+# 按值排序（降序）
+dict_3 = sorted(dict_1.items(), key=lambda x: x[1], reverse=True)
+print(dict_3) # [(1, 100), (3, 99), (2, 98)]
+
+# 先按值升序，再按键降序
+# 可以先转换为列表再排序，方便后续按顺序取值。
+dict_1[4] = 99
+dict_ls = list(dict_1.items())
+dict_4 = sorted(dict_ls, key=functools.cmp_to_key(my_cmp))
+print(dict_4) # [(2, 98), (4, 99), (3, 99), (1, 100)]
+print(dict_4[0][0]) # 2
 ```
 
-### 3.3  判断元素是否存在
+#### 1.7.3  堆排序
 
 ```python
-list_a = {"张三", "李四", "王五"}
+import heapq
 
-# 先把集合转换成列表
-list_b = list(list_a)
+class Student:
+    def __init__(self, name: str, age: int, score: int):
+        self.name = name
+        self.age = age
+        self.score = score
 
-if "张三" in list_b:
-    # ...
+    # 重载 < 运算符
+    # 注意：与my_cmp()函数不同，这里只能用"<"或">"进行比较，不能用"-"，否则得到的排序结果不正确。
+    def __lt__(self, other):
+        if self.age != other.age:
+            return self.age < other.age # < 是升序，> 是降序
+        else:
+            return other.score < self.score
+
+# 创建堆
+heap_stu = []
+heapq.heappush(heap_stu, Student("张三", 3, 100))
+heapq.heappush(heap_stu, Student("李四", 4, 80))
+heapq.heappush(heap_stu, Student("王五", 4, 90))
+
+# 先按年龄升序排序，再按分数降序排序
+heap_sort = sorted(heap_stu)
+print(heap_sort[0].name) # 张三
+print(heap_sort[1].name) # 王五
+print(heap_sort[2].name) # 李四
 ```
 
+## 2  常用函数
 
+### 2.1  print()
 
+```python
+# 默认是换行的
+print("abc")
+# 等价于
+print("abc", end="\n")
 
+# 自定义分隔方式
+print("abc", end="") # abc
+print("abc", end=" ") # a b c
+```
+
+### 2.2  bisect
 
