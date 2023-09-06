@@ -3592,6 +3592,9 @@ grid_2 = copy.deepcopy(grid)
 grid_2[1][1] = 0
 print(grid) # [[1, 0, 3], [4, 5, 6], [7, 8, 9]]
 print(grid_2) # [[1, 0, 3], [4, 0, 6], [7, 8, 9]]
+
+# 删除元素
+del grid_2[0]
 ```
 
 ### 1.2  集合
@@ -3897,5 +3900,64 @@ print("abc", end="") # abc
 print("abc", end=" ") # a b c
 ```
 
-### 2.2  bisect
+### 2.2  split()
 
+```python
+my_str = 'https://www.baidu.com/pdf/abcdefg.pdf'
+
+# split()默认以所有的空字符（空格、换行\n、制表符\t）进行分割
+print(str.split())
+
+print(str.split('/')) # ['https:', '', 'www.baidu.com', 'pdf', 'abcdefg.pdf']
+print(str.split('/')[0]) # https:
+print(str.split('/')[-1].split('.')[0]) # abcdef
+```
+
+## 3  其它
+
+### 3.1  str转int
+
+```python
+import string
+
+a = "123"
+
+# 方式一：
+int(a)
+
+# 方式二：
+string.atoi(a)
+```
+
+### 3.2  类型提示
+
+Python 是动态类型语言，运行时不需要指定变量类型。Python 3.5 引入了一个类型系统，允许开发者指定变量类型（类型提示）。
+
+使用方式：
+
+- 声明函数的参数类型：在参数名称的后面加上 `:`，并带上类型的名称；
+- 声明函数的返回值类型：在函数声明结束之前，也就是 `:` 之前加入一个 `->`，并在箭头的后面带上类型的名称。
+
+常用数据类型：
+
+- 基本类型：`int`、`long`、`float`；
+- 集合类型：`List`、`Tuple`、`Dict`、`Set`；
+- 布尔类型：`bool`、`str`；
+- 迭代器类型：`Iterable`、`Iterator`；
+- 生成器类型：`Generator`。
+
+示例：
+
+```python
+from typing import Dict, Tuple, Sequence
+
+ConnectionOptions = Dict[str, str]
+Address = Tuple[str, int]
+Server = Tuple[Address, ConnectionOptions]
+
+def broadcast_message(message: str, servers: Sequence[Server]) -> None:
+    # ...
+
+def broadcast_message(message: str, servers: Sequence[Tuple[Tuple[str, int], Dict[str, str]]]) -> None:
+    # ...
+```
