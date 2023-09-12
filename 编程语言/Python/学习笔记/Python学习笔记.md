@@ -3900,7 +3900,9 @@ print("abc", end="") # abc
 print("abc", end=" ") # a b c
 ```
 
-### 2.2  split()
+## 3  字符串
+
+### 3.1  字符串的分割
 
 ```python
 my_str = 'https://www.baidu.com/pdf/abcdefg.pdf'
@@ -3913,9 +3915,7 @@ print(str.split('/')[0]) # https:
 print(str.split('/')[-1].split('.')[0]) # abcdef
 ```
 
-## 3  其它
-
-### 3.1  str转int
+### 3.2  str转int
 
 ```python
 import string
@@ -3924,12 +3924,23 @@ a = "123"
 
 # 方式一：
 int(a)
-
 # 方式二：
 string.atoi(a)
 ```
 
-### 3.2  类型提示
+### 3.3  判断相等
+
+在 Python 中，`==` 被用来判断两个对象的值是否相等，内容相同的字符串实际上就是同一个对象（与 Java 不同，Java 中的 `==` 被用来判断是否是同一个对象）。
+
+```python
+str_1 = "abc"
+str_2 = "abc"
+
+print(str_1 == str_2)  # True
+print(str_1 is str_2)  # True
+```
+
+## 4  类型提示
 
 Python 是动态类型语言，运行时不需要指定变量类型。Python 3.5 引入了一个类型系统，允许开发者指定变量类型（类型提示）。
 
