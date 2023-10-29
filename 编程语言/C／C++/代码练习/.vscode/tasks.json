@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "g++",
+        "command": "g++",
+        "args": [
+          "-g",
+          "${file}",
+          "-o",
+          "${fileDirname}/${fileBasenameNoExtension}.exe"
+        ],
+        "problemMatcher": {
+          "owner": "cpp",
+          "fileLocation": [
+            "relative",
+            "${workspaceRoot}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
+        },
+        "group": "build"
+      },
+      {
+        "type": "cppbuild",
+        "label": "C/C++: g++.exe 生成活动文件",
+        "command": "D:/Programs/Visual Studio Code/MinGW/bin/g++.exe",
+        "args": [
+          "-fdiagnostics-color=always",
+          "-g",
+          "${file}",
+          "-o",
+          "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        ],
+        "options": {
+          "cwd": "D:/Programs/Visual Studio Code/MinGW/bin"
+        },
+        "problemMatcher": [
+          "$gcc"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "detail": "编译器: \"D:/Programs/Visual Studio Code/MinGW/bin/g++.exe\""
+      }
+    ]
+  }
