@@ -1735,47 +1735,45 @@ int main()
 > - 类的成员函数默认就可以调用自身的成员属性不需要友元，反之需要友元的都不是成员函数。
 >
 
-## 2 STL 初识
+## 2  STL 初识
 
-### 2.1 STL 的诞生
+### 2.1  STL 的诞生
 
-### 2.2 基本概念
+### 2.2  基本概念
 
-STL：标准模板库，分为容器、算法、迭代器。
+STL：标准模板库，分为容器、算法、迭代器，容器和算法之间通过迭代器连接。
 
-容器和算法之间通过迭代器连接。
+> STL 几乎所有的代码都采用了模板类或者模板函数。
+>
 
-STL 几乎所有的代码都采用了模板类或者模板函数。
+### 2.3  六大组件
 
-### 2.3 六大组件
+- **容器**：各种数据结构，如：vector、list、deque、set、map 等，用来存放数据；
+- **算法**：各种常用的算法，如：sort、find、copy、for_each 等；
+- **迭代器**：连接容器和算法；
+- **仿函数**：行为类似函数，可以作为算法的某种策略；
+- **适配器**：一种用来修饰容器、仿函数或迭代器接口的东西；
+- **空间配置器**：负责空间的配置与管理。
 
-- **容器**：各种数据结构，如：vector、list、deque、set、map 等，用来存放数据
-- **算法**：各种常用的算法，如：sort、find、copy、for_each 等
-- **迭代器**：连接容器和算法
-- **仿函数**：行为类似函数，可以作为算法的某种策略
-- **适配器**：一种用来修饰容器、仿函数或迭代器接口的东西
-- **空间配置器**：负责空间的配置与管理
-
-### 2.4 容器、算法、迭代器
+### 2.4  容器、算法、迭代器
 
 - 算法通过迭代器访问容器中的数据；
 
 - 可以将迭代器当作指针去使用。
 
 
-### 2.5 容器、算法、迭代器初识
+### 2.5  容器、算法、迭代器初识
 
-#### 2.5.1 vector 存放内置数据类型
+#### 2.5.1  vector 存放内置数据类型
 
-- 容器：`vector`
-- 算法：`for_each`
-- 迭代器：`vector<int>::iterator`
+- 容器：`vector`；
+- 算法：`for_each`；
+- 迭代器：`vector<int>::iterator`。
 
 ```c++
-#include<iostream>
-#include<vector>
-// 标准算法头文件
-#include<algorithm>
+#include <iostream>
+#include <vector>
+#include <algorithm> // 标准算法头文件
 
 using namespace std;
 
@@ -1786,16 +1784,15 @@ void myPrint(int val)
 
 void test01()
 {
-    // 创建一个 vector 容器，可以当作是一个数组
+    // 创建一个vector容器，可以当作是一个数组
     vector<int> v;
     
     // 插入数据
     v.push_back(1);
     v.push_back(2);
     v.push_back(3);
-    
-    // 通过迭代器访问数据
-    // 1.第一种遍历方式
+     
+    // 1.第一种遍历方式：通过迭代器访问数据
     // 起始迭代器：指向容器中的第一个元素
     vector<int>::iterator itBegin = v.begin();
     // 结束迭代器：指向容器中的最后一个元素的下一个位置
@@ -1812,9 +1809,8 @@ void test01()
         cout << *it << endl;
     }
     
-    // 3.第三种遍历方式
-    // 利用 STL 提供的遍历算法
-    // 原理：在遍历的时候，回调 myPrint 函数
+    // 3.第三种遍历方式：利用STL提供的遍历算法
+    // 原理：在遍历的时候，回调myPrint函数
     for_each(v.begin, v.end(), myPrint);
 }
 ```
@@ -1823,14 +1819,13 @@ void test01()
 
 ![image-20221101114901994](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221101114901994.png)
 
-#### 2.5.2 vector 存放自定义数据类型
+#### 2.5.2  vector 存放自定义数据类型
 
 ```c++
 class Person
 {
 public:
-    // 构造函数
-    Person(...) {}
+    Person(...) {} // 构造函数
     string m_Name;
     int m_Age;
 };
@@ -1859,8 +1854,7 @@ void test01()
 
 void test01()
 {
-    // 存放的是指针类型
-    vector<Person*>v;
+    vector<Person*>v; // 存放的是指针类型
     
     Person p1(...);
     Person p2(...);
@@ -1880,9 +1874,10 @@ void test01()
 }
 ```
 
-总结：若有 `vector<A>`，则 `*it` 就相当于 `A`。
+> 总结：若有 `vector<A>`，则 `*it` 就相当于 `A`。
+>
 
-#### 2.5.3 vector 容器嵌套容器
+#### 2.5.3  vector 容器嵌套容器
 
 ```c++
 void test01()
@@ -1893,8 +1888,8 @@ void test01()
     vector<int>v2;
     vector<int>v3;
     
-    // 向 v1 到 v3 中添加数据
-    ...
+    // 向v1到v3中添加数据
+    // ...
         
     v.push_back(v1);
     v.push_back(v2);
@@ -1903,7 +1898,7 @@ void test01()
     // 遍历数据
     for(vector<vector<int>>::iterator it = v.begin(); it != v.end(); it++)
     {
-        // 此时 (*it) 就是 vector<int>
+        // 此时(*it)就是vector<int>
         for(vector<int>::iterator vit = (*it).begin(); vit != (*it).end(); vit++)
         {
             cout << *vit << " ";
@@ -1913,39 +1908,39 @@ void test01()
 }
 ```
 
-## 3 STL - 常用容器
+## 3  STL - 常用容器
 
-### 3.1 string
+### 3.1  string
 
-#### 3.1.1 基本概念
+#### 3.1.1  基本概念
 
-`string` 本质上是一个类，类内部封装了 `char*`，用于管理这个字符串，是一个 `char*` 的容器。`string` 管理 `char*` 所分配的内存，不用担心复制越界和取值越界等，由类内部进行负责。
+`string` 本质上是一个类，类的内部封装了 `char*`，用于管理这个字符串，是一个 `char*` 的容器。`string` 管理 `char*` 所分配的内存，不用担心复制越界和取值越界等，由类内部进行负责。
 
 `string` 类成员方法：
 
-- 查找：`find`
-- 拷贝：`copy`
-- 删除：`delete`
-- 替换：`replace`
-- 插入：`insert`
+- 查找：`find`；
+- 拷贝：`copy`；
+- 删除：`delete`；
+- 替换：`replace`；
+- 插入：`insert`。
 
-#### 3.1.2 构造函数
+#### 3.1.2  构造函数
 
 ```c++
 // 创建一个空字符串
 string();
 
-// 使用字符串 s 初始化
+// 使用字符串s初始化
 string(const char* s);
 
-// 使用 string 对象初始化
+// 使用string对象初始化
 string(const string& str);
 
-// 使用 n 个字符 c 初始化
+// 使用n个字符c初始化
 string(int n, char c);
 ```
 
-#### 3.1.3 赋值操作
+#### 3.1.3  赋值操作
 
 ![image-20221102170636819](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221102170636819.png)
 
@@ -1954,7 +1949,7 @@ string(int n, char c);
 ```c++
 void test01()
 {
-    // 1.用 = 赋值
+    // 1.用"="赋值
     string str1;
     str1 = "hello world";
     
@@ -1964,7 +1959,7 @@ void test01()
     string str3;
     str3 = 'a'; // a
     
-    // 2.用 string 的成员函数 assign 赋值
+    // 2.用string的成员函数assign赋值
     string str4;
     str4.assign("hello world");
     
@@ -1979,7 +1974,7 @@ void test01()
 }
 ```
 
-#### 3.1.4 拼接操作
+#### 3.1.4  拼接操作
 
 作用：在字符串的末尾追加字符串。
 
@@ -2006,7 +2001,7 @@ void test01()
 }
 ```
 
-#### 3.1.5 查找和替换
+#### 3.1.5  查找和替换
 
 ![image-20221102173424094](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221102173424094.png)
 
@@ -2018,8 +2013,8 @@ void test01()
 {
     string str1 = "abcdefgde";
     
-    // 1.find 从左往右查找
-    // 默认从下标 0 开始查找，返回找到的第一个字符的位置，找不到则返回 -1
+    // 1.find从左往右查找
+    // 默认从下标0开始查找，返回找到的第一个字符的位置，找不到则返回-1
     int pos = str1.find("de"); // 3
     if(pos == -1)
     {
@@ -2030,7 +2025,7 @@ void test01()
         cout << "找到字符串，pos = " << pos << endl;
     }
     
-    // 2.rfind 从右往左查找
+    // 2.rfind从右往左查找
     pos = str1.rfind("de");
     cout << pos << endl; // 7
 }
@@ -2045,15 +2040,16 @@ void test02()
 }
 ```
 
-#### 3.1.6 比较操作
+#### 3.1.6  比较操作
 
 字符串之间按字符的 ASCII 码进行对比：
 
-- `=` 返回 0
-- `>` 返回 1
-- `<` 返回 -1
+- `=` 返回 0；
+- `>` 返回 1；
+- `<` 返回 -1。
 
-主要是用于比较两个字符串是否相等，比较两个字符串大小的意义不大。
+> 注意：`compare()` 主要是用于比较两个字符串是否相等，比较两个字符串大小的意义不大。
+>
 
 ![image-20221102192013512](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221102192013512.png)
 
@@ -2080,7 +2076,7 @@ void test01()
 }
 ```
 
-#### 3.1.7 字符存取
+#### 3.1.7  字符存取
 
 `string` 中单个字符存取方式有两种：
 
@@ -2093,14 +2089,14 @@ void test01()
 {
     string str = "hello";
     
-    // 1.通过 [] 访问单个字符
+    // 1.通过[]访问单个字符
     for(int i = 0; i < str.size(); i++)
     {
         cout << str[i] << " ";
     }
     cout << endl;
     
-    // 2.通过 at 访问单个字符
+    // 2.通过at访问单个字符
     for(int i = 0; i < str.size(); i++)
     {
         cout << str.at(i) << " ";
@@ -2113,7 +2109,7 @@ void test01()
 }
 ```
 
-#### 3.1.8 插入和删除
+#### 3.1.8  插入和删除
 
 ![image-20221102193823817](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221102193823817.png)
 
@@ -2134,7 +2130,7 @@ void test01()
 }
 ```
 
-#### 3.1.9 子串
+#### 3.1.9  子串
 
 从字符串中获取想要的子串。
 
@@ -2152,12 +2148,62 @@ void test01()
 
 void test02()
 {
-    // 从邮箱地址中获取用户名
-    string email = "zhangsan@sina.com";
+    string email = "zhangsan@sina.com"; // 从邮箱地址中获取用户名
     int pos = email.find("@");
     string usrName = email.substr(0, pos);
 }
 ```
+
+#### 3.1.10  分割操作
+
+```c++
+#include <iostream>
+#include <vector>
+#include <iterator>
+
+using namespace std;
+
+void string_split(const string &str, const string &split, vector<string> &res);
+
+int main()
+{
+    string str = "a-b-ccc-dd-efg";
+    vector<string> strList;
+    string_split(str, "-", strList);
+    for (vector<string>::iterator it = strList.begin(); it != strList.end(); it++)
+    {
+        cout << *it << endl;
+    }
+    return 0;
+}
+
+// 自己实现的字符串分割函数
+void string_split(const string &str, const string &split, vector<string> &res)
+{
+    if (str == "")
+    {
+        return;
+    }
+
+    // 在字符串末尾也加入分隔符，方便截取最后一段
+    string strs = str + split;
+    size_t pos = strs.find(split); // 注意：这里的idx必须是size_t类型，不能是int类型！
+
+    // 若找不到内容则字符串搜索函数返回npos
+    while (pos != strs.npos)
+    {
+        string temp = strs.substr(0, pos);
+        res.push_back(temp);
+        // 去掉已分割的字符串，并在剩下的字符串中进行分割
+        strs = strs.substr(pos + 1, strs.size());
+        pos = strs.find(split);
+    }
+}
+```
+
+> 注意：`string::npos` 是一个常数，用来表示不存在的位置（表示 `size_t` 的最大值）。`npos` 可以表示 `string` 的结束位置，当 `find()` 函数在找不到指定值的情况下会返回 `string::npos`。
+>
+> 参考资料：[C++中string::npos的一些用法总结_c++ string::npos-CSDN博客](https://blog.csdn.net/jiejinquanil/article/details/51789682)。
 
 ### 3.2 vector
 
