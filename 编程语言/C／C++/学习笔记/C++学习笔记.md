@@ -1621,9 +1621,9 @@ int main()
 
 当类模板遇到继承时需要注意：
 
-- 当子类继承的父类是一个类模板时，子类在声明的时候，要指定出父类中 T 的类型；
+- 当子类继承的父类是一个类模板时，子类在声明的时候，要指定出父类中 `T` 的类型；
 - 如果不指定，编译器无法给子类分配内存；
-- 如果想灵活地指定出父类中 T 的类型，子类也需要变为类模板。
+- 如果想灵活地指定出父类中 `T` 的类型，子类也需要变为类模板。
 
 ```c++
 template<class T>
@@ -1832,7 +1832,7 @@ public:
 
 void test01()
 {
-    vector<Person>v;
+    vector<Person> v;
     
     Person p1(...);
     Person p2(...);
@@ -1854,7 +1854,7 @@ void test01()
 
 void test01()
 {
-    vector<Person*>v; // 存放的是指针类型
+    vector<Person*> v; // 存放的是指针类型
     
     Person p1(...);
     Person p2(...);
@@ -1882,11 +1882,11 @@ void test01()
 ```c++
 void test01()
 {
-    vector<vector<int>>v;
+    vector<vector<int>> v;
     
-    vector<int>v1;
-    vector<int>v2;
-    vector<int>v3;
+    vector<int> v1;
+    vector<int> v2;
+    vector<int> v3;
     
     // 向v1到v3中添加数据
     // ...
@@ -3070,21 +3070,21 @@ void test01()
 }
 ```
 
-## 4 STL - 函数对象
+## 4  STL - 函数对象
 
-### 4.1 函数对象
+### 4.1  函数对象
 
-#### 4.1.1 基本概念
+#### 4.1.1  基本概念
 
-- 重载「**函数调用操作符**」的类，其对象被称为「**函数对象**」
-- 函数对象使用重载的 `()` 时，行为类似函数调用，也叫「**仿函数**」
-- 函数对象（仿函数）是一个类，不是一个函数
+- 重载「**函数调用操作符**」的类，其对象被称为「**函数对象**」；
+- 函数对象使用重载的 `()` 时，行为类似函数调用，也叫「**仿函数**」；
+- 函数对象（仿函数）是一个类，不是一个函数。
 
-#### 4.1.2 函数对象使用
+#### 4.1.2  函数对象使用
 
-- 函数对象在使用时，可以像普通函数那样调用，可以有参数，可以有返回值
-- 函数对象超出普通函数的概念，函数对象可以有自己的状态
-- 函数对象可以作为参数传递
+- 函数对象在使用时，可以像普通函数那样调用，可以有参数，可以有返回值；
+- 函数对象超出普通函数的概念，函数对象可以有自己的状态；
+- 函数对象可以作为参数传递。
 
 示例：
 
@@ -3103,7 +3103,7 @@ public:
 void test01()
 {
     MyAdd myAdd;
-    // 相当于调用重载了 () 的类的成员函数
+    // 相当于调用重载了()的类的成员函数
     cout << myAdd(10, 10) << endl; // 20
 }
 ```
@@ -3119,14 +3119,13 @@ public:
         this->count = 0;
     }
     
-    void operator()(string s)
+    void operator()(string str)
     {
-        cout << test << endl;
+        cout << str << endl;
         this->count++;
     }
     
-    // 内部自己的状态
-    int count;
+    int count; // 内部自己的状态
 };
 
 void test02()
@@ -3150,14 +3149,13 @@ public:
         this->count = 0;
     }
     
-    void operator()(string s)
+    void operator()(string str)
     {
-        cout << test << endl;
+        cout << str << endl;
         this->count++;
     }
     
-    // 内部自己的状态
-    int count;
+    int count; // 内部自己的状态
 };
 
 void doPrint(MyPrint& mp, string test)
@@ -3173,21 +3171,21 @@ void test03()
 }
 ```
 
-### 4.2 谓词
+### 4.2  谓词
 
-#### 4.2.1 基本概念
+#### 4.2.1  基本概念
 
-- 返回 `bool` 类型的仿函数称为「**谓词**」
-- 如果 `operator()` 接受一个参数，那么叫做一元谓词
-- 如果 `operator()` 接受两个参数，那么叫做二元谓词
+- 返回 `bool` 类型的仿函数称为「**谓词**」；
+- 如果 `operator()` 接受一个参数，那么叫做一元谓词；
+- 如果 `operator()` 接受两个参数，那么叫做二元谓词。
 
-#### 4.2.2 一元谓词
+#### 4.2.2  一元谓词
 
 ```c++
 class GreaterFive
 {
 public:
-    // 谓词：返回 bool 的仿函数
+    // 谓词：返回bool的仿函数
     // 一元：只有一个参数
     bool operator()(int val)
     {
@@ -3197,15 +3195,14 @@ public:
 
 void test01()
 {
-    vector<int>v;
+    vector<int> v;
     for(int i = 0; i < 10; i++)
     {
         v.push_back(i);
     }
     
-    // 查找容器中有没有大于 5 的元素
-    // find_if：根据区间、条件进行查找
-    // 最后一个参数传入一个匿名的函数对象
+    // 查找容器中有没有大于5的元素
+    // find_if()：根据区间、条件进行查找，最后一个参数传入一个匿名的函数对象
     vector<int>::iterator it = find_if(v.begin(), v.end(), GreaterFive());
     if(it == v.end())
     {
@@ -3213,16 +3210,15 @@ void test01()
     }
     else
     {
-        cout << "找到了大于 5 的数字为：" << *it << endl;
+        cout << "找到了大于5的数字为：" << *it << endl; // 6
     }
-    // 最后输出：6
 }
 ```
 
-#### 4.2.3 二元谓词
+#### 4.2.3  二元谓词
 
 ```c++
-class MyCompare
+class MyCompare // 类似于java中的comparator比较器
 {
 public:
 	bool operator()(int val1, int val2)
@@ -3231,9 +3227,25 @@ public:
     }    
 };
 
+template <typename T>
+void print(const vector<T>& v)
+{
+    // 这里的vector<T>前面必须要加typename，否则会报错，原因见下面的参考资料
+    for (typename::vector<T>::const_iterator it = v.begin(); it != v.end(); it++)
+    {
+        cout << *it << " ";
+    }
+    cout << endl;
+}
+
+void myPrint(int val)
+{
+    cout << val << " ";
+}
+
 void test01()
 {
-    vector<int>v;
+    vector<int> v;
     
     v.push_back(1);
     v.push_back(4);
@@ -3241,70 +3253,72 @@ void test01()
     v.push_back(3);
     v.push_back(5);
     
-    // 从小到大排序
+    // 默认为从小到大排序
     sort(v.begin(), v.end());
+    print(v); // 1 2 3 4 5
     
     // 使用函数对象，改变算法策略，从大到小排序
+    // 这里第3个参数需要传入的是一个函数对象，因此MyCompare后面需要加()，表示创建一个对象
     sort(v.begin(), v.end(), MyCompare());
+    // 利用STL提供的遍历算法打印
+    // 这里第3个参数需要的是一个函数的引用，因此myPrint后面不用加()
+    for_each(v.begin(), v.end(), myPrint); // 5 4 3 2 1
 }
 ```
 
-### 4.3 内建函数对象
+> 参考资料：[C++：进阶之旅：need ‘typename’ before ‘std::vector::iterator’ because ‘std::vector’ is a dependent scope_FishAnd_Yu的博客-CSDN博客](https://blog.csdn.net/u013620306/article/details/128450381)。
 
-#### 4.3.1 内建函数对象的意义
+### 4.3  内建函数对象
+
+#### 4.3.1  内建函数对象的意义
 
 STL 内建了一些函数对象，可以分为：
 
-- 算术仿函数
-- 关系仿函数
-- 逻辑仿函数
+- 算术仿函数；
+- 关系仿函数；
+- 逻辑仿函数。
 
-使用内建函数对象，需要引入头文件：`#include<functional>`
+使用内建函数对象，需要引入头文件：`#include<functional>`。
 
-#### 4.3.2 算术仿函数
+#### 4.3.2  算术仿函数
 
-功能描述：
-
-- 实现四则运算
-- 其中 `negate` 是一元运算，其它都是二元运算
+功能描述：实现四则运算，其中 `negate` 是一元运算，其它都是二元运算。
 
 ![image-20221107195341134](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221107195341134.png)
 
 示例：
 
 ```c++
-#include<functional>
+#include <functional>
 
 void test01()
 {
     // 取反
-    negate<int>n;
+    negate<int> n;
     cout << n(50) << endl; // -50
 }
 
 void test02()
 {
     // 相加
-    plus<int>p;
+    plus<int> p;
     cout << p(1, 2) << endl; // 3
 }
 ```
 
-#### 4.3.3 关系仿函数
+#### 4.3.3  关系仿函数
 
-功能描述：
+功能描述：实现比较运算。
 
-- 实现功能对比
-
- ![image-20221107200054783](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221107200054783.png)
+![image-20221107200054783](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221107200054783.png)
 
 示例：
 
 ```c++
-#include<iostream>
-#include<vector>
-#include<algorithm>
-#include<functional>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <functional>
 
 using namespace std;
 
@@ -3329,18 +3343,16 @@ void test01()
     
     // 降序排序
     // 1.使用自定义函数对象
-    sort(v.begin(), v.end(), MyCompare);
+    sort(v.begin(), v.end(), MyCompare());
     
     // 2.使用内建函数对象
     sort(v.begin(), v.end(), greater<int>());
 }
 ```
 
-#### 4.3.4 逻辑仿函数
+#### 4.3.4  逻辑仿函数
 
-功能描述：
-
-- 实现逻辑运算
+功能描述：实现逻辑运算。
 
 ![image-20221107201134957](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221107201134957.png)
 
@@ -3349,7 +3361,7 @@ void test01()
 ```c++
 void test01()
 {
-    vector<bool>v;
+    vector<bool> v;
      
     v.push_back(true);
     v.push_back(false);
@@ -3357,8 +3369,8 @@ void test01()
     v.push_back(false);
     // 1 0 1 0
      
-    // 将容器 v 搬运到容器 v2 中，并执行取反操作
-    vector<int>v2;
+    // 将容器v搬运到容器v2中，并执行取反操作
+    vector<int> v2;
     v2.resize(v.size());
     
     transform(v.begin(), v.end(), v2.begin(), logical_not<bool>());
@@ -3366,25 +3378,23 @@ void test01()
 }
 ```
 
-## 5 STL - 常用算法
+## 5  STL - 常用算法
 
  主要头文件：
 
-- `<algorithm>`：是所有 STL 头文件中最大的一个，范围涉及到比较、交换、查找、遍历、复制、修改等
-- `<numeric>`：体积很小，只包括几个在序列上面进行简单数学运算的模板函数
-- `<functional>`：定义了一些模板类，用以声明函数对象
+- `<algorithm>`：是所有 STL 头文件中最大的一个，范围涉及到比较、交换、查找、遍历、复制、修改等；
+- `<numeric>`：体积很小，只包括几个在序列上面进行简单数学运算的模板函数；
+- `<functional>`：定义了一些模板类，用以声明函数对象（仿函数）。
 
-### 5.1 常用遍历算法
+### 5.1  常用遍历算法
 
-#### 5.1.1 for_each
+#### 5.1.1  for_each
 
-功能描述：
-
-- 实现遍历容器
+功能描述：遍历容器。
 
 函数原型：
 
-- `for_each(iterator beg, iterator end, _func)`
+- `for_each(iterator beg, iterator end, _func)`；
 - 其中 `_func` 为函数或者函数对象。
 
 示例：
@@ -3418,17 +3428,15 @@ void test01()
 }
 ```
 
-#### 5.1.2 transform
+#### 5.1.2  transform
 
-功能描述：
-
-- 搬运容器到另一个容器中
+功能描述：将容器中的元素搬运到另一个容器中。
 
 函数原型：
 
-- `transform(iterator beg1, iterator end1, iterator beg2, _func)`
-- `1` 为原容器，`2` 为目标容器
-- `_func` 为函数对象
+- `transform(iterator beg1, iterator end1, iterator beg2, _func)`；
+- `1` 为原容器，`2` 为目标容器；
+- `_func` 为函数对象。
 
 示例：
 
@@ -3438,32 +3446,30 @@ class Transform
 public:
     int operator()(int v)
     {
-        // 不需要做逻辑运算，直接返回即可
-        return v
+        return v; // 不需要做逻辑运算，直接返回即可（也可以加入逻辑判断实现过滤功能）
     }
 };
 
 void test01()
 {
-    vector<int>v;
-    // 插入数据
-    ...
+    vector<int> v;
+    // 插入数据……
     
     // 目标容器    
-    vector<int>target;
+    vector<int> target;
     // 需要提前开辟空间
     target.resize(v.size());
     
-    // 将元素从 v 搬运到 target
+    // 将元素从v搬运到target
     transform(v.begin(), v.end(), target.begin(), Transform());
 }
 ```
 
-### 5.2 常用查找算法
+### 5.2  常用查找算法
 
 ![image-20221108095428398](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221108095428398.png)
 
-#### 5.2.1 find
+#### 5.2.1  find
 
 功能描述：查找指定元素，找到返回指定元素的迭代器，找不到则返回结束迭代器 `end()`。
 
@@ -3472,16 +3478,15 @@ void test01()
 示例：
 
 ```c++
-// 算法头文件
-#include<algorithm>
+#include <algorithm>
 
 // 1.查找内置数据类型
 void test01()
 {
-    vector<int>v;
-    // 插入数据
-    ...   
-    // 查找 5
+    vector<int> v;
+    // 插入数据……   
+    
+    // 查找5
     vector<int>::iterator it = find(v.begin(), v.end(), 5);
     if(it == v.end())
     {
@@ -3497,11 +3502,11 @@ void test01()
 class Person
 {
 public:
-    // 构造方法
-    ...
-    // 必须重载 == 后，才能让 find 在底层知道如何对比 Person 类型的数据
-    // 这里的参数前必须加 const，防止修改 p 的数据
-    bool operator==(const Person & p)
+    // ...
+    
+    // Person类必须重载"=="后，才能让find()在底层知道如何对比Person类型的数据
+    // 这里的参数前必须加const，防止修改p的数据
+    bool operator==(const Person& p)
     {
         if(this->m_Name == p.m_Name && this->m_Age == p.m_Age)
         {
@@ -3518,23 +3523,23 @@ public:
 
 void test02()
 {
-    vector<Person>v;
-    // 插入数据
-    ...
-    // 查找 p2
+    vector<Person> v;
+    // 插入数据……
+    
+    // 查找p2
     vector<Person>::iterator it = find(v.begin(), v.end(), p2);
     if(it == v.end())
     {
-        ...
+        // ...
     }
     else
     {
-        ...
+        // ...
     }
 }
 ```
 
-#### 5.2.2 find_if
+#### 5.2.2  find_if
 
 功能描述：按条件查找元素。
 
@@ -3555,18 +3560,18 @@ public:
 
 void test01()
 {
-    vector<int>v;
-    // 插入数据
-    ...
-    // 查找大于 5 的元素
+    vector<int> v;
+    // 插入数据……
+    
+    // 查找大于5的元素
     vector<int>::iterator it = find_if(v.begin(), v.end(), GreaterFive());
     if(it == v.end())
     {
-        ...
+        // ...
     }
     else
     {
-        ...
+        // ...
     }
 }
 
@@ -3574,8 +3579,7 @@ void test01()
 class Person
 {
 public:
-    // 构造函数
-    ...
+    // ...
     string m_Name;
     int m_Age;
 };
@@ -3592,22 +3596,22 @@ public:
 void test02()
 {
     vector<Person>v;
-    // 插入数据
-    ...
-    // 查找年龄大于 20 的人
+    // 插入数据……
+    
+    // 查找年龄大于20的人
     vector<Person>::iterator it = find_if(v.begin(), v.end(), Greater20());
     if(it == v.end())
     {
-        ...
+        // ...
     }
     else
     {
-        ...
+        // ...
     }
 }
 ```
 
-#### 5.2.3 adjacent_find
+#### 5.2.3  adjacent_find
 
 功能描述：查找相邻重复元素。
 
@@ -3618,30 +3622,29 @@ void test02()
 ```c++
 void test01()
 {
-    vector<int>v;
-    // 插入数据：
-    // 0 2 0 3 1 4 3 3
+    vector<int> v;
+    // 插入数据：0 2 0 3 1 4 3 3
     
     vector<int>::iterator it = adjacent_find(v.begin(), v.end());
     if(it == v.end())
     {
-        ...
+        // ...
     }
     else
     {
-        // 找到了相邻重复元素 3
-        ...
+        // 找到了相邻的重复元素3
     }
 }
 ```
 
-#### 5.2.4 binary_search
+#### 5.2.4  binary_search
 
 功能描述：查找指定元素是否存在。
 
 ![image-20221108103549943](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221108103549943.png)
 
-注意：数据必须是有序序列，如果是无序的，则结果未知。
+> 注意：数据必须是有序序列，如果是无序的，则结果未知。
+>
 
 示例：
 
@@ -3649,9 +3652,9 @@ void test01()
 void test01()
 {
     vector<int>v;
-    // 插入数据（必须是升序排列）
-    ...
-    // 查找是否存在 9
+    // 插入数据……（必须是升序排列）
+    
+    // 查找是否存在9
     bool ret = binary_search(v.begin(), v.end(), 9);
     if(ret)
     {
@@ -3664,7 +3667,7 @@ void test01()
 }
 ```
 
-#### 5.2.5 count
+#### 5.2.5  count
 
 功能描述：统计元素个数。
 
@@ -3676,21 +3679,20 @@ void test01()
 // 1.统计内置数据类型
 void test01()
 {
-    vector<int>v;
-    // 插入数据
-    ...
-    // 1 4 3 4 2 4
+    vector<int> v;
+    // 插入数据：1 4 3 4 2 4
+     
     int num = count(v.begin(), v.end(), 4);
-    cout << num << endl; // 3
+    cout << num << endl; // 3（个4）
 }
 
 // 2.统计自定义数据类型
 class Person
 {
 public:
-    // 构造函数
-    ...
-    // 重载 == 符号，定义元素比较的规则
+    // ...
+    
+    // 重载"=="符号，定义元素比较的规则
     bool operator==(const Person &p)
     {
         if(this->m_Age == p.m_Age)
@@ -3702,25 +3704,25 @@ public:
             return false;
         }
     }
-    // 成员变量
-    ...
+    
+    // ...
 };
 
 void test02()
 {
     vector<Person>v;
-    // 插入数据
-    ...
-    // 查找与 p 年龄相同的人有多少个
+    // 插入数据……
+    
+    // 查找与p年龄相同的人有多少个
     Person p("...", 20); 
     int num = count(v.begin(), v.end(), p);
     cout << num << endl;
 }
 ```
 
-#### 5.2.6 count_if
+#### 5.2.6  count_if
 
-功能描述：按条件统计元素个数
+功能描述：按条件统计元素个数。
 
 ![image-20221108113049123](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221108113049123.png)
 
@@ -3731,7 +3733,6 @@ void test02()
 class Greater20
 {
 public:
-    // 谓词
     bool operator()(int val)
     {
         return val > 20;
@@ -3740,10 +3741,10 @@ public:
 
 void test01()
 {
-    vector<int>v;
-    // 插入数据
-    ...
-    // 统计大于 20 的元素个数
+    vector<int> v;
+    // 插入数据……
+    
+    // 统计大于20的元素个数
     int num = count_if(v.begin(), v.end(), Greater20());
     cout << num << endl;
 }
@@ -3752,25 +3753,22 @@ void test01()
 class Person
 {
 public:
-    // 构造函数
-    ...
-    // 成员变量
-    ...    
+    // ...    
 };
 
 void test02()
 {
-    vector<Person>v;
-    // 插入数据
-    ...
+    vector<Person> v;
+    // 插入数据……
+    // 统计大于20的元素个数
 }
 ```
 
-### 5.3 常用排序算法
+### 5.3  常用排序算法
 
 ![image-20221108170403217](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221108170403217.png)
 
-#### 5.3.1 sort
+#### 5.3.1  sort
 
 功能描述：排序。
 
@@ -3779,16 +3777,16 @@ void test02()
 示例：
 
 ```c++
-#include<iostream>
-#include<algorithm>
-#include<vector>
-#include<functional>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <functional>
 
 void test01()
 {
-    vector<int>v;
-    // 插入数据
-    ...
+    vector<int> v;
+    // 插入数据……
+    
     // 排序（默认是升序排列）
     sort(v.begin(), v.end());
     
@@ -3797,7 +3795,7 @@ void test01()
 }
 ```
 
-#### 5.3.2 random_shuffle
+#### 5.3.2  random_shuffle
 
 功能描述：指定范围内的元素随机调整次序。
 
@@ -3806,27 +3804,24 @@ void test01()
 示例：
 
 ```c++
-#include<ctime>
+#include <ctime>
 
 void test01()
 {
-    // 添加随机数种子
-    // 如果不使用随机数种子，则每一次打乱的结果都一样
-    // 这里是根据系统时间生成随机数种子
+    // 添加随机数种子，如果不使用随机数种子，则每一次打乱的结果都一样，这里是根据系统时间生成随机数种子
     srand((unsigned int)time(NULL));
     
     vector<int>v;
-    // 插入数据：
-    // 1 2 3 4 5 6 7 8 9
+    // 插入数据：1 2 3 4 5 6 7 8 9 
     
     // 打乱顺序（洗牌算法）
     random_shuffle(v.begin(), v.end());
 }
 ```
 
-#### 5.3.3 merge
+#### 5.3.3  merge
 
-功能描述：将两个容器中的元素合并，并存储到另一容器中。
+功能描述：将两个容器中的元素合并，并存储到另一个容器中。
 
 ![image-20221108171904739](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221108171904739.png)
 
@@ -3835,14 +3830,12 @@ void test01()
 ```c++
 void test01()
 {
-    vector<int>v1;
-    vector<int>v2;
-    
-    // 插入数据
-    ...
+    vector<int> v1;
+    vector<int> v2;
+    // 插入数据……
     
     // 目标容器
-    vector<int>target;
+    vector<int> target;
     // 需要提前分配内存
     target.resize(v1.size() + v2.size());
     
@@ -3851,17 +3844,17 @@ void test01()
 }
 ```
 
-#### 5.3.4 reverse
+#### 5.3.4  reverse
 
 功能描述：反转元素顺序。
 
 ![image-20221108172434945](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221108172434945.png)
 
-### 5.4 常用拷贝和替换算法
+### 5.4  常用拷贝和替换算法
 
 ![image-20221108172550079](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221108172550079.png)
 
-#### 5.4.1 copy
+#### 5.4.1  copy
 
 功能描述：将容器内指定范围的元素拷贝到另一容器中。
 
@@ -3873,8 +3866,7 @@ void test01()
 void test01()
 {
     vector<int>v1;
-    // 插入数据
-    ...
+    // 插入数据……
     
     vector<int>v2;
     // 扩容
@@ -3884,7 +3876,7 @@ void test01()
 }
 ```
 
-#### 5.4.2 replace
+#### 5.4.2  replace
 
 功能描述：将容器内指定范围的旧元素修改为新元素。
 
@@ -3895,17 +3887,16 @@ void test01()
 ```c++
 void test01()
 {
-    vector<int>v;
-    // 插入数据
-    // 2 3 5 3 4 2 1 2
+    vector<int> v;
+    // 插入数据：2 3 5 3 4 2 1 2 
     
-    // 将所有的 2 替换为 20
+    // 将所有的2替换为20
     replace(v.begin(), v.end(), 2, 20);
     // 20 3 5 3 4 20 1 20
 }
 ```
 
-#### 5.3.3 replace_if
+#### 5.3.3  replace_if
 
 功能描述：将区间内满足条件的元素，替换成指定元素。
 
@@ -3917,7 +3908,6 @@ void test01()
 class Greater3
 {
 public:
-    // 谓词
     bool operator()(int val)
     {
         return val >= 3;
@@ -3927,15 +3917,14 @@ public:
 void test01()
 {
     vector<int>v;
-    // 插入数据
-    // 1 4 2 4 3 5 2 3
+    // 插入数据：1 4 2 4 3 5 2 3
     
-    // 将所有 >= 3 的元素替换为 30
+    // 将所有>=3的元素替换为30
     replace_if(v.begin(), v.end(), Greater3, 30);
 }
 ```
 
-#### 5.4.4 swap
+#### 5.4.4  swap
 
 功能描述：互换两个容器的元素。
 
@@ -3946,23 +3935,22 @@ void test01()
 ```c++
 void test01()
 {
-    vector<int>v1;
-    vector<int>v2;
-    // 插入数据
-    ...
+    vector<int> v1;
+    vector<int> v2;
+    // 插入数据……
     
     // 交换元素
     swap(v1, v2);    
 }
 ```
 
-### 5.5 常用算术生成算法
+### 5.5  常用算术生成算法
 
-算术生成算法属于小型算法，使用时包含的头文件为：`#include<numeric>`
+算术生成算法属于小型算法，使用时包含的头文件为：`#include<numeric>`。
 
 ![image-20221109101045275](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221109101045275.png)
 
-#### 5.1.1 accumulate
+#### 5.1.1  accumulate
 
 功能描述：计算区间内的容器元素累计总和。
 
@@ -3971,13 +3959,12 @@ void test01()
 示例：
 
 ```c++
-#include<numeric>
+#include <numeric>
 
 void test01()
 {
-    vector<int>v;
-    // 插入数据
-    ...
+    vector<int> v;
+    // 插入数据……
     
     // 计算累加和
     int total = accumulate(v.begin(), v.end(), 0);
@@ -3985,7 +3972,7 @@ void test01()
 }
 ```
 
-#### 5.2.2 fill
+#### 5.2.2  fill
 
 功能描述：向容器中填充指定的元素。
 
@@ -3994,20 +3981,20 @@ void test01()
 示例：
 
 ```c++
-#include<numeric>
+#include <numeric>
 
 void test01()
 {
     vector<int>v;
     v.resize(10);
     
-    // 填充数据
+    // 填充数据（1）
     fill(v.begin(), v.end(), 1);
     // 1 1 ... 1
 }
 ```
 
-### 5.6 常用集合算法
+### 5.6  常用集合算法
 
 ![image-20221109101701547](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221109101701547.png)
 
@@ -4015,7 +4002,7 @@ void test01()
 
 ![image-20221109103523862](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221109103523862.png)
 
-#### 5.6.1 set_intersection
+#### 5.6.1  set_intersection
 
 功能描述：求两个容器的交集。
 
@@ -4024,27 +4011,25 @@ void test01()
 示例：
 
 ```c++
-#include<algorithm>
+#include <algorithm>
 
 void test01()
 {
-    vector<int>v1;
-    vector<int>v2;
-    // 插入数据
-    ...
+    vector<int> v1;
+    vector<int> v2;
+    // 插入数据……
     
     // 目标容器
-    vector<int>target;
-    // 提前开辟空间
-    // 最特殊情况：大容器包含小容器，取小容器的 size 即可
+    vector<int> target;
+    // 提前开辟空间（特殊情况：大容器包含小容器，取小容器的size即可）
     target.resize(min(v1.size(), v2.size()));
     
-    // 取 v1 和 v2 的交集
+    // 取v1和v2的交集
     vector<int>::iterator itEnd = set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), target.begin());
 }
 ```
 
-#### 5.6.2 set_union
+#### 5.6.2  set_union
 
 功能描述：求两个集合的并集。
 
@@ -4055,22 +4040,21 @@ void test01()
 ```c++
 void test01()
 {
-    vector<int>v1;
-    vector<int>v2;
-    // 插入数据
-    ...
+    vector<int> v1;
+    vector<int> v2;
+    // 插入数据……
     
     // 目标容器
-    vector<int>target;
+    vector<int> target;
     // 提前开辟空间
     target.resize(v1.size() + v2.size());
     
-    // 取 v1 和 v2 的并集
+    // 取v1和v2的并集
     vector<int>::iterator itEnd = set_union(v1.begin(), v1.end(), v2.begin(), v2.end(), target.begin());
 }
 ```
 
-#### 5.6.3 set_difference
+#### 5.6.3  set_difference
 
 功能描述：求两个集合的差集。
 
@@ -4083,20 +4067,19 @@ void test01()
 
 void test01()
 {
-    vector<int>v1;
-    vector<int>v2;
-    // 插入数据
-    ...
+    vector<int> v1;
+    vector<int> v2;
+    // 插入数据……
     
     // 目标容器    
-    vector<int>target;
+    vector<int> target;
     // 提前开辟空间
     target.resize(max(v1.size(), v2.size()));
     
-    // v1 和 v2 的差集
+    // 取v1和v2的差集
     vector<int>::iterator itEnd = set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), target.begin());
     
-    // v2 和 v1 的差集
+    // 取v2和v1的差集
     vector<int>::iterator itEnd = set_difference(v2.begin(), v2.end(), v1.begin(), v1.end(), target.begin());
 }
 ```
