@@ -2205,20 +2205,21 @@ void string_split(const string &str, const string &split, vector<string> &res)
 >
 > 参考资料：[C++中string::npos的一些用法总结_c++ string::npos-CSDN博客](https://blog.csdn.net/jiejinquanil/article/details/51789682)。
 
-### 3.2 vector
+### 3.2  vector
 
-#### 3.2.1 基本概念
+#### 3.2.1  基本概念
 
-`vector`：单端数组
+`vector`：单端数组。
 
 `vector` 与普通数组的区别：
 
-- 普通数组是静态空间，大小固定
-- `vector` 可以动态扩展
+- 普通数组是静态空间，大小固定；
+- `vector` 可以动态扩展。
 
-**动态扩展**：并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数组拷贝到新空间，最后释放原空间。
+> 注意：「动态扩展」并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数组拷贝到新空间，最后释放原空间。
+>
 
-#### 3.2.2 构造函数
+#### 3.2.2  构造函数
 
 ![image-20221102200048553](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221102200048553.png)
 
@@ -2228,22 +2229,20 @@ void string_split(const string &str, const string &split, vector<string> &res)
 void test01()
 {
     // 1.默认构造
-    vector<int>v1;
-    // 添加数据
-    ...
+    vector<int> v1; 
         
     // 2.区间方式构造
-    vector<int>v2(v1.begin(), v1.end());
+    vector<int> v2(v1.begin(), v1.end());
     
-    // 3.n 个 elem 方式构造
-    vector<int>v3(10, 100);
+    // 3.n个elem方式构造
+    vector<int> v3(10, 100);
     
     // 4.拷贝构造
-    vector<int>v4(v3);
+    vector<int> v4(v3);
 }
 ```
 
-#### 3.2.3 赋值操作
+#### 3.2.3  赋值操作
 
 ![image-20221102200824210](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221102200824210.png)
 
@@ -2252,30 +2251,28 @@ void test01()
 ```c++
 void test01()
 {
-    vector<int>v1;
-    // 插入数据
-    ...
+    vector<int> v1;
         
-    // 1.用 = 赋值
-    vector<int>v2;
+    // 1.用"="赋值
+    vector<int> v2;
     v2 = v1;
     
-    // 2.用 assign 赋值
-    vector<int>v3;
+    // 2.用assign()赋值
+    vector<int> v3;
     // 取的是 [begin,end)
     v3.assign(v1.begin(), v1.end());
     
-    // 3.用 n 个 elem 赋值
-    vector<int>v4;
+    // 3.用n个elem赋值
+    vector<int> v4;
     v4.assign(10, 100);
 }
 ```
 
-#### 3.2.4 容量和大小
+#### 3.2.4  容量和大小
 
 ![image-20221103095431320](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103095431320.png)
 
-#### 3.2.5 插入和删除
+#### 3.2.5  插入和删除
 
 ![image-20221103100520279](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103100520279.png)
 
@@ -2284,18 +2281,17 @@ void test01()
 ```c++
 void test01()
 {
-    vector<int>v1;
+    vector<int> v1;
     // 1.尾插
     v1.push_back(1);
-    ...
     
     // 2.尾删
     v1.pop_back();
     
     // 3.插入
-    // 插入头部元素
+    // 在头部插入元素
     v1.insert(v1.begin(), 10);
-    // 插入 2 个 1000
+    // 插入2个1000
     v1.insert(v1.begin(), 2, 1000);
     
     // 4.删除
@@ -2305,7 +2301,7 @@ void test01()
 }
 ```
 
-#### 3.2.6 数据存取
+#### 3.2.6  数据存取
 
 ![image-20221103101240816](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103101240816.png)
 
@@ -2314,15 +2310,13 @@ void test01()
 ```c++
 void test01()
 {
-    vector<int>v1;
-    // 插入数据
-    ...
+    vector<int> v1;
+    // 插入数据...
           
     for(int i = 0; i < v1.size(); i++)
     {
         cout << v1[i] << " ";
-        // 或：
-        cout << v1.at(i) << " ";
+        // 或：cout << v1.at(i) << " ";
     }
     cout << endl;
     
@@ -2333,50 +2327,45 @@ void test01()
 }
 ```
 
-#### 3.2.7 互换容器
+#### 3.2.7  互换容器
 
 实现两个容器内元素进行互换。
 
-函数原型：`swap(vec)`
+函数原型：`swap(vec)`。
 
 示例：
 
 ```c++
 void test01()
 {
-    vector<int>v1;
-    // 插入数据
-    ...
+    vector<int> v1;
+    // 插入数据...
         
-    vector<int>v2;
-    // 插入数据
-    ...
+    vector<int> v2;
+    // 插入数据...
         
     // 容器互换
-    v1.swap(v2);    
+    v1.swap(v2);  
 }
 
 // 实际用途：收缩内存空间
 void test02()
 {
-    vector<int>v;
-    // 插入 100000 个数据
-    ...
-    // 此时 v 的 size 为 100000，而 capacity 为 130000+
+    vector<int> v;
+    // 插入100000个数据
+    // 此时v的size为100000，而capacity为130000+
         
     // 重新指定大小    
     v.resize(3);
-    // 此时 v 的 size 为 3，而 capacity 仍为 130000+
+    // 此时v的size为3，而capacity仍为130000+
     
     // 收缩内存空间
     vector<int>(v).swap(v);
-    // 此时 v 的 size 为 3，且 capacity 也为 3
+    // 此时v的size为3，且capacity也为3
 }
 ```
 
-收缩内存空间的原理：
-
-拷贝构造 `vector<int>(v)` 会利用 `v` 当前的元素个数（即 `size` 的大小）初始化一个匿名对象（假设为 `x`）。匿名对象的内存使用完即被释放。
+收缩内存空间的原理：拷贝构造 `vector<int>(v)` 会利用 `v` 当前的元素个数（即 `size` 的大小）初始化一个匿名对象（假设为 `x`）。匿名对象的内存使用完即被释放。
 
 交换前：
 
@@ -2386,24 +2375,25 @@ void test02()
 
 ![image-20221103104727498](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103104727498.png)
 
-#### 3.2.8 预留空间
+#### 3.2.8  预留空间
 
-减少 `vector` 在动态扩展容量时的扩展次数。
+预留空间的目的：减少 `vector` 在动态扩展容量时的扩展次数。
 
-函数原型：`reserve(int len)`
+函数原型：`reserve(int len)`。
 
-容器预留 len 个元素长度，预留位置不初始化，元素不可访问。
+> 说明：使容器预留 len 个元素长度，预留位置不初始化，元素不可访问。
+>
 
 示例：
 
 ```c++
 void test01()
 {
-    vector<int>v;
+    vector<int> v;
     
     // 统计开辟空间的次数
     int num = 0;
-    int * p = NULL;
+    int *p = NULL;
     
     for(int i = 0; i < 100000; i++)
     {
@@ -2418,27 +2408,26 @@ void test01()
     
     cout << num << endl; // 30
     
-    // 利用 reserve 预留空间
-    vector<int>v2;
+    // 利用reserve()预留空间
+    vector<int> v2;
     v2.reserve(100000);
     
-    // 插入 100000 个数
-    ...     
-    // 不会重新开辟新空间    
+    // 插入100000个数……
+    // 结果：不会重新开辟新空间
 }
 ```
 
-### 3.3 deque
+### 3.3  deque
 
-#### 3.3.1 基本概念
+#### 3.3.1  基本概念
 
 `deque`：双端数组，可以对头部做插入和删除操作。
 
 `deque` 与 `vector` 的区别：
 
-- `vector` 对于头部的插入和删除效率低，数据量越大，效率越低
-- `deque` 对于头部的插入和删除速度比 `vector` 快
-- `vector` 访问元素时的速度比 `deque` 快
+- `vector` 对于头部的插入和删除效率低，数据量越大，效率越低；
+- `deque` 对于头部的插入和删除速度比 `vector` 快；
+- `vector` 访问元素时的速度比 `deque` 快。
 
 ![image-20221103111210390](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103111210390.png)
 
@@ -2446,21 +2435,20 @@ void test01()
 
 ![image-20221103113024255](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103113024255.png)
 
-#### 3.3.2 构造函数
+#### 3.3.2  构造函数
 
 ![image-20221103113123945](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103113123945.png)
 
 示例：
 
 ```c++
-// 给形参加上 const（只读），可以防止修改容器中的内容
+// 给形参加上const（只读），可以防止修改容器中的内容
 void printDequeue(const deque<int>&d)
 {
-    // 这里只能使用带 const 的迭代器（只读）
+    // 这里只能使用带const的迭代器（只读）
     for(deque<int>::const_iterator it = d.begin(); it != d.end(); it++)
     {
-        // 不允许修改数据
-        // *it = 100;
+        // *it = 100; // 错误，不允许修改数据
         cout << *it << " ";
     }
     cout << endl;
@@ -2468,9 +2456,8 @@ void printDequeue(const deque<int>&d)
 
 void test01()
 {
-    deque<int>d1;
-    // 插入数据
-    ...
+    deque<int> d1;
+    // 插入数据……
     printDeque(d1);
     
     deque<int>d2(d1.begin(), d1.end());
@@ -2484,17 +2471,17 @@ void test01()
 }
 ```
 
-#### 3.3.3 赋值操作
+#### 3.3.3  赋值操作
 
 ![image-20221103150636524](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103150636524.png)
 
-#### 3.3.4 大小操作
+#### 3.3.4  大小操作
 
  `deque` 没有 `capacity` 的概念，它可以无限地存放数据。
 
  ![image-20221103150946939](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103150946939.png)
 
-#### 3.3.5 插入和删除
+#### 3.3.5  插入和删除
 
 ![image-20221103151139791](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103151139791.png)
 
@@ -2503,12 +2490,12 @@ void test01()
 ```c++
 void printDeque(const deque<int>&d)
 {
-    ...
+    // ...
 }
 
 void test01()
 {
-    deque<int>d1;
+    deque<int> d1;
     
     // 尾插
     d1.push_back(1);
@@ -2526,7 +2513,7 @@ void test01()
 
 void test02()
 {
-    deque<int>d1;
+    deque<int> d1;
     
     d1.push_back(1);
     d1.push_back(2);
@@ -2551,7 +2538,7 @@ void test02()
 
 void test03()
 {
-    deque<int>d1;
+    deque<int> d1;
     
     d1.push_back(1);
     d1.push_back(2);
@@ -2569,15 +2556,16 @@ void test03()
 }
 ```
 
-#### 3.3.6 数据存取
+#### 3.3.6  数据存取
 
  ![image-20221103152721153](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103152721153.png)
 
-#### 3.3.7 排序
+#### 3.3.7  排序
 
-算法：`sort(iterator beg, iterator end)`
+算法：`sort(iterator beg, iterator end)`；
 
-对于支持随机访问的迭代器的容器，都可以利用 `sort` 算法直接对其进行排序。
+> 注意：对于支持随机访问的迭代器的容器，都可以利用 `sort` 算法直接对其进行排序。
+>
 
 示例：
 
@@ -2586,20 +2574,19 @@ void test03()
 
 void test01()
 {
-    deque<int>d;
-    // 插入数据
-    ...
+    deque<int> d;
+    // 插入数据……
         
     // 排序（默认为从小到大）
-    sort(d.begin(), d.end());    
+    sort(d.begin(), d.end());
 }
 ```
 
-### 3.4 stack
+### 3.4  stack
 
-#### 3.4.1 基本概念
+#### 3.4.1  基本概念
 
-#### 3.4.2 常用接口
+#### 3.4.2  常用接口
 
 ![image-20221103153707985](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103153707985.png)
 
@@ -2608,7 +2595,7 @@ void test01()
 ```c++
 void test01()
 {
-    stack<int>s;
+    stack<int> s;
     
     // 入栈
     s.push(1);
@@ -2625,11 +2612,11 @@ void test01()
 }
 ```
 
-### 3.5 queue
+### 3.5  queue
 
-#### 3.6.1 基本概念
+#### 3.6.1  基本概念
 
-#### 3.6.2 常用接口
+#### 3.6.2  常用接口
 
  ![image-20221103154215490](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103154215490.png)
 
@@ -2650,13 +2637,13 @@ public:
 
 void test01()
 {
-    queue<Person>q;
+    queue<Person> q;
     
     // 插入数据
     Person p1("...", ...);
-    ...
+    // ...
     q.push(p1);
-    ...
+    // ...
     
     while(!q.empty())
     {
@@ -2672,14 +2659,14 @@ void test01()
 }
 ```
 
-### 3.6 list
+### 3.6  list
 
-#### 3.6.1 基本概念
+#### 3.6.1  基本概念
 
 节点的组成：
 
-- **数据域**：存储数据元素
-- **指针域**：存储下一个节点的地址
+- **数据域**：存储数据元素；
+- **指针域**：存储下一个节点的地址。
 
 底层结构：
 
@@ -2687,31 +2674,31 @@ void test01()
 
 优点：
 
-- 可以对任意位置进行快速插入或删除元素，只需要修改指针即可，不需要移动大量元素
-- 采用动态存储分配，不会造成内存浪费和溢出
+- 可以对任意位置进行快速插入或删除元素，只需要修改指针即可，不需要移动大量元素；
+- 采用动态存储分配，不会造成内存浪费和溢出。
 
 缺点：
 
-- 遍历速度比数组慢
-- 占用空间比数组大
+- 遍历速度比数组慢；
+- 占用空间比数组大。
 
-#### 3.6.2 构造函数
+#### 3.6.2  构造函数
 
 ![image-20221103155635631](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221103155635631.png)
 
-#### 3.6.3 赋值和交换
+#### 3.6.3  赋值和交换
 
  ![image-20221105162517166](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105162517166.png)
 
-#### 3.6.4 大小操作
+#### 3.6.4  大小操作
 
 ![image-20221105162712249](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105162712249.png)
 
-#### 3.6.5 插入和删除
+#### 3.6.5  插入和删除
 
 ![image-20221105162741686](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105162741686.png)
 
-#### 3.6.6 数据存取
+#### 3.6.6  数据存取
 
 `list` 不是用连续线性空间存储数据，相邻元素的地址可能不连续，因此它不支持随机访问，不支持用下标直接跳跃式的访问。
 
@@ -2722,9 +2709,9 @@ void test01()
 ```c++
 void test01()
 {
-    list<int>l1;
+    list<int> l1;
     
-    // 验证 list 的迭代器不支持随机访问
+    // 验证list的迭代器不支持随机访问
     list<int>::iterator it = l1.begin();
     it++; // 可行
     it--; // 可行
@@ -2733,11 +2720,9 @@ void test01()
 }
 ```
 
-#### 3.6.7 反转和排序
+#### 3.6.7  反转和排序
 
-所有不支持随机访问迭代器的容器，都不可以使用标准算法（全局函数）。
-
-不支持随机访问迭代器的容器，内部会提供对应的一些算法（成员函数）。
+所有不支持随机访问迭代器的容器，都不可以使用标准算法（全局函数）。但是，不支持随机访问迭代器的容器，内部会提供对应的一些算法（成员函数）。
 
 ![image-20221105163618182](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105163618182.png)
 
@@ -2746,13 +2731,12 @@ void test01()
 ```c++
 bool myCompare(int v1, int v2)
 {
-    // 降序
-    return v1 > v2;
+    return v1 > v2; // 降序
 };
 
 void test01()
 {
-    list<int>l1;
+    list<int> l1;
     
     // 1.反转
     l1.reverse();
@@ -2762,20 +2746,20 @@ void test01()
 }
 ```
 
-#### 3.6.8 排序案例
+#### 3.6.8  排序案例
 
-### 3.7 set
+### 3.7  set
 
-#### 3.7.1 基本概念
+#### 3.7.1  基本概念
 
-插入的元素会自动排序。
+有序：插入的元素会自动排序。
 
 属于关联式容器，底层用二叉树实现。
 
-- `set`：不允许重复的元素
-- `multiset`：允许重复的元素
+- `set`：不允许重复的元素（去重）；
+- `multiset`：允许重复的元素。
 
-#### 3.7.2 构造和赋值
+#### 3.7.2  构造和赋值
 
 ![image-20221105165409960](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105165409960.png)
 
@@ -2784,26 +2768,27 @@ void test01()
 ```c++
 void test01()
 {
-    set<int>s1;
+    set<int> s1;
     
-    // 插入数据，只能用 insert 方式
+    // 插入数据，只能用insert方式
     s1.insert(1);
 }
 ```
 
-#### 3.7.3 大小和交换
+#### 3.7.3  大小和交换
 
 ![image-20221105165827888](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105165827888.png)
 
-#### 3.7.4 插入和删除
+#### 3.7.4  插入和删除
 
-插入的时候不能指定位置。
+- 插入的时候不能指定位置；
 
-可以直接根据元素的值删除数据。
+- 可以直接根据元素的值删除数据。
+
 
 ![image-20221105170008406](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105170008406.png)
 
-#### 3.7.5 查找和统计
+#### 3.7.5  查找和统计
 
 ![image-20221105170111672](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105170111672.png)
 
@@ -2814,8 +2799,7 @@ void test01()
 {
     set<int>s1;
     
-    // 插入数据
-    ...
+    // 插入数据……
         
     set<int>::iterator pos = s1.find(10);
     if(pos != s1.end())
@@ -2832,7 +2816,7 @@ void test01()
 }
 ```
 
-#### 3.7.6 set 和 multiset 的区别
+#### 3.7.6  set 和 multiset 的区别
 
 ![image-20221105170624797](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105170624797.png)
 
@@ -2862,9 +2846,9 @@ void test01()
 }
 ```
 
-#### 3.7.7 pair 对组
+#### 3.7.7  pair 对组
 
-成对出现的数据。
+对组：成对出现的数据。
 
 ![image-20221105171310815](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221105171310815.png)
 
@@ -2873,17 +2857,17 @@ void test01()
 ```c++
 void test01()
 {
-    pair<string, int>p1("Tom", 20);
+    pair<string, int> p1("Tom", 20);
     cout << p1.first << endl;
     cout << p1.second << endl;
     
-    pair<string, int>p2 = make_pair("Jerry", 30);
+    pair<string, int> p2 = make_pair("Jerry", 30);
     cout << p2.first << endl;
     cout << p2.second << endl;
 }
 ```
 
-#### 3.7.8 排序
+#### 3.7.8  排序
 
 `set` 默认是从小到大排序，改变排序规则需要用到仿函数（修改算法的内容）。
 
@@ -2894,9 +2878,7 @@ class MyCompare()
 {
 public:
     // 仿函数
-    // 返回类型：bool
-    // 重载类型：()
-    bool operator()(int v1, int v2)
+    bool operator()(int v1, int v2) // 返回类型：bool，重载类型：()
     {
         return v1 > v2;
     }
@@ -2911,11 +2893,12 @@ void test01()
     s1.insert(30);
     
     // 指定排序规则为从大到小
-    set<int, MyCompare>s2;
+    set<int, MyCompare> s2;
 }
 ```
 
-仿函数不是数据类型，其本质上是一个类，但是功能上却是方法.
+> 注意：仿函数不是数据类型，其本质上是一个类，但是功能上却是方法。
+>
 
 ##### (2) 存放自定义数据类型
 
@@ -2924,43 +2907,42 @@ void test01()
 ```c++
 class Person
 {
-    ...
+    // ...
 };
 
 class comparePerson
 {
 public:
-    // const：不允许修改内容
-    bool operator()(const Person&p1, const Person&p2)
+    // 仿函数
+    bool operator()(const Person&p1, const Person&p2) // const：不允许修改内容
     {
-        // 按年龄降序排序
-        return p1.m_Age > p2.m_Age;
+        return p1.m_Age > p2.m_Age; // 按年龄降序排序
     }
 };
 
 void test01()
 {
-    set<person, comparePerson>s;
+    set<person, comparePerson> s;
     
     Person p1("...", ...);
-    ...
+    // ...
     s.insert(p1);
-    ...    
+    // ...    
 }
 ```
 
-### 3.8 map
+### 3.8  map
 
-#### 3.8.1 基本概念
+#### 3.8.1  基本概念
 
-- `map` 中所有的元素都是 `pair`
-- `pair` 中第一个元素为 `key`，起到索引的作用，第二个元素为 `value`
-- 所有元素都会根据 `key` 进行排序
-- `map` 和 `multimap` 属于关联式容器，底层结构是二叉树
-- 可以根据 `key` 快速地找到 `value`
-- `map` 中不允许有重复的 `key`，而 `multimap` 中可以有重复的 `key`
+- `map` 中所有的元素都是 `pair`；
+- `pair` 中第一个元素为 `key`，起到索引的作用，第二个元素为 `value`；
+- 所有元素都会根据 `key` 进行排序；
+- `map` 和 `multimap` 属于关联式容器，底层结构是二叉树；
+- 可以根据 `key` 快速地找到 `value`；
+- `map` 中不允许有重复的 `key`，而 `multimap` 中可以有重复的 `key`。
 
-#### 3.8.2 构造和赋值
+#### 3.8.2  构造和赋值
 
 ![image-20221107104134929](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221107104134929.png)
 
@@ -2971,10 +2953,8 @@ void printMap(map<int, int>&m)
 {
     for(map<int, int>::iterator it = m.begin(); it != m.end(); it++)
     {
-        // key
-        cout << (*it).first << endl;
-        // value
-        cout << it->second << endl;
+        cout << (*it).first << endl; // key
+        cout << it->second << endl; // value
     }
 }
 
@@ -2988,16 +2968,16 @@ void test01()
     m.insert(pair<int, int>(2, 20));
     
     printMap(m);
-    // 会按 key 进行排序
+    // 会按key进行排序
     // 输出顺序（key）：1 2 3
 }
 ```
 
-#### 3.8.3 大小和交换
+#### 3.8.3  大小和交换
 
 ![image-20221107104901252](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221107104901252.png) 
 
-#### 3.8.4 插入和删除
+#### 3.8.4  插入和删除
 
 ![image-20221107105034727](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221107105034727.png)
 
@@ -3006,7 +2986,7 @@ void test01()
 ```c++
 void test01()
 {
-    map<int, int>m;
+    map<int, int> m;
     
     // 插入数据
     // 1.基本
@@ -3024,7 +3004,7 @@ void test01()
     // 删除数据
     // 1.按迭代器删除
     m.erase(m.begin());
-    // 2.按 key 删除
+    // 2.按key删除
     m.erase(3);
     // 3.按区间删除
     m.erase(m.begin(), m.end());
@@ -3032,7 +3012,7 @@ void test01()
 }
 ```
 
-#### 3.8.5 查找和统计
+#### 3.8.5  查找和统计
 
 ![image-20221107110527690](C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221107110527690.png)
 
@@ -3063,7 +3043,7 @@ void test01()
 }
 ```
 
-#### 3.9.6 排序
+#### 3.9.6  排序
 
 示例：
 
@@ -3071,17 +3051,16 @@ void test01()
 class MyCompare
 {
 public:
-    // 利用仿函数进行排序
+    // 仿函数
     bool operator()(int v1, int v2)
     {
-        // 降序
-        return v1 > v2;
+        return v1 > v2; // 降序排序
     }
 };
 
 void test01()
 {
-    map<int, int, MyCompare>m;
+    map<int, int, MyCompare> m;
     
     m.insert(make_pair(1, 10));
     m.insert(make_pair(2, 20));
