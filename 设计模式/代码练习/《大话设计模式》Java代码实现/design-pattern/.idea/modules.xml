@@ -3,11 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/abstract-factory-pattern/abstract-factory-pattern.iml" filepath="$PROJECT_DIR$/abstract-factory-pattern/abstract-factory-pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/adapter-pattern/adapter-pattern.iml" filepath="$PROJECT_DIR$/adapter-pattern/adapter-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/builder-pattern/builder-pattern.iml" filepath="$PROJECT_DIR$/builder-pattern/builder-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/decorator-pattern/decorator-pattern.iml" filepath="$PROJECT_DIR$/decorator-pattern/decorator-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/design-pattern.iml" filepath="$PROJECT_DIR$/design-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/facade-pattern/facade-pattern.iml" filepath="$PROJECT_DIR$/facade-pattern/facade-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/factory-method-pattern/factory-method-pattern.iml" filepath="$PROJECT_DIR$/factory-method-pattern/factory-method-pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/memento-pattern/memento-pattern.iml" filepath="$PROJECT_DIR$/memento-pattern/memento-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/observer-pattern/observer-pattern.iml" filepath="$PROJECT_DIR$/observer-pattern/observer-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/prototype-pattern/prototype-pattern.iml" filepath="$PROJECT_DIR$/prototype-pattern/prototype-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/proxy-pattern/proxy-pattern.iml" filepath="$PROJECT_DIR$/proxy-pattern/proxy-pattern.iml" />
