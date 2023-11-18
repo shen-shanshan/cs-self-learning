@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/abstract-factory-pattern/abstract-factory-pattern.iml" filepath="$PROJECT_DIR$/abstract-factory-pattern/abstract-factory-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/builder-pattern/builder-pattern.iml" filepath="$PROJECT_DIR$/builder-pattern/builder-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/decorator-pattern/decorator-pattern.iml" filepath="$PROJECT_DIR$/decorator-pattern/decorator-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/design-pattern.iml" filepath="$PROJECT_DIR$/design-pattern.iml" />
@@ -11,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/prototype-pattern/prototype-pattern.iml" filepath="$PROJECT_DIR$/prototype-pattern/prototype-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/proxy-pattern/proxy-pattern.iml" filepath="$PROJECT_DIR$/proxy-pattern/proxy-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/策略模式/src/src.iml" filepath="$PROJECT_DIR$/策略模式/src/src.iml" />
+      <module fileurl="file://$PROJECT_DIR$/state-pattern/state-pattern.iml" filepath="$PROJECT_DIR$/state-pattern/state-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/strategy-pattern/strategy-pattern.iml" filepath="$PROJECT_DIR$/strategy-pattern/strategy-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/template-method-pattern/template-method-pattern.iml" filepath="$PROJECT_DIR$/template-method-pattern/template-method-pattern.iml" />
     </modules>

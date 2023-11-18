@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "e:/GitHub/cs-self-learning/编程语言/C／C++/代码练习/3.提高编程/4.函数对象/函数对象",
-      "program": "e:/GitHub/cs-self-learning/编程语言/C／C++/代码练习/3.提高编程/4.函数对象/函数对象/build/Debug/outDebug",
+      "cwd": "e:/GitHub/cs-self-learning/编程语言/C／C++/代码练习/3.提高编程/1.模板/函数模板",
+      "program": "e:/GitHub/cs-self-learning/编程语言/C／C++/代码练习/3.提高编程/1.模板/函数模板/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
