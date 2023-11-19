@@ -573,6 +573,6 @@ vim ~/.gitconfig
 git cp <commitHash> # 等同于git cherry-pick <commitHash>
 ```
 
-# 参考资料
+# 8  参考资料
 
 - [Git 不要只会 pull 和 push，试试这 5 条提高效率的命令！ (qq.com)](https://mp.weixin.qq.com/s/EUkOnmTMxEqPQA1Uxbcq6w)；
