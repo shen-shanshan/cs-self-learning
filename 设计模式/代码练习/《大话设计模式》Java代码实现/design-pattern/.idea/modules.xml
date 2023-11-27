@@ -6,12 +6,17 @@
       <module fileurl="file://$PROJECT_DIR$/adapter-pattern/adapter-pattern.iml" filepath="$PROJECT_DIR$/adapter-pattern/adapter-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/bridge-pattern/bridge-pattern.iml" filepath="$PROJECT_DIR$/bridge-pattern/bridge-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/builder-pattern/builder-pattern.iml" filepath="$PROJECT_DIR$/builder-pattern/builder-pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chain-of-responsibility-pattern/chain-of-responsibility-pattern.iml" filepath="$PROJECT_DIR$/chain-of-responsibility-pattern/chain-of-responsibility-pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/command-pattern/command-pattern.iml" filepath="$PROJECT_DIR$/command-pattern/command-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/composite-pattern/composite-pattern.iml" filepath="$PROJECT_DIR$/composite-pattern/composite-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/decorator-pattern/decorator-pattern.iml" filepath="$PROJECT_DIR$/decorator-pattern/decorator-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/design-pattern.iml" filepath="$PROJECT_DIR$/design-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/facade-pattern/facade-pattern.iml" filepath="$PROJECT_DIR$/facade-pattern/facade-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/factory-method-pattern/factory-method-pattern.iml" filepath="$PROJECT_DIR$/factory-method-pattern/factory-method-pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flyweight-pattern/flyweight-pattern.iml" filepath="$PROJECT_DIR$/flyweight-pattern/flyweight-pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/interpreter-pattern/interpreter-pattern.iml" filepath="$PROJECT_DIR$/interpreter-pattern/interpreter-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/iterator-pattern/iterator-pattern.iml" filepath="$PROJECT_DIR$/iterator-pattern/iterator-pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mediator-pattern/mediator-pattern.iml" filepath="$PROJECT_DIR$/mediator-pattern/mediator-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/memento-pattern/memento-pattern.iml" filepath="$PROJECT_DIR$/memento-pattern/memento-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/observer-pattern/observer-pattern.iml" filepath="$PROJECT_DIR$/observer-pattern/observer-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/prototype-pattern/prototype-pattern.iml" filepath="$PROJECT_DIR$/prototype-pattern/prototype-pattern.iml" />
@@ -21,6 +26,7 @@
       <module fileurl="file://$PROJECT_DIR$/state-pattern/state-pattern.iml" filepath="$PROJECT_DIR$/state-pattern/state-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/strategy-pattern/strategy-pattern.iml" filepath="$PROJECT_DIR$/strategy-pattern/strategy-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/template-method-pattern/template-method-pattern.iml" filepath="$PROJECT_DIR$/template-method-pattern/template-method-pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/visitor-pattern/visitor-pattern.iml" filepath="$PROJECT_DIR$/visitor-pattern/visitor-pattern.iml" />
     </modules>
   </component>
 </project>

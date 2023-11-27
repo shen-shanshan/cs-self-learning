@@ -26,3 +26,9 @@
 帖子作者：早睡晚起。
 
 ![image-20231119234118150](C++查漏补缺.assets/image-20231119234118150.png)
+
+## 学习经验
+
+- [后端太卷，半路转了嵌入式 (qq.com)](https://mp.weixin.qq.com/s/EBnq_q0pT3YnJdS7Sk7ocg)
+- [OS内核，如何拿捏？ (qq.com)](https://mp.weixin.qq.com/s/4CajKz7bN5XA3kLzMJA6Pg)
+
