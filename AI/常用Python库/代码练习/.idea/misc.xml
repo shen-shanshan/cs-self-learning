@@ -5,5 +5,5 @@
     <option name="pathToExecutable" value="D:\app\Anaconda\Scripts\black.exe" />
     <option name="sdkUUID" value="14260927-ea4d-4ca9-ae80-4c7346279a14" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (deepshare) (2)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="pytorch_2.2.1" project-jdk-type="Python SDK" />
 </project>
