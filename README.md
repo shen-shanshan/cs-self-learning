@@ -13,7 +13,7 @@
 ### 二、开发基础
 
 - 常用工具（Git、Docker 等）；
-- 数据库（MySQL、Redis、SQL 等）；
+- 数据库（MySQL、Redis、Oracle 等）；
 - 设计模式（23 种设计模式的代码实现 - Java 版）。
 
 ### 三、工程应用
