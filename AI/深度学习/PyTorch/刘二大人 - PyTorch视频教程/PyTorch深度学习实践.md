@@ -220,3 +220,4 @@ w.grad.data.zero_()
 
 ## 用 PyTorch 实现线性回归
 
+> 官方教程：[Learning PyTorch with Examples — PyTorch Tutorials 2.4.0+cu121 documentation](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html)。
