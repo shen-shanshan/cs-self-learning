@@ -3,7 +3,7 @@ import torch.nn.functional as F
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 1.prepare dataset
+# 1.prepare data
 x_data = torch.Tensor([[1.0], [2.0], [3.0]])
 y_data = torch.Tensor([[0], [0], [1]])
 
