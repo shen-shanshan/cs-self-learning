@@ -561,3 +561,90 @@ if __name__ == '__main__':
 ```
 
 > 作业：[Otto Group Product Classification Challenge | Kaggle](https://www.kaggle.com/c/otto-group-product-classification-challenge/data)。
+
+## 卷积神经网络
+
+### 卷积层
+
+**convolution**：每一次卷积都是在做数乘（对应位置的元素相乘并相加），最后多个通道的卷积结果再叠加（求和）。
+
+![image-20240811162103044](images/image-20240811162103044.png)
+
+> 注意：卷积核一般都使用正方形（在二维空间上），kernel_size 即正方形的边长（如上图中的 kernel_size 为 3）。
+
+每个输出通道都有独立的三维卷积核（filter）。
+
+![image-20240811162220055](images/image-20240811162220055.png)
+
+卷积层的基本参数有 4 个（4 维 Tensor）：卷积核个数 m、输入图像的 C、卷积核的 W（=kernel_size）、卷积核的 H（=kernel_size）。
+
+> 注意：卷积层并不在乎输入图像的 W 和 H，只关心输入的 C。
+
+总结：
+
+- 输入的通道数，决定了卷积核的层数（C）；
+- 卷积核（3 维）的个数，决定了输出的通道数。
+
+**padding**：使用 0 填充图像的边框，从而调整卷积后的输出大小。
+
+### 池化层
+
+**MaxPooling**：将数据分组，并保留每组中的最大值作为结果（同一个通道）。
+
+![image-20240811164136455](images/image-20240811164136455.png)
+
+### 简单的卷积神经网络
+
+卷积神经网络 = 卷积层 + 池化层 + 分类器。
+
+![image-20240811164502199](images/image-20240811164502199.png)
+
+在池化层与分类器之间，需要进行 flatten，展开为一个向量。
+
+```
+x = x.view(batch_size, -1)
+```
+
+如何使用 GPU 进行计算？
+
+- 首先，需要将模型迁移到 GPU 上，设置 device 为 cuda:0，并调用 model.to(device)，将模型的权重等参数转换为 cuda Tensor；
+- 然后，将 input 和 output 的 Tensor 都迁移到 device 上。
+
+> 注意：0 表示第一块显卡，可以为不同的任务设置不同的显卡。
+
+### 复杂的卷积神经网络
+
+Inception Module：
+
+![image-20240811223708580](images/image-20240811223708580.png)
+
+ResNet：
+
+![image-20240811225327596](images/image-20240811225327596.png)
+
+> 注意：最后是先将 F(x) 和 x 相加，再激活。前提条件：F(x) 和 x 的通道数需要保持一致。
+
+特征提取过程越往后，可能会出现效果差的情况，如果出现效果差的就变成 0（梯度），那么还能保证上一层的特征是最好的。即可以忽略特征效果差的层，继续训练更前面的层，而不会造成梯度消失，训练无法进行。
+
+```
+
+```
+
+> 参考论文：
+>
+> - Deep Residual Learning for Image Recognition；
+> - Identity Mappings in Deep Residual Networks；
+> - Densely Connected Convolutional Networks。
+
+> 作业：自己实现不同的 Residual Block，并在 MNIST 数据集上进行测试。
+
+## 循环神经网络
+
+……
+
+## 学习路线总结
+
+- 完善理论知识，看《深度学习》“花书”；
+- 阅读 PyTorch 文档；
+- 复现一些经典的工作（读论文的代码、然后自己写代码，而不是只是把代码跑通就行）；
+- 针对某一个细分领域，看论文（网络实现）扩充视野，并思考自己的 idea。
