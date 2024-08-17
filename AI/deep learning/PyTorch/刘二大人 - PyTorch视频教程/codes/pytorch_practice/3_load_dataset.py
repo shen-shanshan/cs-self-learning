@@ -6,8 +6,7 @@ from torch.utils.data import Dataset, DataLoader
 # 1.prepare data
 class DiabetesDataset(Dataset):
     def __init__(self, file_path):
-        xy = np.loadtxt(file_path, delimiter=',',
-                        dtype=np.float32)
+        xy = np.loadtxt(file_path, delimiter=',', dtype=np.float32)
         self.len = xy.shape[0]
         self.x_data = torch.from_numpy(xy[:, :-1])
         self.y_data = torch.from_numpy(xy[:, [-1]])
@@ -20,8 +19,7 @@ class DiabetesDataset(Dataset):
 
 
 dataset = DiabetesDataset('data/diabetes.csv.gz')
-train_loader = DataLoader(dataset=dataset, batch_size=32,
-                          shuffle=True, num_workers=5)
+train_loader = DataLoader(dataset=dataset, batch_size=32, shuffle=True, num_workers=5)
 
 
 # 2.design model
