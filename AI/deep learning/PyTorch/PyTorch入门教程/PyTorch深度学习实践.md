@@ -626,25 +626,125 @@ ResNet：
 
 特征提取过程越往后，可能会出现效果差的情况，如果出现效果差的就变成 0（梯度），那么还能保证上一层的特征是最好的。即可以忽略特征效果差的层，继续训练更前面的层，而不会造成梯度消失，训练无法进行。
 
-```
-
-```
-
 > 参考论文：
 >
 > - Deep Residual Learning for Image Recognition；
 > - Identity Mappings in Deep Residual Networks；
 > - Densely Connected Convolutional Networks。
 
+```python
+class ResidualBlock(torch.nn.Module):
+    def __init__(self, channels):
+        super(ResidualBlock, self).__init__()
+        self.channels = channels
+        self.conv1 = torch.nn.Conv2d(channels, channels, kernel_size=3, padding=1)
+        self.conv2 = torch.nn.Conv2d(channels, channels, kernel_size=3, padding=1)
+
+    def forward(self, x):
+        y = F.relu(self.conv1(x))
+        y = self.conv2(y)
+        return F.relu(x + y)
+
+
+class CnnNet(torch.nn.Module):
+    def __init__(self):
+        super(CnnNet, self).__init__()
+        # 卷积层
+        self.conv1 = torch.nn.Conv2d(1, 16, kernel_size=5)
+        self.conv2 = torch.nn.Conv2d(16, 32, kernel_size=5)
+        # 池化层
+        self.mp = torch.nn.MaxPool2d(2)
+
+        # 残差模块
+        self.r_block1 = ResidualBlock(16)
+        self.r_block2 = ResidualBlock(32)
+
+        # 全连接层
+        self.fc = torch.nn.Linear(512, 10)
+
+    def forward(self, x):
+        in_size = x.size(0)  # 输入数据的样本数量
+
+        # 卷积->Relu->池化->残差
+        y = self.mp(F.relu(self.conv1(x)))
+        y = self.r_block1(y)
+        y = self.mp(F.relu(self.conv2(y)))
+        y = self.r_block2(y)
+
+        y = y.view(in_size, -1)  # flatten，将每条数据展开为一维向量
+        return self.fc(y)
+```
+
 > 作业：自己实现不同的 Residual Block，并在 MNIST 数据集上进行测试。
 
 ## 循环神经网络
 
-……
+### RNN Cell
 
-## 学习路线总结
+循环神经网络：用于处理有先后顺序的序列数据（如天气、股票、自然语言）。
+
+![image-20240818173331468](images/image-20240818173331468.png)
+
+RNN Cell 本质上是一个线性层（只做了一次线性运算 + 激活）。
+
+![image-20240818174106320](images/image-20240818174106320.png)
+
+> 注意：t 代表某一时刻，t-1 为前一时刻。
+
+输入数据的形式：
+
+```
+dataset.shape = (seqLen, batchSize, inputSize)
+```
+
+> 解释：
+>
+> 你用几天的数据来预测下一天天气，这个天数就是 seqLen（循环次数），一次输入几组这样的 seqLen 天，这个组数就是 batchSize（样本数）。
+>
+> batchSize 指有几个句子，seqLen 是句子的长度，训练时是所有的句子的第一个字先进入网络，再是第二个字。
+
+输入的时候就需要将整个序列输入进去，RNN 模块内部会自动进行循环，并输出每一次的结果以及最后的结果。
+
+![image-20240818175641585](images/image-20240818175641585.png)
+
+RNN 可以设置多层（numLayers）。
+
+![image-20240818180127082](images/image-20240818180127082.png)
+
+> 注意：同一颜色的 RNN Cell 其实都是同一个线性层（权重共享）。
+
+将输入数据（文本）映射为数字，再转换为 One-hot（独热编码）向量。
+
+![image-20240818181359680](images/image-20240818181359680.png)
+
+### Embedding
+
+Word Embedding（词嵌入）：将高维稀疏矩阵（独热向量）映射到低维稠密矩阵（数据降维）。
+
+![image-20240818183143005](images/image-20240818183143005.png)
+
+![image-20240818183238427](images/image-20240818183238427.png)
+
+![image-20240818183250606](images/image-20240818183250606.png)
+
+> embedding_size = seqLen？
+
+### 双向 RNN
+
+- 单向 RNN：只考虑过去的信息；
+- 双向 RNN：不仅需要考虑过去的信息，还需要考虑未来的信息。
+
+![image-20240818222706251](images/image-20240818222706251.png)
+
+输出的 hidden 包括：[h<sub>N</sub><sup>f</sup>, h<sub>N</sub><sup>b</sup>]。
+
+```python
+
+```
+
+## 后续学习路线
 
 - 完善理论知识，看《深度学习》“花书”；
-- 阅读 PyTorch 文档；
+- 阅读 PyTorch 官方文档；
 - 复现一些经典的工作（读论文的代码、然后自己写代码，而不是只是把代码跑通就行）；
 - 针对某一个细分领域，看论文（网络实现）扩充视野，并思考自己的 idea。
