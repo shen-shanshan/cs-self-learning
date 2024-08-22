@@ -727,8 +727,6 @@ Word Embedding（词嵌入）：将高维稀疏矩阵（独热向量）映射到
 
 ![image-20240818183250606](images/image-20240818183250606.png)
 
-> embedding_size = seqLen？
-
 ### 双向 RNN
 
 - 单向 RNN：只考虑过去的信息；
@@ -738,9 +736,62 @@ Word Embedding（词嵌入）：将高维稀疏矩阵（独热向量）映射到
 
 输出的 hidden 包括：[h<sub>N</sub><sup>f</sup>, h<sub>N</sub><sup>b</sup>]。
 
-```python
+### RNN Classifier
 
-```
+数据预处理，编码：
+
+![image-20240823000500196](images/image-20240823000500196.png)
+
+将输入数据做 padding（填充 0）和转置。
+
+![image-20240822233420340](images/image-20240822233420340.png)
+
+embedding：先将每一个词用 One-hot 向量表示（高维，维度为 input_size），再转换为稠密的 embedding 向量（低维，维度为 embedding_size）。
+
+![image-20240822233459853](images/image-20240822233459853.png)
+
+在上图中，为 0 的值被填充上了。
+
+然后，需要按 seqLen 进行排序，方便后续处理。
+
+![image-20240822235205274](images/image-20240822235205274.png)
+
+pack_padded_sequence() 将同一 seq 位置的不同元素打包为一组，并依次（沿 seqLen 方向）将不同组的数据堆叠在一起。
+
+![image-20240822235623575](images/image-20240822235623575.png)
+
+上图中的 batch_sizes 有误，应该是同一序列位置上的 batch 大小，应为：[9, 9, 9, 9, 9, 8, 6, 2, 1, 1]，这样可以便于以后判断哪些位置上的元素是由 0 填充的。
+
+> pack_padded_sequence(embedding, seq_lengths)：
+>
+> - embedding shape: (seqLen, batchSize, hiddenSize)；
+> - seq_lengths: a list of seqLen of each batch element (a tensor).
+>
+> return a PackedSequence object.
+>
+> PackedSequence: holds the data and list of batch_sizes (not seqLen) of a packed sequence.
+>
+> for example:
+>
+> data: 
+>
+> ```
+> a x
+> b
+> c
+> ```
+>
+> batch_size shape:
+>
+> ```
+> [2, 1, 1]
+> ```
+
+模型结构：
+
+![image-20240823000729785](images/image-20240823000729785.png)
+
+![image-20240823000750506](images/image-20240823000750506.png)
 
 ## 后续学习路线
 

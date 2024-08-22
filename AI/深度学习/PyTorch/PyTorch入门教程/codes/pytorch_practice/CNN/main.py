@@ -7,9 +7,9 @@ def init():
     model = CnnNet()
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
-    dataset = MyDataLoader(64)
-    train_loader = dataset.get_train_loader()
-    test_loader = dataset.get_test_loader()
+    dataset_loader = MyDataLoader(64)
+    train_loader = dataset_loader.get_train_loader()
+    test_loader = dataset_loader.get_test_loader()
     return model, criterion, optimizer, train_loader, test_loader
 
 
