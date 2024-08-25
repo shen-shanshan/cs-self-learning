@@ -720,6 +720,110 @@ class ElectricCar(Car):
     # 可以定义子类特有的方法
 ```
 
+### 6.4  方法
+
+#### 6.4.1  类实例方法
+
+类实例方法的第一个参数 `self` 表示实例本身，通过实例对象调用。
+
+以 `_` 开头的方法，为大家约定俗成的 private 方法，但实际并不影响程序的行为。
+
+#### 6.4.2  类方法
+
+类方法 `@classmethod` 只能访问类变量，并且对类属性进行的处理是有记忆的，在多个实例间共享。
+
+参数 `cls` 指向类本身，允许我们在方法中操作类的属性或调用其他类方法。
+
+类方法可以通过类名或实例对象调用。
+
+```python
+class Man:
+	id = 0  # 类变量
+	
+	def __init__(self, name):
+        self.name = name
+        self.id = self.id_number()  # self可以访问类变量
+    
+    @classmethod  # 类方法
+    def id_number(cls):
+        cls.id += 1
+        return cls.id
+    
+a = Man('A')
+print(a.id)  # 1
+b = Man('B')
+print(b.id)  # 2
+```
+
+使用类方法可以提供多个构造函数，提高了实例化对象的灵活性。
+
+```python
+class Test:
+    def __init__(self, x, y)
+        self.x = x
+        self.y = y
+    
+    @classmethod
+    def from_string(cls, str):
+        x, y = map(int, s.split(','))
+        return cls(x, y)
+    
+obj = Test.from_string('5,10')
+```
+
+> 参考资料：
+>
+> - [python中的类方法(@classmethod)_python class master-CSDN博客](https://blog.csdn.net/leviopku/article/details/100745811)；
+> - [深入理解Python中的类方法、类实例方法和静态方法_python 类方法-CSDN博客](https://blog.csdn.net/qq_41586251/article/details/135068371)。
+
+#### 6.4.3  静态方法
+
+静态方法既不需要传递类对象 `cls` 也不需要传递实例对象 `self` 作为第一个参数。
+
+静态方法可以通过类名直接调用，无需创建类的实例，属于类的命名空间中的独立函数。
+
+一般用于工具类中提供的方法。
+
+```python
+class Calculator:
+    @staticmethod
+    def add(x, y):
+        return x + y
+ 
+    @staticmethod
+    def multiply(x, y):
+        return x * y
+ 
+sum_result = Calculator.add(3, 5)
+product_result = Calculator.multiply(3, 5)
+```
+
+> 参考资料：
+>
+> - [深入理解Python中的类方法、类实例方法和静态方法_python 类方法-CSDN博客](https://blog.csdn.net/qq_41586251/article/details/135068371)。
+
+#### 6.4.4  魔术方法
+
+魔法方法是方法名前后各有两个下划线的方法，如 `__init__`，可以使用 `类名()` 调用方法。
+
+```python
+class MyDict(dict):
+
+    def __add__(self, other):
+        self.update(other)
+        return MyDict(self)
+
+a = MyDict({'de': 'Germany'})
+b = MyDict({'sk': 'Slovakia'})
+
+print(a + b)  # {'de': 'Germany', 'sk': 'Slovakia'}
+```
+
+> 参考资料：
+>
+> - [Python 魔术方法|极客教程 (geek-docs.com)](https://geek-docs.com/python/python-tutorial/python-magicmethods.html)；
+> - [《Python进阶系列》十二：最全魔术方法整理_python 魔术方法-CSDN博客](https://blog.csdn.net/qq_37085158/article/details/124986720)。
+
 ## 7  文件读写
 
 ### 7.1  打开文件
