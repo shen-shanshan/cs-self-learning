@@ -1,4 +1,4 @@
-# INVIDIA GPU 架构 & CUDA 平台入门学习
+# INVIDIA GPU & CUDA 入门学习
 
 ## 概述
 
