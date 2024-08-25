@@ -35,7 +35,7 @@
 - GitHub：https://github.com/shen-shanshan；
 - CSDN：[Shanshan Shen-CSDN博客](https://blog.csdn.net/weixin_44162047?type=blog)。
 
-音乐分享：
+音乐创作：
 
 - bilibili：[SSS不知-道的个人空间-SSS不知-道个人主页-哔哩哔哩视频 (bilibili.com)](https://space.bilibili.com/14112152?spm_id_from=333.1007.0.0)；
 - 网易云音乐：[SSS不知-道 - 歌手 - 网易云音乐 (163.com)](https://music.163.com/#/artist?id=62054947)。
