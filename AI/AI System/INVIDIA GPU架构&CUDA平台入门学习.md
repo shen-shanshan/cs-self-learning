@@ -65,9 +65,9 @@ SM：基本的运算单元。
 
 ![image-20240824151721541](images/image-20240824151721541.png)
 
-在一个时钟周期内，可以执行多个 wrap。
+在一个时钟周期内，可以执行多个 warp。
 
-每 4 个 wrap 可以做一个并发的执行。
+每 4 个 warp 可以做一个并发的执行。
 
 GPU 里提供了大量的线程，超配的线程数可以支持对不同层级的数据进行搬运和计算。
 
@@ -163,7 +163,7 @@ SM 包括：
 - CUDA Core：向量运行单元（FP32-FPU、FP64-DPU、INT32-ALU）；
 - Tensor Core：张量运算单元（FP16、BF16、INT8、INT4，专门针对 AI 的矩阵计算）；
 - Special Function Units：特殊函数单元，SFU，超越函数和数学函数；
-- Wrap Scheduler：线程束调度器；
+- warp Scheduler：线程束调度器；
 - Dispatch Unit：指令分发单元；
 - Multi Level Cache：多级缓存（L0/L1 Instruction Cache、L1 Data Cache & Shared Memory）；
 - Register File：寄存器堆；
@@ -173,7 +173,7 @@ SP：Stream Processor，流处理器（CUDA Core 的前身）。
 
 后来，CUDA Core 演变为了单独的 FP32、FPU、INT32-ALU。
 
-Wrap：线程束。
+warp：线程束。
 
 逻辑上，所有的线程是并行的。但从硬件的角度看，不是所有的线程都能在同一时刻去执行的。
 
@@ -183,3 +183,133 @@ Wrap：线程束。
 
 CUDA：Compute Unified Device Architecture。
 
+- 并行计算架构（Parallel Computing Architecture）：用于控制 GPU 里各种并行的硬件；
+- 编程模型（Programming Model）：基于 LLVM 构建了 CUDA 编译器，方便开发者使用 C/C++、Python 进行开发。
+
+> CUDA 实现了软硬件的解耦。
+
+主设概念：主机程序（host）和设备程序（device）之间可以进行通信（数据拷贝）。
+
+通过 GPU 进行并行操作，计算完成后将结果传递给 CPU 进行处理。
+
+![image-20240825102335931](images/image-20240825102335931.png)
+
+CUDA 程序架构：
+
+- host 代码部分在 CPU 上执行，是普通 C 代码；
+- device 代码部分在 GPU 上执行（.cu 文件）。当遇到数据并行处理的部分，CUDA 就会将程序编译成 GPU 能执行的程序，并传送到 GPU，这个部分叫做 kernel。
+
+cuda_device.cu：
+
+```c++
+#include <iostream>
+#include <math.h>
+
+// __global__是变量声明符，作用是将add()函数变成可以在GPU上运行的函数（kernel）
+__global__
+void add(int n, float *x, float *y)
+{
+    for(int i = 0; i < n; i++)
+    {
+        y[i] = x[i] + y[i];
+    }
+}
+
+int main(void)
+{
+    int N = 1<<25;
+    float *x, *y;
+    
+    // 在cuda里开辟内存
+    cudaMallocManaged(&x, N*sizeof(float));
+    cudaMallocManaged(&y, N*sizeof(float));
+    
+    // initialize x and y arrays on the host
+    for (int i = 0; i < N; i++)
+    {
+        x[i] = 1.0f;
+        y[i] = 2.0f;
+    }
+    
+    // 在GPU上执行kernel函数
+    add<<<1, 1>>>(N, x, y);
+    
+    // CPU需要等待cuda上的代码运行完毕，才能对数据进行读取
+    cudaDeviceSynchronize();
+    
+    // 释放cuda内存
+    cudaFree(x);
+    cudaFree(y);
+    
+    return 0;
+}
+```
+
+线程层次结构：
+
+执行一个 kernel 时，所有的线程都会封装在一个 Grid 里面。同一个 Grid 里面的线程可以共享全局内存。
+
+> `__global__` 里的数据都是共享的。
+
+Block 间并行执行，并且无法通信，也没有执行顺序。每个 Block 中有一个共享内存（Shared Memory），同一个 Block 里的 Thread 是可以同步的，通过共享内存进行通讯和数据之间的传输。
+
+CUDA 并行程序，会被多个 Thread 执行。
+
+![image-20240825105648192](images/image-20240825105648192.png)
+
+CUDA 与 GPU 硬件的对应关系：
+
+- 一个 Block 线程块只在一个 SM 上通过 warp 进行调度；
+- 一旦在 SM 上调起了 Block 线程块，就会一直保留到执行完 kernel；
+- 一个 SM 可以同时保存多个 Block 线程块，块间并行地执行。
+
+![image-20240825110210732](images/image-20240825110210732-17245549315821.png)
+
+#### 算力计算
+
+![image-20240825110315382](images/image-20240825110315382-17245549957952.png)
+
+### GPU 架构
+
+![image-20240825152616375](images/image-20240825152616375.png)
+
+Fermi 架构：提出了首个完整的 GPU 计算架构。
+
+Kepler 架构；
+
+Maxwell 架构；
+
+Pascal 架构：提出了 NVLink，让单台服务器里面的 GPU 可以进行数据的互联，是用于 CPU 和 GPU 之间进行通信的 PCIe 的带宽的 3 倍，避免了数据通过 PCIe 回传到 CPU 的内存里面，从而减少了数据传输的延迟，实现了整个网络的拓扑互联。
+
+Volta 架构：
+
+- 将 CUDA Core 进行了拆分，分离了 FPU 和 ALU；
+- 独立线程调度：每个线程都有独立的 PC（Program Counter）和 Stack；
+- 提出了 Tensor Core：针对深度学习提供张量计算核心，专门针对卷积运算进行加速；
+- GRF & Cache。
+
+Turing 架构：提出了 RT Core（Ray Tracing Core），用于三角形与光线的求交。
+
+Ampere 架构：提出 NVSwitch，单卡之间通过 NVLink 互联，多卡之间通过 NVSwitch 互联；
+
+Hopper 架构。
+
+![image-20240825152154462](images/image-20240825152154462.png)
+
+### Tensor Core
+
+#### 基本原理
+
+混合精度是指在底层硬件算子（Tensor Core）层面，使用半精度（FP16）作为输入和输出，使用全精度（FP32）进行中间结果计算从而不损失过多精度的技术。
+
+![image-20240825153309065](images/image-20240825153309065.png)
+
+每个 Tensor Core 每周期能执行 `4*4*4` GEMM，即 64 个 FMA。
+
+![image-20240825153812173](images/image-20240825153812173.png)
+
+Tensor Core 可以通过 Warp 把多个线程聚合起来一起进行计算和控制。最终对外提供一个 `16*16*16` 的 API 给到 CUDA。
+
+### NVLink
+
+……
