@@ -116,7 +116,8 @@ AI System 主要包括以下内容：
 
 ### INVIDIA GPU
 
-……
+- GPU 架构学习笔记：[【AI System】INVIDIA GPU 架构 & CUDA 平台入门学习-CSDN博客](https://blog.csdn.net/weixin_44162047/article/details/141569571?spm=1001.2014.3001.5501)。
+
 
 ### Ascend NPU
 
