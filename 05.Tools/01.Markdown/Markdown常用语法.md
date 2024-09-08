@@ -38,7 +38,7 @@
 
 ## 脚注
 
-脚注[^footnote]。
+脚注[^footnote]
 
 ## 分割线
 
@@ -57,6 +57,7 @@
 快捷键，先复制链接 URL，然后选中[文字](https://keatonlao.gitee.io/a-study-note-for-markdown/)，按 Ctrl + K。
 
 参考链接：[笔记][label]。
+
 [label]:https://keatonlao.gitee.io/a-study-note-for-markdown/
 
 ## 删除线
@@ -90,6 +91,7 @@ H<sub>2</sub>O
 2<br>
 3
 </details>
+
 ## 其它语法
 
 - 嵌入网页；
@@ -101,6 +103,6 @@ H<sub>2</sub>O
 ## 参考资料
 
 - [一份 Markdown 学习笔记 (gitee.io)](https://keatonlao.gitee.io/a-study-note-for-markdown/)；
-- [符号大全-特殊符号-特殊符号大全 (fhdq.net)](http://www.fhdq.net/)；
-- [📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍](https://emojipedia.org/)。
-
+- [📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍](https://emojipedia.org/)；
+- [Shields.io](https://shields.io/)；
+- [符号大全-特殊符号-特殊符号大全 (fhdq.net)](http://www.fhdq.net/)。
