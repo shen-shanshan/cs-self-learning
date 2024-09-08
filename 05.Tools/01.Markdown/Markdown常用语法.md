@@ -100,6 +100,14 @@ H<sub>2</sub>O
 - 设置背景；
 - ……
 
+## VSCode 插件
+
+- Markdown All in One；
+- Markdown Preview Enhanced；
+- MarkdownLint；
+- Markdown Shortcuts；
+- Paste Image from local pc。
+
 ## 参考资料
 
 - [一份 Markdown 学习笔记 (gitee.io)](https://keatonlao.gitee.io/a-study-note-for-markdown/)；
