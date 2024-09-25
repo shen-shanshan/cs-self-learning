@@ -15,8 +15,8 @@ AI System 主要包括以下内容：
 
 > 参考资料：
 >
-> - [AI System (chenzomi12.github.io)](https://chenzomi12.github.io/)；
-> - [GitHub - chenzomi12/AISystem: AISystem](https://github.com/chenzomi12/AISystem)。
+> - [<u>AI System (chenzomi12.github.io)</u>](https://chenzomi12.github.io/)；
+> - [<u>GitHub - chenzomi12/AISystem: AISystem</u>](https://github.com/chenzomi12/AISystem)。
 
 ## AI 算法应用
 
@@ -26,18 +26,9 @@ AI System 主要包括以下内容：
 
 ### 深度学习
 
-- 深度学习入门笔记：[GitHub - shen-shanshan/cs-self-learning/09.AI/05.Deep_Learning/PyTorch/PyTorch_Tutorials/01.Notes](https://github.com/shen-shanshan/cs-self-learning/tree/master/09.AI/05.Deep_Learning/PyTorch/PyTorch_Tutorials/01.Notes)。
-
-#### 数据预处理
-
-- One-Hot 编码：[机器学习：数据预处理之独热编码（One-Hot）详解-CSDN博客](https://blog.csdn.net/zyc88888/article/details/103819604)。
-
-#### 激活函数
-
-- 基础知识：[机器学习中的数学——激活函数：基础知识_神经网络中激活函数的数学基础-CSDN博客](https://blog.csdn.net/hy592070616/article/details/120616475)；
-- Sigmoid 函数：[机器学习中的数学——激活函数（一）：Sigmoid函数-CSDN博客](https://blog.csdn.net/hy592070616/article/details/120617176)；
-- ReLU 函数：[机器学习中的数学——激活函数（三）： 线性整流函数（ReLU函数）-CSDN博客](https://blog.csdn.net/hy592070616/article/details/120617706)；
-- Softmax 函数：[机器学习中的数学——激活函数（七）：Softmax函数_softmax激活函数的公式-CSDN博客](https://blog.csdn.net/hy592070616/article/details/120618490)。
+- 深度学习入门笔记：[<u>GitHub - shen-shanshan/cs-self-learning/09.AI/05.Deep_Learning/PyTorch/PyTorch_Tutorials/01.Notes</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/09.AI/05.Deep_Learning/PyTorch/PyTorch_Tutorials/01.Notes)；
+- One-Hot 编码：[<u>机器学习：数据预处理之独热编码（One-Hot）详解-CSDN博客</u>](https://blog.csdn.net/zyc88888/article/details/103819604)；
+- 激活函数：[<u>机器学习中的数学——激活函数：基础知识_神经网络中激活函数的数学基础-CSDN博客</u>](https://blog.csdn.net/hy592070616/article/details/120616475)。
 
 ### LLM
 
@@ -57,50 +48,50 @@ AI System 主要包括以下内容：
 
 **训练 & 推理**：
 
-- [科普 | 深度学习训练和推理有何不同？ - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/66705645)；
-- [训练（training）和推理\推断（inference）的关系？_模型训练和推理的区别-CSDN博客](https://blog.csdn.net/weixin_43135178/article/details/117885165)。
+- [<u>科普 | 深度学习训练和推理有何不同？ - 知乎 (zhihu.com)</u>](https://zhuanlan.zhihu.com/p/66705645)；
+- [<u>训练（training）和推理\推断（inference）的关系？_模型训练和推理的区别-CSDN博客</u>](https://blog.csdn.net/weixin_43135178/article/details/117885165)。
 
 **生成**：指根据给定的文本来生成新的文本的过程。生成可以分为两种模式：自回归（autoregressive）和自编码（autoencoding），GPT 系列主要采用了自回归模式。
 
 > 参考资料：
 >
-> - [关于深度学习和大模型的基础认知 (huawei.com)](https://xinsheng.huawei.com/next/#/detail?uuid=977766950833111040)；
-> - [科普神文，一次性讲透AI大模型的核心概念 (qq.com)](https://mp.weixin.qq.com/s?__biz=Mzg2ODA5NTM1OA==&mid=2247484300&idx=1&sn=fe457ff384f4da83fa212fdf7b9f0c02&chksm=ceb0c79df9c74e8b39f80f4ed2fcfdeec743b258ec11343734896182bbbaae82c8425f7a7588&token=377673956&lang=zh_CN#rd)；
-> - [解读AI大模型，从了解token开始 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/664813833)。
+> - [<u>关于深度学习和大模型的基础认知 (huawei.com)</u>](https://xinsheng.huawei.com/next/#/detail?uuid=977766950833111040)；
+> - [<u>科普神文，一次性讲透AI大模型的核心概念 (qq.com)</u>](https://mp.weixin.qq.com/s?__biz=Mzg2ODA5NTM1OA==&mid=2247484300&idx=1&sn=fe457ff384f4da83fa212fdf7b9f0c02&chksm=ceb0c79df9c74e8b39f80f4ed2fcfdeec743b258ec11343734896182bbbaae82c8425f7a7588&token=377673956&lang=zh_CN#rd)；
+> - [<u>解读AI大模型，从了解token开始 - 知乎 (zhihu.com)</u>](https://zhuanlan.zhihu.com/p/664813833)。
 
 #### Transformer
 
-- [【超详细】【原理篇&实战篇】一文读懂Transformer-CSDN博客](https://blog.csdn.net/weixin_42475060/article/details/121101749)；
-- [The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time. (jalammar.github.io)](https://jalammar.github.io/illustrated-transformer/)。
-
-#### Embedding
-
-……
+- [<u>【超详细】【原理篇&实战篇】一文读懂Transformer-CSDN博客</u>](https://blog.csdn.net/weixin_42475060/article/details/121101749)；
+- [<u>The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time. (jalammar.github.io)</u>](https://jalammar.github.io/illustrated-transformer/)。
 
 ### 学习资料
 
-- [von Neumann-CSDN博客](https://machinelearning.blog.csdn.net/?type=blog)；
-- [Jay Alammar – Visualizing machine learning one concept at a time. (jalammar.github.io)](https://jalammar.github.io/)。
+- [<u>von Neumann-CSDN博客</u>](https://machinelearning.blog.csdn.net/?type=blog)；
+- [<u>Jay Alammar – Visualizing machine learning one concept at a time. (jalammar.github.io)</u>](https://jalammar.github.io/)。
 
 ## AI 开发体系
 
 ### 编程语言
 
-- Python 学习笔记：[GitHub - shen-shanshan/cs-self-learning/01.Languages/Python/01.Notes](https://github.com/shen-shanshan/cs-self-learning/tree/master/01.Languages/Python/01.Notes)；
-- C++ 学习笔记：[GitHub - shen-shanshan/cs-self-learning/01.Languages/C&C++/02.Notes](https://github.com/shen-shanshan/cs-self-learning/tree/master/01.Languages/C%26C%2B%2B/02.Notes)。
+- Python 学习笔记：[<u>GitHub - shen-shanshan/cs-self-learning/01.Languages/Python/01.Notes</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/01.Languages/Python/01.Notes)；
+- C++ 学习笔记：[<u>GitHub - shen-shanshan/cs-self-learning/01.Languages/C&C++/02.Notes</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/01.Languages/C%26C%2B%2B/02.Notes)。
 
 ## AI 训练框架 & 推理引擎
 
 ### PyTorch
 
-- 总览：[Welcome to PyTorch Tutorials — PyTorch Tutorials 2.4.0+cu121 documentation](https://pytorch.org/tutorials/)；
-- 入门教程（old）：[Learning PyTorch with Examples — PyTorch Tutorials 2.4.0+cu121 documentation](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#tensors)；
-- 入门教程（new）：[Learn the Basics — PyTorch Tutorials 2.4.0+cu121 documentation](https://pytorch.org/tutorials/beginner/basics/intro.html)；
-- Tensor 常用操作：[torch.Tensor详解和常用操作-CSDN博客](https://blog.csdn.net/sazass/article/details/109304327)。
+- 总览：[<u>Welcome to PyTorch Tutorials — PyTorch Tutorials 2.4.0+cu121 documentation</u>](https://pytorch.org/tutorials/)；
+- 入门教程（old）：[<u>Learning PyTorch with Examples — PyTorch Tutorials 2.4.0+cu121 documentation</u>](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#tensors)；
+- 入门教程（new）：[<u>Learn the Basics — PyTorch Tutorials 2.4.0+cu121 documentation</u>](https://pytorch.org/tutorials/beginner/basics/intro.html)；
+- Tensor 常用操作：[<u>torch.Tensor详解和常用操作-CSDN博客</u>](https://blog.csdn.net/sazass/article/details/109304327)。
 
-### Llama
+### llama.cpp
 
 ……
+
+### vLLM
+
+- 官方文档：[<u>Welcome to vLLM!</u>](https://docs.vllm.ai/en/stable/)。
 
 ## AI 编译 & 计算架构
 
@@ -110,15 +101,15 @@ AI System 主要包括以下内容：
 
 ### CANN
 
-- 开发文档：[CANN社区版8.0.RC3.alpha001开发文档-昇腾社区 (hiascend.com)](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/80RC3alpha001/quickstart/quickstart/quickstart_18_0001.html)。
+- 开发文档：[<u>CANN社区版8.0.RC3.alpha001开发文档-昇腾社区 (hiascend.com)</u>](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/80RC3alpha001/quickstart/quickstart/quickstart_18_0001.html)；
+- 环境搭建：[<u>基于 EulerOS & Ascend NPU 搭建 PyTorch 远程开发环境-CSDN博客</u>](https://blog.csdn.net/weixin_44162047/article/details/142502025?spm=1001.2014.3001.5502)。
 
 ## AI 硬件 & 体系结构
 
 ### INVIDIA GPU
 
-- GPU 架构学习笔记：[【AI System】INVIDIA GPU 架构 & CUDA 平台入门学习-CSDN博客](https://blog.csdn.net/weixin_44162047/article/details/141569571?spm=1001.2014.3001.5501)。
-
+- GPU 架构学习笔记：[<u>INVIDIA GPU 架构 & CUDA 平台入门学习-CSDN博客</u>](https://blog.csdn.net/weixin_44162047/article/details/141569571?spm=1001.2014.3001.5501)。
 
 ### Ascend NPU
 
-……
+- NPU 架构学习笔记：[<u>Ascend NPU 架构 & CANN 平台入门学习-CSDN博客</u>](https://blog.csdn.net/weixin_44162047/article/details/141755989?spm=1001.2014.3001.5502)。
