@@ -8,7 +8,7 @@
 
 ## Ascend SOC 架构
 
-### Ascend 310 架构
+### Ascend XXX 架构
 
 - AI Core：计算核心，负责执行矩阵、向量、标量计算密集的算子任务，采用达芬奇架构；
 - AI CPU：承担非矩阵类复杂计算，即负责执行不适合跑在 AI Core 上的算子；
@@ -19,7 +19,7 @@
 
 ![image-20240828232223378](images/image-20240828232223378.png)
 
-### Ascend 910 架构
+### Ascend XXX 架构
 
 - AI Core：32 个，上下各 16 个，中间放 buffer，方便更快地取数据；
 - Taishan Core：一部分为 AI CPU，承担部分 AI 计算，一部分为 Ctrl CPU，负责 SoC 控制功能，两类 CPU 占用核数由软件分配；

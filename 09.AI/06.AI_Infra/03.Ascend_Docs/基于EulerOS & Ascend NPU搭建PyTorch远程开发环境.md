@@ -7,7 +7,7 @@
 硬件规格如下：
 
 ```
-Kunpeng + Ascend: 192 CPU，1.5T MEM，21T DISK，8*Ascend 910B1
+Kunpeng + Ascend: 192 CPU，1.5T MEM，21T DISK，8*Ascend XXX 型号
 EulerOS V2 R10
 ```
 
