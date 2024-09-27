@@ -111,3 +111,73 @@ Numba 能够支持 CUDA GPU 编程，能够自动地在 host 与 device 之间�
 3. 时域波形生成。
 
 > 参考资料：[<u>Text-to-Speech with Tacotron2</u>](https://pytorch.org/audio/stable/tutorials/tacotron2_pipeline_tutorial.html)。
+
+## 依赖安装问题
+
+依赖列表：
+
+```
+numpy<2.0.0
+numba
+torch==2.1.0
+torchaudio
+tqdm
+vector_quantize_pytorch
+transformers>=4.41.1
+vocos
+IPython
+gradio
+pybase16384
+pynini==2.1.5; sys_platform == 'linux'
+WeTextProcessing==1.0.2; sys_platform == 'linux'
+nemo_text_processing==1.0.2; sys_platform == 'linux'
+av
+pydub
+pyyaml
+setuptools>=65.5.1
+torch-npu==2.1.0.post6
+```
+
+安装依赖：
+
+```bash
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+### 安装 pynini 时找不到 openfst
+
+安装 openfst：
+
+```bash
+cd /usr/local
+mkdir openfst
+cd openfst
+wget http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-1.8.3.tar.gz
+tar -zxvf openfst-1.8.3.tar.gz
+cd openfst-1.8.3
+./configure --prefix=/usr/local/openfst/openfst-1.6.7 <--enable-python> --enable-grm
+make -j4
+make install
+ln -s /usr/local/openfst/openfst-1.6.7 /usr/local/openfst/openfst
+
+export PATH=/usr/local/openfst/openfst-1.8.3/bin:$PATH
+echo $PATH
+```
+
+手动安装 pynini，指定头文件路径：
+
+```bash
+cd /home/sss/bin/miniconda/miniconda3/envs/cann/lib/python3.10/site-packages/pynini
+
+git clone https://github.com/kylebgorman/pynini.git
+cd pynini
+python setup.py build_ext --include-dirs=/home/sss/.local/fst/openfst-1.6.7
+
+python setup.py build_ext --include-dirs="/home/sss/.local/include" --library-dirs="/home/sss/.local/lib" install
+```
+
+> 参考资料：
+>
+> - [<u>openfst 以及其 python 扩展安装</u>](https://blog.csdn.net/qq_33424313/article/details/122293358)；
+> - [<u>安装 openfst 依赖</u>](https://blog.csdn.net/weixin_53694631/article/details/128552804)；
+> - [<u>openfst Installation issues</u>](https://github.com/kylebgorman/pynini/issues/16)。
