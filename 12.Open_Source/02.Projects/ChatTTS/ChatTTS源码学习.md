@@ -74,8 +74,48 @@ python setup.py build_ext --include-dirs="/home/sss/.local/include" --library-di
 
 ### Python 关键字
 
-- `async`：定义异步函数；
-- `global`：定义全局变量。
+`async`：
+
+定义异步函数。
+
+`global`：
+
+定义全局变量。
+
+`yield`：
+
+带 `yield` 的函数是一个生成器，而不是一个函数。
+
+生成器有一个是 `next()` 函数，`next()` 就相当于“下一步”生成哪个数，这一次的 `next()` 开始的地方是接着上一次的 `next()` 停止的地方执行的，遇到 `yield` 后，return 出要生成的数，此步就结束。
+
+> 参考资料：[<u>python 中 yield 的用法详解</u>](https://blog.csdn.net/mieleizhi0522/article/details/82142856/)。
+
+`assert`：
+
+用于断言测试。
+
+示例：
+
+```python
+assert expression, "错误信息"
+```
+
+- `expression` 为 `true`：什么也不发生；
+- `expression` 为 `false`：程序报错。
+
+### Python 注解
+
+`@dataclass`：？。
+
+```python
+from dataclasses import dataclass
+
+@dataclass(repr=False, eq=False)
+class Config:
+    # ...
+```
+
+`@metaclass`：？
 
 ### `__init__.py`
 
@@ -94,18 +134,6 @@ python setup.py build_ext --include-dirs="/home/sss/.local/include" --library-di
 ### 正则表达式
 
 > 参考资料：[<u>正则表达式-菜鸟教程</u>](https://www.runoob.com/python/python-reg-expressions.html)。
-
-### dataclass
-
-`dataclass`：用于配置参数（超参数？）。
-
-```python
-from dataclasses import dataclass
-
-@dataclass(repr=False, eq=False)
-class Config:
-    # ...
-```
 
 ## web 框架
 
@@ -128,11 +156,12 @@ gradio 用于为 python 应用提供 web UI。
 
 > 官方网站：[<u>gradio</u>](https://www.gradio.app/)。
 
-## 模型导出、部署
+## PyTorch 框架
 
-### onnx
+### 常用注解
 
-onnx：一种表示模型的格式，便于在不同框架、平台上迁移模型。
+- `@torch.no_grad()`：？
+- `@torch.inference_mode()`：？
 
 ## 性能优化
 
@@ -181,3 +210,19 @@ Numba 能够支持 CUDA GPU 编程，能够自动地在 host 与 device 之间�
 3. 时域波形生成。
 
 > 参考资料：[<u>Text-to-Speech with Tacotron2</u>](https://pytorch.org/audio/stable/tutorials/tacotron2_pipeline_tutorial.html)。
+
+## 模型推理
+
+### 推流流程
+
+1. 加载模型：选择 `device`、初始化模型权重；
+2. text -> normalizer（正则化：替换同义词、……）；
+3. refine text：自动加入语气词？（可选）；
+4. tokenizer -> encode -> embed -> gpt.generate；
+5. decode to wavs。
+
+## 模型导出
+
+### onnx
+
+onnx：一种表示模型的格式，便于在不同框架、平台上迁移模型。
