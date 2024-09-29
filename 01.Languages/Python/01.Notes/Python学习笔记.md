@@ -1051,87 +1051,6 @@ print(random())
    - `sys.path` 的第一个路径是当前执行文件所在的文件夹。
    - 若需将不在该文件夹内的模块导入，则需要将模块的路径添加到 `sys.path` 中。
 
-# 底层实现
-
-## 1  列表
-
-### 1.1  底层实现
-
-列表存储的实际上是其元素的地址，即是一个「引用数组」。
-
-> 引用数组：
->
-> - 列表内的元素可以分散地存储在内存中。
-> - 地址的存储在内存中是连续的。
-
-### 1.2  浅拷贝
-
-```python
-list_1 = [1, [22, 33, 44], (5, 6, 7), {"name": "sarah"}]
-
-# 错误！只是重新取了个别名
-list_2 = list_1
-
-# 浅拷贝
-list_3 = list_1.copy() # 或：list_1[:]、list(list_1)
-list_3[1].append(55)
-# list_1、list_2中的第二个元素都变为了[22, 33, 44, 55]
-```
-
-初始列表：
-
-![Snipaste_2023-08-13_10-30-00](Python学习笔记.assets/Snipaste_2023-08-13_10-30-00.png)
-
-将两个列表中的第一个元素分别修改为 10 和 20：
-
-![Snipaste_2023-08-13_10-31-38](Python学习笔记.assets/Snipaste_2023-08-13_10-31-38.png)
-
-将列表二的第二个元素（地址列表）进行修改，列表一的第二个元素也会发生变化：
-
-![Snipaste_2023-08-13_10-34-22](Python学习笔记.assets/Snipaste_2023-08-13_10-34-22.png)
-
-将列表二的第三个元素（地址元组）进行修改，列表一的第三个元素却不会发生变化：
-
-![Snipaste_2023-08-13_10-36-57](Python学习笔记.assets/Snipaste_2023-08-13_10-36-57.png)
-
-原因：元组是不可变的类型，当对其进行修改（例如增加元素）时，会产生一个新的元组。
-
-将列表二的第四个元素（字典散列表）进行修改，列表一的第四个元素也会发生变化。
-
-> 总结：
->
-> - 可变类型：如列表、字典，其内容可以发生变化，而地址不变。
-> - 不可变类型：如数字、字符串、元组，一旦其内容发生变化，则地址也会发生变化（会创建一个新的）。
-
-### 1.3  深拷贝
-
-```python
-import copy
-
-# 深拷贝
-list_2 = copy.deepcopy(list_1)
-```
-
-## 2  字典
-
-### 2.1  底层实现
-
-通过「稀疏数组」来实现值的存储与访问。
-
-> 稀疏数组：数组的许多元素为空，即稀疏的数组。
-
-### 2.2  创建过程
-
-## 3  字符串
-
-### 3.1  底层实现
-
-通过「紧凑数组」实现字符串的存储，数据（字符）在内存中是连续存放的。
-
-## 4  不可变类型
-
-不可变类型在其生命周期中保持内容不变，如果改变了（如 `+=` 操作）就不是它自己了（创建了一个新的对象），如：数字、字符串、元组。
-
 # 特殊语法
 
 ## 1  解析语法
@@ -1528,6 +1447,233 @@ f2()
 ```
 
 > 注意：被修饰函数一经装饰（即加上注解），就已经被调用了。
+
+## 6  魔法方法
+
+```python
+import time
+
+
+class A:
+    def __new__(cls, *args, **kwargs):
+        print("__new__")
+        return super().__new__(cls, *args, **kwargs)
+
+    def __init__(self):
+        print("__init__")
+
+    def __del__(self):
+        print("__del__")
+
+
+def main1():
+    a = A()  # 分别调用：__new__() 和 __init__() 方法
+
+    b = a
+    c = a  # 此时指向 A() 这块内存的引用数为 3
+
+    del a  # 用于删除变量或对象的引用，每次将对象的引用计数减 1
+    del b  # 此时指向 A() 这块内存的引用数为 1
+
+    time.sleep(5)
+    # main1() 方法执行结束，此时指向 A() 这块内存的引用数为 0，该内存可以被清理，系统自动调用 __del__() 方法
+
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return f"Person(name={self.name}, age={self.age})"
+
+    def __str__(self):
+        return f"{self.name} is {self.age} years old"
+
+    def __call__(self):
+        print("__call__")
+
+    def __len__(self):
+        print("__len__")
+        return 1
+
+
+def main2():
+    person = Person("Alice", 25)
+
+    print(person)  # 调用 __str__() 方法（Alice is 25 years old）
+
+    person()  # 调用 __call__() 方法（__call__）
+    '''
+    在 Python 中，使用 __call__() 方法可以实现将类的实例对象作为函数调用的效果，类似于调用一个函数。
+    当我们调用一个类的实例对象时，Python 会自动调用这个实例对象的 __call__() 方法。
+    '''
+
+    len(person)  # 调用 __len__() 方法（__len__）
+
+
+if __name__ == '__main__':
+    main1()
+    print("*" * 20)
+    main2()
+```
+
+> 参考资料：[【python】魔术方法大全——基础篇_python中的魔法方法-CSDN博客](https://blog.csdn.net/bagell/article/details/134965257)。
+
+## 7  `*args` & `**kwargs`
+
+基本概念：
+
+- 位置参数：函数传入的参数与实际函数的参数在位置和定义的含义需要保持一致（按形参声明的先后顺序一一赋值）；
+- 关键字参数：调用函数（key=value）以键值对形式（实参的顺序无所谓）。
+
+> 注意：关键字参数必须在位置参数的后面。
+
+- `*args`：参数名前加 `*` 是可变参数，以元组的形式进行存储；
+- `**kwargs`：接受任意的关键字参数，会将其参数整体组装成一个字典进行存储。
+
+```python
+def func1(a, b):
+    print('a: ', a)
+    print('b: ', b)
+
+
+def func2(*args):
+    print(type(args))
+
+
+def func3(**kwargs):
+    print(type(kwargs))
+
+
+def func4(arg, *args, **kwargs):
+    print('arg:', arg)
+    print('args:', args)
+    print('kwargs:', kwargs)
+
+
+if __name__ == '__main__':
+    func1(1, b=1)
+    # func(a=1, 1)  # SyntaxError: positional argument follows keyword argument
+
+    func2(1, 2)  # <class 'tuple'>，*args 以元组的形式进行存储
+    my_tuple = (1, 2)
+    func2(*my_tuple)
+    func2(my_tuple)  # 这样也可以
+
+    func3(a=1, b=2)  # <class 'dict'>
+    my_dict = {'a': 1, 'b': 2}
+    # func3(my_dict)  # TypeError: func3() takes 0 positional arguments but 1 was given
+    # func3(*my_dict)  # TypeError: func3() takes 0 positional arguments but 2 were given
+    func3(**my_dict)  # <class 'dict'>
+
+    '''
+    注意：
+    在调用 func2(my_tuple) 时，my_tuple 前可以不加 *，是因为此时 my_tuple 整体被当做了一个元素，传入了可变参数的元组中。
+    
+    而调用 func3(**my_dict) 时，my_dict 前必须加 **，是因为如果不加 **，此时的 my_dict 整体将被视为一个普通参数。
+    而 **kwargs 只能接收键值对参数，因此无法直接接收一个字典元素，会报错。
+    '''
+
+    func4(1, 2, a=3)
+    # arg: 1
+    # args: (2,)
+    # kwarg: {'a': 3}
+
+    my_tuple2 = (1, 2)
+    my_dict2 = {'a': 1, 'b': 2}
+    func4(my_tuple2, my_dict2)
+    # arg: (1, 2)
+    # args: ({'a': 1, 'b': 2},)
+    # kwargs: {}
+    '''
+    注意：
+    这里 my_tuple2 整体被当做了 arg，而 my_dict2 整体被当做了 *args 中的一个可变参数。
+    '''
+```
+
+> 参考资料：[Python关于 *args 和 **kwargs 参数的详解（全）-CSDN博客](https://blog.csdn.net/weixin_47872288/article/details/125411961?ops_request_misc=%7B%22request%5Fid%22%3A%2210DD4209-96F0-4E7E-B9CB-C16B3991E659%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=10DD4209-96F0-4E7E-B9CB-C16B3991E659&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-1-125411961-null-null.142^v100^pc_search_result_base5&utm_term=python *args和**kwargs详解&spm=1018.2226.3001.4187)。
+
+# 底层实现
+
+## 1  列表
+
+### 1.1  底层实现
+
+列表存储的实际上是其元素的地址，即是一个「引用数组」。
+
+> 引用数组：
+>
+> - 列表内的元素可以分散地存储在内存中。
+> - 地址的存储在内存中是连续的。
+
+### 1.2  浅拷贝
+
+```python
+list_1 = [1, [22, 33, 44], (5, 6, 7), {"name": "sarah"}]
+
+# 错误！只是重新取了个别名
+list_2 = list_1
+
+# 浅拷贝
+list_3 = list_1.copy() # 或：list_1[:]、list(list_1)
+list_3[1].append(55)
+# list_1、list_2中的第二个元素都变为了[22, 33, 44, 55]
+```
+
+初始列表：
+
+![Snipaste_2023-08-13_10-30-00](Python学习笔记.assets/Snipaste_2023-08-13_10-30-00.png)
+
+将两个列表中的第一个元素分别修改为 10 和 20：
+
+![Snipaste_2023-08-13_10-31-38](Python学习笔记.assets/Snipaste_2023-08-13_10-31-38.png)
+
+将列表二的第二个元素（地址列表）进行修改，列表一的第二个元素也会发生变化：
+
+![Snipaste_2023-08-13_10-34-22](Python学习笔记.assets/Snipaste_2023-08-13_10-34-22.png)
+
+将列表二的第三个元素（地址元组）进行修改，列表一的第三个元素却不会发生变化：
+
+![Snipaste_2023-08-13_10-36-57](Python学习笔记.assets/Snipaste_2023-08-13_10-36-57.png)
+
+原因：元组是不可变的类型，当对其进行修改（例如增加元素）时，会产生一个新的元组。
+
+将列表二的第四个元素（字典散列表）进行修改，列表一的第四个元素也会发生变化。
+
+> 总结：
+>
+> - 可变类型：如列表、字典，其内容可以发生变化，而地址不变。
+> - 不可变类型：如数字、字符串、元组，一旦其内容发生变化，则地址也会发生变化（会创建一个新的）。
+
+### 1.3  深拷贝
+
+```python
+import copy
+
+# 深拷贝
+list_2 = copy.deepcopy(list_1)
+```
+
+## 2  字典
+
+### 2.1  底层实现
+
+通过「稀疏数组」来实现值的存储与访问。
+
+> 稀疏数组：数组的许多元素为空，即稀疏的数组。
+
+### 2.2  创建过程
+
+## 3  字符串
+
+### 3.1  底层实现
+
+通过「紧凑数组」实现字符串的存储，数据（字符）在内存中是连续存放的。
+
+## 4  不可变类型
+
+不可变类型在其生命周期中保持内容不变，如果改变了（如 `+=` 操作）就不是它自己了（创建了一个新的对象），如：数字、字符串、元组。
 
 # 标准库
 
