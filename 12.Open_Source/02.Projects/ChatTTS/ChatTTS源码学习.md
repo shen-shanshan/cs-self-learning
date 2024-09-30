@@ -48,8 +48,33 @@ make -j4
 make install
 ln -s /usr/local/openfst/openfst-1.6.7 /usr/local/openfst/openfst
 
-export PATH=/usr/local/openfst/openfst-1.8.3/bin:$PATH
+export PATH=/home/sss/.local/fst/openfst-1.7.2/src/bin:$PATH
+export PATH=/~/bin/miniconda/miniconda3/envs/chattts_2/lib:$PATH
 echo $PATH
+```
+
+环境配置写入 `.bashrc`：
+
+```bash
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/sss/bin/miniconda/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/sss/bin/miniconda/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/sss/bin/miniconda/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/sss/bin/miniconda/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/bin/miniconda/miniconda3/envs/chattts_2/lib/
+#export LD_PRELOAD=$LD_PRELOAD:~/bin/miniconda/miniconda3/envs/chattts_2/lib/
+
+export PATH=$PATH:/home/sss/.local/fst/openfst-1.7.2/src/bin:/~/bin/miniconda/miniconda3/envs/chattts_2/lib
 ```
 
 手动安装 pynini，指定头文件路径：
@@ -62,6 +87,8 @@ cd pynini
 python setup.py build_ext --include-dirs=/home/sss/.local/fst/openfst-1.6.7
 
 python setup.py build_ext --include-dirs="/home/sss/.local/include" --library-dirs="/home/sss/.local/lib" install
+
+python setup.py build_ext --include-dirs=~/bin/miniconda/miniconda3/envs/chattts_2/lib/
 ```
 
 > 参考资料：
