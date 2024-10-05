@@ -105,6 +105,8 @@ python setup.py build_ext --include-dirs=~/bin/miniconda/miniconda3/envs/chattts
 
 定义异步函数。
 
+> 参考资料：[python 异步 async/await（进阶详解）_python async-CSDN博客](https://blog.csdn.net/qq_43380180/article/details/111573642)。
+
 `global`：
 
 定义全局变量。
@@ -132,17 +134,69 @@ assert expression, "错误信息"
 
 ### Python 注解
 
-`@dataclass`：？。
+`@dataclass`：
+
+在定义数据类时，我们通常需要编写一些重复性的代码，如构造函数、属性访问器和字符串表示等。使用 `@dataclass` 可以自动生成这些通用方法，从而简化数据类的定义过程。
+
+具体地，`@dataclass` 可以省略 `__init__()` 和 `__str__()` 方法，适合于属性特别多、专门用于存储数据的类（类似于后端开发中的“实体类”）。
 
 ```python
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import List
 
-@dataclass(repr=False, eq=False)
-class Config:
-    # ...
+
+@dataclass
+class Person1:
+    name: str
+    age: int
+    salary: float
+    gender: bool
+    hobbies: List[str]
+
+
+def gen_list():
+    return ['guitar', 'badminton', 'programme']
+
+
+@dataclass(frozen=True)  # 使用 frozen=True 可以将该类的属性设置为只读，外界无法修改
+class Person2:
+    name: str = 'sss_2'  # 属性可以设置默认值
+    age: int = 26
+    salary: float = field(default=20000.000, repr=False)  # 使用 repr 参数可以设置隐藏字段（不会被 print() 方法打印）
+    gender: bool = True
+    # hobbies: List[str] = ['guitar', 'badminton']
+    """
+    ValueError: mutable default <class 'list'> for field hobbies is not allowed: use default_factory
+    注意：对于可变类型（如 list）的属性，需要用工厂方法来产生默认值
+    """
+    hobbies: List[str] = field(default_factory=gen_list)
+
+
+if __name__ == '__main__':
+    p1 = Person1('sss', 18, 15000.000, True, ['guitar', 'badminton'])
+    print(p1)  # Person1(name='sss', age=18, salary=15000.0, gender=True, hobbies=['guitar', 'badminton'])
+
+    p2 = Person2()
+    print(p2)  # Person2(name='sss_2', age=26, gender=True, hobbies=['guitar', 'badminton', 'programme'])
+
+    p1.name = 'ma yun'
+    print(p1.name)  # ma yun
+    
+    # p2.name = 'ma hua teng'
+    """
+    dataclasses.FrozenInstanceError: cannot assign to field 'name'
+    Person2 的属性已被冻结，无法修改
+    """
 ```
 
-`@metaclass`：？
+> 参考资料：[掌握python的dataclass，让你的代码更简洁优雅 - wang_yb - 博客园 (cnblogs.com)](https://www.cnblogs.com/wang_yb/p/18077397)。
+
+`@metaclass`：
+
+> 参考资料：
+>
+> - [Python进阶——详解元类，metaclass的原理和用法 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/149126959)；
+> - [使用元类 - Python教程 - 廖雪峰的官方网站 (liaoxuefeng.com)](https://liaoxuefeng.com/books/python/oop-adv/meta-class/index.html)。
 
 ### `__init__.py`
 
@@ -187,8 +241,13 @@ gradio 用于为 python 应用提供 web UI。
 
 ### 常用注解
 
-- `@torch.no_grad()`：？
-- `@torch.inference_mode()`：？
+`@torch.no_grad()`：
+
+推理时，不存储计算图中每个节点的梯度。
+
+`@torch.inference_mode()`：
+
+是一个类似于 `no_grad` 的新上下文管理器，该模式禁用了视图跟踪和版本计数器，所以在此模式下运行代码能够获得更好的性能，速度也会更快。
 
 ## 性能优化
 
