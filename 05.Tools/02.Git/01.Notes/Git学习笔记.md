@@ -20,7 +20,7 @@ Git 的配置可以分为：
 查看配置：
 
 ```bash
-git config --system/global/local [配置名]
+git config --system/global/local <配置名>
 ```
 
 配置个人身份：
@@ -44,7 +44,7 @@ https：……
 
 SSH：
 
-1. 生成公钥：`ssh-keygen -t rsa -C [邮箱]`；
+1. 生成公钥：`ssh-keygen -t rsa -C <邮箱>`；
 2. 添加公钥到 GitHub：`profile settings` -> `SSH Keys` -> `add ssh key` -> `public key`。
 
 ## Git 基本命令
@@ -68,25 +68,28 @@ SSH：
 新建项目仓库：
 
 ```bash
-git init [仓库名称]
+git init <仓库名称>
 ```
 
 下载项目：
 
 ```bash
-git clone [url]
+git clone <url>
 
 # 完整下载仓库中的二进制文件，使用 lfs 插件
-git lfs clone [url]
+git lfs clone <url>
 ```
 
 讲文件添加到暂存区（未提交）：
 
 ```bash
-git add [文件名]
+git add <文件名>
 
 # 将所有新增文件添加到暂存区
 git add .
+
+# 取消添加文件
+git reset <文件名>
 ```
 
 > 注意：在较新的 git 版本中，不再需要 add，可以直接提交文件。
@@ -94,7 +97,7 @@ git add .
 将指定文件彻底从当前分支的缓存区删除，之后不再受 git 工程的管理：
 
 ```bash
-git rm [文件名]
+git rm <文件名>
 ```
 
 > 注意：也可以直接从硬盘上删除该文件，然后执行 git commit。
@@ -108,7 +111,7 @@ git status
 将暂存区的文件提交到本地的版本库：
 
 ```bash
-git commit [文件名] -m "提交信息"
+git commit <文件名> -m "提交信息"
 
 # 一次性提交暂存区中的所有文件
 git commit -am "提交信息"
@@ -123,7 +126,7 @@ git log
 推送到远程仓库：
 
 ```bash
-git push origin [分支名称]
+git push origin <分支名称>
 ```
 
 查看分支：
@@ -143,57 +146,57 @@ git branch -a
 
 ```bash
 # 不会切换到新分支
-git branch [分支名称]
+git branch <分支名称>
 
 # 会自动切换到新分支上（签出）
-git checkout -b [分支名称]
+git checkout -b <分支名称>
 ```
 
 删除分支：
 
 ```bash
 # 删除本地分支（-D：强制删除）
-git branch -d/-D [分支名称]
+git branch -d/-D <分支名称>
 
 # 删除远程分支（需要推送远端）
-git branch -d -r [分支名称]
-git push origin : [分支名称]
+git branch -d -r <分支名称>
+git push origin : <分支名称>
 # 或：
-git push origin --delete [分支名称]
+git push origin --delete <分支名称>
 ```
 
 切换分支：
 
 ```bash
 # -f：强制签出
-git checkout [-f] [分支名称]
+git checkout <-f> <分支名称>
 ```
 
 拉取远程分支最新内容，并合并到本地分支：
 
 ```bash
-git pull origin [远程分支名称]:[本地分支名称]
+git pull origin <远程分支名称>:<本地分支名称>
 
 # 若远程分支名称与本地的相同
-git pull origin [远程分支名称]
+git pull origin <远程分支名称>
 ```
 
 拉取远程分支最新内容，但不合并到本地分支：
 
 ```bash
-git fetch origin [远程分支名称]:[本地分支名称]
+git fetch origin <远程分支名称>:<本地分支名称>
 
-# 若远程分支名称与本地的相同
-git fetch origin [远程分支名称]
+# 若远程分支名称与本地的相<
+git fetch origin <远程分支名称>
 ```
 
 合并分支：
 
 ```bash
 # 将指定分支与当前分支进行合并，从二者最近的一个共同节点 base 开始进行比较
-git merge [分支名称]
+git merge <分支名称>
 
-git rebase [分支名称]
+git rebase <分支名称>
 ```
 
 回退提交：
@@ -304,7 +307,7 @@ for your current branch, you must specify a branch on the command line.
 将 upstream 分支的最新内容拉取到本地分支，正确的操作如下：
 
 ```bash
-git pull upstream [upstream_branch_name]
+git pull upstream <upstream_branch_name>
 ```
 
 使用 git alias 快速同步上游代码：
