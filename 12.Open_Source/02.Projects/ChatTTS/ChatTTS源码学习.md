@@ -312,3 +312,22 @@ Numba 能够支持 CUDA GPU 编程，能够自动地在 host 与 device 之间�
 ### onnx
 
 onnx：一种表示模型的格式，便于在不同框架、平台上迁移模型。
+
+## NPU 原生支持进展
+
+### TODO List
+
+- [ ] 提交 issue，询问社区意见，加入 qq 群；
+- [ ] vocos 模块需要迁移到 CPU 上进行使用；
+- [ ] 设置 NPU device，需要检查内存大小；
+- [ ] 分布式推理，需要支持 NPU，优化针对 cuda 的硬编码。
+
+### 算子不支持复数类型报错
+
+问题如下：
+
+```
+... other not implemented for DT_COMPLEX64, should be in dtype support list [DT_FLOAT,DT_INT32,DT_INT64,DT_FLOAT16,DT_INT16,DT_INT8,DT_UINT8,DT_DOUBLE,DT_BOOL,DT_BFLOAT16,].
+```
+
+> 参考资料：[<u>V100 和 Ascend 910A 微调 glm4 均失败，寻求帮助</u>](https://github.com/hiyouga/LLaMA-Factory/issues/4339)。
