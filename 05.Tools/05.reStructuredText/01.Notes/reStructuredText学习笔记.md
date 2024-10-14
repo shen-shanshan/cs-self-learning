@@ -44,5 +44,6 @@ make html
 ```
 
 > [!NOTE]
-> 需要安装 esbonio 服务器（官方说明：Starting from version 190.1.17, this feature is removed. You will be recommended to install Esbonio extension instead. To learn more about how to configure Esbonio, you can visit [this site](https://docs.esbon.io/en/latest/).）；
+> 需要安装 esbonio 服务器（官方说明：Starting from version 190.1.17, this feature is removed. You will be recommended to install Esbonio extension instead. To learn more about how to configure Esbonio, you can visit [this site](https://docs.esbon.io/en/latest/).）。
+>
 > 参考资料：[reStructuredText VSCode 官方文档](https://docs.lextudio.com/restructuredtext/)。
