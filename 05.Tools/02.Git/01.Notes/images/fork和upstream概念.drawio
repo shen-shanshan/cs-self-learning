@@ -1,0 +1,47 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.17">
+  <diagram name="第 1 页" id="CDLxLN8433r1DgA3Vya4">
+    <mxGraphModel dx="744" dy="390" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gPZRprpak1YNqEauRIL7-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#827d7d;fontColor=#393C56;fillColor=#F2CC8F;" parent="1" source="gPZRprpak1YNqEauRIL7-2" target="gPZRprpak1YNqEauRIL7-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gPZRprpak1YNqEauRIL7-5" value="fork" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];strokeColor=#E07A5F;fontColor=#504949;fillColor=#F2CC8F;fontStyle=1;fontSize=16;fontFamily=Times New Roman;labelBackgroundColor=default;" parent="gPZRprpak1YNqEauRIL7-4" vertex="1" connectable="0">
+          <mxGeometry x="-0.0672" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gPZRprpak1YNqEauRIL7-2" value="upstream" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Times New Roman;fontColor=#c90d0d;textShadow=0;fontStyle=1;labelBorderColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="200" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gPZRprpak1YNqEauRIL7-3" value="origin" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#d79b00;fillColor=#ffe6cc;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontStyle=1;fontSize=16;fontFamily=Times New Roman;fontColor=#eb6f0a;" parent="1" vertex="1">
+          <mxGeometry x="400" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gPZRprpak1YNqEauRIL7-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#615d5c;fontColor=#393C56;fillColor=#F2CC8F;curved=1;" parent="1" source="gPZRprpak1YNqEauRIL7-6" target="gPZRprpak1YNqEauRIL7-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gPZRprpak1YNqEauRIL7-12" value="push" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];strokeColor=#E07A5F;fontColor=#525257;fillColor=#F2CC8F;fontFamily=Times New Roman;fontStyle=1;fontSize=16;" parent="gPZRprpak1YNqEauRIL7-11" vertex="1" connectable="0">
+          <mxGeometry x="-0.0759" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gPZRprpak1YNqEauRIL7-6" value="local" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#82b366;fillColor=#d5e8d4;sketch=1;curveFitting=1;jiggle=2;fontFamily=Times New Roman;fontStyle=1;fontSize=16;fontColor=#089405;" parent="1" vertex="1">
+          <mxGeometry x="400" y="320" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gPZRprpak1YNqEauRIL7-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.007;entryY=0.598;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#7e7c7c;fontColor=#393C56;fillColor=#F2CC8F;curved=1;" parent="1" source="gPZRprpak1YNqEauRIL7-2" target="gPZRprpak1YNqEauRIL7-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="368" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gPZRprpak1YNqEauRIL7-10" value="fetch + merge" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];strokeColor=#E07A5F;fontColor=#5e5a5a;fillColor=#F2CC8F;fontStyle=1;fontFamily=Times New Roman;fontSize=16;" parent="gPZRprpak1YNqEauRIL7-9" vertex="1" connectable="0">
+          <mxGeometry x="-0.3593" y="35" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

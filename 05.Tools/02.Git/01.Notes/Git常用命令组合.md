@@ -46,10 +46,13 @@ git push origin <branch>
 
 ```bash
 git reset --soft <commit_id>  # 当前所有修改内容前最近的一个提交节点（D）
+git fetch upstream
 git stash  # 暂存 A 和 C 修改的内容
-git pull upstream <upstream_branch>:<your_branch>  # 重新同步上游分支
+git merge upstream/<branch>  # 合并上游分支最新的修改
 git stash pop  # 恢复 A 和 C 修改的内容
 git add .
 git commit -am "A + C 的提交信息"
 git push origin <branch> --force  # 注意：这里必须加上 --force，否则本地的提交顺序和 origin 的冲突，会要求必须先合并 origin，这样 commit 的顺序就又乱了
 ```
+
+> 参考资料：[<u>Git fetch 原理解析</u>](https://zhuanlan.zhihu.com/p/636158655)。
