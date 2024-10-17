@@ -3,15 +3,15 @@
 
 ## 大纲
 
-1. Languages；
-2. Network；
-3. Operating System；
-4. Data Structure & Algorithm；
-5. Tools；
-6. Design Pattern；
-7. Backend；
-8. Big data；
-9. AI；
+01. Languages；
+02. Network；
+03. Operating System；
+04. Data Structure & Algorithm；
+05. Tools；
+06. Design Pattern；
+07. Backend；
+08. Big data；
+09. AI；
 10. Employment；
 11. Research；
-11. Open Source。
+12. Open Source。

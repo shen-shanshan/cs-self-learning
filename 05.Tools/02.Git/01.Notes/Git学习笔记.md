@@ -186,7 +186,7 @@ git pull origin <远程分支名称>
 ```bash
 git fetch origin <远程分支名称>:<本地分支名称>
 
-# 若远程分支名称与本地的相<
+# 若远程分支名称与本地的相同
 git fetch origin <远程分支名称>
 ```
 
