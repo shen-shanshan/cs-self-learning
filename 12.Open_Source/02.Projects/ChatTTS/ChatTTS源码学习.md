@@ -198,6 +198,18 @@ if __name__ == '__main__':
 > - [Python进阶——详解元类，metaclass的原理和用法 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/149126959)；
 > - [使用元类 - Python教程 - 廖雪峰的官方网站 (liaoxuefeng.com)](https://liaoxuefeng.com/books/python/oop-adv/meta-class/index.html)。
 
+### Python 方法
+
+`eval()`：
+
+```python
+class A(torch.nn.Module):
+    # ...
+
+# 初始化模型
+a = A().eval()
+```
+
 ### `__init__.py`
 
 - 将目录标记为 Python 包；
