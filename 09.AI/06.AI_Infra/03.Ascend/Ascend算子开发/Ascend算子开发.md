@@ -92,7 +92,7 @@ warp 是调度和运行的基本单元。并不是所有的 thread 都能够在�
 
 - [<u>CUDA 基础</u>](https://www.cnblogs.com/LLW-NEU/p/16219611.html)；
 - [<u>CUDA 介绍</u>](https://juniorprincewang.github.io/2018/01/12/CUDA-logic/)；
-- [<u>算子开发基本概念</u>](https://www.hiascend.com/doc_center/source/zh/CANNCommunityEdition/80RC3alpha001/devguide/appdevg/aclpythondevg/aclpythondevg_0004.html)；
+- [<u>算子开发基本概念</u>](https://www.hiascend.com/doc_center/source/zh/CANNCommunityEdition/80RC3alpha001/devguide/appdevg/aclpythondevg/aclpythondevg_0004.html)。
 
 ## 单算子开发
 
