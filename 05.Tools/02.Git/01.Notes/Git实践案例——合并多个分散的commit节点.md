@@ -1,10 +1,12 @@
 # Git 实践案例——合并多个分散的 commit 节点
 
-## 概述
+[toc]
+
+## 一、概述
 
 本文记录了我在开源贡献的过程中遇到的一个小问题（使用 git 调整 commit 的顺序，并整合多个 commit 节点）以及最后是怎么解决的。
 
-## 背景介绍
+## 二、背景介绍
 
 一般在进行开源贡献提交 PR 之前，我们需要先 fork 想要贡献的仓库到我们自己的 GitHub 仓库中。
 
@@ -30,7 +32,7 @@ git push origin <branch>  # 推送本地分支
 > 关于 git fetch 的详细原理，可以参考：[<u>Git fetch 原理解析</u>](https://zhuanlan.zhihu.com/p/636158655)。
 > 总结：git pull = git fetch + git merge。
 
-## 我的问题
+## 三、我的问题
 
 当我基于上游分支进行了一段时间的开发，并且已经多次 commit，还 push 到了我的 origin 中时，我 merge 了上游分支最新的修改，然后发现在我的多次 commit 中，穿插有其他人的 commit。
 
@@ -46,7 +48,7 @@ git push origin <branch>  # 推送本地分支
 
 ![期望结果](./images/期望结果.png)
 
-## 解决方法
+## 四、解决方法
 
 先将本地分支回退到 D 节点，然后暂存当前 A + C 的修改，重新 merge 上游分支，然后恢复暂存的修改，最后提交并推送到远程仓库。
 

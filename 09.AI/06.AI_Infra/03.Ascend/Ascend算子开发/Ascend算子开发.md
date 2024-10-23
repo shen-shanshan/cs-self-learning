@@ -307,7 +307,3 @@ int main() {
 - [<u>调用 NN 算子接口示例代码</u>](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/80RC3alpha003/devguide/appdevg/aclcppdevg/aclcppdevg_000019.html)；
 - [<u>算子加速库接口</u>](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/80RC3alpha003/apiref/aolapi/operatorlist_0001.html)；
 - [<u>开源融合算子</u>](https://gitee.com/ascend/cann-ops-adv)。
-
-## 疑问
-
-- aclnn 和 aclrt 有什么区别？

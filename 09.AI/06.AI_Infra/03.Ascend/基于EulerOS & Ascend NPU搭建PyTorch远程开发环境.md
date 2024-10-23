@@ -1,6 +1,8 @@
 # 基于 EulerOS & Ascend NPU 搭建 PyTorch 远程开发环境
 
-## 概述
+[toc]
+
+## 一、概述
 
 本文记录了自己在基于 EulerOS & Ascend NPU 的华为云远程服务器上，使用 docker 容器搭建 PyTorch 开发环境的主要过程以及遇到的问题。
 
@@ -11,11 +13,9 @@ Kunpeng + Ascend: 192 CPU，1.5T MEM，21T DISK，8*Ascend XXX 型号
 EulerOS V2 R10
 ```
 
-> 参考资料：[<u>ascend-bms-guide</u>](https://github.com/cosdt/readme/blob/main/ascend-bms-guide.md)。
+## 二、创建 docker 镜像并运行容器
 
-## 创建 docker 镜像并运行容器
-
-### 编写 Dockerfile
+### 2.1 编写 Dockerfile
 
 创建 `Dockerfile` 如下：
 
@@ -49,7 +49,7 @@ RUN groupadd -g $YOUR_GROUP_ID $YOUR_USER_NAME && \
 CMD ["/bin/bash", "/home/sss/bin/entrypoint.sh"]
 ```
 
-#### 注意事项
+**注意事项**：
 
 Dockerfile 中的 `YOUR_USER_NAME`、`YOUR_GROUP_ID` 以及 `YOUR_USER_ID` 为将要在容器中创建的用户和用户组，请自行进行设置。
 
@@ -57,7 +57,7 @@ Dockerfile 中的 `YOUR_USER_NAME`、`YOUR_GROUP_ID` 以及 `YOUR_USER_ID` 为�
 
 另外，我们需要将自己宿主机中存放个人数据的目录（我是 `/data/disk/sss`）挂载到容器中自己的用户目录（我是 `/home/sss`）下，并将编写好的 `entrypoint.sh` 脚本存放到 `/data/disk/sss/bin` 目录下，这样我们进入容器后，就能在容器的 `/home/sss/bin` 目录下找到 `entrypoint.sh` 脚本并执行它（如果目录映射不对，在容器中找不到该脚本文件，那么容器启动时就会报错）。
 
-### 构建 base 镜像
+### 2.2 构建 base 镜像
 
 在 `Dockerfile` 所在目录执行下面的命令：
 
@@ -66,7 +66,7 @@ Dockerfile 中的 `YOUR_USER_NAME`、`YOUR_GROUP_ID` 以及 `YOUR_USER_ID` 为�
 docker build -t sss_base_image:1.0 .
 ```
 
-#### 其它镜像常用命令
+其它镜像常用命令：
 
 ```bash
 # 查看镜像
@@ -79,7 +79,7 @@ docker rmi image:tag
 docker tag <old_image_name>:<old_tag> <new_image_name>:<new_tag>
 ```
 
-### 编写容器启动脚本
+### 2.3 编写容器启动脚本
 
 创建 `entrypoint.sh` 脚本文件如下：
 
@@ -118,11 +118,11 @@ fi
 chown -R sss:sss /home/sss
 ```
 
-#### 注意事项
+**注意事项**：
 
 脚本中的 `your_user_name` 和 `your_password` 为容器中的用户，请自行进行设置（该用户会被加入到 `HwHiAiUser` 用户组中，这样该用户才能使用 NPU 进行计算）。
 
-### 编写容器配置文件
+### 2.4 编写容器配置文件
 
 创建 `docker-compose.yaml` 配置文件如下：
 
@@ -161,7 +161,7 @@ services:
     # command: /bin/bash -c "chown -R sss:sss /home/sss && /bin/bash"
 ```
 
-#### 注意事项
+**注意事项**：
 
 将配置文件中的以下变量替换为自己的：
 
@@ -174,7 +174,7 @@ services:
 
 另外，这里的 `docker-compose.yaml` 中不能加 `command` 选项，因为该选项中的命令会覆盖 `Dockerfile` 中的 `CMD` 选项，导致 `entrypoint.sh` 脚本不会被执行（后果很严重！）。这里如果还想加一些在容器启动时需要执行的命令，可以直接加到 `entrypoint.sh` 脚本中，这样每次容器启动时都会执行这些命令。
 
-### 启动并进入容器
+### 2.5 启动并进入容器
 
 启动容器：
 
@@ -192,7 +192,7 @@ docker exec -it sss /bin/bash
 # 退出容器：exit
 ```
 
-#### 其它容器常用命令
+其它容器常用命令：
 
 ```bash
 # 停止容器
@@ -210,9 +210,9 @@ docker rm <容器名或ID>
 
 > 参考资料：[<u>使用 docker-compose 搭建 npu 环境的容器</u>](https://github.com/cosdt/cosdt.github.io/issues/28)。
 
-## 安装 CANN 软件
+## 三、安装 CANN 软件
 
-### 确认环境
+### 3.1 确认环境
 
 进入容器，检查当前环境是否满足以下要求：
 
@@ -242,7 +242,7 @@ uname -m && cat /etc/*release
 python --version
 ```
 
-### 安装 miniconda
+### 3.2 安装 miniconda
 
 ```bash
 # 安装 miniconda
@@ -267,7 +267,7 @@ conda list
 > - [<u>安装 miniconda aarch64 版本</u>](https://blog.csdn.net/Damien_J_Scott/article/details/136563747)；
 > - [<u>conda 环境启用 & 基本使用</u>](https://www.cnblogs.com/milton/p/18023969)。
 
-#### 设置 miniconda 的 channel
+设置 miniconda 的 channel：
 
 ```bash
 # 设置为清华镜像源
@@ -278,13 +278,13 @@ conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/b
 
 > 参考资料：[<u>miniconda 设置 channel</u>](https://blog.csdn.net/weixin_43949246/article/details/109637468)。
 
-#### 安装 python 依赖
+安装 python 依赖：
 
 ```bash
 conda install -i https://pypi.tuna.tsinghua.edu.cn/simple attrs numpy decorator sympy cffi pyyaml pathlib2 psutil protobuf scipy requests absl-py wheel typing_extensions
 ```
 
-### 安装 CANN-toolkit
+### 3.3 安装 CANN-toolkit
 
 ```bash
 wget "https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/Milan-ASL/Milan-ASL V100R001C19SPC802/Ascend-cann-toolkit_8.0.RC3.alpha001_linux-aarch64.run"
@@ -293,7 +293,7 @@ sh Ascend-cann-toolkit_8.0.RC3.alpha001_linux-aarch64.run --install
 # bash Ascend-cann-toolkit_8.0.RC3.alpha001_linux-aarch64.run --install
 ```
 
-#### 注意事项
+**注意事项**：
 
 在容器中安装 CANN 软件时，为保证安装路径的正确，需要切换到自己的用户进行安装（该软件会安装到 `~/Ascend` 目录下）。
 
@@ -303,7 +303,7 @@ su sss
 # 退出当前用户：exit
 ```
 
-### 安装算子包
+### 3.4 安装算子包
 
 ```bash
 wget "https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/Milan-ASL/Milan-ASL V100R001C19SPC802/Ascend-cann-kernels-910b_8.0.RC3.alpha001_linux.run"
@@ -314,7 +314,7 @@ sh Ascend-cann-kernels-910b_8.0.RC3.alpha001_linux.run --install
 
 > 这里同样也需要切换到自己的用户进行安装。
 
-### 设置环境变量
+### 3.5 设置环境变量
 
 ```bash
 echo "source ~/Ascend/ascend-toolkit/set_env.sh" >> ~/.bashrc
@@ -323,9 +323,9 @@ source ~/.bashrc
 
 > 参考资料：[<u>快速安装昇腾环境</u>](https://ascend.github.io/docs/sources/ascend/quick_install.html)。
 
-### 其它问题
+### 3.6 其它问题
 
-#### 个人用户缺少权限
+**个人用户缺少权限**：
 
 问题现象：在容器中，从 `root` 用户切换为个人用户后，发现访问不了某些目录，显示 `permission denied`。
 
@@ -335,7 +335,7 @@ source ~/.bashrc
 chown -R sss:sss /home/sss
 ```
 
-#### 个人用户缺少命令
+**个人用户缺少命令**：
 
 问题现象：在容器中，从 `root` 用户切换为个人用户后，执行 `ll`，显示用户没有该命令。
 
@@ -358,7 +358,7 @@ chown sss:sss .profile
 
 > 参考资料：[<u>Bash on Ubuntu on Windows gives error "-bash: /home/user/.bashrc: Permission denied" on startup</u>](https://superuser.com/questions/1318942/bash-on-ubuntu-on-windows-gives-error-bash-home-user-bashrc-permission-den)。
 
-#### 安装 CANN 软件报错
+**安装 CANN 软件报错**：
 
 问题现象：安装 CANN 软件报错，显示当前用户没有被添加到 HwHiAiUser 用户组中。
 
@@ -370,9 +370,9 @@ User is not belong to the dirver or firmware's installed usergroup! Please add t
 
 我自己在安装时报了这个错是因为 `Dockerfile` 中的 `CMD` 被后来在 `docker-compose.yaml` 中添加的 `command` 选项覆盖了，导致 `entrypoint.sh` 脚本未成功执行，用户 `sss` 未被添加到用户组 `HwHiAiUser` 中，因此无法使用 NPU。
 
-## 安装 PyTorch
+## 四、安装 PyTorch
 
-### 安装 torch
+### 4.1 安装 torch
 
 ```bash
 pip install torch==2.1.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
@@ -380,7 +380,7 @@ pip install pyyaml -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-### 安装 torch-npu
+### 4.2 安装 torch-npu
 
 关于 torch-npu：
 
@@ -395,11 +395,11 @@ GitHub 仓库地址：[<u>Ascend Extension for PyTorch</u>](https://github.com/A
 pip install torch-npu==2.1.0.post6 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-#### 注意事项
+**注意事项**：
 
 torch-npu 的大版本（如：`2.1.0`）需要和 torch 匹配，具体的版本匹配信息请参考 [<u>Ascend Extension for PyTorch</u>](https://github.com/Ascend/pytorch) 中的 `Ascend Auxiliary Software` 部分。
 
-### 验证安装是否成功
+### 4.3 验证安装是否成功
 
 创建 `test.py` 程序如下：
 
@@ -422,9 +422,9 @@ tensor([...], device='npu:0')
 
 > 参考资料：[<u>Ascend Extension for PyTorch 配置与安装</u>](https://www.hiascend.com/document/detail/zh/Pytorch/60RC2/configandinstg/instg/insg_0001.html)。
 
-## 开启容器 SSH 服务
+## 五、开启容器 SSH 服务
 
-### 安装并配置 openssh
+### 5.1 安装并配置 openssh
 
 ```bash
 # 安装 openssh
@@ -460,7 +460,7 @@ sudo /etc/init.d/ssh restart
 > - [<u>Ubuntu 安装 SSH SERVER</u>](https://blog.csdn.net/qq_39698985/article/details/136193187)；
 > - [<u>使用 Docker 容器配置 ssh 服务，远程直接进入容器</u>](https://blog.csdn.net/qq_33259057/article/details/124737659)。
 
-### 配置 VSCode 客户端
+### 5.2 配置 VSCode 客户端
 
 在 VSCode 的远程资源管理器中点击设置，找到 `xxx/.ssh/config` 文件，添加以下配置：
 
@@ -482,9 +482,9 @@ Host sss-docker
 
 > 具体如何使用 VSCode 连接 SSH 远程服务器请自行搜索。
 
-## 使用 git 拉取代码
+## 六、使用 git 拉取代码
 
-### 在容器中配置 git
+### 6.1 在容器中配置 git
 
 ```bash
 # 配置用户名和邮箱
@@ -495,12 +495,12 @@ git config --global user.email xxx@gmail.com
 git config --list
 ```
 
-### 拉取代码
+### 6.2 拉取代码
 
 ```bash
 git clone xxx.git
 ```
 
-## 总结
+## 七、总结
 
 到此为止，我们就可以在基于 EulerOS & Ascend NPU 的华为云远程服务器上，在自己搭建的 docker 容器中使用 PyTorch 框架并进行 AI 模型的训练与推理。

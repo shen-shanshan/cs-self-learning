@@ -1,12 +1,14 @@
 # IDEA Maven 项目编译或启动报错解决方法
 
-## 方法一：拉取最新依赖
+[toc]
+
+## 一、拉取最新依赖
 
 拉取最新的 dev 分支代码，然后点击下图中的圆圈，重新加载依赖项。
 
 ![Snipaste_2024-09-04_19-55-21](images/Snipaste_2024-09-04_19-55-21.png)
 
-## 方法二：强制更新依赖
+## 二、强制更新依赖
 
 运行以下命令，强制更新依赖项。
 
@@ -16,13 +18,13 @@ mvn clean install -s settings.xml -U
 
 ![Snipaste_2024-09-04_19-56-29](C:/Users/SSS/Desktop/Snipaste_2024-09-04_19-56-29.png)
 
-## 方法三：清除 IDEA 缓存
+## 三、清除 IDEA 缓存
 
 文件 -> 清除缓存 -> 勾选所有项，点击【清除并重启】。
 
 ![Snipaste_2024-09-04_19-57-18](images/Snipaste_2024-09-04_19-57-18.png)
 
-## 方法四：检查 settings 文件
+## 四、检查 settings 文件
 
 在 `settings.xml` 文件的 `<localRepository>` 标签中定义的路径为本地仓库路径。
 
@@ -30,7 +32,7 @@ mvn clean install -s settings.xml -U
 
 ![Snipaste_2024-09-04_19-58-16](images/Snipaste_2024-09-04_19-58-16.png)
 
-## 方法五：删除 repository 中的某些文件
+## 五、删除 repository 中的某些文件
 
 若 Maven 报错如下（这是 Maven 的一个 bug）：
 
@@ -43,7 +45,7 @@ mvn clean install -s settings.xml -U
 
 此时我们可以去项目的 `repository` 目录中搜索并删除所有的 `resolver-status.properties` 文件，然后再重新下载依赖。
 
-## 方法六：取消勾选脱机模式
+## 六、取消勾选脱机模式
 
 当 Maven 报错信息如下：
 
@@ -57,7 +59,7 @@ Cannot access mcr-huawei-product-maven xxx in offline mode and the artifact xxx 
 
 上面报错的原因就是因为本地仓库缺少相应的依赖，还选择了脱机工作，导致下载不了相应的依赖。
 
-## 方法七：配置启动 VM 选项
+## 七、配置启动 VM 选项
 
 报错信息如下，原因是缺少微服务配置中心相关的配置项：
 

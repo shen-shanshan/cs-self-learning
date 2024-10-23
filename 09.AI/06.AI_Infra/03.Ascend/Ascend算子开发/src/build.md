@@ -55,8 +55,6 @@ build 后目录结构（以 add 为例）：
 |   |   `-- opapi_test
 |   `-- cmake_install.cmake
 `-- test_add.cpp
-
-10 directories, 32 files
 ```
 
 命令说明：

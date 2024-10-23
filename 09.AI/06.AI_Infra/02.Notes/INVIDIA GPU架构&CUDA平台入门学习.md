@@ -1,6 +1,8 @@
 # INVIDIA GPU 架构 & CUDA 平台入门学习
 
-## 概述
+[toc]
+
+## 一、概述
 
 随着大模型产业的发展，AI 训练 & 推理对算力的需求越来越大，AI 的计算也越来越离不开 GPU 的支持。
 
@@ -26,9 +28,9 @@
 
 > 参考资料：[AI System (chenzomi12.github.io)](https://chenzomi12.github.io/)。
 
-## GPU 硬件架构
+## 二、GPU 硬件架构
 
-### 发展历史
+### 2.1 发展历史
 
 - Fermi 架构：提出了首个完整的 GPU 计算架构；
 - Kepler 架构；
@@ -41,13 +43,13 @@
 
 Hopper 架构的 GPU 如下：
 
-![image-20240825152154462](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240825152154462.png)
+![image-20240825152154462](./images/image-20240825152154462.png)
 
-### 硬件单元
+### 2.2 硬件单元
 
 GPU 几乎主要由计算单元 ALU 组成，仅有少量的控制单元和存储单元，因此具有强大的计算能力。
 
-![image-20240824221803596](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240824221803596.png)
+![image-20240824221803596](./images/image-20240824221803596.png)
 
 > 上图中，左边为 CPU，右边为 GPU。
 
@@ -58,11 +60,11 @@ GPU 几乎主要由计算单元 ALU 组成，仅有少量的控制单元和存�
 - SM：Stream Multiprocessors，流式多处理器；
 - HBM：High Band Memory，高带宽处理器。
 
-![image-20240824222408693](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240824222408693.png)
+![image-20240824222408693](./images/image-20240824222408693.png)
 
 一个 GPC 包含多个 TPC，一个 TPC 包含多个 SM，一个 SM 包含多个 Block、Thread 以及各种 CUDA Tensor Core。
 
-### SM
+### 2.3 SM
 
 SM（流式多处理器）的核心组件包括：CUDA 核心、共享内存、寄存器等，它包含许多为线程执行数学运算的 Core，是 NVIDIA 的核心，每一个 SM 都可以并发地执行数百个线程。
 
@@ -77,39 +79,39 @@ SM（流式多处理器）的核心组件包括：CUDA 核心、共享内存、�
 - Register File：寄存器堆；
 - Load/Store：访问存储单元（LD/ST，负责处理数据）。
 
-![image-20240824222832422](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240824222832422.png)
+![image-20240824222832422](./images/image-20240824222832422.png)
 
 后来，CUDA Core 演变为了单独的 FP32、FPU、INT32-ALU。
 
-### Tensor Core
+### 2.4 Tensor Core
 
 Tensor Core 可以支持混合精度运算。混合精度是指在底层硬件算子（Tensor Core）层面，使用半精度（FP16）作为输入和输出，使用全精度（FP32）进行中间结果计算从而不损失过多精度的技术。
 
-![image-20240825153309065](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240825153309065.png)
+![image-20240825153309065](./images/image-20240825153309065.png)
 
 每个 Tensor Core 每周期能执行 `4*4*4` GEMM，即 64 个 FMA。
 
-![image-20240825153812173](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240825153812173.png)
+![image-20240825153812173](./images/image-20240825153812173.png)
 
 Tensor Core 可以通过 Warp 把多个线程聚合起来一起进行计算和控制。最终对外提供一个 `16*16*16` 的 API 给到 CUDA。
 
-### NVLink
+### 2.5 NVLink
 
 NVLink 让单台服务器里面的 GPU 可以进行数据的互联，是用于 CPU 和 GPU 之间进行通信的 PCIe 的带宽的 3 倍，避免了数据通过 PCIe 回传到 CPU 的内存里面，从而减少了数据传输的延迟，实现了整个网络的拓扑互联。
 
-![image-20240826203709593](images/image-20240826203709593.png)
+![image-20240826203709593](./images/image-20240826203709593.png)
 
-### NVSwitch
+### 2.6 NVSwitch
 
 单卡之间通过 NVLink 互联，多卡之间通过 NVSwitch 互联。
 
-## GPU 工作原理
+## 三、GPU 工作原理
 
-### 缓存机制
+### 3.1 缓存机制
 
 **GPU 的多级缓存**
 
-![image-20240824150203446](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240824150203446.png)
+![image-20240824150203446](./images/image-20240824150203446.png)
 
 **HBM 的作用是什么？**
 
@@ -117,8 +119,7 @@ HBM（High Bandwidth Memory，高带宽内存）：显存，GPU 里的主内存�
 
 越靠近 SM 的缓存，数据搬运的延迟越低，因此把数据存在离 SM 越近的地方，将更有利于提高计算的效率。在实际计算中，我们总是希望尽快将当前缓存里的数据计算完并将结果返回，然后去换下一批数据上来。如果 GPU 里没有自己的 HBM，那么每一次计算都需要去 CPU 里读取数据（通过 PCIe），延迟太高。
 
-
-![image-20240824150841592](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240824150841592.png)
+![image-20240824150841592](./images/image-20240824150841592.png)
 
 因此，并不是算力越高，计算的效率就越高，还需考虑数据传输的效率（带宽）等因素，这里引入“计算强度”的概念。
 
@@ -129,7 +130,6 @@ HBM（High Bandwidth Memory，高带宽内存）：显存，GPU 里的主内存�
 因此，只有线程数足够多，才能让整个系统的内存处于忙碌的状态。
 
 下面对各级内存的性能进行了对比：
-
 
 | Data Location | Bandwitch (GB/sec) | Compute Intensity | Latency (ns) | Threads Required |
 | ------------- | ------------------ | ----------------- | ------------ | ---------------- |
@@ -143,7 +143,7 @@ HBM（High Bandwidth Memory，高带宽内存）：显存，GPU 里的主内存�
 
 计算强度与矩阵大小的关系如下：
 
-![image-20240824175930749](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240824175930749.png)
+![image-20240824175930749](./images/image-20240824175930749.png)
 
 随着参与计算的矩阵不断变大，GPU 里的内存就会逐渐空闲下来（不是指内存的容量降低，而是指内存的搬运变慢），因为此时 GPU 的计算单元需要花费更多的时间去对矩阵进行运算。
 
@@ -155,13 +155,13 @@ GPU 的解决方法：
 - 通过多级缓存来平衡计算和带宽的 Gap；
 - 通过 Tensor Core 来增加峰值算力（Tensor Core：专门用于矩阵计算，以提高计算的强度，可以提升单芯片浮点运算的能力）。
 
-### 线程机制
+### 3.2 线程机制
 
 GPU 里提供了大量的线程，超配的线程数可以支持对不同层级的数据进行搬运和计算。
 
 在一个 SM 中包含了大量的 warp（线程束），每 4 个 warp 可以并发地执行。
 
-![image-20240824151721541](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240824151721541.png)
+![image-20240824151721541](./images/image-20240824151721541.png)
 
 **什么是 warp？**
 
@@ -173,7 +173,7 @@ warp 是 SM 的基本执行单元，一个 warp 包含 32 个并行的 Thread，
 
 在 AI 计算中，不是所有的计算都可以支持线程独立运算，有些计算模式的数据之间互相依赖，线程之间需要进行配合。——线程分层执行。
 
-![image-20240824182034878](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240824182034878.png)
+![image-20240824182034878](./images/image-20240824182034878.png)
 
 GPU 中的线程包含以下 3 个层次：
 
@@ -183,9 +183,9 @@ GPU 中的线程包含以下 3 个层次：
 
 这样，在同一个 Block 中，可以同时执行大量相关的操作，并且超配的 Block 数也可以弥补数据处理的延迟。
 
-## CUDA 平台
+## 四、CUDA 平台
 
-### 基本概念
+### 4.1 基本概念
 
 CUDA（Compute Unified Device Architecture）具有以下两层意义：
 
@@ -194,11 +194,11 @@ CUDA（Compute Unified Device Architecture）具有以下两层意义：
 
 CUDA 实现了软硬件的解耦。
 
-### 程序架构
+### 4.2 程序架构
 
 主设概念：主机程序（Host）和设备程序（Device）之间可以进行通信（数据拷贝）。Device 通过 GPU 进行并行操作，计算完成后将结果传递给 CPU 进行处理。
 
-![image-20240825102335931](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240825102335931.png)
+![image-20240825102335931](./images/image-20240825102335931.png)
 
 - Host 部分的代码在 CPU 上执行（.c/cpp 文件）；
 - Device 部分的代码在 GPU 上执行（.cu 文件），当遇到需要并行处理的部分，CUDA 就会将程序编译成 GPU 能执行的程序，并传送到 GPU，这个部分叫做 kernel。
@@ -249,7 +249,7 @@ int main(void)
 }
 ```
 
-**线程分级**
+**线程分级**：
 
 执行一个 kernel 时，所有的线程都会封装在一个 Grid 里面。同一个 Grid 里面的线程可以共享全局内存（Global Memory），即 `__global__` 里的数据都是共享的。
 
@@ -257,7 +257,7 @@ Block 间并行执行，并且无法通信，也没有执行顺序。每个 Bloc
 
 CUDA 并行程序，会被多个 Thread 同时执行。
 
-![image-20240825105648192](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240825105648192.png)
+![image-20240825105648192](./images/image-20240825105648192.png)
 
 CUDA 与 GPU 硬件的对应关系：
 
@@ -265,8 +265,8 @@ CUDA 与 GPU 硬件的对应关系：
 - 一旦在 SM 上调起了 Block 线程块，就会一直保留到执行完 kernel；
 - 一个 SM 可以同时保存多个 Block 线程块，块间并行地执行。
 
-![image-20240825110210732](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240825110210732.png)
+![image-20240825110210732](./images/image-20240825110210732.png)
 
-## 算力计算
+## 七、算力计算
 
-![image-20240825110315382](E:\GitHub\cs-self-learning\09.AI\06.AI_System\02.Notes\images\image-20240825110315382.png)
+![image-20240825110315382](./images/image-20240825110315382.png)
