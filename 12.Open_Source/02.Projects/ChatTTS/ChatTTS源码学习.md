@@ -319,27 +319,58 @@ Numba 能够支持 CUDA GPU 编程，能够自动地在 host 与 device 之间�
 4. tokenizer -> encode -> embed -> gpt.generate；
 5. decode to wavs。
 
-## 模型导出
+### 多卡推理
 
-### onnx
+> NPU 适配，搜索关键词：`torch.cuda`、`gpu`。
 
-onnx：一种表示模型的格式，便于在不同框架、平台上迁移模型。
+`configs.py`：
 
-## NPU 原生支持进展
+**ParallelConfig**:
+Configuration for the distributed execution.
+    `max_parallel_loading_workers`：max concurrent workers.
 
-### TODO List
+`llm_engine.py`：
 
-- [ ] 提交 issue，询问社区意见，加入 qq 群；
-- [ ] vocos 模块需要迁移到 CPU 上进行使用；
-- [ ] 设置 NPU device，需要检查内存大小；
-- [ ] 分布式推理，需要支持 NPU，优化针对 cuda 的硬编码。
+**LLMEngine**：
+This is the main class for the vLLM engine.
+    The `LLM` class wraps this class for offline batched inference.
+    The `AsyncLLMEngine` class wraps this class for online serving.
+`__init__()`：
+    Create the parallel GPU workers.
+    `_init_workers_ray(placement_group)`：？
+        `_run_workers("init_model")`：？
+        `_run_workers("load_model", max_concurrent_workers)`：？
+    `_init_workers()`：？
+        `_run_workers("init_model")`：？
+        `_run_workers("load_model")`：？
+    `_run_workers(..., method, ...)`：Runs the given method on all workers.
 
-### 算子不支持复数类型报错
+分布式计算框架 Ray：
+    driver worker：？
+    ray worker：？
 
-问题如下：
+`worker.py`：
 
-```
-... other not implemented for DT_COMPLEX64, should be in dtype support list [DT_FLOAT,DT_INT32,DT_INT64,DT_FLOAT16,DT_INT16,DT_INT8,DT_UINT8,DT_DOUBLE,DT_BOOL,DT_BFLOAT16,].
-```
+🌟 需要适配的 API：
+    `set_device()` ✅
+    `empty_cache()` ✅
+    `synchronize()`
+    `mem_get_info()` ✅
+    `get_device_capability()`
 
-> 参考资料：[<u>V100 和 Ascend 910A 微调 glm4 均失败，寻求帮助</u>](https://github.com/hiyouga/LLaMA-Factory/issues/4339)。
+`model_runner.py`：
+
+`load_model()`：调用 `get_model()` 获取 `model_config`。
+
+🌟 需要适配的 API：
+    `synchronize()`
+    `CUDAGraph()`
+
+`model_loader.py`：
+
+`get_model()`：涉及 `torch.cuda.get_device_capability()`。
+
+🌟 需要适配的 API：
+    `get_device_capability()`
+
+[torch_npu API 查询](https://www.hiascend.com/document/detail/zh/Pytorch/60RC2/apiref/apilist/ptaoplist_000655.html)。

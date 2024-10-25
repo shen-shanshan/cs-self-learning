@@ -49,13 +49,11 @@ RUN groupadd -g $YOUR_GROUP_ID $YOUR_USER_NAME && \
 CMD ["/bin/bash", "/home/sss/bin/entrypoint.sh"]
 ```
 
-**注意事项**：
-
-Dockerfile 中的 `YOUR_USER_NAME`、`YOUR_GROUP_ID` 以及 `YOUR_USER_ID` 为将要在容器中创建的用户和用户组，请自行进行设置。
-
-`CMD` 中的 `entrypoint.sh` 脚本文件为容器每次启动时都会去执行的命令集合，这里文件前面的路径需要替换为自己容器中的路径（Dockerfile 里面写的路径都是指容器里面的）。
-
-另外，我们需要将自己宿主机中存放个人数据的目录（我是 `/data/disk/sss`）挂载到容器中自己的用户目录（我是 `/home/sss`）下，并将编写好的 `entrypoint.sh` 脚本存放到 `/data/disk/sss/bin` 目录下，这样我们进入容器后，就能在容器的 `/home/sss/bin` 目录下找到 `entrypoint.sh` 脚本并执行它（如果目录映射不对，在容器中找不到该脚本文件，那么容器启动时就会报错）。
+> 注意：
+>
+> - Dockerfile 中的 `YOUR_USER_NAME`、`YOUR_GROUP_ID` 以及 `YOUR_USER_ID` 为将要在容器中创建的用户和用户组，请自行进行设置；
+> - `CMD` 中的 `entrypoint.sh` 脚本文件为容器每次启动时都会去执行的命令集合，这里文件前面的路径需要替换为自己容器中的路径（Dockerfile 里面写的路径都是指容器里面的）；
+> - 我们需要将自己宿主机中存放个人数据的目录（我是 `/data/disk/sss`）挂载到容器中自己的用户目录（我是 `/home/sss`）下，并将编写好的 `entrypoint.sh` 脚本存放到 `/data/disk/sss/bin` 目录下，这样我们进入容器后，就能在容器的 `/home/sss/bin` 目录下找到 `entrypoint.sh` 脚本并执行它（如果目录映射不对，在容器中找不到该脚本文件，那么容器启动时就会报错）。
 
 ### 2.2 构建 base 镜像
 
@@ -118,9 +116,7 @@ fi
 chown -R sss:sss /home/sss
 ```
 
-**注意事项**：
-
-脚本中的 `your_user_name` 和 `your_password` 为容器中的用户，请自行进行设置（该用户会被加入到 `HwHiAiUser` 用户组中，这样该用户才能使用 NPU 进行计算）。
+> 注意：脚本中的 `your_user_name` 和 `your_password` 为容器中的用户，请自行进行设置（该用户会被加入到 `HwHiAiUser` 用户组中，这样该用户才能使用 NPU 进行计算）。
 
 ### 2.4 编写容器配置文件
 
@@ -161,8 +157,6 @@ services:
     # command: /bin/bash -c "chown -R sss:sss /home/sss && /bin/bash"
 ```
 
-**注意事项**：
-
 将配置文件中的以下变量替换为自己的：
 
 - `chattts`：服务名称；
@@ -172,7 +166,7 @@ services:
 - `- 8333:22`：将宿主机端口（自己设置，这里我随便设置的 8333）映射到容器中的端口（22，这是 ssh 服务的默认端口，方便后续使用 ssh 直接连接到自己的容器中）；
 - `hostname: ascend910b-02`：宿主机名称。
 
-另外，这里的 `docker-compose.yaml` 中不能加 `command` 选项，因为该选项中的命令会覆盖 `Dockerfile` 中的 `CMD` 选项，导致 `entrypoint.sh` 脚本不会被执行（后果很严重！）。这里如果还想加一些在容器启动时需要执行的命令，可以直接加到 `entrypoint.sh` 脚本中，这样每次容器启动时都会执行这些命令。
+> 注意：这里的 `docker-compose.yaml` 中不能加 `command` 选项，因为该选项中的命令会覆盖 `Dockerfile` 中的 `CMD` 选项，导致 `entrypoint.sh` 脚本不会被执行（后果很严重！）。这里如果还想加一些在容器启动时需要执行的命令，可以直接加到 `entrypoint.sh` 脚本中，这样每次容器启动时都会执行这些命令。
 
 ### 2.5 启动并进入容器
 
@@ -293,9 +287,7 @@ sh Ascend-cann-toolkit_8.0.RC3.alpha001_linux-aarch64.run --install
 # bash Ascend-cann-toolkit_8.0.RC3.alpha001_linux-aarch64.run --install
 ```
 
-**注意事项**：
-
-在容器中安装 CANN 软件时，为保证安装路径的正确，需要切换到自己的用户进行安装（该软件会安装到 `~/Ascend` 目录下）。
+> 注意：在容器中安装 CANN 软件时，为保证安装路径的正确，需要切换到自己的用户进行安装（该软件会安装到 `~/Ascend` 目录下）。
 
 ```bash
 # 切换用户：su <用户名>
@@ -312,7 +304,7 @@ sh Ascend-cann-kernels-910b_8.0.RC3.alpha001_linux.run --install
 # bash Ascend-cann-kernels-910b_8.0.RC3.alpha001_linux.run --install
 ```
 
-> 这里同样也需要切换到自己的用户进行安装。
+> 注意：这里同样也需要切换到自己的用户进行安装。
 
 ### 3.5 设置环境变量
 
@@ -395,9 +387,7 @@ GitHub 仓库地址：[<u>Ascend Extension for PyTorch</u>](https://github.com/A
 pip install torch-npu==2.1.0.post6 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-**注意事项**：
-
-torch-npu 的大版本（如：`2.1.0`）需要和 torch 匹配，具体的版本匹配信息请参考 [<u>Ascend Extension for PyTorch</u>](https://github.com/Ascend/pytorch) 中的 `Ascend Auxiliary Software` 部分。
+> 注意：torch-npu 的大版本（如：`2.1.0`）需要和 torch 匹配，具体的版本匹配信息请参考 [<u>Ascend Extension for PyTorch</u>](https://github.com/Ascend/pytorch) 中的 `Ascend Auxiliary Software` 部分。
 
 ### 4.3 验证安装是否成功
 
@@ -480,11 +470,9 @@ Host sss-docker
     ServerAliveCountMax 3
 ```
 
-> 具体如何使用 VSCode 连接 SSH 远程服务器请自行搜索。
+## 六、配置 Git 并拉取代码
 
-## 六、使用 git 拉取代码
-
-### 6.1 在容器中配置 git
+### 6.1 在容器中配置 Git
 
 ```bash
 # 配置用户名和邮箱

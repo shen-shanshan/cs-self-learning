@@ -90,8 +90,6 @@ Task 或 Kernel，是 Device 上真正的任务执行体。
 
 ### 3.2 单算子 API 执行
 
-单算子 API 包括：
-
 - NN 算子；
 - DVPP 算子；
 - 融合算子；
