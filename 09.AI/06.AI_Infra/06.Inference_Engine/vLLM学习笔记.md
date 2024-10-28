@@ -52,44 +52,64 @@ PagedAttention 与虚拟内存分页管理的对应关系：
 
 Decode 阶段：当我们计算时，我们使用的是逻辑块，即形式上这些 token 都是连续的。与此同时，vLLM 后台会通过 block table 这个映射关系，帮我们从物理块上获取数据做实际计算。通过 PagedAttention，每个 request 都会认为自己在一个连续且充足的存储空间上操作，尽管物理上这些数据的存储并不是连续的。
 
+## vLLM 代码架构
+
+### 核心组件
+
+![vllm架构](./images/Snipaste_2024-10-28_23-01-37.png)
+
+**LLMEngine**：
+
+- `add_request()`：request -> api server -> LLMEngine：做 Tokenization 并 `add_request()` -> 将 request 转换为 SequenceGroup -> 加入 Scheduler 的 waiting 队列；
+- `abort_request()`：客户端断开连接 -> LLMEngine 的 `abort_request()`；
+- `step()`：执行一次推理过程（一个 prefill 算一次推理，每个 decode 各算一次推理）。
+
+**Scheduler（调度器）**：在每一个推理阶段，决定要把哪些数据送给模型做推理，同时负责给这些模型分配 KV Cache 物理块（只分配了物理块的 id，而不是物理块本身。物理块的实际分配是模型在推理过程中根据物理块 id 来操作的，也就是 CacheEngine 做的事情）。
+
+- 负责管理三个队列：**Waiting**、**Running**、**Swapped**；
+- 每一次调度都保证这一次 `step()` 的数据全部处于 Prompt/Prefill 阶段，或全部处于 Decode/Auto-Regressive 阶段。
+
+**BlockAllocator**：实际参与分配物理块（CPU/GPU）的类。当 GPU 上显存不足时，它会把后来的请求抢占，并将其相关的 KV Cache 物理块全部都先 swap（置换、卸载）到 CPU 上，等后续 GPU 显存充足时，再把它们加载回 GPU 上继续做相关请求的推理。
+
+**Worker**：一个 Worker 对应一块 GPU（如：`gpu:0`），主要负责将我们要使用的模型 load 到各块卡上。
+
+- **CacheEngine**：负责实际管理 CPU/GPU 上的 KV Cache 物理块；
+- **ModelRunner**：负责加载模型，并执行推理，包含 PagedAttention 相关逻辑。
+
+### 初始化
+
+- Scheduler：块表（block table）的初始化；
+- Worker：模型的初始化（load）和 KV cache 的初始化。
+
 ### 调度策略
 
 动态 batch：推理内核引擎（LLMEngine）在实际运作时，batch_size 是可以动态变更的。在每一个推理阶段（prefill 算一个推理阶段，每个 decode 各算一个推理阶段）处理的 batch_size 可以根据当下显存的实际使用情况而变动。
 
 当请求发来时，都先进入 LLMEngine Scheduler 的 waiting 队列中。当模型准备执行下一个推理阶段时，Scheduler 再根据设定的策略，决定哪些数据可以进入 running 队列进行推理。
 
-总结：**先来先服务，后来先抢占，GPU 不够就先 swap 到 CPU 上**。在一个推理阶段处理尽可能多的请求，解决高并发场景下的推理吞吐问题。
+**先来先服务，后来先抢占，GPU 不够就先 swap 到 CPU 上**。
 
-## vLLM 项目架构
+> **后来先抢占（Preemption）**：当准备执行当前这一个推理阶段时，如果 GPU 上没有足够的资源对 running 队列中的全部数据完成下一次推理，我们就取出 running 队列中最后来的数据，将它的 KV Cache swapped 到 CPU 上，同时将这个数据从 running 移到 swapped 中。我们重复执行这个步骤，直到当前 GPU 上有足够的 KV Cache 空间留给剩在 running 中的全部数据为止。而存放在 swapped 队列中的数据，也会在后续 GPU 上有足够空间时，被重新加入 running 队列中进行计算。
 
-**LLMEngine**（核心组件）：
-
-- `add_request()`：request -> api server -> LLMEngine 的 `add_request()` -> 将 request 转换为 SequenceGroup -> 加入 Scheduler 的 waiting 队列；
-- `abort_request()`：客户端断开连接 -> LLMEngine 的 `abort_request()`；
-- `step()`：执行一次推理过程（一个 prefill 算一次推理，每个 decode 各算一次推理）。
-
-**Scheduler（调度器）**：负责管理三个队列：waiting、running、swapped。每一次调度都保证这一次 `step()` 的数据全部处于 prompt/prefill 阶段，或全部处于 decode/auto-regressive 阶段。
+总结：在一个推理阶段处理尽可能多的请求，解决高并发场景下的推理吞吐问题。
 
 ## 参考资料
 
-原理讲解：
+原理分析：
 
 - [<u>vLLM PagedAttention 官方文档</u>](https://docs.vllm.ai/en/stable/dev/kernel/paged_attention.html)；
 - [<u>vLLM 备忘录</u>](https://zhuanlan.zhihu.com/p/730817485)；
 - [<u>vLLM 核心技术 PagedAttention 原理</u>](https://zhuanlan.zhihu.com/p/691038809)；
-- [<u>vLLM & PagedAttention 论文深度解读（一）—— LLM 服务现状与优化思路</u>](https://zhuanlan.zhihu.com/p/656939628)；
+- [<u>LLM 服务现状与优化思路</u>](https://zhuanlan.zhihu.com/p/656939628)。
 
-架构讲解：
+架构分析：
 
 - [<u>vLLM 整体架构解析</u>](https://zhuanlan.zhihu.com/p/691045737)；
+- [<u>vLLM 架构概览</u>](https://zhuanlan.zhihu.com/p/681716326)。
 
-源码阅读：
+源码分析：
 
 - [<u>PagedAttention 代码走读</u>](https://zhuanlan.zhihu.com/p/668736097)；
 - [<u>LLM 高速推理框架 vLLM 源代码分析</u>](https://zhuanlan.zhihu.com/p/641999400)；
 - [<u>深入浅出理解 PagedAttention CUDA 实现</u>](https://zhuanlan.zhihu.com/p/673284781)；
-
-## 不懂的概念
-
-- tensor parallel（对于分布式推理，通过创建多个 worker 执行完整模型的一部分）/data parallel/pipeline parallel？
-- 显存？
+- [<u>vLLM 服务架构及源码实现</u>](https://zhuanlan.zhihu.com/p/661360117)。

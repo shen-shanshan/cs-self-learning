@@ -26,7 +26,9 @@ AI 全栈底层技术：
 **PyTorch**：
 
 - [<u>PyTorch internals</u>](http://blog.ezyang.com/2019/05/pytorch-internals/)；
-- [<u>PyTorch dispatcher</u>](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)。
+- [<u>PyTorch dispatcher</u>](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)；
+- [<u>PyTorch 从入门到深入</u>](https://zhuanlan.zhihu.com/p/716453924)；
+- [<u>PyTorch 张量并行</u>](https://zhuanlan.zhihu.com/p/711574586)。
 
 **推理引擎**：
 
