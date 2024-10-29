@@ -14,5 +14,6 @@
 
 ## 参考资料
 
-- 课程：bilibili 视频；
+- 课程视频：[<u>动手自制大模型推理框架-bilibili</u>](https://www.bilibili.com/cheese/play/ss23408?csource=common_hp_favorite_null&spm_id_from=333.999.0.0)；
+- 课程代码：[<u>KuiperLLama</u>](https://github.com/zjhellofss/KuiperLLama)；
 - 开源项目：[<u>vLLM</u>](https://github.com/vllm-project/vllm)、[<u>SGLang</u>](https://github.com/sgl-project/sglang)。
