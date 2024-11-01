@@ -12,6 +12,10 @@ SGLang 是一个用于大语言模型 & 视觉模型高效推理的服务框架�
 - 提供了一种更加直观的前端接口，使 LLM 与用户的交互变得更加简洁和容易；
 - 支持大部分生成式模型，且易于扩展对更多模型的支持。
 
+与其它产品的对比：
+TensorRT-LLM, vLLM, MLC-LLM, and Hugging Face TGI：**hard to use, difficult to customize, or lacking in performance**.
+SGLang：**not only user-friendly and easily modifiable but also delivers top-tier performance**.
+
 ### 支持的模型
 
 - generative models (Llama, Gemma, Mistral, QWen, DeepSeek, LLaVA, etc.)
@@ -30,9 +34,20 @@ SGLang 是一个用于大语言模型 & 视觉模型高效推理的服务框架�
 
 [<u>LMSYS Org 主页</u>](https://lmsys.org/about/)。
 
+主要贡献者：
+
+- Lianmin Zheng，xAI，伯克利 phd
+- Ying Sheng，斯坦福 phd，伯克利访学
+- Liangsheng Yin，伯克利 research assistant
+- Yineng Zhang，a software engineer on the Model Performance Team at Baseten
+- Byron Hsu，linkedin
+- Ke Bao
+- Cody Yu，Staff Software Engineer at Anyscale
+- ……
+
 ## 版本发布策略
 
-- 2024/10: `Release v0.3.4.post1`
+- 2024/10: `Release v0.3.4.post1`，Hosted the first LMSYS online meetup，Added support for Intel XPU
 - 2024/10: `Release v0.3.2`
 - 2024/09: `Release v0.3.0`
 - 2024/09: `Release v0.2.13`
@@ -41,14 +56,14 @@ SGLang 是一个用于大语言模型 & 视觉模型高效推理的服务框架�
 - 2024/07: `Release v0.2.0`
 - 2024/07: `Release v0.1.20`
 - 2024/07: `Release v0.1.18`
-- 2024/06: `Release v0.1.17`
-- 2024/05: `v0.1.16`
+- 2024/06: `Release v0.1.17`，论文发表，Add speculative execution for OpenAI API
+- 2024/05: `v0.1.16`，Add OpenAI-compatible API server
 - 2024/03: `Release v0.1.13`
 - 2024/02: `Release v0.1.12`
 - 2024/02: `Release v0.1.11`
 - 2024/01: `Release v0.1.6`
 - 2024/01: `Release v0.1.5`
-- ...
+- 2024/01: 第一行代码
 
 总结：基本上每月都会发布新版本。
 

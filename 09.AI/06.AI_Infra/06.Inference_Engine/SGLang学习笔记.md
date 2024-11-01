@@ -8,6 +8,8 @@
 
 - SGLang DSL：大模型应用开发的领域特定语言。
 
+[官方博客](https://lmsys.org/blog/2024-01-17-sglang)
+
 后端部分：
 
 - Efficient KV Cache Reuse with **RadixAttention**；
