@@ -34,4 +34,5 @@ AI 全栈底层技术：
 
 - [<u>CMU 陈天奇 推理综述：Towards Efficient Generative Large Language Model Serving: A Survey from Algorithms to Systems</u>](https://arxiv.org/pdf/2312.15234)；
 - [<u>vLLM 备忘录</u>](https://zhuanlan.zhihu.com/p/730817485)；
-- [<u>vLLM 源代码分析</u>](https://me.tric.space/2023/07/10/vllm/)。
+- [<u>vLLM 源代码分析</u>](https://me.tric.space/2023/07/10/vllm/)；
+- [<u>清华大模型推理综述</u>](https://www.53ai.com/news/LargeLanguageModel/2024072020894.html)。

@@ -1,4 +1,4 @@
-# INVIDIA GPU & CUDA 入门学习
+# NVIDIA GPU & CUDA 入门学习
 
 ## 概述
 
