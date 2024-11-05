@@ -1,4 +1,4 @@
-# AI Infra
+# AI Infra 学习路线
 
 ## 概述
 
