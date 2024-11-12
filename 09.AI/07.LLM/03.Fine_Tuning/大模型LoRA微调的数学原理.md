@@ -36,7 +36,7 @@ $$
 \mathbf{h} = \mathbf{W}\mathbf{x} + \mathbf{\Delta W}\mathbf{x} \approx \mathbf{W}\mathbf{x} + \mathbf{B}\mathbf{A}\mathbf{x}
 $$
 
-> 其中：$\mathbf{W}、\mathbf{\Delta W} \in \mathbb{R}^{d*d}$；$\mathbf{A} \in \mathbb{R}^{r*d}$（初始化为正态分布）；$\mathbf{B} \in \mathbb{R}^{d*r}$（初始化为零）；r 为矩阵 $\mathbf{\Delta W}$ 的秩。
+其中 $\mathbf{W}、\mathbf{\Delta W} \in \mathbb{R}^{d*d}$，$\mathbf{A} \in \mathbb{R}^{r*d}$（初始化为正态分布），$\mathbf{B} \in \mathbb{R}^{d*r}$（初始化为零），$r$ 为矩阵 $\mathbf{\Delta W}$ 的秩。
 
 ### 3.2 LoRA 的优点
 
@@ -49,12 +49,76 @@ $$
 简单介绍完了 LoRA 的基本原理，下面将针对以下几个问题进行分析和说明，这些问题也是我在刚开始学习 LoRA 时产生的疑惑。
 
 - 为什么可以将 $\mathbf{\Delta W}$ 拆分为 $\mathbf{A}$ 和 $\mathbf{B}$？这样做为什么是有效的？
-- r 作为一个超参数，它的取值是如何影响 LoRA 的表现的？
+- $r$ 作为一个超参数，它的取值是如何影响 LoRA 的表现的？
 - $\mathbf{A}$ 和 $\mathbf{B}$ 为什么要这样初始化？
 
 ### 4.1 LoRA 的有效性分析
 
-……
+**为什么可以将 $\mathbf{\Delta W}$ 拆分为 $\mathbf{A}$ 和 $\mathbf{B}$？这样做为什么是有效的？**
+
+在回答这个问题之前，我们需要先了解一个基本概念——**SVD（Singular Value Decomposition，奇异值分解）**。
+
+SVD 定理：
+
+对于一个非零的 $m*n$ 实矩阵 $\mathbf{M} \in \mathbb{R}^{m*n}$，我们可以将其表示为以下三个实矩阵乘积形式的运算：
+
+$$
+\mathbf{M} = \mathbf{U}\mathbf{Σ}\mathbf{V}^{T}
+$$
+
+其中 $\mathbf{U}$ 是 $m$ 阶正交矩阵，$\mathbf{V}$ 是 $n$ 阶正交矩阵，$\mathbf{Σ}$ 是由降序排列的对角线元素组成的 $m*n$ 矩形对角矩阵。
+
+$$
+\mathbf{Σ} = diag(\sigma_{1}, \sigma_{2}, ..., \sigma_{p}) \\
+\sigma_{1} \geq \sigma_{2} \geq ... \geq \sigma_{p} \geq 0
+$$
+
+$\mathbf{U}\mathbf{Σ}\mathbf{V}^{T}$ 称为矩阵 $\mathbf{M}$ 的奇异值分解，$\sigma_{i}$ 称为矩阵 $\mathbf{M}$ 的奇异值，$\mathbf{U}$ 的列向量称为左奇异向量，$\mathbf{V}$ 的列向量称为右奇异向量。
+
+> “正交矩阵”：
+>
+> - 每两行/列之间互相正交（线性无关），且都是单位向量；
+> - 是方阵；
+> - 元素都是实数；
+> - 其转置矩阵同时也是其逆矩阵。
+
+矩阵 $\mathbf{M}$ 的奇异值分解一定存在，但不一定唯一。
+
+上面的矩阵分解方式又叫做**完全奇异值分解**，而实际中更加常用的则是其紧凑形式和截断形式。
+
+**紧奇异值分解：**
+
+设有 $m*n$ 实矩阵 $\mathbf{M}$，其秩为 $r$，则有紧奇异值分解为：
+
+$$
+\mathbf{M} = \mathbf{U}_{r}\mathbf{Σ}_{r}\mathbf{V}^{T}_{r}
+$$
+
+其中 $\mathbf{U}_{r}$ 是 $m*r$ 矩阵，$\mathbf{V}_{r}$ 是 $n*r$ 矩阵，$\mathbf{Σ}_{r}$ 是 $r$ 阶对角矩阵。矩阵 $\mathbf{U}_{r}$ 由完全奇异值分解中 $\mathbf{U}$ 的前 $r$ 列构成，矩阵 $\mathbf{V}_{r}$ 由完全奇异值分解中 $\mathbf{V}$ 的前 $r$ 列构成，矩阵 $\mathbf{Σ}_{r}$ 由完全奇异值分解中 $\mathbf{Σ}$ 的前 $r$ 个对角线元素构成。
+
+**截断奇异值分解：**
+
+与“紧奇异值分解”类似，只不过这里只保留最大的 $k$ 个奇异值（$k < r$）及其对应的奇异向量，有：
+
+$$
+\mathbf{M} \approx \mathbf{U}_{k}\mathbf{Σ}_{k}\mathbf{V}^{T}_{k}
+$$
+
+在实际应用中，常常需要对矩阵的数据进行压缩，将其近似表示，奇异值分解提供了一种方法。**奇异值分解是在平方损失（弗罗贝尼乌斯范数）意义下对矩阵的最优近似**。紧奇异值分解对应着无损压缩，截断奇异值分解对应着有损压缩。
+
+因此，SVD 的原理告诉我们，**可以用低秩矩阵来近似地表达原矩阵**。
+
+> “弗罗贝尼乌斯范数”：
+> $$
+> \lVert A \rVert_{F} = \bigg( \sum_{i = 1}^{m}\sum_{j = 1}^{n} (a_{ij})^{2} \bigg)^{\frac{1}{2}}, \mathbf{A} \in \mathbb{R}^{m*n}
+> $$
+> “奇异值分解在统计中的主要应用为主成分分析（PCA）。数据集的特征值（在 SVD 中用奇异值表征）按照重要性排列，降维的过程就是舍弃不重要的特征向量的过程，而剩下的特征向量张成空间为降维后的空间。”
+
+具体地，在 LoRA 中，将矩阵 $\mathbf{U}_{k}\mathbf{Σ}_{k}$ 合并为了一个矩阵 $\mathbf{B} \in \mathbb{R}^{m*k}$，将矩阵 $\mathbf{V}^{T}_{k}$ 表示为了矩阵 $\mathbf{A} \in \mathbb{R}^{k*n}$，从而可以用更少的数据量来表示矩阵 $\mathbf{\Delta W}$。
+
+在实际微调中，由于事先并不知道矩阵 $\mathbf{\Delta W}$ 中具体的值（除非我们先全参微调一遍，但是这样的话就没必要用 LoRA 了），我们无法直接计算出 $\mathbf{\Delta W}$ 的 SVD 分解结果，因此论文作者将秩 $r$ 作为一个超参数，并让模型在训练中自己去学习矩阵 $\mathbf{A}$ 和 $\mathbf{B}$ 的值。
+
+具体地，引入阿尔法……
 
 ## 素材
 
