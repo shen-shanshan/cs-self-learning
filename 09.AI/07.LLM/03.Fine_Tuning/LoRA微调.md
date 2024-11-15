@@ -336,6 +336,7 @@ QLoRA 的核心工作其实是模型量化，通过定义一个 NF4 的精度单
 - Delta-LoRA
 - LoRA+
 - LoRA-drop
+- DoRA
 - ……
 
 ## 参考资料
