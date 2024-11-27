@@ -30,6 +30,9 @@ modelscope download --model Qwen/Qwen1.5-0.5B README.md --local_dir ./dir
 
 modelscope download --model Qwen/Qwen2.5-7B-Instruct --local_dir ./my_models/qwen2.5-7b-instruct
 
+modelscope download --model Embedding-GGUF/gte-Qwen2-1.5B-instruct-Q8_0-GGUF --local_dir ./my_models/
+modelscope download --model Qwen/Qwen2.5-1.5B-Instruct-GGUF --local_dir ./my_models/qwen2.5-1.5b/ qwen2.5-1.5b-instruct-q8_0.gguf
+
 huggingface-cli download --resume-download Qwen/Qwen2.5-7B-Instruct-GGUF --local-dir ./my_models/qwen2.5-7b-instruct-gguf
 ```
 
@@ -45,6 +48,8 @@ python3 convert_hf_to_gguf.py my_models/qwen2.5-7b-instruct/
 
 # [Optional] quantize the model to 4-bits (using Q4_K_M method)
 ./llama-quantize ./my_models/ggml-model-f16.gguf ./my_models/ggml-model-Q4_K_M.gguf Q4_K_M
+
+./llama-quantize ./my_models/qwen2.5-7b-instruct-fp16.gguf ./my_models/ggml-model-Q8_K_M.gguf q8_0
 ```
 
 ### Test
@@ -55,7 +60,7 @@ python3 convert_hf_to_gguf.py my_models/qwen2.5-7b-instruct/
 ./build/bin/llama-cli -m ./my_models/qwen1.5-1.8b/My_Models-1.8B-F16.gguf -p "程序员天天加班，怎么保持健康的身体:" -ngl 32
 
 # 用这个：
-./build/bin/llama-cli -m ./my_models/qwen2.5-7b-instruct-fp16.gguf -p "作为中国人怎么学习英语:" -ngl 32
+./build/bin/llama-cli -m ./my_models/qwen2.5-7b-instruct-fp16.gguf -p "Building a website can be done in 10 steps:" -ngl 32
 
 ./build/bin/llama-cli -m ./my_models/qwen2.5-7b-instruct/qwen2.5-7B-instruct-F16.gguf -p "Building a website can be done in 10 steps:" -ngl 32
 ```

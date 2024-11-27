@@ -95,7 +95,7 @@ git checkout master
 ### Test
 
 ```bash
-./build/bin/llama-cli -m ./my_models/qwen2.5-7b-instruct-fp16.gguf -p "Building a website can be done in 10 steps:" -ngl 32
+./build/bin/llama-cli -m ./my_models/qwen2.5-1.5b/qwen2.5-1.5b-instruct-q8_0.gguf -p "Building a website can be done in 10 steps:" -ngl 32
 ```
 
 ## Commit message

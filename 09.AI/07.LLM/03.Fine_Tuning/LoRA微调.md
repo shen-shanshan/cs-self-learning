@@ -329,7 +329,23 @@ QLoRA 的核心工作其实是模型量化，通过定义一个 NF4 的精度单
 
 ### LongLoRA
 
-...
+因为 Multi-head attention 的计算会消耗大量的显存，相比于常规的 2048 长度的预训练模型微调，如果你想扩大 4 倍的 context 长度到 8192，差不多需要 16 倍的训练资源。本文首先提出 shift short attention 策略，可以让模型在微调的时候长度远远短于推理时候的长度，并且保持跟全参微调差不多的效果。其次，为了更适用，对长 context 微调的 lora 进行了测试并优化，使用新的 lora 策略可以达到全参微调的效果。整个优化策略可以用 2 行代码实现，可以使用补丁的方式合并到自己的微调代码中，所以几乎能适用所有在做领域模型的朋友们。
+
+> 长度外推微调？
+
+核心技术：
+
+- shift short attention；
+- 相比于加到 query/key/value 等部分上的 lora，这里是将 lora 加到 embedding 和 normaliztion 层上；
+
+mhsa 里面，计算不是全局 global attention 了，而是局部的带偏置的了。
+只是计算 group 内部的几个 tokens 之间的 attention ，即 short attention。
+不增加训练复杂度，但是能达到和标准 attention 一致的效果。
+采用 shift 操作，模型困惑度（perplexity）指标变小。
+
+S2-Attn 在训练过程中通过局部注意力和移位操作，显著减少了计算成本，同时确保了组与组之间的信息流动。在推理阶段，模型仍然使用标准的自注意力机制。
+
+[<u>LongLoRA GitHub</u>](https://github.com/dvlab-research/LongLoRA)
 
 ### 其它
 
@@ -346,3 +362,6 @@ QLoRA 的核心工作其实是模型量化，通过定义一个 NF4 的精度单
 - [<u>AdaLoRA，能做“财务”预算的低秩适配器</u>](https://zhuanlan.zhihu.com/p/657130029)；
 - [<u>LoRA 系列微调技术概述</u>](https://zhuanlan.zhihu.com/p/990958034)；
 - [<u>QLoRA 详解</u>](https://zhuanlan.zhihu.com/p/666234324)；
+- [<u>LongLoRA - 高效微调长上下文的 LLMs</u>](https://zhuanlan.zhihu.com/p/659226557)；
+- [<u>LLM 长 context 微调技巧 - LongLora</u>](https://zhuanlan.zhihu.com/p/658043624)；
+- [<u>LoRA、QLoRA、LoRA+、LongRA、DoRA、MaLoRA、GaLore 方案</u>](https://zhuanlan.zhihu.com/p/8954237216)；
