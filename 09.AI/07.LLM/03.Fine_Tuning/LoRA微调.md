@@ -6,6 +6,42 @@
 > - 基础 llama-factory 框架，在 NPU 上完成 Qwen 模型的 LoRA 微调；
 > - 通过社区交流/演讲等方式了解真实的用户如何在生产环境进行微调及改进（如：k8s），并以 LoRA 大模型微调为主题，在组内完成技术分享。
 
+## LLM 微调知识全景
+
+**In-Context Learning:**
+
+which doesn’t require us to further train or finetune pretrained LLMs if we want to perform specific or new tasks that the LLM wasn’t explicitly trained on. Instead, we can directly provide a few examples of a target task via the input prompt.
+
+In-context learning is very useful if we don’t have direct access to the model, for instance, if we are using the model through an API.
+
+**Finetuning Approaches:**
+
+However, if we have access to the LLM, adapting and finetuning it on a target task using data from a target domain usually leads to superior results.
+
+![1](./images/fine-tuning.png)
+
+**Parameter-efficient finetuning:**
+
+allows us to reuse pretrained models while minimizing the computational and resource footprints.
+
+1. Reduced computational costs (requires fewer GPUs and GPU time);
+2. Faster training times (finishes training faster);
+3. Lower hardware requirements (works with smaller GPUs & less smemory);
+4. Better modeling performance (reduces overfitting);
+5. Less storage (majority of weights can be shared across different tasks).
+
+finetune LLM with high modeling performance while only requiring the training of only a small number of parameters. These methods are usually referred to as **parameter-efficient finetuning techniques (PEFT)**.
+
+![1](./images/peft.png)
+
+In a nutshell, they all involve **introducing a small number of additional parameters that we finetuned** (as opposed to finetuning all layers as we did in the Finetuning II approach above). In a sense, Finetuning I (only finetuning the last layer) could also be considered a parameter-efficient finetuning technique. However, techniques such as prefix tuning, adapters, and low-rank adaptation, all of which **“modify” multiple layers**, achieve much better predictive performance (at a low cost).
+
+**Conclusion:**
+
+Fine-tuning all layers of a pretrained LLM remains the gold standard for adapting to new target tasks, but there are several efficient alternatives for using pretrained transformers. Methods such as **feature-based approaches**, **in-context learning**, and **parameter-efficient finetuning techniques** enable effective application of LLMs to new tasks while minimizing computational costs and resources.
+
+Moreover, **reinforcement learning with human feedback (RLHF)** serves as an alternative to supervised finetuning, potentially enhancing model performance.
+
 ## 背景介绍
 
 **微调**：把已经训练好的模型（pretrained model）拿来，给它吃特定的下游任务数据，使得模型在预训练权重上继续训练，直至满足下游任务性能标准。
@@ -359,9 +395,14 @@ S2-Attn 在训练过程中通过局部注意力和移位操作，显著减少了
 
 - [<u>大模型低秩适配器 LoRA 原理</u>](https://zhuanlan.zhihu.com/p/646831196)；
 - [<u>大模型低秩适配器 LoRA 源码解读与实操</u>](https://zhuanlan.zhihu.com/p/654897296)；
-- [<u>AdaLoRA，能做“财务”预算的低秩适配器</u>](https://zhuanlan.zhihu.com/p/657130029)；
 - [<u>LoRA 系列微调技术概述</u>](https://zhuanlan.zhihu.com/p/990958034)；
 - [<u>QLoRA 详解</u>](https://zhuanlan.zhihu.com/p/666234324)；
 - [<u>LongLoRA - 高效微调长上下文的 LLMs</u>](https://zhuanlan.zhihu.com/p/659226557)；
 - [<u>LLM 长 context 微调技巧 - LongLora</u>](https://zhuanlan.zhihu.com/p/658043624)；
 - [<u>LoRA、QLoRA、LoRA+、LongRA、DoRA、MaLoRA、GaLore 方案</u>](https://zhuanlan.zhihu.com/p/8954237216)；
+
+更多文章：[<u>ahead of ai</u>](https://magazine.sebastianraschka.com/archive)，搜：Finetuning、Lora。
+
+- [<u>Finetuning Large Language Models</u>](https://magazine.sebastianraschka.com/p/finetuning-large-language-models?utm_source=publication-search)
+- [<u>Using and Finetuning Pretrained Transformers</u>](https://magazine.sebastianraschka.com/p/using-and-finetuning-pretrained-transformers?utm_source=publication-search)
+- [<u>Practical Tips for Finetuning LLMs Using LoRA</u>](https://magazine.sebastianraschka.com/p/practical-tips-for-finetuning-llms?utm_source=publication-search)
