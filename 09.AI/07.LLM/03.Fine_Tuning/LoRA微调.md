@@ -8,19 +8,84 @@
 
 ## LLM 微调知识全景
 
-**In-Context Learning:**
+什么是微调？
+
+![1](./images/fine-tuning-concept.png)
+
+use and finetune pretrained LLMs:
+
+- **In-Context Learning (zero-shot/few-shot learning):** is a valuable and user-friendly method for situations where direct access to the large language model (LLM) is limited, such as when interacting with the LLM through an API or user interface.
+- **Conventional Feature-Based and Finetuning Approaches:** have access to the LLM, adapting and finetuning it on a target task using data from a target domain usually leads to superior results.
+  - Feature-Based and Finetuning Approach
+  - Finetuning 1
+  - Finetuning 2
+- **Parameter-Efficient Finetuning (PEFT):** minimizing the computational and resource footprints, updating a subset of the model parameters. **(SFT)**
+  - Promp Tuning
+    - Hard Promp Tuning
+    - Soft Prompt Tuning
+    - Prefix Tuning
+  - Adapter Method
+  - Reparameterization
+    - Low-Rank Adaptation (LoRA)
+    - QLoRA
+    - LongLoRA
+- **Reinforcement Learning with Human Feedback (RLHF)**
+
+### In-Context Learning
 
 which doesn’t require us to further train or finetune pretrained LLMs if we want to perform specific or new tasks that the LLM wasn’t explicitly trained on. Instead, we can directly provide a few examples of a target task via the input prompt.
 
+in-context learning aims to provide context or examples of the task within the input or prompt, allowing the model to infer the desired behavior and generate appropriate responses. This approach takes advantage of the model’s ability to learn from vast amounts of data during pretraining, which includes diverse tasks and contexts.
+
+For example, suppose we want to use in-context learning for few-shot German–English translation using a large-scale pretrained language model like GPT-3. To do so, we provide a few examples of German–English translations to help the model understand the desired task, as follows:
+
+![1](./images/in-context.png)
+
+优点：
+
+in-context learning has its advantages.
+
+- It can be particularly useful when labeled data for finetuning is limited or unavailable.
+- It also enables rapid experimentation with different tasks without finetuning the model parameters in cases where we don’t have direct access to the model or where we interact only with the model through a UI or API (for example, ChatGPT).
+
 In-context learning is very useful if we don’t have direct access to the model, for instance, if we are using the model through an API.
 
-**Finetuning Approaches:**
+缺点：
+
+Generally, in-context learning does not perform as well as finetuning for certain tasks or specific datasets since it relies on the pretrained model’s ability to generalize from its training data without further adapting its parameters for the particular task at hand.
+
+**Hard Prompt Tuning:**
+
+Hard prompt tuning aims to optimize the prompt itself to achieve better performance. Prompt tuning does not modify the model parameters, but it may involve using a smaller labeled dataset to identify the best prompt formulation for the specific task.
+
+For example, to improve the prompts for the previous German–English translation task, we might try the following three prompting variations:
+
+![1](./images/hard-prompt.png)
+
+缺点：
+
+- performance is usually not as good as full model finetuning, as it does not update the model’s parameters for a specific task, potentially limiting its ability to adapt to task-specific nuances.
+- Furthermore, prompt tuning can be labor intensive since it requires either human involvement comparing the quality of the different prompts or another similar method to do so.
+
+**Indexing:**
+
+...
+
+### Finetuning Approaches
 
 However, if we have access to the LLM, adapting and finetuning it on a target task using data from a target domain usually leads to superior results.
 
+conventional methods for utilizing pretrained transformers:
+
+- training another model on feature embeddings
+- finetuning output layers
+- finetuning all layers
+
 ![1](./images/fine-tuning.png)
 
-**Parameter-efficient finetuning:**
+![1](./images/fine-tuning-compare.png)
+
+### Parameter-Efficient Finetuning
 
 allows us to reuse pretrained models while minimizing the computational and resource footprints.
 
@@ -34,9 +99,53 @@ finetune LLM with high modeling performance while only requiring the training of
 
 ![1](./images/peft.png)
 
+**Soft Prompt Tuning:**
+
+prepend a trainable parameter tensor (the “soft prompt”) to the embedded query tokens. The prepended tensor is then tuned to improve the modeling performance on a target dataset using gradient descent.
+
+```python
+x = EmbeddingLayer(input_ids)
+x = concatenate([soft_prompt_tensor, x], dim=seq_len)
+output = model(x)
+```
+
+where the soft_prompt_tensor has the same feature dimension as the embedded inputs produced by the embedding layer. Consequently, the modified input matrix has additional rows (as if it extended the original input sequence with additional tokens, making it longer).
+
+**Prefix Tuning:**
+
+prepend trainable tensors (soft prompts) to each transformer block instead of only the embedded inputs, which can stabilize the training.
+
+![1](./images/prefix-tuning.png)
+
+Both soft prompt tuning and prefix tuning are considered parameter efficient since they require training only the prepended parameter tensors and not the LLM parameters themselves.
+
+**Adapter Methods:**
+
+In the original adapter method, additional fully connected layers were added after the multi-head self-attention and existing fully connected layers in each transformer block.
+
+![1](./images/adapter-method.png)
+
+Only the new adapter layers are updated when training the LLM, while the remaining transformer layers remain frozen. the first fully connected layer in an adapter block projects its input into a low-dimensional representation, while the second layer projects it back into the original input dimension.
+
+**Low-rank adaptation (LoRA):**
+
+finding a combination of fewer dimensions that can effectively capture most of the information in the original data. Popular low-rank transformation techniques include principal component analysis and singular vector decomposition.
+
+**PEFT 总结：**
+
 In a nutshell, they all involve **introducing a small number of additional parameters that we finetuned** (as opposed to finetuning all layers as we did in the Finetuning II approach above). In a sense, Finetuning I (only finetuning the last layer) could also be considered a parameter-efficient finetuning technique. However, techniques such as prefix tuning, adapters, and low-rank adaptation, all of which **“modify” multiple layers**, achieve much better predictive performance (at a low cost).
 
-**Conclusion:**
+### Reinforcement Learning with Human Feedback (RLHF)
+
+The conventional way to adapt or finetune an LLM for a new target domain or task is to use a supervised approach with labeled target data.
+
+In RLHF, a pretrained model is finetuned using a combination of supervised learning and reinforcement learning.
+
+Human feedback is collected by having humans rank or rate different model outputs, providing a reward signal. The collected reward labels can be used to train a reward model that is then used to guide the LLMs’ adaptation to human preferences. The reward model is learned via supervised learning, typically using a pretrained LLM as the base model, and is then used to adapt the pretrained LLM to human preferences via additional finetuning.
+
+RLHF uses a reward model instead of training the pretrained model on the human feedback directly because involving humans in the learning process would create a bottleneck since we cannot obtain feedback in real time.
+
+### Conclusion
 
 Fine-tuning all layers of a pretrained LLM remains the gold standard for adapting to new target tasks, but there are several efficient alternatives for using pretrained transformers. Methods such as **feature-based approaches**, **in-context learning**, and **parameter-efficient finetuning techniques** enable effective application of LLMs to new tasks while minimizing computational costs and resources.
 
