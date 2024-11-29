@@ -3,7 +3,7 @@
 > 学习目标：
 >
 > - 了解 LoRA 技术诞生背景，学习 LoRA/QLoRA/LONGLoRA 等主流 LoRA 技术的动机、原理和优缺点等知识；
-> - 基础 llama-factory 框架，在 NPU 上完成 Qwen 模型的 LoRA 微调；
+> - 基于 llama-factory 框架，在 NPU 上完成 Qwen 模型的 LoRA 微调；
 > - 通过社区交流/演讲等方式了解真实的用户如何在生产环境进行微调及改进（如：k8s），并以 LoRA 大模型微调为主题，在组内完成技术分享。
 
 ## LLM 微调知识全景
@@ -14,7 +14,7 @@
 
 use and finetune pretrained LLMs:
 
-- **In-Context Learning (zero-shot/few-shot learning):** is a valuable and user-friendly method for situations where direct access to the large language model (LLM) is limited, such as when interacting with the LLM through an API or user interface.
+- **In-Context Learning (zero-shot/few-shot learning、prompting):** is a valuable and user-friendly method for situations where direct access to the large language model (LLM) is limited, such as when interacting with the LLM through an API or user interface.
 - **Conventional Feature-Based and Finetuning Approaches:** have access to the LLM, adapting and finetuning it on a target task using data from a target domain usually leads to superior results.
   - Feature-Based and Finetuning Approach
   - Finetuning 1
@@ -167,6 +167,12 @@ Moreover, **reinforcement learning with human feedback (RLHF)** serves as an alt
 - 并行训练时（例如：Transformer 架构常用的张量模型并行），Adapter 层会产生额外的通讯量，增加通讯时间。
 
 **Prefix Tuning**：通过对输入数据增加前缀（prefix）来做微调（prefix 不仅可以加在输入层，还可以加在 Transformer Layer 输出的中间层）。在后续微调中，只需要冻住模型其余部分，单独训练 prefix token 相关的参数即可，每个下游任务都可以单独训练一套 prefix token。prefix 的作用是引导模型提取输入中的特定信息，进而更好地生成结果。
+
+![1](./images/prefix-tuning-2.png)
+
+Based on intuition from prompting, we believe that having a proper context can steer the LM without changing its parameters.
+
+![1](./images/prefix-tuning-3.png)
 
 缺点：
 
@@ -397,7 +403,7 @@ QLoRA 的优化有三个核心要点：
 
 在量化过程中，状态张量被分块处理，通过每个块的最大值进行归一化，最后得到的是最近的值以及它所在块的最大值。在反量化时，我们根据存储的量化后的低精度的值以及它所在块的最大值恢复到高精度的值。
 
-#### 4 位标准浮点数量化
+#### 四位标准浮点数量化
 
 QLoRA 采用分块量化：
 
@@ -472,6 +478,18 @@ QLoRA 有一个 NF4 的存储数据类型和 BF16 的计算数据类型。在进
 
 QLoRA 的核心工作其实是模型量化，通过定义一个 NF4 的精度单位将原模型的参数精度减小了数倍，从而大幅节约了训练时占用的显存。
 
+- Default LoRA with **16-bit brain floating point (BF16)** precision
+- QLoRA with **4-bit Normal Floats (4NF)**
+
+> 关于 LLM 数据类型的说明：[<u>淺談 DeepLearning 的浮點數精度 FP32/FP16/TF32/BF16……</u>](https://medium.com/@averyaveavi/%E6%B7%BA%E8%AB%87deeplearning%E7%9A%84%E6%B5%AE%E9%BB%9E%E6%95%B8%E7%B2%BE%E5%BA%A6fp32-fp16-tf32-bf16-%E4%BB%A5llm%E7%82%BA%E4%BE%8B-9bfb475e50be)。
+
+QLoRA 优缺点：
+
+- Training time ⬆️
+- Memory used ⬇️
+
+Indeed, I found that one can save 33% of GPU memory when using QLoRA. However, this comes at a 39% increased training runtime caused by the additional quantization and dequantization of the pretrained model weights in QLoRA.
+
 ### LongLoRA
 
 因为 Multi-head attention 的计算会消耗大量的显存，相比于常规的 2048 长度的预训练模型微调，如果你想扩大 4 倍的 context 长度到 8192，差不多需要 16 倍的训练资源。本文首先提出 shift short attention 策略，可以让模型在微调的时候长度远远短于推理时候的长度，并且保持跟全参微调差不多的效果。其次，为了更适用，对长 context 微调的 lora 进行了测试并优化，使用新的 lora 策略可以达到全参微调的效果。整个优化策略可以用 2 行代码实现，可以使用补丁的方式合并到自己的微调代码中，所以几乎能适用所有在做领域模型的朋友们。
@@ -500,18 +518,55 @@ S2-Attn 在训练过程中通过局部注意力和移位操作，显著减少了
 - DoRA
 - ……
 
+## 微调技巧
+
+### Multiple Training Epochs
+
+multi-epoch training might not benefit instruction finetuning since it can deteriorate the results. This performance decline is likely due to increased overfitting, which warrants additional investigation.
+
+### Balancing LoRA Hyperparameters: R and Alpha
+
+Choosing alpha as two times r is a common rule of thumb when using LoRA for LLMs.
+
+### Can LoRA Weights be Combined?
+
+During training, we keep the LoRA weights separate from the pretrained weights and add them during each forward pass.
+
+If you have a real-world application with many sets of LoRA weights, for example, one set for each application customer, it makes sense to store these weights separately to save disk space.
+
+## 真实的用户是如何在生产环境下（如 k8s）进行大模型微调的？
+
 ## 参考资料
 
-- [<u>大模型低秩适配器 LoRA 原理</u>](https://zhuanlan.zhihu.com/p/646831196)；
-- [<u>大模型低秩适配器 LoRA 源码解读与实操</u>](https://zhuanlan.zhihu.com/p/654897296)；
-- [<u>LoRA 系列微调技术概述</u>](https://zhuanlan.zhihu.com/p/990958034)；
-- [<u>QLoRA 详解</u>](https://zhuanlan.zhihu.com/p/666234324)；
-- [<u>LongLoRA - 高效微调长上下文的 LLMs</u>](https://zhuanlan.zhihu.com/p/659226557)；
-- [<u>LLM 长 context 微调技巧 - LongLora</u>](https://zhuanlan.zhihu.com/p/658043624)；
-- [<u>LoRA、QLoRA、LoRA+、LongRA、DoRA、MaLoRA、GaLore 方案</u>](https://zhuanlan.zhihu.com/p/8954237216)；
+- [<u>大模型低秩适配器 LoRA 原理</u>](https://zhuanlan.zhihu.com/p/646831196)
+- [<u>大模型低秩适配器 LoRA 源码解读与实操</u>](https://zhuanlan.zhihu.com/p/654897296)
+- [<u>LoRA 系列微调技术概述</u>](https://zhuanlan.zhihu.com/p/990958034)
+- [<u>QLoRA 详解</u>](https://zhuanlan.zhihu.com/p/666234324)
+- [<u>LongLoRA - 高效微调长上下文的 LLMs</u>](https://zhuanlan.zhihu.com/p/659226557)
+- [<u>LLM 长 context 微调技巧 - LongLora</u>](https://zhuanlan.zhihu.com/p/658043624)
+- [<u>LoRA、QLoRA、LoRA+、LongRA、DoRA、MaLoRA、GaLore 方案</u>](https://zhuanlan.zhihu.com/p/8954237216)
 
 更多文章：[<u>ahead of ai</u>](https://magazine.sebastianraschka.com/archive)，搜：Finetuning、Lora。
 
 - [<u>Finetuning Large Language Models</u>](https://magazine.sebastianraschka.com/p/finetuning-large-language-models?utm_source=publication-search)
 - [<u>Using and Finetuning Pretrained Transformers</u>](https://magazine.sebastianraschka.com/p/using-and-finetuning-pretrained-transformers?utm_source=publication-search)
 - [<u>Practical Tips for Finetuning LLMs Using LoRA</u>](https://magazine.sebastianraschka.com/p/practical-tips-for-finetuning-llms?utm_source=publication-search)
+
+微调原理：
+
+- [<u>LLM 微调理论</u>](https://qiankunli.github.io/2023/10/29/llm_finetune_theory.html)
+- [<u>GPT 是如何炼成的：大模型微调基础概念指北</u>](https://www.lixueduan.com/posts/ai/04-finetune-concept/)
+
+微调实践：
+
+- [<u>LLM 微调实践</u>](https://qiankunli.github.io/2024/07/28/llm_finetune_practice.html)
+- [<u>Fine Tuning a LLM Using Kubernetes with Intel® Xeon® Scalable Processors</u>](https://huggingface.co/blog/dmsuehir/llama2-fine-tuning-k8s)
+- [<u>Airflow pipeline to finetune LLM on Kubernetes</u>](https://github.com/kaushil24/llm-finetune-pipeline)
+- [<u>How to Fine-Tune LLMs with Kubeflow</u>](https://www.kubeflow.org/docs/components/training/user-guides/fine-tuning/)
+- [<u>LLM Fine-Tuning with Training Operator - Architecture</u>](https://www.kubeflow.org/docs/components/training/reference/fine-tuning/)
+- [<u>LLM Fine-Tuning with the Training Operator</u>](https://www.kubeflow.org/docs/components/training/explanation/fine-tuning/)
+
+SFT：
+
+- [<u>LLM 训练-sft</u>](https://zhuanlan.zhihu.com/p/809229182)
+- [<u>抖音豆包大模型 SFT-监督微调最佳实践</u>](https://blog.csdn.net/qq_45156060/article/details/142170719)
