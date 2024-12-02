@@ -8,11 +8,94 @@
 
 ## LLM 微调知识全景
 
-什么是微调？
+![1](./images/finetune-overview-1.png)
+
+### 基本概念
+
+**大模型训练流程：**
+
+- **预训练（Pre Training, PT）**：这一阶段是模型训练的基础，利用海量数据、大量算力通过无监督训练得到基座模型。预训练后的模型具备强大的语言生成能力，但由于它主要是无监督训练的结果，可能不会直接适应具体的任务（如问答、对话），需要进一步的微调；
+- **监督微调（Supervised Fine-Tuning, SFT）**：这一阶段则是对基座模型进行微调，让模型能够适用特定任务，最终得到一个 SFT 模型；
+- **强化学习（Reinforcement Learning from Human Feedback, RLHF）**：这一阶段通过引入人类反馈（或者基于人类反馈训练的奖励模型）进一步优化模型的生成质量，使其生成的回答更符合用户的期望和人类的价值观。由于直接从人类获取反馈的成本较高，通常会先训练一个奖励模型（Reward Model，RM）来代替人类打分，这样可以在 RL 的框架下进行大规模的自动优化。
+
+Post-training typically encompasses supervised instruction fine-tuning and alignment.
+
+![1](./images/training-step.png)
+
+开源模型为了能够直接使用，一般会提供经过问答任务微调的版本，即 Chat 模型：
+
+![1](./images/model-name.png)
+
+量化模型：它通过将模型中的高精度浮点数参数转换为低精度的整数参数来减少模型的存储和计算需求。这样做可以显著降低模型的内存占用，加快推理速度，并减少能耗。量化可以带来显著的效率提升，但也可能引入一些精度损失。
+
+**如何训练垂直领域大模型？**
+
+是否需要继续预训练（Continue PreTraining）？
+
+- Chat 模型 + SFT：资源消耗少、模型通用能力有所降低；
+- Base 模型 + 增量预训练 (Continue PreTraining) + SFT：资源消耗大、模型通用能力完整保留。
+
+- **Continue PreTraining (增量预训练)**: 一般垂直大模型是基于通用基座大模型进行二次的训练，为了给模型注入领域知识，就需要用领域内的语料进行继续预训练（注入领域知识）；
+- **SFT (Supervised Finetuning, 有监督微调)**: 通过 SFT 可以激发大模型理解领域内的各种问题并进行回答的能力（激发能力）；
+- **强化学习**（对齐人类偏好，一般是二选一）：
+  - **RLHF** (奖励建模、强化学习训练)：通过 RLHF 可以让大模型的回答对齐人们的偏好，比如行文的风格；
+  - **DPO** (直接偏好优化)。
+
+**什么是微调？**
+
+大模型微调，通常指有监督微调（Supervised Fine-Tuning, SFT），是在预训练模型（一般称为“基座模型”）的基础上进行的训练过程。
+
+预训练模型通常已经掌握了广泛的语言知识和语义表示，但为了让模型在特定任务或领域上表现得更好，我们会在特定任务的数据集上对其进行微调。
 
 ![1](./images/fine-tuning-concept.png)
 
-use and finetune pretrained LLMs:
+**为什么需要微调？**
+
+- **任务特定性能提升**：预训练模型虽然有广泛的语言理解能力，但在特定任务上（如情感分析、问答系统、机器翻译等）的表现可能不尽如人意。微调通过在任务特定的数据上进一步训练，使模型能够更好地理解和执行该任务。
+- **领域适应性**：预训练模型可能在一些通用领域表现良好，但在特定领域（如医学、法律、金融等）中可能难以准确理解专业术语和内容结构。通过微调，可以让模型更好地适应这些领域的语言特点，提高在这些领域中的应用效果。
+- **数据稀缺性**：对于一些数据稀缺的任务或领域，获取大量标签数据可能比较困难。微调允许在有限的数据集上进行有效训练，从而在数据稀缺的情况下也能取得较好的性能。
+- **防止过拟合**：预训练过程中模型可能会过度拟合于无监督学习的任务（如下一个词预测），而在特定任务中表现不佳。通过微调，可以让模型专注于特定任务的数据，这有助于减少过拟合的风险，提高模型在该任务上的泛化能力。
+- **成本效益**：与使用 prompt 来引导模型行为相比，微调通常可以更高效地优化模型的表现。微调后的模型通常可以更直接地执行任务，减少了对复杂提示的依赖。同时，微调可以在更小的模型上实现类似于大型模型的性能，从而降低推理的计算成本和延迟，比如与使用通用的GPT-3.5模型相比，经过微调的小型模型（如LLaMA 7B）在成本效益上可能更具优势，尤其是在特定任务的执行上。
+
+**微调方法分类：**
+
+- **全量参数更新 Full Fine-tuning（FFT）**：即对预训练模型的所有参数进行更新，训练速度较慢，消耗机器资源较多；
+- **参数高效微调 Parameter-Efficient Fine-Tuning（PEFT）**：只对部分参数做调整，训练速度快，消耗机器资源少。
+
+FFT 的问题：
+
+- 一个是训练的成本会比较高，因为全量微调的参数量跟预训练的是一样多的。随着模型规模变得越来越大，这使得在消费级硬件上进行全量微调变得不可行；
+- 一个是叫灾难性遗忘（Catastrophic Forgetting），用特定训练数据去微调可能会把这个领域的表现变好，但也可能会把原来表现好的别的领域的能力变差。
+
+常见的 PEFT 方法：BitFit、Prompt Tuning、Prefix Tuning、P-Tuning、P-Tuning V2、Adapter Tuning、LoRA、QLoRA、MAM Adapter、UniPELT、Freeze tuning 等。
+
+![1](./images/peft分类.png)
+
+- **添加额外参数的 Addition-based (A)**：introduce new parameters (Prefix Tuning、Prompt Tuning、Adapter Tuning 及其变体)
+  - 类似适配器的方法（Adapter-like methods）
+  - 软提示（Soft prompts）
+- **选取部分参数更新 Selection-based (S)**：fine-tune existing ones (BitFit)
+- **引入重参数化 Reparametrization-based (R)**：reparameterize them (LoRA、AdaLoRA、QLoRA)
+
+现在比较主流的几种 PEFT：**Prompt Tuning、Prefix Tuning、LoRA、QLoRA**。
+
+- **Addition-based methods:** Addition-based methods augment the pre-trained model with additional parameters or layers and train only the newly introduced elements.
+  - **Adapters:** proposing the addition of fully-connected networks after attention and FFN layers in Transformer.
+  - **Soft Prompts:**
+    - **Prompt Tuning:** proposes to prepend the input embeddings.
+    - **Prefix Tuning:** shared trainable parameters are prepended to the hidden states of all layers.
+  - ...
+- **Selective methods:** selects parameters to tune based on carefully designed selection criteria.
+- **Reparametrization-based methods:** leverage low-rank representations to minimize the number of trainable parameters.
+  - **LoRA:** Parameter update for a weight matrix in LoRA is decomposed into a product of two low-rank matrices.
+  - **GLoRA**
+  - **AdaLoRA**
+  - **QLoRA**
+- **Hybrid methods:** ...
+
+![1](./images/peft对比.png)
+
+**use and finetune pretrained LLMs:**
 
 - **In-Context Learning (zero-shot/few-shot learning、prompting):** is a valuable and user-friendly method for situations where direct access to the large language model (LLM) is limited, such as when interacting with the LLM through an API or user interface.
 - **Conventional Feature-Based and Finetuning Approaches:** have access to the LLM, adapting and finetuning it on a target task using data from a target domain usually leads to superior results.
@@ -30,6 +113,13 @@ use and finetune pretrained LLMs:
     - QLoRA
     - LongLoRA
 - **Reinforcement Learning with Human Feedback (RLHF)**
+
+prompt tuning, prefix tuning 和 p-tuning v1 有一定的联系，这几种方法都是基于优化 continuous prompt。
+
+P-Tuning，简称 PT，是一种针对于大模型的 soft-prompt 方法，包括两个版本：
+
+- **P-Tuning**：仅对大模型的 Embedding 加入新的参数；
+- **P-Tuning-V2**：将大模型的 Embedding 和每一层前都加上新的参数，这个也叫深度 prompt。
 
 ### In-Context Learning
 
@@ -111,6 +201,10 @@ output = model(x)
 
 where the soft_prompt_tensor has the same feature dimension as the embedded inputs produced by the embedding layer. Consequently, the modified input matrix has additional rows (as if it extended the original input sequence with additional tokens, making it longer).
 
+Prompt Tuning 可以看作是 Prefix Tuning 的简化版本，它给每个任务定义了自己的 Prompt，然后拼接到数据上作为输入，但只在输入层加入 prompt tokens（在输入 embedding 层加入一段定长的可训练的向量，在微调的时候只更新这一段 prompt 的参数），另外，virtual token的位置也不一定是前缀，插入的位置是可选的。
+
+**P-tuning v2**：在每一层都加入了 Prompts tokens 作为输入，而不是仅仅加在输入层，可学习的参数更多（从 P-tuning 和 Prompt Tuning 的 0.01% 增加到 0.1%-3%），prompts 与更深层相连，对模型输出产生更多的直接影响。
+
 **Prefix Tuning:**
 
 prepend trainable tensors (soft prompts) to each transformer block instead of only the embedded inputs, which can stabilize the training.
@@ -135,6 +229,11 @@ finding a combination of fewer dimensions that can effectively capture most of t
 
 In a nutshell, they all involve **introducing a small number of additional parameters that we finetuned** (as opposed to finetuning all layers as we did in the Finetuning II approach above). In a sense, Finetuning I (only finetuning the last layer) could also be considered a parameter-efficient finetuning technique. However, techniques such as prefix tuning, adapters, and low-rank adaptation, all of which **“modify” multiple layers**, achieve much better predictive performance (at a low cost).
 
+除 Prefix Tuning 用于 NLG 任务外，Prompt Tuning、P-Tuning、P-Tuning V2 均用于 NLU，P-Tuning 和 Prompt Tuning 技术本质等同，Prefix Tuning 和 P-Tuning V2 技术本质等同。
+
+> 对于领域化的数据定制处理，P-Tune（Parameter Tuning）更加合适。领域化的数据通常包含一些特定的领域术语、词汇、句法结构等，与通用领域数据不同。对于这种情况，微调模型的参数能够更好地适应新的数据分布，从而提高模型的性能。相比之下，LORA（Layer-wise Relevance Propagation）更注重对模型内部的特征权重进行解释和理解，通过分析模型对输入特征的响应来解释模型预测的结果。虽然LORA也可以应用于领域化的数据定制处理，但它更适合于解释模型和特征选择等任务，而不是针对特定领域的模型微调。
+> ???
+
 ### Reinforcement Learning with Human Feedback (RLHF)
 
 The conventional way to adapt or finetune an LLM for a new target domain or task is to use a supervised approach with labeled target data.
@@ -144,6 +243,10 @@ In RLHF, a pretrained model is finetuned using a combination of supervised learn
 Human feedback is collected by having humans rank or rate different model outputs, providing a reward signal. The collected reward labels can be used to train a reward model that is then used to guide the LLMs’ adaptation to human preferences. The reward model is learned via supervised learning, typically using a pretrained LLM as the base model, and is then used to adapt the pretrained LLM to human preferences via additional finetuning.
 
 RLHF uses a reward model instead of training the pretrained model on the human feedback directly because involving humans in the learning process would create a bottleneck since we cannot obtain feedback in real time.
+
+**RM**：训练一个奖励模型（Reward Model），用于评估生成模型的输出质量。收集生成模型输出及其对应的人类反馈。这些反馈可以是评分、选择最佳输出、直接修改等形式。使用这些反馈数据训练奖励模型，使其能够对生成的输出进行评分。奖励模型通常是一个监督学习模型，通过最小化预测评分与人类反馈评分之间的差距进行训练。
+
+**RL**：使用强化学习算法（如 PPO（Proximal Policy Optimization））进一步优化第一步中生成的模型，使其输出更符合人类反馈的期望。
 
 ### Conclusion
 
@@ -178,6 +281,8 @@ Based on intuition from prompting, we believe that having a proper context can s
 
 - 较难训练，且模型的效果并不严格随 prefix 参数量的增加而上升；
 - 使输入层有效信息长度减少。为了节省计算量和显存，我们一般会固定输入数据长度。增加了 prefix 之后，留给原始文字数据的空间就少了，因此可能会降低原始文字中 prompt 的表达能力。
+
+Prefix Tuning（面向文本生成领域（NLG））在输入 token 之前构造一段任务相关的 virtual tokens 作为 Prefix，训练的时候只更新 Prefix 部分的参数，而 PLM 中的其他部分参数固定。
 
 总结：**全参数微调太贵，Adapter Tuning 存在训练和推理延迟，Prefix Tuning 难训且会减少原始训练数据中的有效文字长度**。
 
@@ -536,6 +641,124 @@ If you have a real-world application with many sets of LoRA weights, for example
 
 ## 真实的用户是如何在生产环境下（如 k8s）进行大模型微调的？
 
+### 微调教程
+
+fine tuning Llama 2 with a Hugging Face dataset using multiple CPU nodes. Several different components are involved to run this job on the cluster.
+
+![1](./images/example-1.png)
+
+- Helm Char: 管理配置（食谱）
+- PyTorchJob with multiple workers for fine tuning the model: 执行微调（厨师）
+- Persistent Volume Claim (PVC) used as a shared storage: 存储数据（冰箱）
+- Secret for gated models (Optional)
+- Data access pod (Optional)
+
+**Helm Char:**
+
+brings together all the different components that are used for our job and allows us to deploy everything using one `helm install` command.
+
+**Storage (NFS storage location):**
+
+We need a storage location that can be shared among the workers to access the dataset, and save model files. We are using a vanilla K8s cluster with an NFS backed storage class.
+
+our NFS storage location doesn't get added to the container. Instead, the storage location gets mounted into the container so that we have access to read and write from that location without it being built into the image. To achieve this, we are using a **persistent volume claim (PVC)**.
+
+[<u>PersistentVolume</u>](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) subsystem provides an API for users and administrators that abstracts details of how storage is provided from how it is consumed.
+
+A **PersistentVolumeClaim (PVC)** is a request for storage by a user. It is similar to a Pod. Pods consume node resources and PVCs consume PV resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., they can be mounted ReadWriteOnce, ReadOnlyMany, ReadWriteMany, or ReadWriteOncePod, see AccessModes).
+
+**Secret:**
+
+The last ingredient that we're adding in is the secret sauce. Gated or private models require you to be logged in to download the model. For authentication from the K8s job, we define a secret with a Hugging Face User Read Only Access Token. The token from the secret will be mounted into the container. If the model being trained is not gated or private, this isn't required.
+
+**环境准备：**
+
+This tutorial requires **Kubeflow** to be installed on your cluster. Kubeflow provides features and custom resources that simplify running and scaling machine learning workloads on K8s clusters. In this example, we are going to be using the **PyTorch training operator** from Kubeflow. The PyTorch training operator allows us to run distributed PyTorch training jobs on the cluster without needing to manually set environment variables.
+
+Client：kubectl、helm.
+
+[微调具体流程](https://huggingface.co/blog/dmsuehir/llama2-fine-tuning-k8s#tutorial-fine-tuning-llama-2-using-a-kubernetes-cluster)
+
+### Kubeflow
+
+Kubeflow is a community and ecosystem of open-source projects to address each stage in the machine learning (ML) lifecycle with support for best-in-class open source tools and frameworks. Kubeflow makes AI/ML on Kubernetes simple, portable, and scalable.
+
+![1](./images/kubeflow-1.png)
+
+- Standalone Kubeflow Components
+- Kubeflow Platform
+
+**Standalone Kubeflow Components:**
+
+The Kubeflow ecosystem is composed of multiple open-source projects that address different aspects of the ML lifecycle. Many of these projects are designed to be usable both within the Kubeflow Platform and independently. These Kubeflow components can be installed standalone on a Kubernetes cluster. It provides flexibility to users who may not require the full Kubeflow Platform capabilities but wish to leverage specific ML functionalities such as model training or model serving.
+
+...
+
+**Kubeflow Platform:**
+
+The Kubeflow Platform refers to the full suite of Kubeflow components bundled together with additional integration and management tools. Using Kubeflow as a platform means deploying a comprehensive ML toolkit for the entire ML lifecycle.
+
+**Kubeflow Overview Diagram:**
+
+![1](./images/kubeflow-2.svg)
+
+**Kubeflow Ecosystem:**
+
+![1](./images/kubeflow-3.svg)
+
+> 目前还不支持昇腾 NPU。
+
+**ML Lifecycle for Production and Development Phases:**
+
+![1](./images/kubeflow-4.svg)
+
+In the **Data Preparation step** you ingest raw data, perform feature engineering to extract ML features for the offline feature store, and prepare training data for model development. Usually, this step is associated with data processing tools such as Spark, Dask, Flink, or Ray.
+
+In the **Model Development step** you choose an ML framework, develop your model architecture and explore the existing pre-trained models for fine-tuning like BERT or Llama.
+
+In the **Model Optimization step** you can optimize your model hyperparameters and optimize your model with various AutoML algorithms such as neural architecture search and model compression. During model optimization you can store ML metadata in the Model Registry.
+
+In the **Model Training step** you train or fine-tune your model on the large-scale compute environment. You should use a distributed training if single GPU can’t handle your model size. The results of the model training is the trained model artifact that you can store in the Model Registry.
+
+In the **Model Serving step** you serve your model artifact for online or batch inference. Your model may perform predictive or generative AI tasks depending on the use-case. During the model serving step you may use an online feature store to extract features. You monitor the model performance, and feed the results into your previous steps in the ML lifecycle.
+
+**LLM Fine-Tuning with Training Operator:**
+
+[PyTorch Training (PyTorchJob)](https://www.kubeflow.org/docs/components/training/user-guides/pytorch/): The PyTorchJob is a Kubernetes custom resource to run PyTorch training jobs on Kubernetes. The Kubeflow implementation of the PyTorchJob is in the **training-operator**.
+
+![1](./images/kubeflow-5.svg)
+
+Once user executes train API, Training Operator creates PyTorchJob with appropriate resources to fine-tune LLM.
+
+Storage initializer InitContainer is added to the PyTorchJob worker 0 to download pre-trained model and dataset with provided parameters.
+
+PVC with ReadOnlyMany access mode it attached to each PyTorchJob worker to distribute model and dataset across Pods. Note: Your Kubernetes cluster must support volumes with ReadOnlyMany access mode, otherwise you can use a single PyTorchJob worker.
+
+Every PyTorchJob worker runs LLM Trainer that fine-tunes model using provided parameters.
+
+## 微调框架
+
+- LLaMa-Factory
+- Torch-Tune
+
+比较主流的几个微调工具：
+
+- huggingface/transformers：最基础的一个库,提供了丰富的预训练模型和微调工具，支持大多数主流的NLP任务（如文本分类、序列标注、生成任务等）。适合进行快速实验和生产部署，有着广泛的社区支持。
+- huggingface/peft：Parameter-Efficient Fine-Tuning，huggingface 开源的微调基础工具
+- modelscope/ms-swift：modelscope 开源的轻量级微调框架
+  - 以中文大模型为主，支持各类微调方法
+  - 可以通过执行脚本进行微调，也可以在代码环境中一键微调
+  - 自带微调数据集和验证数据集，可以一键微调 + 模型验证
+- hiyouga/LLaMA-Factory：全栈微调工具
+  - 支持海量模型 + 各种主流微调方法
+    - 运行脚本微调
+    - 基于 Web 端微调
+  - 自带基础训练数据集
+  - 除微调外，支持增量预训练和全量微调
+- NVIDIA/Megatron-LM：NVIDIA开发的大模型训练框架，支持大规模的预训练和微调。适用于需要极高性能和规模的大模型训练和微调。
+
+总结：快速实验选择 Transformers 即可，超大规模的选择 NVIDIA/Megatron-LM，普通规模就选择使用较为简单的 hiyouga/LLaMA-Factory。
+
 ## 参考资料
 
 - [<u>大模型低秩适配器 LoRA 原理</u>](https://zhuanlan.zhihu.com/p/646831196)
@@ -545,6 +768,7 @@ If you have a real-world application with many sets of LoRA weights, for example
 - [<u>LongLoRA - 高效微调长上下文的 LLMs</u>](https://zhuanlan.zhihu.com/p/659226557)
 - [<u>LLM 长 context 微调技巧 - LongLora</u>](https://zhuanlan.zhihu.com/p/658043624)
 - [<u>LoRA、QLoRA、LoRA+、LongRA、DoRA、MaLoRA、GaLore 方案</u>](https://zhuanlan.zhihu.com/p/8954237216)
+- [<u>New LLM Pre-training and Post-training Paradigms</u>](https://magazine.sebastianraschka.com/p/new-llm-pre-training-and-post-training)
 
 更多文章：[<u>ahead of ai</u>](https://magazine.sebastianraschka.com/archive)，搜：Finetuning、Lora。
 
@@ -570,3 +794,11 @@ SFT：
 
 - [<u>LLM 训练-sft</u>](https://zhuanlan.zhihu.com/p/809229182)
 - [<u>抖音豆包大模型 SFT-监督微调最佳实践</u>](https://blog.csdn.net/qq_45156060/article/details/142170719)
+
+论文：
+
+- [<u>Scaling Down to Scale Up: A Guide to Parameter-Efficient Fine-Tuning</u>](https://arxiv.org/abs/2303.15647)
+- [<u>Prefix-Tuning: Optimizing Continuous Prompts for Generation</u>](https://arxiv.org/abs/2101.00190)
+- [<u>LoRA: Low-Rank Adaptation of Large Language Models</u>](https://arxiv.org/abs/2106.09685)
+- [<u>QLoRA: Efficient Finetuning of Quantized LLMs</u>](https://arxiv.org/abs/2305.14314)
+- [<u>LongLoRA: Efficient Fine-tuning of Long-Context Large Language Models</u>](https://arxiv.org/abs/2309.12307)
