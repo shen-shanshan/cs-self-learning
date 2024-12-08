@@ -1,7 +1,5 @@
 # LLM
 
-## 学习路线
-
 ## 模型下载
 
 - HF 镜像：`https://hf-mirror.com/`；
@@ -31,4 +29,4 @@ huggingface-cli download --repo-type dataset --resume-download wikitext --local-
 ## 学习资料
 
 - [<u>猛猿的知乎 ✨</u>](https://zhuanlan.zhihu.com/p/654910335)
-- [<u>LLM RAG</u>](https://qiankunli.github.io/2023/09/25/llm_retrieval.html)
+- [<u>Transformer Self-Attention</u>](https://zhuanlan.zhihu.com/p/455399791)
