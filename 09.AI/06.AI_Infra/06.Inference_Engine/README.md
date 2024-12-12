@@ -13,3 +13,7 @@
 - [x] 精读 PagedAttention 论文
 - [ ] 阅读 vLLM 源码
 - [ ] Prefill/Decode 性能分析（PD 混合/分离）
+
+## 参考资料
+
+- [<u>Basic LLM Inference/Generation</u>](https://zhuanlan.zhihu.com/p/694176507)
