@@ -5,6 +5,7 @@
 实现 rope 算子：调 `torch_npu` 接口，重写 `forward_npu()` 方法，可以参考华为云的实现。
 torch_npu 接口：`npu_apply_rotary_pos_emb`。
 代码位置：`vllm/model_executor/layers/rotary_embedding.py`。
+可以参考华为云内源 vLLM RoPE 算子的实现。
 
 ## 源码阅读
 
@@ -32,31 +33,22 @@ class CustomOpName(CustomOp):
 
 通过在自定义算子类中重写 `xxx_forward(self, *args, **kwargs)` 方法，可以调用指定后端提供的算子接口（对于 NPU，是调用 `torch_npu` 的接口）。
 
-## 基础知识查漏补缺
+## 基础知识
 
-## Python 语法
+### Python 基本语法
 
-`@classmethod`
-`@staticmethod`
+- `@classmethod` 和 `@staticmethod`
+- 自定义装饰器（`@`）
+- `*args` 和 `**kwargs`
+- `typing` 模块：提供强类型校验
 
-自定义装饰器（`@`）
+### Rotary Positional Embeddings
 
-`*args`
-`**kwargs`
+RoPE（Rotary Positional Embeddings，旋转位置编码）：
 
-`from typing import Optional, Tuple, Union`
+……
 
-## AI 算法
+**参考资料：**
 
-layernorm（rms_norm）：？
-
-RoPE（Rotary Positional Embeddings，旋转位置编码）：？
-
-- **RotaryEmbedding**
-- LinearScalingRotaryEmbedding
-- DynamicNTKScalingRotaryEmbedding
-- YaRNScalingRotaryEmbedding
-- Phi3LongRoPEScaledRotaryEmbedding（重写了 forward）
-- DeepseekScalingRotaryEmbedding
-- Llama3RotaryEmbedding
-- MRotaryEmbedding（重写了 forward）
+- [<u>十分钟读懂旋转编码（RoPE）</u>](https://zhuanlan.zhihu.com/p/647109286)
+- [<u>一文看懂 LLaMA 中的旋转式位置编码（Rotary Position Embedding）</u>](https://zhuanlan.zhihu.com/p/642884818)

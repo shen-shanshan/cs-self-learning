@@ -738,9 +738,9 @@ class ElectricCar(Car):
 
 ```python
 class Man:
-	id = 0  # 类变量
-	
-	def __init__(self, name):
+    id = 0  # 类变量
+
+    def __init__(self, name):
         self.name = name
         self.id = self.id_number()  # self可以访问类变量
     
@@ -1592,7 +1592,7 @@ if __name__ == '__main__':
     '''
 ```
 
-> 参考资料：[Python关于 *args 和 **kwargs 参数的详解（全）-CSDN博客](https://blog.csdn.net/weixin_47872288/article/details/125411961?ops_request_misc=%7B%22request%5Fid%22%3A%2210DD4209-96F0-4E7E-B9CB-C16B3991E659%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=10DD4209-96F0-4E7E-B9CB-C16B3991E659&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-1-125411961-null-null.142^v100^pc_search_result_base5&utm_term=python *args和**kwargs详解&spm=1018.2226.3001.4187)。
+> 参考资料：[Python关于 *args 和 **kwargs 参数的详解（全）-CSDN博客](https://blog.csdn.net/weixin_47872288/article/details/125411961?ops_request_misc=%7B%22request%5Fid%22%3A%2210DD4209-96F0-4E7E-B9CB-C16B3991E659%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=10DD4209-96F0-4E7E-B9CB-C16B3991E659&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-1-125411961-null-null.142^v100^pc_search_result_base5&utm_term=python)。
 
 # 底层实现
 
