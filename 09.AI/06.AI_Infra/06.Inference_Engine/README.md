@@ -2,9 +2,9 @@
 
 ## 基础知识
 
-- [ ] Transformer/SelfAttention 原理（精读论文：Attention is all you need）
+- [x] Transformer/SelfAttention 原理（精读论文：Attention is all you need）
 - [ ] FlashAttention 原理（精读论文）
-- [ ] KVCache 原理
+- [x] KVCache 原理
 - [ ] FasterTransformer/DeepSpeed/TensorRT-LLM 使用（推理加速）
 - [ ] CUDA/CANN 编程（算子开发）
 
@@ -17,3 +17,4 @@
 ## 参考资料
 
 - [<u>Basic LLM Inference/Generation</u>](https://zhuanlan.zhihu.com/p/694176507)
+- [<u>Deep dive vLLM 和 SGLang 推理框架的 CPU 开销</u>](https://mp.weixin.qq.com/s/ZH6vzQFg9NNoPRyTgtdY4Q)
