@@ -1,4 +1,4 @@
-# vLLM
+-s# vLLM
 
 ## 参考资料
 
@@ -11,6 +11,8 @@
 ## Contribution Guidelines
 
 Using `-s` with `git commit` will automatically add a `Signed-off-by:` header which certifies agreement with the terms of the DCO.
+
+格式化：`./format.sh`。
 
 ## Installation
 
