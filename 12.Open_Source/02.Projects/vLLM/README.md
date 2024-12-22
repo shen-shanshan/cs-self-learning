@@ -1,12 +1,7 @@
--s# vLLM
-
-## 参考资料
+# vLLM
 
 - [GitHub](https://github.com/vllm-project/vllm)
 - [Documentation](https://docs.vllm.ai/en/stable/index.html)
-- [Contributing to vLLM](https://docs.vllm.ai/en/stable/contributing/overview.html)
-- [Pull Requests & Code Reviews](https://docs.vllm.ai/en/latest/contributing/overview.html#pull-requests-code-reviews)
-- [Installation](https://docs.vllm.ai/en/latest/getting_started/installation.html#build-from-source)
 
 ## Contribution Guidelines
 
@@ -35,6 +30,17 @@ VLLM_USE_PRECOMPILED=1 pip install --editable .
 ## Build
 
 [Python-only build (without compilation)](https://docs.vllm.ai/en/latest/getting_started/installation.html#python-only-build-without-compilation)
+
+## Test
+
+```bash
+# linting and formatting
+bash format.sh
+# Static type checking
+mypy
+# Unit tests
+pytest tests/
+```
 
 ## NPU PR
 

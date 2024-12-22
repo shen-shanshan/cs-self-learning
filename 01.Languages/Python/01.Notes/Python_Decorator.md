@@ -1,4 +1,4 @@
-# Python 装饰器
+# Python Decorator
 
 ## 基本用法
 
