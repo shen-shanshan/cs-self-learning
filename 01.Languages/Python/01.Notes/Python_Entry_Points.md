@@ -37,4 +37,5 @@ def register():
 ## 参考资料
 
 - [<u>Entry Points Docs</u>](https://setuptools.pypa.io/en/stable/userguide/entry_point.html)
+- [<u>Entry points specification</u>](https://packaging.python.org/en/latest/specifications/entry-points/)
 - [<u>vLLM's Plugin System</u>](https://docs.vllm.ai/en/stable/design/plugin_system.html#how-vllm-discovers-plugins)
