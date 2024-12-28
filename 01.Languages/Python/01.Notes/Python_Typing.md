@@ -77,6 +77,20 @@ def judge(result: bool) -> Optional[str]:
     if result: return 'Error Occurred'
 ```
 
+## TYPE_CHECKING
+
+`TYPE_CHECKING` 是一个会被第三方静态类型检查器假定为 `True` 的特殊常量，而在运行时将假定为 `False`。
+
+`TYPE_CHECKING` 作为一个静态检查的标志，在真正运行代码的时候它是 `False`，也就是它下面的 `import` 是不执行的，但它可以为第三方静态类型检查器提供所需要检查的类型。
+
+**使用场景：**
+
+解决循环导入问题：两个文件相互导入引用，如果不使用 `if typing.TYPE_CHECKING:` 就直接导入，那么此时就会因为循环导入产生错误。
+
+注意：使用 `TYPE_CHECKING` 导入的任何对象，只能作为注解使用，不可以真的去使用这些对象，因为这些对象只有在编辑器检查的阶段才会被导入，并且在使用这些类型作为解注时，必须使用引号包裹。否则在真正的代码业务执行时，就会抛出 `NameError: xxx is not defined` 错误。
+
 ## 参考资料
 
 - [<u>Python 中 typing 模块和类型注解的使用</u>](https://cuiqingcai.com/7071.html)
+- [<u>TYPE_CHECKING 的含义和用法</u>](https://blog.csdn.net/Edward__J/article/details/129398949)
+- [<u>typing 类型解注全网最强攻略，妈妈再也不用担心我拼错单词辣！</u>](https://juejin.cn/post/7266099935179046948)
