@@ -110,12 +110,6 @@ VLLM_TARGET_DEVICE=npu pip install -e . # NPU
 
 ## TODO
 
-### 其它
-
-vllm 这边除了 vllm-npu 的开发，就剩下公共特性了，一方面可以在每天刷新的 issue、pr 里面去找可以修的 bug 或者可以重构的代码，另一方面就是源神这个 [<u>RFC</u>](https://github.com/vllm-project/vllm/issues/11162)。
-
-还有就是对关键的一些 pr 可以积极参与 review 啥的。
-
 ### RoPE 算子适配
 
 实现 rope 算子：调 torch_npu 接口，重写 `forward_npu()` 方法，可以参考华为云的实现。
@@ -124,17 +118,12 @@ torch_npu 接口：`npu_apply_rotary_pos_emb()`。
 
 代码位置：`vllm/model_executor/layers/rotary_embedding.py`。
 
-### 模型验证
+### 模型验证（在 NPU 上）
 
-[<u>模型支持验证清单</u>](https://github.com/cosdt/vllm/tree/main/model_support)：
-
-- [ ] chatglm
-- [ ] glm-4/glm-4v
-- [x] internlm
-
-[<u>模型验证脚本</u>](https://docs.vllm.ai/en/stable/models/supported_models.html#modelscope)：
+**环境配置：**
 
 ```bash
+# log
 python model_verify.py
 Downloading Model to directory: /home/sss/.cache/modelscope/hub/ZhipuAI/chatglm2-6b
 
@@ -149,8 +138,18 @@ source ~/.bashrc
 pip install git+https://github.com/huggingface/transformers.git
 ```
 
-log：
+**模型下载：**
 
 ```bash
-
+modelscope download --model 'ZhipuAI/chatglm2-6b' --local_dir '/home/sss/models/chatglm2-6b'
+modelscope download --model 'ZhipuAI/glm-4-9b-chat-hf' --local_dir '/home/sss/models/glm-4-9b-chat-hf'
 ```
+
+- [<u>模型支持验证清单</u>](https://github.com/cosdt/vllm/tree/main/model_support)
+- [<u>模型验证脚本</u>](https://docs.vllm.ai/en/stable/models/supported_models.html#modelscope)
+
+### 其它
+
+vllm 这边除了 vllm-npu 的开发，就剩下公共特性了，一方面可以在每天刷新的 issue、pr 里面去找可以修的 bug 或者可以重构的代码，另一方面就是源神这个 [<u>RFC</u>](https://github.com/vllm-project/vllm/issues/11162)。
+
+还有就是对关键的一些 pr 可以积极参与 review 啥的。

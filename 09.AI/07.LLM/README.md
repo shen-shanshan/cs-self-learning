@@ -2,10 +2,7 @@
 
 ## 模型下载
 
-- HF 镜像：`https://hf-mirror.com/`；
-- 魔乐社区：`https://modelers.cn/`。
-
-环境配置：
+### HuggingFace
 
 ```bash
 # 1.安装依赖
@@ -24,7 +21,28 @@ huggingface-cli download --resume-download gpt2 --local-dir gpt2
 huggingface-cli download --repo-type dataset --resume-download wikitext --local-dir wikitext
 ```
 
-> 注意：可以添加 `--local-dir-use-symlinks false` 参数禁用文件软链接，这样下载路径下所见即所得。
+### ModelScope
+
+模型默认下载地址：`~/.cache/modelscope/hub`，可通过环境变量 `MODELSCOPE_CACHE` 进行设置。
+
+```bash
+# 环境安装
+pip install modelscope
+
+# 下载整个模型 repo 到指定目录
+modelscope download --model 'Qwen/Qwen2-7b' --local_dir 'path/to/dir'
+# 指定下载单个文件（以 tokenizer.json 文件为例）
+modelscope download --model 'Qwen/Qwen2-7b' tokenizer.json
+# 指定下载多个个文件
+modelscope download --model 'Qwen/Qwen2-7b' tokenizer.json config.json
+# 指定下载某些文件
+modelscope download --model 'Qwen/Qwen2-7b' --include '*.safetensors'
+# 过滤指定文件
+modelscope download --model 'Qwen/Qwen2-7b' --exclude '*.safetensors'
+```
+
+- [<u>ModelScope 首页</u>](https://www.modelscope.cn/home)
+- [<u>ModelScope 模型下载</u>](https://www.modelscope.cn/docs/models/download)
 
 ## 学习资料
 
