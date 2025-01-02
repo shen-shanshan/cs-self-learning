@@ -20,7 +20,8 @@ EulerOS V2 R10
 创建 `Dockerfile` 如下：
 
 ```dockerfile
-FROM ubuntu:20.04
+# FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # define your var
 ARG YOUR_USER_NAME="sss"
@@ -61,7 +62,8 @@ CMD ["/bin/bash", "/home/sss/bin/entrypoint.sh"]
 
 ```bash
 # docker build -t <镜像名称>:<镜像tag> <Dockerfile所在目录>
-docker build -t sss_base_image:1.0 .
+# docker build -t sss_base_image:1.0 .
+docker build -t sss_base_image:2.0 .
 ```
 
 其它镜像常用命令：
@@ -124,8 +126,8 @@ chown -R sss:sss /home/sss
 
 ```yaml
 services:
-  chattts:
-    image: sss_base_image:1.0
+  sss:
+    image: sss_base_image:2.0
     container_name: sss
     volumes:
       # 保证 ~/bin/entrypoint.sh 文件的映射路径正确
@@ -159,8 +161,8 @@ services:
 
 将配置文件中的以下变量替换为自己的：
 
-- `chattts`：服务名称；
-- `image: sss_base_image:1.0`：镜像名称:tag（注意：如果你的镜像 tag 不是 `latest` 的话，不能省略版本信息）；
+- `sss`：服务名称；
+- `image: sss_base_image:2.0`：镜像名称:tag（注意：如果你的镜像 tag 不是 `latest` 的话，不能省略版本信息）；
 - `container_name: sss`：容器名称；
 - `- /data/disk3/sss:/home/sss`：将自己的用户目录（`/data/disk3/sss`）挂载到容器中的用户目录（`/data/disk3/sss`）下；
 - `- 8333:22`：将宿主机端口（自己设置，这里我随便设置的 8333）映射到容器中的端口（22，这是 ssh 服务的默认端口，方便后续使用 ssh 直接连接到自己的容器中）；
@@ -175,14 +177,14 @@ services:
 ```bash
 # 临时启动（运行一次）：docker-compose -p <project-name> up
 # 后台启动（一直运行）：docker-compose -p <project-name> up -d
-docker-compose -p chattts up -d
+docker-compose -p sss up -d
 ```
 
 进入容器：
 
 ```bash
 # docker exec -it <容器名或ID> /bin/bash
-docker exec -it sss /bin/bash
+docker exec -it sss_2.0 /bin/bash
 # 退出容器：exit
 ```
 
@@ -428,20 +430,22 @@ ps -e | grep ssh
 修改 ssh 配置：
 
 ```bash
-PubkeyAuthentication yes #启用公钥私钥配对认证方式 
-AuthorizedKeysFile .ssh/authorized_keys #公钥文件路径（和上面生成的文件同） 
-PermitRootLogin yes #root能使用ssh登录
-ClientAliveInterval 60  #参数数值是秒 , 是指超时时间
-ClientAliveCountMax 3 #设置允许超时的次数
-UsePAM yes # 更改为 UsePAM no
-Port 80 #指定好端口号，默认是22 后面这个数字要在你run容器的时候用到
+sudo vim /etc/ssh/sshd_config
+
+# ssh config:
+# PubkeyAuthentication yes #启用公钥私钥配对认证方式 
+# AuthorizedKeysFile .ssh/authorized_keys #公钥文件路径（和上面生成的文件同） 
+# PermitRootLogin yes #root能使用ssh登录
+# ClientAliveInterval 60  #参数数值是秒 , 是指超时时间
+# ClientAliveCountMax 3 #设置允许超时的次数
+# UsePAM yes # 更改为 UsePAM no
+# Port 80 #指定好端口号，默认是22 后面这个数字要在你run容器的时候用到
 ```
 
 然后重启 SSH 服务：
 
 ```bash
-systemctl restart sshd.service
-# 或：
+# systemctl restart sshd.service
 sudo /etc/init.d/ssh restart
 ```
 

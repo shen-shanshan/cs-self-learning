@@ -7,7 +7,6 @@
 - [<u>[platforms] enable platform plugins</u>](https://github.com/vllm-project/vllm/pull/11602)
 
 ## Python 插件原理
-
 `setup.py`：
 
 `entry_points={key: value}`
@@ -35,19 +34,31 @@ setup(name='vllm_ascend_plugin',
 
 ## Ascend 插件调用
 
-```bash
-git clone https://github.com/cosdt/vllm -b apply_plugin
-cd vllm
-sudo apt-get update -y
-sudo apt-get install -y gcc-12 g++-12 libnuma-dev
-# sudo apt-get install -y libnuma-dev
-# sudo apt autoremove
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 10 --slave /usr/bin/g++ g++ /usr/bin/g++-12
-pip install cmake>=3.26 wheel packaging ninja "setuptools-scm>=8" numpy
-pip install -r requirements-cpu.txt
-VLLM_TARGET_DEVICE=cpu python setup.py install
+安装插件：
 
-git clone https://github.com/cosdt/vllm-ascend-plugin
+```bash
+git clone git@github.com:cosdt/vllm-ascend-plugin.git
 cd vllm-ascend-plugin
 pip install -e .
 ```
+
+安装 vLLM CPU 版本：
+
+```bash
+git clone git@github.com:cosdt/vllm.git -b apply_plugin
+cd vllm
+
+sudo apt-get update -y
+sudo apt-get install -y gcc-12 g++-12 libnuma-dev
+# sudo apt-get install -y gcc-12
+# sudo apt-get install -y g++-12
+# sudo apt-get install -y libnuma-dev
+
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 10 --slave /usr/bin/g++ g++ /usr/bin/g++-12
+pip install cmake>=3.26 wheel packaging ninja "setuptools-scm>=8" numpy
+pip install -r requirements-cpu.txt
+
+VLLM_TARGET_DEVICE=cpu python setup.py install
+```
+
+参考资料：[<u>Installation with CPU - Build from source</u>](https://docs.vllm.ai/en/stable/getting_started/cpu-installation.html#build-from-source)

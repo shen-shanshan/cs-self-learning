@@ -138,6 +138,18 @@ source ~/.bashrc
 pip install git+https://github.com/huggingface/transformers.git
 ```
 
+测试 CANN 环境：
+
+```python
+import torch, torch_npu
+torch.npu.devcice_count()
+```
+
+```bash
+# 显示对应 npu 设备，表示环境可用
+npu-smi info`
+```
+
 **模型下载：**
 
 ```bash
