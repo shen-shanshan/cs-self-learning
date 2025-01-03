@@ -73,9 +73,13 @@ git remote add origin git@github.com:shen-shanshan/vllm.git
 cd ~/.config/pip
 vim pip.conf
 
+# pip.conf:
 [global]
-index-url=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host = https://pypi.tuna.tsinghua.edu.cn
 
+# optional:
 index-url=http://mirrors.aliyun.com/pypi/simple/
 trusted-host=mirrors.aliyun.com
 ```
@@ -153,8 +157,22 @@ npu-smi info`
 **模型下载：**
 
 ```bash
-modelscope download --model 'ZhipuAI/chatglm2-6b' --local_dir '/home/sss/models/chatglm2-6b'
-modelscope download --model 'ZhipuAI/glm-4-9b-chat-hf' --local_dir '/home/sss/models/glm-4-9b-chat-hf'
+pip install modelscope
+
+modelscope download --model 'ZhipuAI/chatglm2-6b' --local_dir '/home/sss/models/ZhipuAI/chatglm2-6b' # 已验证
+modelscope download --model 'ZhipuAI/glm-4-9b-chat-hf' --local_dir '/home/sss/models/ZhipuAI/glm-4-9b-chat-hf'
+```
+
+**验证脚本：**
+
+```python
+from vllm import LLM
+
+llm = LLM(model="/home/sss/models/ZhipuAI/glm-4-9b-chat-hf", task=generate, trust_remote_code=True)
+
+# For generative models (task=generate) only
+output = llm.generate("Hello, my name is")
+print(output)
 ```
 
 - [<u>模型支持验证清单</u>](https://github.com/cosdt/vllm/tree/main/model_support)

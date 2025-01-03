@@ -64,6 +64,9 @@ CMD ["/bin/bash", "/home/sss/bin/entrypoint.sh"]
 # docker build -t <镜像名称>:<镜像tag> <Dockerfile所在目录>
 # docker build -t sss_base_image:1.0 .
 docker build -t sss_base_image:2.0 .
+
+# ascend01：
+docker build -t sss_image:1.0 .
 ```
 
 其它镜像常用命令：
@@ -88,7 +91,7 @@ docker tag <old_image_name>:<old_tag> <new_image_name>:<new_tag>
 
 # define your var
 your_user_name="sss"
-your_password="xxx"
+your_password="333"
 # Create passwd
 echo "${your_user_name}:${your_password}" | chpasswd
 
@@ -170,6 +173,42 @@ services:
 
 > 注意：这里的 `docker-compose.yaml` 中不能加 `command` 选项，因为该选项中的命令会覆盖 `Dockerfile` 中的 `CMD` 选项，导致 `entrypoint.sh` 脚本不会被执行（后果很严重！）。这里如果还想加一些在容器启动时需要执行的命令，可以直接加到 `entrypoint.sh` 脚本中，这样每次容器启动时都会执行这些命令。
 
+ascend-01 配置：
+
+```yaml
+services:
+  sss:
+    image: sss_image:1.0
+    container_name: sss-2.0
+    volumes:
+      # 保证 ~/bin/entrypoint.sh 文件的映射路径正确
+      - /home/sss:/home/sss
+      # ----- 此处保持不变 ----- #
+      - /usr/local/dcmi:/usr/local/dcmi
+      - /usr/local/bin/npu-smi:/usr/local/bin/npu-smi
+      - /usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64
+      - /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info
+      - /etc/ascend_install.info:/etc/ascend_install.info
+      # ---------------------- #
+    ports:
+      # 映射22端口，方便 ssh 远程连接容器
+      - 8333:22
+      # 可添加更多端口映射
+      - 8009:8009
+    restart: unless-stopped
+    hostname: ascend-01
+    tty: true
+    devices:
+      # 此处更改为可用的 NPU 卡号，可通过 npu-list 查询卡的占用状态
+      - /dev/davinci4
+      - /dev/davinci_manager
+      - /dev/devmm_svm
+      - /dev/hisi_hdc
+    cap_add:
+      - SYS_PTRACE
+    shm_size: 20gb
+```
+
 ### 2.5 启动并进入容器
 
 启动容器：
@@ -185,6 +224,7 @@ docker-compose -p sss up -d
 ```bash
 # docker exec -it <容器名或ID> /bin/bash
 docker exec -it sss_2.0 /bin/bash
+docker exec -it sss-2.0 /bin/bash
 # 退出容器：exit
 ```
 
@@ -247,6 +287,7 @@ bash Miniconda3-latest-Linux-aarch64.sh
 
 # 启用 conda 环境（这里替换为自己的安装路径）
 eval "$(/home/sss/bin/miniconda/miniconda3/bin/conda shell.bash hook)"
+# eval "$(/home/sss/software/miniconda3/bin/conda shell.bash hook)"
 
 # 创建 conda 虚拟环境并激活
 conda create -n cann python=3.10
@@ -272,7 +313,30 @@ conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/fr
 conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
 ```
 
-> 参考资料：[<u>miniconda 设置 channel</u>](https://blog.csdn.net/weixin_43949246/article/details/109637468)。
+> 参考资料：
+>
+> - [<u>pip 设置清华源</u>](https://www.runoob.com/w3cnote/pip-cn-mirror.html)
+> - [<u>miniconda 设置 channel</u>](https://blog.csdn.net/weixin_43949246/article/details/109637468)
+
+配置 conda 自动初始化：
+
+```bash
+# ~/.bashrc
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/sss/software/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/sss/software/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/sss/software/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/sss/software/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+```
 
 安装 python 依赖：
 
@@ -439,7 +503,7 @@ sudo vim /etc/ssh/sshd_config
 # ClientAliveInterval 60  #参数数值是秒 , 是指超时时间
 # ClientAliveCountMax 3 #设置允许超时的次数
 # UsePAM yes # 更改为 UsePAM no
-# Port 80 #指定好端口号，默认是22 后面这个数字要在你run容器的时候用到
+Port 22 #指定好端口号，默认是22 后面这个数字要在你run容器的时候用到
 ```
 
 然后重启 SSH 服务：

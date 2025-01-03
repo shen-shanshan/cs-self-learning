@@ -41,6 +41,15 @@ modelscope download --model 'Qwen/Qwen2-7b' --include '*.safetensors'
 modelscope download --model 'Qwen/Qwen2-7b' --exclude '*.safetensors'
 ```
 
+使用 Python SDK 下载：
+
+```python
+from modelscope import snapshot_download
+
+# decoder-only
+model_dir = snapshot_download('baichuan-inc/baichuan-7B', cache_dir='/home/sss/models/baichuan-inc/baichuan-7B')
+```
+
 - [<u>ModelScope 首页</u>](https://www.modelscope.cn/home)
 - [<u>ModelScope 模型下载</u>](https://www.modelscope.cn/docs/models/download)
 
