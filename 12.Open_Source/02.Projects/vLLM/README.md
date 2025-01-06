@@ -8,7 +8,7 @@
 - [<u>Contributing to vLLM</u>](https://docs.vllm.ai/en/stable/contributing/overview.html)
 - [<u>Architecture Overview</u>](https://docs.vllm.ai/en/stable/design/arch_overview.html)
 
-**NPU 支持：**
+**NPU 相关：**
 
 - [<u>PR: Add Ascend NPU backend</u>](https://github.com/vllm-project/vllm/pull/8054)
 - [<u>模型支持验证清单</u>](https://github.com/cosdt/vllm/tree/main/model_support)
@@ -96,7 +96,7 @@ git clone https://github.com/shen-shanshan/vllm.git
 
 ```bash
 # (Recommended) Create a new conda environment.
-conda create -n vllm python=3.12 -y
+conda create -n vllm python=3.12 -y # 注意：NPU 环境下推荐使用 3.10
 # conda create -n vllm python=3.10 -y
 conda activate vllm
 pip install -r requirements-dev.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
@@ -111,75 +111,3 @@ cd vllm
 VLLM_USE_PRECOMPILED=1 pip install --editable . # GPU
 VLLM_TARGET_DEVICE=npu pip install -e . # NPU
 ```
-
-## TODO
-
-### RoPE 算子适配
-
-实现 rope 算子：调 torch_npu 接口，重写 `forward_npu()` 方法，可以参考华为云的实现。
-
-torch_npu 接口：`npu_apply_rotary_pos_emb()`。
-
-代码位置：`vllm/model_executor/layers/rotary_embedding.py`。
-
-### 模型验证（在 NPU 上）
-
-**环境配置：**
-
-```bash
-# log
-python model_verify.py
-Downloading Model to directory: /home/sss/.cache/modelscope/hub/ZhipuAI/chatglm2-6b
-
-# 设置 cann 环境变量
-echo "source ~/Ascend/ascend-toolkit/set_env.sh" >> ~/.bashrc
-source ~/.bashrc
-
-# 设置使用 modelscope
-echo "export VLLM_USE_MODELSCOPE=True" >> ~/.bashrc
-source ~/.bashrc
-
-pip install git+https://github.com/huggingface/transformers.git
-```
-
-测试 CANN 环境：
-
-```python
-import torch, torch_npu
-torch.npu.devcice_count()
-```
-
-```bash
-# 显示对应 npu 设备，表示环境可用
-npu-smi info`
-```
-
-**模型下载：**
-
-```bash
-pip install modelscope
-
-modelscope download --model 'ZhipuAI/chatglm2-6b' --local_dir '/home/sss/models/ZhipuAI/chatglm2-6b' # 已验证
-modelscope download --model 'ZhipuAI/glm-4-9b-chat-hf' --local_dir '/home/sss/models/ZhipuAI/glm-4-9b-chat-hf'
-```
-
-**验证脚本：**
-
-```python
-from vllm import LLM
-
-llm = LLM(model="/home/sss/models/ZhipuAI/glm-4-9b-chat-hf", task=generate, trust_remote_code=True)
-
-# For generative models (task=generate) only
-output = llm.generate("Hello, my name is")
-print(output)
-```
-
-- [<u>模型支持验证清单</u>](https://github.com/cosdt/vllm/tree/main/model_support)
-- [<u>模型验证脚本</u>](https://docs.vllm.ai/en/stable/models/supported_models.html#modelscope)
-
-### 其它
-
-vllm 这边除了 vllm-npu 的开发，就剩下公共特性了，一方面可以在每天刷新的 issue、pr 里面去找可以修的 bug 或者可以重构的代码，另一方面就是源神这个 [<u>RFC</u>](https://github.com/vllm-project/vllm/issues/11162)。
-
-还有就是对关键的一些 pr 可以积极参与 review 啥的。

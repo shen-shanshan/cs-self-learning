@@ -25,6 +25,8 @@ huggingface-cli download --repo-type dataset --resume-download wikitext --local-
 
 模型默认下载地址：`~/.cache/modelscope/hub`，可通过环境变量 `MODELSCOPE_CACHE` 进行设置。
 
+**使用命令行下载：**
+
 ```bash
 # 环境安装
 pip install modelscope
@@ -41,13 +43,12 @@ modelscope download --model 'Qwen/Qwen2-7b' --include '*.safetensors'
 modelscope download --model 'Qwen/Qwen2-7b' --exclude '*.safetensors'
 ```
 
-使用 Python SDK 下载：
+**使用 Python SDK 下载：**
 
 ```python
 from modelscope import snapshot_download
 
-# decoder-only
-model_dir = snapshot_download('baichuan-inc/baichuan-7B', cache_dir='/home/sss/models/baichuan-inc/baichuan-7B')
+model_dir = snapshot_download('baichuan-inc/baichuan-7B', cache_dir='/home/sss/model')
 ```
 
 - [<u>ModelScope 首页</u>](https://www.modelscope.cn/home)
