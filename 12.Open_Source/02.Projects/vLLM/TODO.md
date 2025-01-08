@@ -1,14 +1,15 @@
 # TODO
 
-## RoPE 算子适配
+## Quick Start
 
-实现 rope 算子：调 torch_npu 接口，重写 `forward_npu()` 方法，可以参考华为云的实现。
+开发新特性，新建分支：
 
-torch_npu 接口：`npu_apply_rotary_pos_emb()`。
+```bash
+git fetch upstream
+git checkout -b <branch_name> upstream/main
+```
 
-代码位置：`vllm/model_executor/layers/rotary_embedding.py`。
-
-## 模型验证（在 NPU 上）
+## 模型验证（NPU）
 
 ### 环境配置
 
@@ -60,6 +61,15 @@ from modelscope import snapshot_download
 model_dir = snapshot_download('AI-ModelScope/AquilaChat-7B', cache_dir='/home/sss/models')
 model_dir = snapshot_download('baichuan-inc/baichuan-7B', cache_dir='/home/sss/models') # pip install "transformers<4.34" -U
 model_dir = snapshot_download('AI-ModelScope/bloom-3b', cache_dir='/home/sss/models')
+# 未找到 DeciLM-7B
+model_dir = snapshot_download('AI-ModelScope/EXAONE-3.0-7.8B-Instruct', cache_dir='/home/sss/models')
+model_dir = snapshot_download('AI-ModelScope/falcon-7b', cache_dir='/home/sss/models')
+model_dir = snapshot_download('AI-ModelScope/gemma-2b', cache_dir='/home/sss/models')
+model_dir = snapshot_download('LLM-Research/gemma-2-9b', cache_dir='/home/sss/models')
+model_dir = snapshot_download('ZhipuAI/glm-4-9b-chat-hf', cache_dir='/home/sss/models')
+model_dir = snapshot_download('AI-ModelScope/gpt2', cache_dir='/home/sss/models')
+model_dir = snapshot_download('TabbyML/StarCoder-1B', cache_dir='/home/sss/models')
+model_dir = snapshot_download('AI-ModelScope/gpt-j-6b', cache_dir='/home/sss/models')
 ```
 
 ### 验证脚本
@@ -76,9 +86,11 @@ print(output)
 
 ### 验证情况
 
-**ZhipuAI/chatglm2-6b**：✅
+**ZhipuAI/chatglm2-6b**: ✅
 
-**baichuan-inc/baichuan-7B**：❌
+**AI-ModelScope/AquilaChat-7B**: ✅
+
+**baichuan-inc/baichuan-7B**: ❌
 
 模型官方文档要求 `transformers<4.34`，与 NPU 环境要求冲突导致报错。
 
@@ -96,12 +108,52 @@ ModuleNotFoundError: No module named 'transformers.models.mllama'
 AttributeError: 'LLM' object has no attribute 'llm_engine'
 ```
 
-**AI-ModelScope/AquilaChat-7B**：……
+**AI-ModelScope/bloom-3b**: ✅
+
+**AI-ModelScope/EXAONE-3.0-7.8B-Instruct**: ✅
+
+**AI-ModelScope/falcon-7b**: ❌
+
+```bash
+[rank0]: RuntimeError: call aclnnPromptFlashAttentionV3 failed, detail:EZ1001: [PID: 179252] 2025-01-08-02:11:31.602.007 PromptFlashAttention LaunchAicore failed.
+[rank0]:         TraceBack (most recent call last):
+[rank0]:         numHeads / numKeyValueHeads = 71, cannot be larger than 64[FUNC:SetTilingHeadNumRatio][FILE:prompt_flash_attention_tiling.cpp][LINE:1445]
+[rank0]:         Tiling failed
+[rank0]:         Tiling Failed.
+[rank0]:         Kernel GetWorkspace failed. opType: 27
+[rank0]:         PromptFlashAttention LaunchAicore failed.
+
+numHeads(71) in query shape must be equal to numHeads(7) in attr.
+```
+
+**AI-ModelScope/gemma-2b**: ✅
+
+**LLM-Research/gemma-2-9b**: ✅
+
+**ZhipuAI/glm-4-9b-chat-hf**: ❌
+
+```bash
+[rank0]: File "/home/sss/github/vllm/vllm/model_executor/layers/rotary_embedding.py", line 66, in _apply_rotary_emb
+[rank0]:     o1 = x1 * cos - x2 * sin
+[rank0]: RuntimeError: The size of tensor a (0) must match the size of tensor b (64) at non-singleton dimension 2
+```
+
+**AI-ModelScope/gpt2**: ✅
+
+**TabbyML/StarCoder-1B**:
 
 ### 参考资料
 
 - [<u>模型支持验证清单</u>](https://github.com/cosdt/vllm/tree/main/model_support)
 - [<u>模型验证脚本</u>](https://docs.vllm.ai/en/stable/models/supported_models.html#modelscope)
+
+## RoPE 算子适配
+
+实现 rope 算子：调 torch_npu 接口，重写 `forward_npu()` 方法，可以参考华为云的实现。
+
+torch_npu 接口：`npu_apply_rotary_pos_emb()`。
+
+代码位置：`vllm/model_executor/layers/rotary_embedding.py`。
 
 ## 其它
 
