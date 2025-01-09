@@ -1,10 +1,5 @@
 # 深入解析 Python 库调用原理与最佳实践
 
-TODO：
-
-- 写代码做实验进行验证和说明；
-- 结合剩下两篇帖子补充内容和实验；
-
 ## 基本原理
 
 ### `__init__.py` 是什么（what）
@@ -36,7 +31,7 @@ TODO：
 **声明所有对外的对象列表：**
 
 ```python
-__all__ = ['subpackage1','subpackage2']
+__all__ = ['subpackage1', 'subpackage2']
 ```
 
 当我们执行 `from package import *` 时，会导入 `subpackage1` 和 `subpackage2` 两个库对象；此时是否能够调用到 `subpackage1` 和 `subpackage2` 的子对象，则取决于这两个库目录下的 `__init__.py` 文件。
@@ -94,6 +89,20 @@ from .subpackage2 import *
 特别补充：
 
 无论是 `from A import B` 还是 `import A`，这里的 `A` 一定指的是模块关系（可以是绝对或者相对关系），且无法通过对象关系导入；前者生成的对象是 `B`，对于后者则特别地生成一个对象 `A`。这里如果对象是一个模块，则是对模块本身的一个指针（即把对象作为一个子节点）；如果对象是一个方法或一个函数，则应当是对方法或函数的一段拷贝。
+
+## import ... vs from ... import ...
+
+`import X`:
+
+Imports the module X, and creates a reference to that module in the current namespace. Then you need to define completed module path to access a particular attribute or method from inside the module (e.g.: X.name or X.attribute).
+
+`from X import *`:
+
+Imports the module X, and creates references to all public objects defined by that module in the current namespace (that is, everything that doesn’t have a name starting with _) or whatever name you mentioned.
+
+Or, in other words, after you've run this statement, you can simply use a plain (unqualified) name to refer to things defined in module X. But X itself is not defined, so X.name doesn't work. And if name was already defined, it is replaced by the new version. And if name in X is changed to point to some other object, your module won’t notice.
+
+`from xxx import ... as xxx`: ...
 
 ## 循环依赖问题
 

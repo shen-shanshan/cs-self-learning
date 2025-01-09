@@ -70,6 +70,13 @@ model_dir = snapshot_download('ZhipuAI/glm-4-9b-chat-hf', cache_dir='/home/sss/m
 model_dir = snapshot_download('AI-ModelScope/gpt2', cache_dir='/home/sss/models')
 model_dir = snapshot_download('TabbyML/StarCoder-1B', cache_dir='/home/sss/models')
 model_dir = snapshot_download('AI-ModelScope/gpt-j-6b', cache_dir='/home/sss/models')
+
+# encoder-decoder
+model_dir = snapshot_download('owl123/bart-base', cache_dir='/home/sss/models')
+
+# multi-modality
+model_dir = snapshot_download('Qwen/Qwen-VL-Chat', cache_dir='/home/sss/models')
+model_dir = snapshot_download('fixie-ai/ultravox-v0_3', cache_dir='/home/sss/models')
 ```
 
 ### 验证脚本
@@ -81,7 +88,11 @@ llm = LLM(model="/home/sss/models/baichuan-inc/baichuan-7B", task="generate", tr
 
 # For generative models (task=generate) only
 output = llm.generate("Hello, my name is")
-print(output)
+# print(output)
+for output in outputs:
+    prompt = output.prompt
+    generated_text = output.outputs[0].text
+    print(f"Prompt: {prompt!r}, Generated text: {generated_text!r}")
 ```
 
 ### 验证情况
@@ -140,7 +151,9 @@ numHeads(71) in query shape must be equal to numHeads(7) in attr.
 
 **AI-ModelScope/gpt2**: ✅
 
-**TabbyML/StarCoder-1B**:
+**TabbyML/StarCoder-1B**: ✅
+
+llm = LLM(model="/home/sss/models/AI-ModelScope/gpt2")
 
 ### 参考资料
 

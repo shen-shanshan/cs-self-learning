@@ -1,1 +1,13 @@
-/AI/深度学习/PyTorch/PyTorch入门教程/codes/pytorch_practice/data/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# data-set
+/09.AI/05.Deep_Learning/PyTorch/PyTorch_Tutorials/02.Practices/pytorch_practice/data/
