@@ -199,6 +199,18 @@ git merge <分支名称>
 git rebase <分支名称>
 ```
 
+git rebase 操作步骤：
+
+```bash
+git rebase <分支名称>
+# 依次解决每个节点的冲突（假设有 n 个节点需要 rebase）
+for i in n:
+    # 解决冲突……
+    git add .
+    git rebase --continue
+# 直至所有节点 rebase 完成
+```
+
 回退提交：
 
 ```bash

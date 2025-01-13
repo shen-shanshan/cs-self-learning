@@ -1,5 +1,13 @@
 # TODO
 
+## 完善 vllm-ascend 项目
+
+测试模型：
+
+```python
+llm = LLM(model="/home/sss/models/AI-ModelScope/gpt2")
+```
+
 ## Quick Start
 
 开发新特性，新建分支：
@@ -152,8 +160,6 @@ numHeads(71) in query shape must be equal to numHeads(7) in attr.
 **AI-ModelScope/gpt2**: ✅
 
 **TabbyML/StarCoder-1B**: ✅
-
-llm = LLM(model="/home/sss/models/AI-ModelScope/gpt2")
 
 ### 参考资料
 
