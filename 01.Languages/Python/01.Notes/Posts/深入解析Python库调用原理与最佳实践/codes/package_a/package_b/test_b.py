@@ -1,2 +1,2 @@
-def print_test_b():
-    print("call test_b().")
+def test():
+    print("call test() in package_b.")

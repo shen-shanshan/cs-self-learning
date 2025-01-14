@@ -2,7 +2,7 @@
 如果目录中包含了 __init__.py 文件，那么当用 import 导入该目录时，就会执行 __init__.py 里面的代码。
 '''
 print("package_a has been imported.")
-print(__package__) # package_a
+# print(__package__) # package_a
 
 '''
 我们可以在 __init__.py 中指定默认需要导入的模块（使用从项目根目录（入口程序）开始的路径）。

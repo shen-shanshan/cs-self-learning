@@ -1,6 +1,7 @@
 import package_a
+import package_b
 # from package_b import func_b
-from package_b.func_b import function_b
+# from package_b.func_b import function_b
 
 
 '''
@@ -9,6 +10,7 @@ ImportError: cannot import name 'function_a' from partially initialized module '
 '''
 
 package_a.func_a.get_class()
+package_b.func_b.get_class()
 
 '''
 实验二：
