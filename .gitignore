@@ -8,6 +8,3 @@ __pycache__/
 
 # VSCode
 .vscode/
-
-# data-set
-/09.AI/05.Deep_Learning/PyTorch/PyTorch_Tutorials/02.Practices/pytorch_practice/data/
