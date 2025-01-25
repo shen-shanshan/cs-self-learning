@@ -2,9 +2,7 @@
 
 This repo is used for archiving my notes, codes and materials of cs learning.
 
-## Contents
-
-### Basic Knowledges
+## Basic Knowledges
 
 📔 **Languages:**
 
@@ -31,7 +29,7 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 - [<u>Design Pattern Notes</u>](./Design_Pattern/Notes/)
 - [<u>Design Pattern Practices</u>](./Design_Pattern/Codes/)
 
-### Tools
+## Tools
 
 📔 **Development Tools:**
 
@@ -47,7 +45,7 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 
 - [<u>VSCode Notes</u>](./Tools/VSCode/Notes/)
 
-### AI 🔥
+## AI 🔥
 
 📔 **Mathematics:**
 
@@ -83,7 +81,7 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 - [<u>Fine-Tuning</u>](./AI/LLM/Fine_Tuning/)
 - [<u>Preference Alignment</u>](./AI/LLM/Preference_Alignment/)
 
-### Backend Development
+## Backend Development
 
 📔 **Framework:**
 
@@ -96,7 +94,7 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 - [<u>Oracle Notes</u>](./Backend_Development/Database/Oracle/Notes/)
 - [<u>Redis Notes</u>](./Backend_Development/Database/Redis/Notes/)
 
-### Big Data
+## Big Data
 
 📔 **Framework & Engine:**
 
@@ -107,7 +105,7 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 
 - [<u>Hudi Notes</u>](./Big_Data/Hudi/Notes/)
 
-### Others
+## Other Notes
 
 📔 **Open Source:**
 
