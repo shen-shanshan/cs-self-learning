@@ -1,5 +1,0 @@
-#written by FileProperties
-#Tue Mar 07 20:23:21 CST 2023
-day=21
-year=2004
-month=4
