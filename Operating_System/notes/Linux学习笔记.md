@@ -41,7 +41,7 @@
 
 ## 2 目录结构
 
-![image-20221114162703656](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114162703656.png)
+![image-20221114162703656](./images/image-20221114162703656.png)
 
 - bin：存放二进制可执行文件
 - boot：存放系统引导时使用的各种文件
@@ -56,15 +56,15 @@
 - usr：存放系统应用程序
 - var：存放运行时需要改变数据的文件（如：日志文件）
 
-![image-20221114163042030](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114163042030.png)
+![image-20221114163042030](./images/image-20221114163042030.png)
 
 ## 3 文件权限
 
-![image-20221114203314648](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114203314648.png)
+![image-20221114203314648](./images/image-20221114203314648.png)
 
-![image-20221114203428769](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114203428769.png)
+![image-20221114203428769](./images/image-20221114203428769.png)
 
-![image-20221114203602787](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114203602787.png)
+![image-20221114203602787](./images/image-20221114203602787.png)
 
 # 环境搭建
 
@@ -80,13 +80,13 @@
 
 由于启动服务器时未加载网卡，导致 IP 地址初始化失败。
 
-![image-20221114161833823](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114161833823.png)
+![image-20221114161833823](./images/image-20221114161833823.png)
 
 修改网络初始化设置，设定网卡在系统启动时初始化，修改完成后需要重启服务器。
 
-![image-20221114162016400](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114162016400.png)
+![image-20221114162016400](./images/image-20221114162016400.png)
 
-![image-20221114162218411](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114162218411.png)
+![image-20221114162218411](./images/image-20221114162218411.png)
 
 ### 1.3 SSH 连接工具
 
@@ -110,17 +110,17 @@ SSH（Secure Shell）：建立在应用层基础上的安全协议。
 
 ### 2.2 Jdk
 
-![image-20221114194950023](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114194950023.png)
+![image-20221114194950023](./images/image-20221114194950023.png)
 
 ### 2.3 Tomcat
 
-![image-20221114195102629](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114195102629.png)
+![image-20221114195102629](./images/image-20221114195102629.png)
 
-![image-20221114195139155](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114195139155.png)
+![image-20221114195139155](./images/image-20221114195139155.png)
 
-![image-20221114195427077](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114195427077.png)
+![image-20221114195427077](./images/image-20221114195427077.png)
 
-![image-20221114195459399](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114195459399.png)
+![image-20221114195459399](./images/image-20221114195459399.png)
 
 需要发放的端口：
 
@@ -132,7 +132,7 @@ SSH（Secure Shell）：建立在应用层基础上的安全协议。
 
 注意：CentOS 6.x 版本无法使用上面的防火墙相关命令。
 
-![image-20221114200148786](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200148786.png)
+![image-20221114200148786](./images/image-20221114200148786.png)
 
 `kill -9 [进程id]`：表示强制结束进程
 
@@ -145,25 +145,25 @@ SSH（Secure Shell）：建立在应用层基础上的安全协议。
 
 ### 2.4 MySQL
 
-![image-20221114200435241](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200435241.png)
+![image-20221114200435241](./images/image-20221114200435241.png)
 
-![image-20221114200519552](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200519552.png)
+![image-20221114200519552](./images/image-20221114200519552.png)
 
-![image-20221114200544825](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200544825.png)
+![image-20221114200544825](./images/image-20221114200544825.png)
 
-![image-20221114200603030](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200603030.png)
+![image-20221114200603030](./images/image-20221114200603030.png)
 
-![image-20221114200621147](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200621147.png)
+![image-20221114200621147](./images/image-20221114200621147.png)
 
-![image-20221114200703827](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200703827.png)
+![image-20221114200703827](./images/image-20221114200703827.png)
 
-![image-20221114200814872](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200814872.png)
+![image-20221114200814872](./images/image-20221114200814872.png)
 
-![image-20221114200835931](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200835931.png)
+![image-20221114200835931](./images/image-20221114200835931.png)
 
 使用新密码登录：`mysql -uroot -proot`
 
-![image-20221114200912510](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114200912510.png)
+![image-20221114200912510](./images/image-20221114200912510.png)
 
 > 参考资料：
 >
@@ -171,29 +171,29 @@ SSH（Secure Shell）：建立在应用层基础上的安全协议。
 
 ### 2.5 Git
 
-![image-20221114202207764](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114202207764.png)
+![image-20221114202207764](./images/image-20221114202207764.png)
 
-![image-20221114202232486](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114202232486.png)
+![image-20221114202232486](./images/image-20221114202232486.png)
 
 ### 2.6 Maven
 
 将 Maven 的安装包上传到 Linux 进行安装并配置其环境变量。
 
-![image-20221114202600048](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114202600048.png)
+![image-20221114202600048](./images/image-20221114202600048.png)
 
 ## 3 项目部署（Java Web）
 
 首先，将在 IDEA 中开发的 Java Web 项目打包为 jar 包。
 
-![image-20221114201150532](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114201150532.png)
+![image-20221114201150532](./images/image-20221114201150532.png)
 
-![image-20221114201209319](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114201209319.png)
+![image-20221114201209319](./images/image-20221114201209319.png)
 
 启动程序：`java -jar xxx.jar`
 
-![image-20221114201415169](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114201415169.png)
+![image-20221114201415169](./images/image-20221114201415169.png)
 
-![image-20221114201642823](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114201642823.png)
+![image-20221114201642823](./images/image-20221114201642823.png)
 
 注意：这里的 `hello.log` 是相对路径，最后会在当前的 `app` 目录下生成日志文件。
 
@@ -202,11 +202,11 @@ SSH（Secure Shell）：建立在应用层基础上的安全协议。
 - `more hello.log`
 - `tail -f hello.log`
 
-![image-20221114202000481](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114202000481.png)
+![image-20221114202000481](./images/image-20221114202000481.png)
 
-![image-20221114203741856](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114203741856.png)
+![image-20221114203741856](./images/image-20221114203741856.png)
 
-![image-20221114203810237](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114203810237-16684294911091.png)
+![image-20221114203810237](./images/image-20221114203810237-16684294911091.png)
 
 # 常用命令
 
@@ -422,7 +422,7 @@ vim 三种模式：
 
 ## 1 乱码
 
-![image-20221114164053892](Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20221114164053892.png)
+![image-20221114164053892](./images/image-20221114164053892.png)
 
 ## 2 段错误（核心已转储）
 

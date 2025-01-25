@@ -31,7 +31,7 @@ Flink 的特点：
 
 ## 3  分层 API
 
-![image-20230912232331211](Flink学习笔记.assets/image-20230912232331211.png)
+![image-20230912232331211](./images/image-20230912232331211.png)
 
 - DataStream API：流处理；
 - DataSet API：批处理。
@@ -52,7 +52,7 @@ Flink 的特点：
 
 ## 1  系统架构
 
-![image-20230912234618721](Flink学习笔记.assets/image-20230912234618721.png)
+![image-20230912234618721](./images/image-20230912234618721.png)
 
 > 一个 Job（作业）对应 JobManager 中的一个 JobMaster。
 

@@ -404,7 +404,7 @@ x = 1
 - 第一个字符不能为数字。
 - 不能与保留字相同。
 
-![Snipaste_2023-07-28_22-13-39](Python学习笔记.assets/Snipaste_2023-07-28_22-13-39.png)
+![Snipaste_2023-07-28_22-13-39](./images/Snipaste_2023-07-28_22-13-39.png)
 
 命名技巧：
 
@@ -545,7 +545,7 @@ print({0:.2e}.format(x)) # 8.19e-01
 
 格式化输出总结：
 
-![Snipaste_2023-07-28_23-07-48](Python学习笔记.assets/Snipaste_2023-07-28_23-07-48.png)
+![Snipaste_2023-07-28_23-07-48](./images/Snipaste_2023-07-28_23-07-48.png)
 
 ## 5  函数
 
@@ -846,7 +846,7 @@ with open("E:\ipython\测试文件.txt", "r", encoding = "gbk") as f:
 
 #### 7.1.2  打开模式
 
-![Snipaste_2023-08-12_11-13-40](Python学习笔记.assets/Snipaste_2023-08-12_11-13-40.png)
+![Snipaste_2023-08-12_11-13-40](./images/Snipaste_2023-08-12_11-13-40.png)
 
 #### 7.1.3  字符编码
 
@@ -1028,7 +1028,7 @@ fun2.f2()
 
 「包」：由多个 `.py` 文件组成，并且一定需要有一个 `__init__.py` 文件，该文件可以为空。
 
-![Snipaste_2023-08-12_14-51-20](Python学习笔记.assets/Snipaste_2023-08-12_14-51-20.png)
+![Snipaste_2023-08-12_14-51-20](./images/Snipaste_2023-08-12_14-51-20.png)
 
 > 注意：这里的模块实际上指的就是 `.py` 文件。
 
@@ -1623,19 +1623,19 @@ list_3[1].append(55)
 
 初始列表：
 
-![Snipaste_2023-08-13_10-30-00](Python学习笔记.assets/Snipaste_2023-08-13_10-30-00.png)
+![Snipaste_2023-08-13_10-30-00](./images/Snipaste_2023-08-13_10-30-00.png)
 
 将两个列表中的第一个元素分别修改为 10 和 20：
 
-![Snipaste_2023-08-13_10-31-38](Python学习笔记.assets/Snipaste_2023-08-13_10-31-38.png)
+![Snipaste_2023-08-13_10-31-38](./images/Snipaste_2023-08-13_10-31-38.png)
 
 将列表二的第二个元素（地址列表）进行修改，列表一的第二个元素也会发生变化：
 
-![Snipaste_2023-08-13_10-34-22](Python学习笔记.assets/Snipaste_2023-08-13_10-34-22.png)
+![Snipaste_2023-08-13_10-34-22](./images/Snipaste_2023-08-13_10-34-22.png)
 
 将列表二的第三个元素（地址元组）进行修改，列表一的第三个元素却不会发生变化：
 
-![Snipaste_2023-08-13_10-36-57](Python学习笔记.assets/Snipaste_2023-08-13_10-36-57.png)
+![Snipaste_2023-08-13_10-36-57](./images/Snipaste_2023-08-13_10-36-57.png)
 
 原因：元组是不可变的类型，当对其进行修改（例如增加元素）时，会产生一个新的元组。
 
@@ -2285,7 +2285,7 @@ x.dot(y)
 
 原理如下：
 
-![Snipaste_2023-08-16_22-16-35](Python学习笔记.assets/Snipaste_2023-08-16_22-16-35.png)
+![Snipaste_2023-08-16_22-16-35](./images/Snipaste_2023-08-16_22-16-35.png)
 
 ### 4.4  比较运算和掩码
 
@@ -2625,7 +2625,7 @@ data.types
 
 > 数据表如下：
 >
-> ![image-20230819125129760](Python学习笔记.assets/image-20230819125129760.png)
+> ![image-20230819125129760](./images/image-20230819125129760.png)
 
 ```python
 import pandas as pd
@@ -2662,7 +2662,7 @@ data.GDP["BeiJing"]
 
 > 数据表如下：
 >
-> ![image-20230819130838288](Python学习笔记.assets/image-20230819130838288.png)
+> ![image-20230819130838288](./images/image-20230819130838288.png)
 
 ```python
 import pandas as pd
@@ -2826,7 +2826,7 @@ x.dot(y)
 
 > 数据表如下：
 >
-> ![image-20230819154734702](Python学习笔记.assets/image-20230819154734702.png)
+> ![image-20230819154734702](./images/image-20230819154734702.png)
 
 ```python
 import pandas as pd
@@ -3023,9 +3023,9 @@ pd.merge(df_7, df_8)
 
 > 对齐合并：
 >
-> ![image-20230819172202089](Python学习笔记.assets/image-20230819172202089.png)
+> ![image-20230819172202089](./images/image-20230819172202089.png)
 >
-> ![image-20230819172223034](Python学习笔记.assets/image-20230819172223034.png)
+> ![image-20230819172223034](./images/image-20230819172223034.png)
 
 ## 6  分组
 

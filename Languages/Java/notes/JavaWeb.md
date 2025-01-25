@@ -17,7 +17,7 @@
 
 ## 4 Tomcat 服务器和 Servlet 版本的对应关系
 
-![image-20221224203044981](JavaWeb.assets/image-20221224203044981.png)
+![image-20221224203044981](./images/image-20221224203044981.png)
 
 # Tomcat
 
@@ -120,11 +120,11 @@
 
 创建一个新模块，如下所示：
 
-![image-20221224213008879](JavaWeb.assets/image-20221224213008879.png)
+![image-20221224213008879](./images/image-20221224213008879.png)
 
 创建成功后的目录如下：
 
-![image-20221224213308855](JavaWeb.assets/image-20221224213308855.png)
+![image-20221224213308855](./images/image-20221224213308855.png)
 
 说明：
 
@@ -173,7 +173,7 @@ Jackson 有三个核心包，分别是 **Streaming、Databid、Annotations**，�
 
 在使用 Jackson 时，大多数情况下我们只需要添加 `jackson-databind` 依赖项，就可以使用 Jackson 功能了，它依赖了下面两个包。
 
-![jackson-databind 依赖](JavaWeb.assets/7d9d1919ce5049cb8508a76447b75a2ftplv-k3u1fbpfcp-zoom-in-crop-mark3024000.webp)
+![jackson-databind 依赖](./images/7d9d1919ce5049cb8508a76447b75a2ftplv-k3u1fbpfcp-zoom-in-crop-mark3024000.webp)
 
 导入依赖：
 

@@ -32,19 +32,19 @@ git 官网：[Git (git-scm.com)](https://git-scm.com/)
 
 创建文件后，git 客户端会识别出文件的变化，提交（commit）后与仓库达成一致。
 
-![image-20230414112236420](Git.assets/image-20230414112236420.png)
+![image-20230414112236420](./images/image-20230414112236420.png)
 
 修改文件后，git 客户端会识别出文件的变化，提交（commit）后与仓库达成一致。
 
-![image-20230414111617624](Git.assets/image-20230414111617624.png)
+![image-20230414111617624](./images/image-20230414111617624.png)
 
 版本号：40 个 16 进制的数字组成的版本号（提交码）。
 
-![image-20230414111709387](Git.assets/image-20230414111709387.png)
+![image-20230414111709387](./images/image-20230414111709387.png)
 
 删除文件后，git 客户端会识别出文件的变化，提交（commit）后与仓库达成一致。
 
-![image-20230414111920645](Git.assets/image-20230414111920645.png)
+![image-20230414111920645](./images/image-20230414111920645.png)
 
 > git 客户端的比对功能仅能识别文本文件，不能识别如 word 等文件发生的变化。
 
@@ -52,95 +52,95 @@ git 官网：[Git (git-scm.com)](https://git-scm.com/)
 
 为什么需要分支？便于模块化开发。
 
-![image-20230414113936884](Git.assets/image-20230414113936884.png)
+![image-20230414113936884](./images/image-20230414113936884.png)
 
 创建分支：
 
-![image-20230414113401778](Git.assets/image-20230414113401778.png)
+![image-20230414113401778](./images/image-20230414113401778.png)
 
 提交到当前分支：
 
-![image-20230414113757233](Git.assets/image-20230414113757233.png)
+![image-20230414113757233](./images/image-20230414113757233.png)
 
 合并到主分支：
 
-![image-20230414114057293](Git.assets/image-20230414114057293.png)
+![image-20230414114057293](./images/image-20230414114057293.png)
 
-![image-20230414114201532](Git.assets/image-20230414114201532.png)
+![image-20230414114201532](./images/image-20230414114201532.png)
 
 合并分支时文件出现冲突：
 
-![image-20230414114449647](Git.assets/image-20230414114449647.png)
+![image-20230414114449647](./images/image-20230414114449647.png)
 
-![image-20230414114551711](Git.assets/image-20230414114551711.png)
+![image-20230414114551711](./images/image-20230414114551711.png)
 
 查看发生冲突的文件：
 
-![image-20230414114705245](Git.assets/image-20230414114705245.png)
+![image-20230414114705245](./images/image-20230414114705245.png)
 
 > 说明：`HEAD` 为冲突头，即开始发生冲突的地方；`>>> order` 代表下面的修改来自 `order` 分支。
 
 手动解决冲突：
 
-![image-20230414114804650](Git.assets/image-20230414114804650.png)
+![image-20230414114804650](./images/image-20230414114804650.png)
 
 ## 2.5  标签操作
 
 创建标签：
 
-![image-20230414114927371](Git.assets/image-20230414114927371.png)
+![image-20230414114927371](./images/image-20230414114927371.png)
 
 ## 2.6  远程仓库
 
 创建仓库：
 
-![image-20230414115229782](Git.assets/image-20230414115229782.png)
+![image-20230414115229782](./images/image-20230414115229782.png)
 
 或者：
 
-![image-20230414152841304](Git.assets/image-20230414152841304.png)
+![image-20230414152841304](./images/image-20230414152841304.png)
 
-![image-20230414152929760](Git.assets/image-20230414152929760.png)
+![image-20230414152929760](./images/image-20230414152929760.png)
 
 创建文件并提交：
 
-![image-20230414115440229](Git.assets/image-20230414115440229.png)
+![image-20230414115440229](./images/image-20230414115440229.png)
 
-![image-20230414152309423](Git.assets/image-20230414152309423-16814569903441.png)
+![image-20230414152309423](./images/image-20230414152309423-16814569903441.png)
 
 创建新的分支：
 
-![image-20230414152455127](Git.assets/image-20230414152455127.png)
+![image-20230414152455127](./images/image-20230414152455127.png)
 
-![image-20230414152513808](Git.assets/image-20230414152513808.png)
+![image-20230414152513808](./images/image-20230414152513808.png)
 
-![image-20230414152529634](Git.assets/image-20230414152529634.png)
+![image-20230414152529634](./images/image-20230414152529634.png)
 
 删除仓库：
 
-![image-20230414152627322](Git.assets/image-20230414152627322.png)
+![image-20230414152627322](./images/image-20230414152627322.png)
 
-![image-20230414152721149](Git.assets/image-20230414152721149.png)
+![image-20230414152721149](./images/image-20230414152721149.png)
 
 下载（克隆）仓库到本地（需要先在客户端登录自己的账号）：
 
-![image-20230414153116007](Git.assets/image-20230414153116007.png)
+![image-20230414153116007](./images/image-20230414153116007.png)
 
-![image-20230414153314284](Git.assets/image-20230414153314284.png)
+![image-20230414153314284](./images/image-20230414153314284.png)
 
-![image-20230414153328696](Git.assets/image-20230414153328696.png)
+![image-20230414153328696](./images/image-20230414153328696.png)
 
 提交代码时，客户端设置的 email 应与 GitHub 的账号保持一致。
 
-![image-20230414153746601](Git.assets/image-20230414153746601.png)
+![image-20230414153746601](./images/image-20230414153746601.png)
 
 这里的提交只是将文件提交到了本地，并未同步到远程仓库。
 
-![image-20230414153910824](Git.assets/image-20230414153910824.png)
+![image-20230414153910824](./images/image-20230414153910824.png)
 
 将本地文件推送到远程仓库：
 
-![image-20230414154021746](Git.assets/image-20230414154021746.png)
+![image-20230414154021746](./images/image-20230414154021746.png)
 
 > 国内的远程仓库：https://gitee.com/
 
@@ -148,11 +148,11 @@ git 官网：[Git (git-scm.com)](https://git-scm.com/)
 
 忽略某一个文件：
 
-![image-20230414155135672](Git.assets/image-20230414155135672.png)
+![image-20230414155135672](./images/image-20230414155135672.png)
 
 忽略某一类文件（如下图中的 `.bak` 文件）：
 
-![image-20230414155328279](Git.assets/image-20230414155328279.png)
+![image-20230414155328279](./images/image-20230414155328279.png)
 
 ## 2.8 比对功能
 
@@ -160,12 +160,12 @@ git 官网：[Git (git-scm.com)](https://git-scm.com/)
 - 修改文件：黄；
 - 新增文件：绿；
 
-![image-20230414155744708](Git.assets/image-20230414155744708.png)
+![image-20230414155744708](./images/image-20230414155744708.png)
 
 - -1：第一行删除了内容；
 - +1, 2：第一行和第二行增加了内容。
 
-![image-20230414155953713](Git.assets/image-20230414155953713.png)
+![image-20230414155953713](./images/image-20230414155953713.png)
 
 # 3  IDEA 集成 Git
 
@@ -173,31 +173,31 @@ git 官网：[Git (git-scm.com)](https://git-scm.com/)
 
 创建仓库：
 
-![image-20230414160432326](Git.assets/image-20230414160432326.png)
+![image-20230414160432326](./images/image-20230414160432326.png)
 
 登录 GitHub 账号（授权）：
 
-![image-20230414160601082](Git.assets/image-20230414160601082.png)
+![image-20230414160601082](./images/image-20230414160601082.png)
 
 提交文件到本地仓库（Commit）：
 
-![image-20230414161030404](Git.assets/image-20230414161030404.png)
+![image-20230414161030404](./images/image-20230414161030404.png)
 
 提交文件到本地仓库并上传到远程仓库（Commit and Push）：
 
-![image-20230414161304115](Git.assets/image-20230414161304115.png)
+![image-20230414161304115](./images/image-20230414161304115.png)
 
 拉取远程仓库的文件到本地（Pull）：
 
-![image-20230414161455507](Git.assets/image-20230414161455507.png)
+![image-20230414161455507](./images/image-20230414161455507.png)
 
-![image-20230414161511308](Git.assets/image-20230414161511308.png)
+![image-20230414161511308](./images/image-20230414161511308.png)
 
 ## 3.2  下载项目
 
 将远程仓库的项目克隆到本地：
 
-![image-20230414162025862](Git.assets/image-20230414162025862.png)
+![image-20230414162025862](./images/image-20230414162025862.png)
 
 > 克隆之后会直接创建一个新的项目。
 
@@ -205,19 +205,19 @@ git 官网：[Git (git-scm.com)](https://git-scm.com/)
 
 需要先安装对应的客户端插件：
 
-![image-20230414162725224](Git.assets/image-20230414162725224.png)
+![image-20230414162725224](./images/image-20230414162725224.png)
 
-![image-20230414162813376](Git.assets/image-20230414162813376.png)
+![image-20230414162813376](./images/image-20230414162813376.png)
 
 登录账号：
 
-![image-20230414162834686](Git.assets/image-20230414162834686.png)
+![image-20230414162834686](./images/image-20230414162834686.png)
 
 下载项目：
 
-![image-20230414163111596](Git.assets/image-20230414163111596.png)
+![image-20230414163111596](./images/image-20230414163111596.png)
 
-![image-20230414163147656](Git.assets/image-20230414163147656.png)
+![image-20230414163147656](./images/image-20230414163147656.png)
 
 # 4  版本号
 
@@ -242,13 +242,13 @@ git 官网：[Git (git-scm.com)](https://git-scm.com/)
 ref: refs/heads/master
 ```
 
-![image-20230414170006952](Git.assets/image-20230414170006952.png)
+![image-20230414170006952](./images/image-20230414170006952.png)
 
 # 5  常用命令
 
 ## 5.1  概述
 
-![image-20230415094049364](Git.assets/image-20230415094049364.png)
+![image-20230415094049364](./images/image-20230415094049364.png)
 
 ## 5.2  仓库操作
 
@@ -263,7 +263,7 @@ ref: refs/heads/master
 - 克隆：`git clone [远程仓库URL]`；
 - 或者：`git clone [远程仓库URL] [自定义的本地仓库名称]`。
 
-![image-20230415095949275](Git.assets/image-20230415095949275.png)
+![image-20230415095949275](./images/image-20230415095949275.png)
 
 配置仓库：
 
@@ -281,21 +281,21 @@ ref: refs/heads/master
 
 查看配置（客户端工具）：
 
-![image-20230415101304635](Git.assets/image-20230415101304635.png)
+![image-20230415101304635](./images/image-20230415101304635.png)
 
-![image-20230415101405618](Git.assets/image-20230415101405618.png)
+![image-20230415101405618](./images/image-20230415101405618.png)
 
 另一个地方：
 
-![image-20230415101431106](Git.assets/image-20230415101431106.png)
+![image-20230415101431106](./images/image-20230415101431106.png)
 
-![image-20230415101444119](Git.assets/image-20230415101444119.png)
+![image-20230415101444119](./images/image-20230415101444119.png)
 
 查看日志：`git log (--oneline)`。
 
 ## 5.3  文件操作
 
-![image-20230414170411384](Git.assets/image-20230414170411384.png)
+![image-20230414170411384](./images/image-20230414170411384.png)
 
 - 查看暂存区的状态：`git status`；
 
@@ -374,7 +374,7 @@ d7583ad (HEAD -> master) revrert "ddddd"
 
 使用客户端创建标签：
 
-![image-20230415112543946](Git.assets/image-20230415112543946-16815291444361.png)
+![image-20230415112543946](./images/image-20230415112543946-16815291444361.png)
 
 ## 5.6  远程仓库
 
@@ -387,7 +387,7 @@ d7583ad (HEAD -> master) revrert "ddddd"
 
 下图表示可以使用名称 `origin` 来代替其中的 URL。
 
-![image-20230415113048898](Git.assets/image-20230415113048898.png)
+![image-20230415113048898](./images/image-20230415113048898.png)
 
 > 注意：当 URL 为 SSH 形式时，不能直接向远程仓库进行推送，还需要进行安全认证。
 >
@@ -395,11 +395,11 @@ d7583ad (HEAD -> master) revrert "ddddd"
 >
 > 查看安全认证的公钥（`id_rsa.pub`）：
 >
-> ![image-20230415113903232](Git.assets/image-20230415113903232.png)
+> ![image-20230415113903232](./images/image-20230415113903232.png)
 >
 > 拷贝到如下位置：
 >
-> ![image-20230415114146380](Git.assets/image-20230415114146380.png)
+> ![image-20230415114146380](./images/image-20230415114146380.png)
 
 # 6  进阶操作
 
