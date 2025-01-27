@@ -4,66 +4,66 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 
 ## Basic Knowledges
 
-📔 **Languages:**
+### Languages
 
 - [<u>C/C++ Notes</u>](./Languages/C&C++/Notes/)
 - [<u>Python Notes</u>](./Languages/Python/Notes/)
 - [<u>Java Notes</u>](./Languages/Java/Notes/)
 - [<u>Go Notes</u>](./Languages/Go/Notes/)
 
-📔 **Data Structure & Algorithm:**
+### Data Structure & Algorithm
 
 - [<u>Data Structure & Algorithm Notes</u>](./Data_Structure&Algorithm/Notes/)
 - [<u>LeetCode Practices</u>](./Data_Structure&Algorithm/Codes/)
 
-📔 **Network:**
+### Network
 
 - [<u>Network Notes</u>](./Network/Notes/)
 
-📔 **Operating System:**
+### Operating System
 
 - [<u>Operating System Notes</u>](./Operating_System/Notes/)
 
-📔 **Design Pattern:**
+### Design Pattern
 
 - [<u>Design Pattern Notes</u>](./Design_Pattern/Notes/)
 - [<u>Design Pattern Practices</u>](./Design_Pattern/Codes/)
 
 ## Tools
 
-📔 **Development Tools:**
+### Development Tools
 
 - [<u>Git Notes</u>](./Tools/Git/Notes/)
 - [<u>Docker Notes</u>](./Tools/Docker/)
 
-📔 **Documentation:**
+### Documentation
 
 - [<u>Markdown Notes</u>](./Tools/Markdown/Notes/)
 - [<u>reStructuredText Notes</u>](./Tools/reStructuredText/Notes/)
 
-📔 **IDE:**
+### IDE
 
 - [<u>VSCode Notes</u>](./Tools/VSCode/Notes/)
 
-## AI 🔥
+## AI
 
-📔 **Mathematics:**
+### Mathematics
 
 - [<u>Algebra</u>](./AI/Mathematics/Algebra/)
 - [<u>Differentiation</u>](./AI/Mathematics/Differentiation/)
 - [<u>Probability</u>](./AI/Mathematics/Probability/)
 - [<u>Optimization</u>](./AI/Mathematics/Optimization/)
 
-📔 **Machine Learning:**
+### Machine Learning
 
 - [<u>Roadmap</u>](./AI/Machine_Learning/Roadmap/)
 
-📔 **Deep Learning:**
+### Deep Learning
 
 - [<u>Basic Knowledges</u>](./AI/Deep_Learning/Basic/)
 - [<u>PyTorch Tutorials</u>](./AI/Deep_Learning/PyTorch/PyTorch_Tutorials/)
 
-📔 **AI Infra:**
+### AI Infra
 
 - [<u>Roadmap</u>](./AI/AI_Infra/Roadmap/)
 - [<u>Basic Knowledges</u>](./AI/AI_Infra/Basic/)
@@ -73,7 +73,7 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 - [<u>Training Framework</u>](./AI/AI_Infra/Training_Framework/)
 - [<u>Inference Engine</u>](./AI/AI_Infra/Inference_Engine/)
 
-📔 **LLM:**
+### LLM
 
 - [<u>Roadmap</u>](./AI/LLM/Roadmap/)
 - [<u>Basic Knowledges</u>](./AI/LLM/Basic/)
@@ -83,12 +83,12 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 
 ## Backend Development
 
-📔 **Framework:**
+### Framework
 
 - [<u>Spring Notes</u>](./Backend_Development/Spring/Notes/)
 - [<u>Maven Notes</u>](./Tools/Maven/Notes/)
 
-📔 **Database:**
+### Database
 
 - [<u>MySQL Notes</u>](./Backend_Development/Database/MySQL/Notes/)
 - [<u>Oracle Notes</u>](./Backend_Development/Database/Oracle/Notes/)
@@ -96,26 +96,26 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 
 ## Big Data
 
-📔 **Framework & Engine:**
+### Framework & Engine
 
 - [<u>Flink Notes</u>](./Big_Data/Flink/Notes/)
 - [<u>ElasticSearch Notes</u>](./Big_Data/ElasticSearch/Notes/)
 
-📔 **Database:**
+### Database
 
 - [<u>Hudi Notes</u>](./Big_Data/Hudi/Notes/)
 
 ## Other Notes
 
-📔 **Open Source:**
+### Open Source
 
 - [<u>Open Source Notes</u>](./Open_Source/Notes/)
 
-📔 **Research:**
+### Research
 
 - [<u>Research Notes</u>](./Research/Notes/)
 
-📔 **Employment:**
+### Employment
 
 - [<u>Employment Information</u>](./Employment/)
 
