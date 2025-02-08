@@ -21,6 +21,12 @@ huggingface-cli download --resume-download gpt2 --local-dir gpt2
 huggingface-cli download --repo-type dataset --resume-download wikitext --local-dir wikitext
 ```
 
+示例：
+
+```bash
+huggingface-cli download --resume-download google/gemma-1.1-2b-it --local-dir /home/sss/models-hf/google/gemma-1.1-2b-it
+```
+
 ### ModelScope
 
 模型默认下载地址：`~/.cache/modelscope/hub`，可通过环境变量 `MODELSCOPE_CACHE` 进行设置。
