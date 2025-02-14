@@ -124,6 +124,5 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 You can find more inforamtion in my other github repos:
 
 - [<u>My Blogs</u>](https://github.com/shen-shanshan/shen-shanshan.github.io)
-- [<u>LLM Inference Engine Build Notes</u>](https://github.com/shen-shanshan/build-infer-engine-from-scratch)
-- [<u>My English Learning Notes</u>](https://github.com/shen-shanshan/english-self-learning)
 - [<u>My Reading Notes</u>](https://github.com/shen-shanshan/reading-makes-life-better)
+<!-- - [<u>LLM Inference Engine Building Notes</u>](https://github.com/shen-shanshan/build-infer-engine-from-scratch) -->
