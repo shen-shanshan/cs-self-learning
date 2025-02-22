@@ -80,6 +80,7 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 - [<u>Pre-Training</u>](./AI/LLM/Pre_Training/)
 - [<u>Fine-Tuning</u>](./AI/LLM/Fine_Tuning/)
 - [<u>Preference Alignment</u>](./AI/LLM/Preference_Alignment/)
+- [<u>Knowledge Distillation</u>](./AI/LLM/Knowledge_Distillation/)
 
 ## Backend Development
 
@@ -121,8 +122,7 @@ This repo is used for archiving my notes, codes and materials of cs learning.
 
 ## Other Repos
 
-You can find more inforamtion in my other github repos:
+You can find more notes in my other github repos:
 
 - [<u>My Blogs</u>](https://github.com/shen-shanshan/shen-shanshan.github.io)
 - [<u>My Reading Notes</u>](https://github.com/shen-shanshan/reading-makes-life-better)
-<!-- - [<u>LLM Inference Engine Building Notes</u>](https://github.com/shen-shanshan/build-infer-engine-from-scratch) -->

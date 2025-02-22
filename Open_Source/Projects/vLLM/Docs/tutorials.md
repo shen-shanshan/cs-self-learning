@@ -1,8 +1,8 @@
 # Tutorials
 
-## Run vllm-ascend on a Single NPU
+## Run vllm-ascend on Single NPU
 
-### Offline Inference on a Single NPU
+### Offline Inference on Single NPU
 
 Run docker container:
 
@@ -18,22 +18,19 @@ docker run \
 -v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
 -v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
 -v /etc/ascend_install.info:/etc/ascend_install.info \
--v /root/models:/root/models \
+-v /root/.cache:/root/.cache \
 -p 8000:8000 \
--it quay.io/ascend/vllm-ascend:latest bash
+-it ghcr.io/yikun/vllm-ascend:dev bash
 ```
 
-Use Modelscope mirror to speed up model download:
+Setup environment variables:
 
 ```bash
-pip install modelscope
+# Use Modelscope mirror to speed up model download
 export VLLM_USE_MODELSCOPE=True
-export MODELSCOPE_CACHE=/root/models/
-```
+export MODELSCOPE_CACHE=/root/.cache/modelscope
 
-To avoid NPU out of memory, set `max_split_size_mb` to any value lower than you need to allocate:
-
-```bash
+# To avoid NPU out of memory, set `max_split_size_mb` to any value lower than you need to allocate for Qwen2.5-7B-Instruct
 export PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256
 ```
 
@@ -66,9 +63,9 @@ Prompt: 'Hello, my name is', Generated text: ' Daniel and I am an 8th grade stud
 Prompt: 'The future of AI is', Generated text: ' following you. As the technology advances, a new report from the Institute for the'
 ```
 
-### Online Serving on a Single NPU
+### Online Serving on Single NPU
 
-Run docker container:
+Run docker container to start the vLLM server on a single NPU:
 
 ```bash
 docker run \
@@ -82,33 +79,23 @@ docker run \
 -v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
 -v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
 -v /etc/ascend_install.info:/etc/ascend_install.info \
--v /root/models:/root/models \
+-v /root/.cache:/root/.cache \
 -p 8000:8000 \
--it quay.io/ascend/vllm-ascend:latest bash
-```
-
-Use Modelscope mirror to speed up model download:
-
-```bash
-pip install modelscope
-export VLLM_USE_MODELSCOPE=True
-export MODELSCOPE_CACHE=/root/models/
-```
-
-Set `max_split_size_mb` to any value lower than you need to allocate:
-
-```bash
-export PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256
-```
-
-Start the vLLM server on a single NPU:
-
-```
+-e VLLM_USE_MODELSCOPE=True \
+-e MODELSCOPE_CACHE=/root/.cache/ \
+-e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
+-it quay.io/ascend/vllm-ascend:latest \
 vllm serve Qwen/Qwen2.5-7B-Instruct --max_model_len 26240
 ```
 
 > [!NOTE]
 > Add `--max_model_len` option to avoid ValueError that the Qwen2.5-7B model's max seq len (32768) is larger than the maximum number of tokens that can be stored in KV cache (26240).
+
+```bash
+INFO:     Started server process [6873]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+```
 
 Once your server is started, you can query the model with input prompts:
 
@@ -155,29 +142,32 @@ docker run \
 -v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
 -v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
 -v /etc/ascend_install.info:/etc/ascend_install.info \
--v /root/models:/root/models \
+-v /root/.cache:/root/.cache \
 -p 8000:8000 \
--it quay.io/ascend/vllm-ascend:latest bash
+-it vllm-ascend:2.0 bash
 ```
 
-Use Modelscope mirror to speed up model download:
+Setup environment variables:
 
 ```bash
-pip install modelscope
+# Use Modelscope mirror to speed up model download
 export VLLM_USE_MODELSCOPE=True
-export MODELSCOPE_CACHE=/root/models/
-```
+export MODELSCOPE_CACHE=/root/.cache/
 
-Set `max_split_size_mb` to any value lower than you need to allocate:
-
-```bash
+# To avoid NPU out of memory, set `max_split_size_mb` to any value lower than you need to allocate for Qwen2.5-7B-Instruct
 export PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256
 ```
 
 Run the following script to execute offline inference on multi-NPU:
 
 ```python
+import gc
+
+import torch
+
 from vllm import LLM, SamplingParams
+from vllm.distributed.parallel_state import (destroy_distributed_environment,
+                                             destroy_model_parallel)
 
 def clean_up():
     destroy_model_parallel()

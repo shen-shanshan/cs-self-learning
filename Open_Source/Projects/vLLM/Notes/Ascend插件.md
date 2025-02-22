@@ -7,6 +7,7 @@
 - [<u>[platforms] enable platform plugins</u>](https://github.com/vllm-project/vllm/pull/11602)
 
 ## Python 插件原理
+
 `setup.py`：
 
 `entry_points={key: value}`

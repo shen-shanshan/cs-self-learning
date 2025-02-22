@@ -4,14 +4,6 @@
 
 - [<u>GitHub</u>](https://github.com/vllm-project/vllm)
 - [<u>Documentation</u>](https://docs.vllm.ai/en/stable/index.html)
-- [<u>Installation</u>](https://docs.vllm.ai/en/stable/getting_started/installation.html)
-- [<u>Contributing to vLLM</u>](https://docs.vllm.ai/en/stable/contributing/overview.html)
-- [<u>Architecture Overview</u>](https://docs.vllm.ai/en/stable/design/arch_overview.html)
-
-**NPU 相关：**
-
-- [<u>PR: Add Ascend NPU backend</u>](https://github.com/vllm-project/vllm/pull/8054)
-- [<u>模型支持验证清单</u>](https://github.com/cosdt/vllm/tree/main/model_support)
 
 ## 环境搭建
 
@@ -84,33 +76,9 @@ index-url=http://mirrors.aliyun.com/pypi/simple/
 trusted-host=mirrors.aliyun.com
 ```
 
-### 安装 vllm
+### 安装 vllm & vllm-ascend
 
-**拉取代码：**
-
-```bash
-git clone https://github.com/shen-shanshan/vllm.git
-```
-
-**安装依赖：**
-
-```bash
-# (Recommended) Create a new conda environment.
-conda create -n vllm python=3.12 -y # 注意：NPU 环境下推荐使用 3.10
-# conda create -n vllm python=3.10 -y
-conda activate vllm
-pip install -r requirements-dev.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install -r requirements-lint.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-```
-
-Build from source：Python-only build (without compilation)
-
-```bash
-git clone https://github.com/vllm-project/vllm.git
-cd vllm
-VLLM_USE_PRECOMPILED=1 pip install --editable . # GPU
-VLLM_TARGET_DEVICE=npu pip install -e . # NPU
-```
+详见官方文档。
 
 ## Quick Start
 
