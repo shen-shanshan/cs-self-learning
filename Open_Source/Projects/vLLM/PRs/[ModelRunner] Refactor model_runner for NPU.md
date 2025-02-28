@@ -6,6 +6,8 @@ This PR is a refactoring of model runner, to decouple it from the classes specif
 
 The changes of model runner are generally showed below:
 
+![model runner](./images/iShot_2025-01-20_21.32.37.png)
+
 ## Testing
 
 I have used `AI-ModelScope/gpt2` for testing `examples/offline_inference_npu.py`, and the results showed that it worked well.
