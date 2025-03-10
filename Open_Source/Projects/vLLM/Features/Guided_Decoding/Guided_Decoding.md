@@ -63,7 +63,3 @@ Jump-Forward Decoding With a Compressed Finite State Machine:
 ![Jump-Forward Decoding](./images/compare.png)
 
 代码实现：`https://github.com/sgl-project/sglang/blob/main/python/sglang/srt/constrained/outlines_backend.py`
-
-## Issues & PRs
-
-[[Feature]: Add Jump-Forward support for Guided Decoding](https://github.com/vllm-project/vllm/issues/13953)
