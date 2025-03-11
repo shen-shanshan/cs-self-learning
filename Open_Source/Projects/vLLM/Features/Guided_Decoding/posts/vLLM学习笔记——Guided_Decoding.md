@@ -198,13 +198,119 @@ Token `42` 能匹配到的所有路径集合如下：
 
 ## 四、vLLM Guided Decoding 源码解读
 
+在 vLLM 中，Guided Decoding 目前支持 `outlines`、`xgrammar` 以及 `lm-format-enforcer` 这三种后端，下面我们将对 Guided Decoding 在 vLLM 中的具体实现进行介绍。
+
+### 4.1 加载 LogitsProcessor
+
+当 `LLMEngine` 初始化时，会在 `_build_logits_processors()` 方法中调用 `get_local_guided_decoding_logits_processor()` 方法获取当前可用后端对应的 `LogitsProcessor`（位于 `vllm/model_executor/guided_decoding` 目录下）。此时，需要传入 Guided Decoding 相关的参数 `GuidedDecodingParams`，这些参数位于 `SamplingParams` 中，可以在启动 vLLM 时进行指定。最后，所有被成功加载的各种 `LogitsProcessor` 都会被存放到 `SamplingParams` 中。
+
+部分代码如下：
+
+```python
+# llm_engine.py
+def _build_logits_processors(..., sampling_params, ...):
+
+    logits_processors = []
+
+    if sampling_params.guided_decoding is not None:
+        # ...
+        guided_decoding = sampling_params.guided_decoding
+        # ...
+        processor = get_local_guided_decoding_logits_processor(
+            guided_params=guided_decoding,
+            tokenizer=tokenizer,
+            model_config=self.model_config,
+            reasoning_backend=self.decoding_config.reasoning_backend,
+        )
+        if processor:
+            logits_processors.append(processor)
+    
+    # ...
+
+    sampling_params.logits_processors.extend(logits_processors)
+    return sampling_params
+```
+
+`GuidedDecodingParams` 包含的参数如下：
+
+```python
+# sampling_params.py
+@dataclass
+class GuidedDecodingParams:
+    """One of these fields will be used to build a logit processor."""
+    json: Optional[Union[str, dict]] = None
+    regex: Optional[str] = None
+    choice: Optional[list[str]] = None
+    grammar: Optional[str] = None
+    json_object: Optional[bool] = None
+    """These are other options that can be set"""
+    backend: Optional[str] = None
+    whitespace_pattern: Optional[str] = None
+```
+
+其中，前 5 个参数用于指定模型输出需要匹配的模式，剩下 2 个参数为一些可选配置。
+
+### 4.2 推理流程
+
+当初始化完成后，vLLM 会开启一个循环并不断调用 `step()` 方法执行推理，每一次调用就是一次迭代。
+
+部分代码如下：
+
+```python
+# llm.py
+def _run_engine(...):
+    # ...
+    while self.llm_engine.has_unfinished_requests():
+        step_outputs = self.llm_engine.step()
+        # ...
+    
+    return outputs
+```
+
+具体地，在 `step()` 方法中，vLLM 的调用链路如下：
+
+```
+llm_engine.step()
+
+model_executor.execute_model()
+
+NPUWorker(LocalOrDistributedWorkerBase) / execute_model(): 
+    self.execute_worker(worker_input)
+    model_runner.execute_model
+
+NPUModelRunner:
+    logits = self.model.compute_logits()
+
+Qwen2ForCausalLM / compute_logits()：
+    self.logits_processor()
+
+LogitsProcessor / forward(): ✨
+    logits = _apply_logits_processors(logits, sampling_metadata)
+    logits[logits_row_idx] = _apply_logits_processors_single_seq()
+    logits_row = logits_processor(past_tokens_ids, logits_row)
+
+BaseLogitsProcessor / __call__():
+    seq_id = hash(tuple(input_ids))
+    self._fsm_state[seq_id] = self._guide.get_next_state()
+    instruction = self._guide.get_next_instruction()
+    allowed_tokens = instruction.tokens
+    mask = torch.full()
+    allowed_tokens = allowed_tokens.masked_select()
+    mask.index_fill_()
+    scores.add_(mask)
+```
+
 ……
 
-### Reasoning
+### 4.3 执行 Guided Decoding 逻辑
 
-支持 Reasoning。
-[PR](https://github.com/vllm-project/vllm/pull/12955)
-[Ce Gao](https://github.com/gaocegege)
+……
+
+### 4.4 支持 Reasoning
+
+目前，vLLM 还支持在 Reasoning 时，仅对最后的结果 `content` 执行 Guided Decoding 逻辑，而不影响原本推理部分的内容 `reasoning_content`。
+
+具体的代码可以参考这个 [<u>PR</u>](https://github.com/vllm-project/vllm/pull/12955)，由 [<u>Ce Gao</u>](https://github.com/gaocegege) 实现，感兴趣的读者可以自行了解，这里不再详细展开。
 
 ## 五、SGLang Jump-Forward Decoding
 
