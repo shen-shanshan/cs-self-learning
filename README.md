@@ -15,57 +15,55 @@
 </div>
 
 <div align="center">
-  <b> This repo is used for archiving my notes, codes and materials of cs learning. </b>
+  <b> 📚 This repo is used for archiving my notes, codes and materials of cs learning. </b>
 </div>
 
-## Contents
+## Basic Knowledges
 
-### Basic Knowledges
-
-**📚 Languages:**
+### 📚 Languages
 
 - [<u>C/C++ Notes</u>](./Languages/C&C++/Notes/)
 - [<u>Python Notes</u>](./Languages/Python/Notes/)
 - [<u>Java Notes</u>](./Languages/Java/Notes/)
 - [<u>Go Notes</u>](./Languages/Go/Notes/)
 
-**📚 Data Structure & Algorithm:**
+### 📚 Data Structure & Algorithm
 
 - [<u>Data Structure & Algorithm Notes</u>](./Data_Structure&Algorithm/Notes/)
 - [<u>LeetCode Practices</u>](./Data_Structure&Algorithm/Codes/)
 
-**📚 Network:**
+### 📚 Network
 
 - [<u>Network Notes</u>](./Network/Notes/)
 
-**📚 Operating System:**
+### 📚 Operating System
 
 - [<u>Operating System Notes</u>](./Operating_System/Notes/)
 
-**📚 Design Pattern:**
+### 📚 Design Pattern
 
 - [<u>Design Pattern Notes</u>](./Design_Pattern/Notes/)
 - [<u>Design Pattern Practices</u>](./Design_Pattern/Codes/)
 
-### AI
+## AI
 
-**📚 Mathematics:**
+### 📚 Mathematics
 
 - [<u>Algebra</u>](./AI/Mathematics/Algebra/)
 - [<u>Differentiation</u>](./AI/Mathematics/Differentiation/)
 - [<u>Probability</u>](./AI/Mathematics/Probability/)
 - [<u>Optimization</u>](./AI/Mathematics/Optimization/)
 
-**📚 Machine Learning:**
+### 📚 Machine Learning
 
 - [<u>Roadmap</u>](./AI/Machine_Learning/Roadmap/)
 
-**📚 Deep Learning:**
+### 📚 Deep Learning
 
 - [<u>Basic Knowledges</u>](./AI/Deep_Learning/Basic/)
 - [<u>PyTorch Tutorials</u>](./AI/Deep_Learning/PyTorch/PyTorch_Tutorials/)
 
-**📚 AI Infra:**
+### 📚 AI Infra
 
 - [<u>Roadmap</u>](./AI/AI_Infra/Roadmap/)
 - [<u>Basic Knowledges</u>](./AI/AI_Infra/Basic/)
@@ -75,7 +73,7 @@
 - [<u>Training Framework</u>](./AI/AI_Infra/Training_Framework/)
 - [<u>Inference Engine</u>](./AI/AI_Infra/Inference_Engine/)
 
-**📚 LLM:**
+### 📚 LLM
 
 - [<u>Roadmap</u>](./AI/LLM/Roadmap/)
 - [<u>Basic Knowledges</u>](./AI/LLM/Basic/)
@@ -84,53 +82,53 @@
 - [<u>Preference Alignment</u>](./AI/LLM/Preference_Alignment/)
 - [<u>Knowledge Distillation</u>](./AI/LLM/Knowledge_Distillation/)
 
-### Backend & Big Data
+## Backend & Big Data
 
-**📚 Framework:**
+### 📚 Framework
 
 - [<u>Spring Notes</u>](./Backend_Development/Spring/Notes/)
 - [<u>Maven Notes</u>](./Tools/Maven/Notes/)
 
-**📚 Database:**
+### 📚 Database
 
 - [<u>MySQL Notes</u>](./Backend_Development/Database/MySQL/Notes/)
 - [<u>Oracle Notes</u>](./Backend_Development/Database/Oracle/Notes/)
 - [<u>Redis Notes</u>](./Backend_Development/Database/Redis/Notes/)
 - [<u>Hudi Notes</u>](./Big_Data/Hudi/Notes/)
 
-**📚 Engine:**
+### 📚 Engine
 
 - [<u>Flink Notes</u>](./Big_Data/Flink/Notes/)
 - [<u>ElasticSearch Notes</u>](./Big_Data/ElasticSearch/Notes/)
 
 ## Tools
 
-**📚 Development Tools:**
+### 📚 Development Tools
 
 - [<u>Git Notes</u>](./Tools/Git/Notes/)
 - [<u>Docker Notes</u>](./Tools/Docker/)
 
-**📚 Documentation:**
+### 📚 Documentation
 
 - [<u>Markdown Notes</u>](./Tools/Markdown/Notes/)
 - [<u>reStructuredText Notes</u>](./Tools/reStructuredText/Notes/)
 
 ## Others
 
-**📚 Open Source Contribution:**
+### 📚 Open Source Contribution
 
 - [<u>Open Source Notes</u>](./Open_Source/Notes/)
 
-**📚 Research:**
+### 📚 Research
 
 - [<u>Research Notes</u>](./Research/Notes/)
 - [<u>Popular AI Papers</u>](./Research/Papers/Papers/)
 
-**📚 Employment:**
+### 📚 Employment
 
 - [<u>Employment Information</u>](./Employment/)
 
-**📚 Other Repos:**
+### 📚 Other Repos
 <!-- Plus, You can find more notes in my other github repos: -->
 
 - [<u>My Blogs</u>](https://github.com/shen-shanshan/shen-shanshan.github.io)
@@ -140,7 +138,7 @@
 
 MIT License, find more details [<u>here</u>](./LICENSE).
 
-## Citations
+## ©️ Citations
 
 ```
 @misc{cs-self-learning@2023,
@@ -152,7 +150,7 @@ MIT License, find more details [<u>here</u>](./LICENSE).
 }
 ```
 
-## Star History
+## ⭐️ Star History
 
 <div align='center'>
   <a href="https://star-history.com/#shen-shanshan/cs-self-learning&Date">
