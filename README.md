@@ -2,26 +2,21 @@
 
 <div align="center">
   <p align="center">
-    <h2>📖 CS Self-Learning Notes</h2>
-    <!-- <a href="#cuda-kernel">📚200+ CUDA Kernels</a> | <a href="#my-blogs-part-1"> 📚100+ Blogs</a> | <a href="#hgemm-mma-bench"> ⚡️HGEMM MMA</a> | <a href="#fa-mma-bench"> ⚡️FA-2 MMA </a> <p> -->
+    <h1>📖 CS Self-Learning Notes</h2>
   </p>
   <img src='./assets/cover.jpg' width=180 > <p>
   <div align='center'>
       <img src=https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg >
-      <!-- <img src=https://img.shields.io/badge/Language-CUDA-brightgreen.svg > -->
       <img src=https://img.shields.io/github/watchers/shen-shanshan/cs-self-learning?color=9cc >
       <img src=https://img.shields.io/github/forks/shen-shanshan/cs-self-learning.svg?style=social >
       <img src=https://img.shields.io/github/stars/shen-shanshan/cs-self-learning.svg?style=social >
-      <!-- <img src=https://img.shields.io/badge/Release-v3.0.0-brightgreen.svg > -->
       <img src=https://img.shields.io/badge/License-MIT-turquoise.svg >
- </div>
+ </div> <p>
 </div>
 
----
-
-## Introduction
-
-This repo is used for archiving my notes, codes and materials of cs learning.
+<div align="center">
+  <b> This repo is used for archiving my notes, codes and materials of cs learning. </b>
+</div>
 
 ## Contents
 
