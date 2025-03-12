@@ -72,7 +72,7 @@ content: {
 
 当 LLM 开始 Decode 时，FSM 位于初始状态（`0`，用整数表示不同的状态），根据状态 `0` 的转移函数可知，当前状态可以接受的字符模式为 `[0-9]` 和 `[.]`，而在我们所给的词表中，只有 `A` 不符合，此时 FSM 会针对词表 `['A', '.', '42', '.2', '1']` 生成一个值为 `[0, 1, 1, 1, 1]` 的 Mask，即模型在本轮迭代进行采样时会排除掉 `A`（图中用黑色表示），如下图所示。
 
-![](./images/outlines-fsm.png)
+![](./images/outlines-fsm-1.png)
 
 接下来，有两种情况：
 
@@ -198,7 +198,7 @@ Token `42` 能匹配到的所有路径集合如下：
 
 ## 四、vLLM Guided Decoding 源码解读
 
-在 vLLM 中，Guided Decoding 目前支持 `outlines`、`xgrammar` 以及 `lm-format-enforcer` 这三种后端，下面我们将对 Guided Decoding 在 vLLM 中的具体实现进行介绍。
+目前，vLLM 的 Guided Decoding 功能支持 `outlines`、`xgrammar` 以及 `lm-format-enforcer` 这三种后端。下面，我们将使用 `Qwen2.5-7B-Instruct` 模型，并基于 `outlines` 后端，详细讲解 Guided Decoding 的整体流程及其代码实现。
 
 ### 4.1 加载 LogitsProcessor
 
@@ -250,9 +250,9 @@ class GuidedDecodingParams:
 
 其中，前 5 个参数用于指定模型输出需要匹配的模式，剩下 2 个参数为一些可选配置。
 
-### 4.2 推理流程
+### 4.2 整体推理流程
 
-当初始化完成后，vLLM 会开启一个循环并不断调用 `step()` 方法执行推理，每一次调用就是一次迭代。
+当初始化完成后，vLLM 会开启一个循环并不断调用 `step()` 方法执行推理，每一次调用就是一个迭代。
 
 部分代码如下：
 
@@ -267,44 +267,15 @@ def _run_engine(...):
     return outputs
 ```
 
-具体地，在 `step()` 方法中，vLLM 的调用链路如下：
+在 `step()` 方法中，vLLM 的整体调用链路如下：
 
-```
-llm_engine.step()
+![](./images/process-1.png)
 
-model_executor.execute_model()
-
-NPUWorker(LocalOrDistributedWorkerBase) / execute_model(): 
-    self.execute_worker(worker_input)
-    model_runner.execute_model
-
-NPUModelRunner:
-    logits = self.model.compute_logits()
-
-Qwen2ForCausalLM / compute_logits()：
-    self.logits_processor()
-
-LogitsProcessor / forward(): ✨
-    logits = _apply_logits_processors(logits, sampling_metadata)
-    logits[logits_row_idx] = _apply_logits_processors_single_seq()
-    logits_row = logits_processor(past_tokens_ids, logits_row)
-
-BaseLogitsProcessor / __call__():
-    seq_id = hash(tuple(input_ids))
-    self._fsm_state[seq_id] = self._guide.get_next_state()
-    instruction = self._guide.get_next_instruction()
-    allowed_tokens = instruction.tokens
-    mask = torch.full()
-    allowed_tokens = allowed_tokens.masked_select()
-    mask.index_fill_()
-    scores.add_(mask)
-```
-
-……
+其中，与 Guided Decoding 有关的核心处理逻辑都被封装到了 `BaseLogitsProcessor` 的 `__call__()` 方法中，这样就可以直接通过 `logits_processor(...)` 的方式来进行调用。
 
 ### 4.3 执行 Guided Decoding 逻辑
 
-……
+具体地，在 `BaseLogitsProcessor` 的 `__call__()` 方法中，……
 
 ### 4.4 支持 Reasoning
 
@@ -324,7 +295,3 @@ BaseLogitsProcessor / __call__():
 - [<u>Efficient Guided Generation for Large Language Models</u>](https://arxiv.org/abs/2307.09702)
 - [<u>vLLM Docs - Structured Outputs</u>](https://docs.vllm.ai/en/stable/features/structured_outputs.html#structured-outputs)
 - [<u>Fast JSON Decoding for Local LLMs with Compressed Finite State Machine</u>](https://lmsys.org/blog/2024-02-05-compressed-fsm/)
-
----
-
-介绍 vllm-ascend 项目。

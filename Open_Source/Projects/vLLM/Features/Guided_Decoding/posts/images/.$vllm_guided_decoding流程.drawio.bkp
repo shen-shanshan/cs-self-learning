@@ -1,0 +1,55 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
+  <diagram name="第 1 页" id="bDiBdIQamMDJt9MmjTzO">
+    <mxGraphModel dx="1064" dy="250" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="6Phj7RGWWj4K0fwgMfGp-1" target="6Phj7RGWWj4K0fwgMfGp-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-1" value="LLMEngine:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(20, 54, 66), rgb(173, 202, 213));&quot;&gt;step()&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="120" y="440" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="6Phj7RGWWj4K0fwgMfGp-2" target="6Phj7RGWWj4K0fwgMfGp-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-2" value="ModelExecutor:&amp;nbsp;execute_model()" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="80" y="520" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="6Phj7RGWWj4K0fwgMfGp-3" target="6Phj7RGWWj4K0fwgMfGp-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-3" value="Worker:&amp;nbsp;execute_model()" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="80" y="600" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="6Phj7RGWWj4K0fwgMfGp-4" target="6Phj7RGWWj4K0fwgMfGp-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-4" value="ModelRunner: execute_model()" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="80" y="680" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="6Phj7RGWWj4K0fwgMfGp-5" target="6Phj7RGWWj4K0fwgMfGp-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-5" value="Qwen2ForCausalLM:&amp;nbsp;compute_logits()" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="440" y="520" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="6Phj7RGWWj4K0fwgMfGp-6" target="6Phj7RGWWj4K0fwgMfGp-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-6" value="LogitsProcessor:&amp;nbsp;_apply_logits_processors()" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="440" y="600" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="6Phj7RGWWj4K0fwgMfGp-7" target="6Phj7RGWWj4K0fwgMfGp-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-7" value="BaseLogitsProcessor:&amp;nbsp;__call__()" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="440" y="680" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Phj7RGWWj4K0fwgMfGp-8" value="Outlines Backend" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="480" y="760" width="200" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
