@@ -15,7 +15,7 @@
 </div>
 
 <div align="center">
-  <b> 📚 This repo is used for archiving my notes, codes and materials of cs learning. </b>
+  <b> This repo is used for archiving my notes, codes and materials of cs learning. </b>
 </div>
 
 ## Basic Knowledges

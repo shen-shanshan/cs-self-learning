@@ -51,3 +51,10 @@
 ### 总结
 
 Prefix Cache 通过复用相同前缀的注意力计算结果，显著降低大模型推理的计算开销和显存占用，尤其适合高并发、多重复请求的业务场景，是推理服务降本增效的关键技术之一。
+
+## 参考资料
+
+- [Automatic Prefix Caching - Example](https://docs.vllm.ai/en/stable/features/automatic_prefix_caching.html)
+- [Automatic Prefix Caching - V0](https://docs.vllm.ai/en/stable/design/automatic_prefix_caching.html)
+- [Automatic Prefix Caching - V1](https://docs.vllm.ai/en/stable/design/v1/prefix_caching.html)
+- [SGLang RadixAttention](https://lmsys.org/blog/2024-01-17-sglang/)
