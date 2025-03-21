@@ -1,12 +1,8 @@
-# vLLM 学习笔记｜Guided Decoding
-
-[toc]
-
-## 一、引言
+# 一、引言
 
 目前，在大模型推理领域中，Guided Decoding 技术广泛用于生成一些特定格式的输出，如：SQL、JSON 等。本文将基于 vLLM 以及 Outlines 后端，深入解析 Guided Decoding 背后的技术原理。
 
-## 二、什么是 Guided Decoding？
+# 二、什么是 Guided Decoding？
 
 一般来说，LLM 的输出通常是一段符合人类表达习惯的文本序列，这让我们可以利用 LLM 来回答问题或是创作内容。然而，当我们需要 LLM 的输出符合特定的格式（如：JSON、SQL、正则表达式等）时——例如希望 LLM 根据我们的需求生成查询数据库的 SQL 语句，通过微调的方法通常很难达到我们预期的效果。这时，就需要用到 Guided Decoding 技术，它可以通过影响模型输出层的 Logits 分布（施加 Mask 过滤不满足要求的 Token）来达到规范模型输出格式的效果。
 
@@ -46,7 +42,7 @@ content: {
 }
 ```
 
-## 三、Outlines 原理详解
+# 三、Outlines 原理详解
 
 目前，实现了 Guided Decoding 支持的后端有 `outlines`、`xgrammar` 以及 `lm-format-enforcer` 等，下面将以 Outlines 为例，深入介绍 Guided Decoding 背后的实现原理。
 
@@ -59,18 +55,20 @@ content: {
 
 下面，为了让大家更快速、更直观地理解 Outlines 的原理，本文将尽力避免大段公式和算法的罗列，而是尽量使用具体的例子进行讲解。
 
-### 3.1 FSM 的工作原理
+## 3.1 FSM 的工作原理
 
 **🌰 举个例子：**
 
 假设我们需要模型输出一个浮点小数，即输出需要匹配的正则表达式为 `([0-9]*)?\.?[0-9]*`，并给定一个仅包含 `A`、`.`、`42`、`.2` 和 `1` 的 Vocabulary。
 
-> “正则表达式”符号说明：
->
-> - `*`：匹配前面的子表达式零次或多次；
-> - `?`：匹配前面的子表达式零次或一次；
-> - `.`：匹配除换行符 `\n` 之外的任何单字符；
-> - `\.`：匹配小数点符号 `.`（需要使用 `\` 进行转义）。
+“正则表达式”符号说明如下：
+
+```markdown
+`*` ：匹配前面的子表达式零次或多次
+`?` ：匹配前面的子表达式零次或一次
+`.` ：匹配除换行符 `\n` 之外的任何单字符
+`\.`：匹配小数点符号 `.`（需要使用 `\` 进行转义）
+```
 
 当 LLM 开始 Decode 时，FSM 位于初始状态（`0`，用整数表示不同的状态），根据状态 `0` 的转移函数可知，当前状态可以接受的字符模式为 `[0-9]` 和 `[.]`，而在我们所给的词表中，只有 `A` 不符合，此时 FSM 会针对词表 `['A', '.', '42', '.2', '1']` 生成一个值为 `[0, 1, 1, 1, 1]` 的 Mask，即模型在本轮迭代进行采样时会排除掉 `A`（图中用黑色表示），如下图所示。
 
@@ -85,7 +83,7 @@ content: {
 
 > 补充：在 vLLM 的实现中，其 Mask 使用 `0` 表示接受的 Token，用 `-inf`（负无穷）表示要排除的 Token，然后再将输出的 Logits 分布与 Mask 相加，从而达到屏蔽不满足要求的 Token 的效果。
 
-### 3.2 FSM 的构建过程
+## 3.2 FSM 的构建过程
 
 在了解了 Outlines 中 FSM 的基本工作原理之后，接下来我们再看下，针对一个给定的正则表达式与 Vocabulary，Outlines 是如何构建这个 FSM 的。
 
@@ -189,7 +187,7 @@ Token `42` 能匹配到的所有路径集合如下：
 
 在实际过程中，当 LLM 生成的内容进行到某一个状态时（比如：状态 `2`），Outlines 就能快速通过该 Map 获取到当前状态所能接受生成的 Token 集合（`42` 和 `1`），搜索的时间复杂度为 `O(1)`，并生成下一步 Decode 的 Mask（为 `[0, 0, 1, 0, 1]`，即过滤掉了其它 3 个 Token）。
 
-### 3.3 总结
+## 3.3 总结
 
 **Outlines 的优缺点：**
 
@@ -198,11 +196,11 @@ Token `42` 能匹配到的所有路径集合如下：
 
 另外，Outlines 不仅可以支持使用正则表达式来限定模型的输出，还支持 **CFGs（Context-Free Grammars，上下文无关文法）**，比如：JSON、SQL 以及 Python 等语言。关于 CFGs 生成的原理，这里不再详细展开，感兴趣的读者可以自行阅读 Outlines 的[<u>论文</u>](https://arxiv.org/abs/2307.09702)与[<u>源码</u>](https://github.com/dottxt-ai/outlines)。
 
-## 四、vLLM Guided Decoding 源码解读
+# 四、vLLM Guided Decoding 源码解读
 
 目前，vLLM 的 Guided Decoding 功能支持 `outlines`、`xgrammar` 以及 `lm-format-enforcer` 这三种后端。下面，我们将使用 `Qwen2.5-7B-Instruct` 模型，并基于 `outlines` 后端，详细讲解 Guided Decoding 的整体流程及其代码实现。
 
-### 4.1 加载 LogitsProcessor
+## 4.1 加载 LogitsProcessor
 
 当 `LLMEngine` 初始化时，会在 `_build_logits_processors()` 方法中调用 `get_local_guided_decoding_logits_processor()` 方法获取当前可用后端对应的 `LogitsProcessor`（位于 `vllm/model_executor/guided_decoding` 目录下）。
 
@@ -254,7 +252,7 @@ class GuidedDecodingParams:
 
 其中，前 5 个参数用于指定模型输出需要匹配的模式，剩下 2 个参数为一些可选配置。
 
-### 4.2 整体推理流程
+## 4.2 整体推理流程
 
 当初始化完成后，vLLM 会开启一个循环并不断调用 `step()` 方法执行推理，每一次调用就是一个迭代。
 
@@ -277,7 +275,7 @@ def _run_engine(...):
 
 其中，与 Guided Decoding 有关的核心处理逻辑都被封装到了 `BaseLogitsProcessor` 的 `__call__()` 方法中，这样就可以直接通过 `logits_processor(...)` 的方式来进行调用。
 
-### 4.3 计算 Mask
+## 4.3 计算 Mask
 
 具体地，`BaseLogitsProcessor: __call__()` 的部分代码（`#...` 代表省略）及其说明如下：
 
@@ -335,13 +333,13 @@ class BaseLogitsProcessor:
 
 总结：Guided Decoding 通过一个 Mask 机制实现了筛除模型生成的不满足当前格式限制的 Token 的效果。
 
-### 4.4 支持 Reasoning
+## 4.4 支持 Reasoning
 
 目前，vLLM 还支持在 Reasoning 时，仅对最后的结果 `content` 执行 Guided Decoding 逻辑，而不影响原本推理部分的内容 `reasoning_content`。
 
 具体的代码可以参考这个 [<u>PR</u>](https://github.com/vllm-project/vllm/pull/12955)，由 [<u>Ce Gao</u>](https://github.com/gaocegege) 实现，感兴趣的读者可以自行了解，这里不再详细展开。
 
-## 五、SGLang Jump-Forward Decoding
+# 五、SGLang Jump-Forward Decoding
 
 使用 FSM 实现 Guided Decoding 还有一个缺点——即只能逐个 Token 计算 Mask。然而，在 Guided Decoding 中，有一些特定的 Token 组合是绑定在一起的，对于这些 Token，其实没必要再一个一个地去生成，而是可以一次 Decode 直接生成几个 Token 的组合，从而可以加速 Guided Decoding 的推理过程。
 
@@ -353,7 +351,7 @@ class BaseLogitsProcessor:
 
 更多细节可以参考 SGLang 的[<u>论文</u>](https://arxiv.org/abs/2312.07104)和[<u>代码</u>](https://github.com/sgl-project/sglang)。
 
-## 六、参考资料
+# 六、参考资料
 
 - [<u>Robust Text-to-SQL Generation with Execution-Guided Decoding</u>](https://arxiv.org/abs/1807.03100)
 - [<u>Efficient Guided Generation for Large Language Models</u>](https://arxiv.org/abs/2307.09702)
