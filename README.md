@@ -19,14 +19,15 @@
 
 # Computer Science Self-Learning Notes
 
-<img src=https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg >
-<img src=https://img.shields.io/badge/License-MIT-turquoise.svg >
-<img src=https://img.shields.io/badge/Maintained%3F-yes-green.svg >
-<img src=https://img.shields.io/badge/Contributions-welcome-blue >
-<img src=https://img.shields.io/github/watchers/shen-shanshan/cs-self-learning?color=9cc >
-<img src=https://img.shields.io/github/forks/shen-shanshan/cs-self-learning.svg?style=social >
-<img src=https://img.shields.io/github/stars/shen-shanshan/cs-self-learning.svg?style=social >
-<p>
+<div align='left'>
+  <img src=https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg >
+  <img src=https://img.shields.io/badge/License-MIT-turquoise.svg >
+  <img src=https://img.shields.io/badge/Maintained%3F-yes-green.svg >
+  <img src=https://img.shields.io/badge/Contributions-welcome-blue >
+  <img src=https://img.shields.io/github/watchers/shen-shanshan/cs-self-learning?color=9cc >
+  <img src=https://img.shields.io/github/forks/shen-shanshan/cs-self-learning.svg?style=social >
+  <img src=https://img.shields.io/github/stars/shen-shanshan/cs-self-learning.svg?style=social > <p>
+</div align='left'>
 
 <p align="center">
     <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
@@ -187,7 +188,7 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 ## License
 
-MIT License, find more details [<u>here</u>](./LICENSE).
+**MIT License**, find more details [<u>here</u>](./LICENSE).
 
 ## Star History
 
