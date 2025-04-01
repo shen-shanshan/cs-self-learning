@@ -33,19 +33,48 @@
     <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
 </p>
 
-This repo is used for archiving my **notes**, **codes** and **materials** of cs learning. ⚡
+This repo is used for archiving my **notes**, **codes** and **materials** of cs learning. 😄
 
 ---
 
 ## 📌 Contents
 
-|     **Section**      |                                  **Subsection**                                  |
-| :------------------- | :------------------------------------------------------------------------------- |
-| 📚 Basic Knowledges   | Languages, Data Structure & Algorithm, Network, Operating System, Design Pattern |
-| 🤖 AI                 | Mathematics, Machine Learning, Deep Learning, AI Infra, LLM                      |
-| 🚀 Backend & Big Data | Framework, Database, Engine                                                      |
-| 🛠️ Tools              | Development Tools, Documentation                                                 |
-| 🔗 Others             | Open Source Development, Research, Employment, Other Repos                                   |
+|            **Section**            |                                                                **Subsection**                                                                |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| 📚 [<u>Basic Knowledges</u>][1]    | [<u>Languages</u>][2], [<u>Data Structure & Algorithm</u>][3], [<u>Network</u>][4], [<u>Operating System</u>][5], [<u>Design Pattern</u>][6] |
+| 🤖 [<u>AI</u>][7]                  | [<u>Mathematics</u>][8], [<u>Machine Learning</u>][9], [<u>Deep Learning</u>][10], [<u>AI Infra</u>][11], [<u>LLM</u>][12]                   |
+| 🚀 [<u>Backend & Big Data</u>][13] | [<u>Framework</u>][14], [<u>Database</u>][15], [<u>Engine</u>][16]                                                                           |
+| 🛠️ [<u>Tools</u>][17]             | [<u>Development Tools</u>][18], [<u>Documentation</u>][19]                                                                                   |
+| 🔗 [<u>Others</u>][20]             | [<u>Open Source Development</u>][21], [<u>Research</u>][22], [<u>Employment</u>][23], [<u>Other Repos</u>][24]                               |
+
+[1]: #-basic-knowledges
+[2]: #01-languages
+[3]: #02-data-structure--algorithm
+[4]: #03-network
+[5]: #04-operating-system
+[6]: #05-design-pattern
+
+[7]: #-ai
+[8]: #01-mathematics
+[9]: #02-machine-learning
+[10]: #03-deep-learning
+[11]: #04-ai-infra
+[12]: #05-llm
+
+[13]: #-backend--big-data
+[14]: #01-framework
+[15]: #02-database
+[16]: #03-engine
+
+[17]: #️-tools
+[18]: #01-development-tools
+[19]: #02-documentation
+
+[20]: #-others
+[21]: #01-open-source-development
+[22]: #02-research
+[23]: #03-employment
+[24]: #04-other-repos
 
 ---
 
@@ -156,7 +185,11 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 #### 01. Open Source Development
 
-- [<u>Open Source Notes</u>](./Open_Source/Notes/)
+- [<u>Open Source Contribution Notes</u>](./Open_Source/Notes/)
+- [<u>vLLM Notes</u>](./Open_Source/Projects/vLLM/)
+- [<u>SGLang Notes</u>](./Open_Source/Projects/SGLang/)
+- [<u>llama.cpp Notes</u>](./Open_Source/Projects/llama.cpp/)
+- [<u>ChatTTS Notes</u>](./Open_Source/Projects/ChatTTS/)
 
 #### 02. Research
 
@@ -174,7 +207,7 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 ---
 
-## Citation
+## 📖 Citation
 
 ```bibtex
 @misc{cs-self-learning@2023,
@@ -186,11 +219,11 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 }
 ```
 
-## License
+## 📜 License
 
 **MIT License**, find more details [<u>here</u>](./LICENSE).
 
-## Star History
+## ⭐ Star History
 
 <!-- <div align='center'>
   <a href="https://star-history.com/#shen-shanshan/cs-self-learning&Date">
