@@ -6,7 +6,7 @@
 
 通过 `contextlib` 模块下提供的 `@contextmanager` 装饰器，我们能够更方便的将一个普通类变成上下文管理器。`@contextmanager` 通过将一个函数变成生成器的方式来为普通类添加进入和退出时的处理代码，从而实现了将普通类变成一个上下文管理器。
 
-## 代码示例
+## 代码示例 1
 
 ```python
 from contextlib import contextmanager
@@ -38,7 +38,23 @@ with open() as f:
 
 > 注意：`yield` 前的代码就相当于 `__enter__`；`yield` 后的代码就相当于 `__exit__`；`yield` 前、中、后的代码都可以省略不写。
 
-## 代码示例（vllm）
+## 代码示例 2（vLLM）
+
+```python
+@contextmanager
+def set_in_profile_run(self):
+    self.in_profile_run = True
+    try:
+        yield
+    finally:
+        self.in_profile_run = False
+
+
+with self.set_in_profile_run():
+    # ...
+```
+
+## 代码示例 3（vLLM）
 
 ```python
 from contextlib import contextmanager
@@ -85,5 +101,5 @@ with set_forward_context(attn_metadata, self.vllm_config):
 
 ## 参考资料
 
-- [Python with 关键字](https://www.runoob.com/python3/python-with.html)
-- [Python 中 @contextmanager 的用法](https://www.cnblogs.com/yeer-xuan/p/13493902.html)
+- [<u>Python with 关键字</u>](https://www.runoob.com/python3/python-with.html)
+- [<u>Python 中 @contextmanager 的用法</u>](https://www.cnblogs.com/yeer-xuan/p/13493902.html)
