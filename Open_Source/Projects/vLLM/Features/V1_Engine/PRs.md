@@ -1,5 +1,11 @@
 # PRs
 
+## Latest
+
+- [v0.8.3 changes](https://github.com/vllm-project/vllm/releases/tag/v0.8.3)
+
+## Working on
+
 vllm:
 
 - [[V1][Core] Support for Structured Outputs](https://github.com/vllm-project/vllm/pull/12388)
