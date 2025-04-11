@@ -1,6 +1,6 @@
 # TODO
 
-## 待看帖子
+## 技术博客
 
 - [Installing and Developing vLLM with Ease](https://blog.vllm.ai/2025/01/10/dev-experience.html)
 - [如何从浅入深理解 Transformer？ - 胡津铭的回答 - 知乎](https://www.zhihu.com/question/471328838/answer/3554522339)
@@ -11,3 +11,10 @@
 - [从零开始设计 SGLang 的 KV Cache](https://zhuanlan.zhihu.com/p/31160183506)
 - [算子优化领域现状分析及未来展望](https://zhuanlan.zhihu.com/p/32760092441)
 - [[LLM推理优化]🔥30+篇: LLM推理论文集-500页PDF💡](https://zhuanlan.zhihu.com/p/669777159)
+- [3万字详细解析清华大学最新综述工作：大模型高效推理综述](https://mp.weixin.qq.com/s/U9ESiWehnoKc9SnDz7DVKg)
+
+已看：
+
+- [vllm近期更新的一些trick总结](https://mp.weixin.qq.com/s/R_X0qxSiA3X4FqhWzyQM1g)
+- [AI Infra之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)
+- - [0 Token 间间隔 100% GPU 利用率，百度百舸 AIAK 大模型推理引擎极限优化 TPS](https://mp.weixin.qq.com/s/ohpOginJF_H7RRDfAdRWEw)
