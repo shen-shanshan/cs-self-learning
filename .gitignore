@@ -8,3 +8,5 @@ __pycache__/
 
 # VSCode
 .vscode/
+
+**/.DS_Store
