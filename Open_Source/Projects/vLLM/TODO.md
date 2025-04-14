@@ -2,15 +2,11 @@
 
 ## vllm-ascend
 
-- 环境变量管理（自动生成文档）
-- 日志管理（info 不生效、warning 格式错误）
-
 ## vllm
 
 - V1 特性支持：guided decoding 支持 outlines，[details](https://docs.vllm.ai/en/stable/getting_started/v1_user_guide.html#features-to-be-supported)
 - XgrammarGramma, TODO: support max_rollback_tokens for jump-forward decoding, [details](https://xgrammar.mlc.ai/docs/api/python/index.html#xgrammar.GrammarMatcher.find_jump_forward_string)
 - V1 特性支持：投机解码（draft model）
-- 多模态
 - V1 代码中的 `TODO`
 
 ## 技术学习
@@ -33,3 +29,4 @@
 - chunked prefills
 - prefix caching
 - 硬件插件机制
+- 新模型支持
