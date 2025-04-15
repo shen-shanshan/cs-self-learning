@@ -25,14 +25,14 @@
 
 ## 三、V1 Engine 整体流程
 
-在了解了 V1 Engine 的整体架构之后，接下来我们再看一下 V1 Engine 的整体推理流程：
+接下来，让我们再看一下 V1 Engine 的整体推理流程：
 
 ![](./images/2_so_arch.png)
 
-> 高清图片链接：[<u>link</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/Open_Source/Projects/vLLM/Features/Guided_Decoding/posts/vLLM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Guided_Decoding_V1/images)，画图不易，走过路过欢迎点一个 Star！
-
-- `LLMEngine` 属于 `Process 0`，主要用于与推理引擎外部进行交互（如：接收用户请求、输出推理结果等）。vLLM 的离线推理引擎 `LLM` 和在线推理引擎 `AsyncLLMEngine` 都是基于 `LLMEngine` 的封装；
+- `LLMEngine` 属于 `Process 0`，主要用于与推理引擎外部进行交互（如：接收用户请求、输出推理结果等）。vLLM 的离线推理引擎 `LLM` 和在线推理引擎 `AsyncLLM` 都是基于 `LLMEngine` 的封装；
 - `EngineCore` 属于 `Process 1`，是推理引擎的核心，包含了请求调度、模型前向推理等关键实现。
+
+> 高清图片链接：[<u>link</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/Open_Source/Projects/vLLM/Features/Guided_Decoding/posts/vLLM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Guided_Decoding_V1/images)，画图不易，走过路过欢迎点一个 Star！
 
 ### 3.1 LLMEngine 整体流程
 
@@ -59,27 +59,124 @@
 
 ## 四、Structured Output 代码实现
 
+了解了 V1 Engine 的整体架构和推理流程之后，下面我们将以 **XGrammar** 后端为例，梳理 Structured Output 具体的代码实现。
+
 ![](./images/3_so_xgrammar_code.png)
 
 > 高清图片链接：[<u>link</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/Open_Source/Projects/vLLM/Features/Guided_Decoding/posts/vLLM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Guided_Decoding_V1/images)，画图不易，走过路过欢迎点一个 Star！
 
 ### 4.1 请求预处理
 
+当一个新的请求从 `EngineCoreClient` 发送到 `EngineCore` 时，是以 `EngineCoreRequest` 的形式。`EngineCore` 会先通过 `Request.from_engine_core_request()` 方法将其转换为 `Request` 形式，在这一步中，会创建 `StructuredOutputRequest` 对象并将 `SamplingParams` 传递给它。而在 `SamplingParams` 中就包含了用户设置的 `GuidedDecodingParams`。
+
 ![](./images/3.1.png)
+
+若 `GuidedDecodingParams` 为空，则代表不使用 Structured Output，因此会将 `use_structured_output` 设置为 `False`，反之则为 `True`。`GuidedDecodingParams` 的部分内容如下：
+
+```python
+@dataclass
+class GuidedDecodingParams:
+    """One of these fields will be used to build a logit processor."""
+    json: Optional[Union[str, dict]] = None
+    regex: Optional[str] = None
+    choice: Optional[list[str]] = None
+    grammar: Optional[str] = None
+    json_object: Optional[bool] = None
+    """These are other options that can be set"""
+    backend: Optional[str] = None
+    whitespace_pattern: Optional[str] = None
+
+    @property
+    def backend_name(self) -> str:
+        """
+        Return the backend name without any options.
+        For example if the backend is "xgrammar:no-fallback", returns "xgrammar"
+        """
+        return (self.backend or "").split(":")[0]
+```
+
+一个简单的使用示例（根据文字判断感情，并输出对应的选项）如下：
+
+```python
+# Guided decoding by Choice (list of possible options)
+guided_decoding_params_choice = GuidedDecodingParams(
+    choice=["Positive", "Negative"])
+sampling_params_choice = SamplingParams(
+    guided_decoding=guided_decoding_params_choice)
+prompt_choice = "Classify this sentiment: vLLM is wonderful!"
+
+llm = LLM(model="Qwen/Qwen2.5-3B-Instruct", max_model_len=100)
+
+choice_output = generate_output(prompt_choice, sampling_params_choice, llm)
+```
 
 ### 4.2 异步编译 Grammar
 
+`StructuredOutputManager` 是 `EngineCore` 中的一个组件，当 `Request` 转换完成后，会调用 `StructuredOutputManager` 中的 `grammar_init()` 方法。
+
 ![](./images/3.2.png)
+
+`grammar_init()` 的主要步骤如下：
+
+1. 将 engine-level backend 设置到 `StructuredOutputManager` 中；
+2. 通过 backend 调用 `compile_grammar()` 方法，并开始异步编译语法。编译完成后，会生成一个 `CompiledGrammar` 对象，然后利用该对象创建 `GrammarMatcher` 对象，最后将这些内容打包为一个 `XgrammarGrammar` 对象放到 `Request` 的 `StructuredOutputRequest` 属性中。
 
 ![](./images/3.3.png)
 
+上述流程的部分代码如下：
+
+```python
+class StructuredOutputManager:
+    """Engine-level manager for structured output requests."""
+
+    def grammar_init(self, request: Request) -> None:
+        if request.structured_output_request is None:
+            return
+
+        # 根据 sampling_params 设置对应的 backend
+        if self.backend is None:
+            backend_name = request.sampling_params.guided_decoding.backend_name
+            if backend_name == "xgrammar":
+                self.backend = XgrammarBackend(self.vllm_config)
+
+        grammar = self.executor.submit(self._async_create_grammar, request)  
+        # 异步调用：self.backend.compile_grammar(...)
+
+        request.structured_output_request.grammar = grammar
+
+
+class XgrammarBackend(StructuredOutputBackend):
+
+    def compile_grammar(self, request_type: StructuredOutputOptions,
+                        grammar_spec: str) -> StructuredOutputGrammar:
+        # 根据不同的 request_type 调用对应的 compile_xxx()
+        if request_type == xxx:
+            ctx = self.compiler.compile_xxx(grammar_spec)
+
+        return XgrammarGrammar(
+            matcher=xgr.GrammarMatcher(ctx),
+            vocab_size=self.vocab_size,
+            ctx=ctx,
+        )
+```
+
+> 注意：在 V1 Engine 中，每一个 Structured Output 后端都需要实现两个类——`StructuredOutputBackend` 和 `StructuredOutputGrammar`，在这两个抽象类中定义了每个后端应该实现的接口。其中，`StructuredOutputBackend` 是 **engine-level** 的 backend，而 `StructuredOutputGrammar` 是 **request-level** 的 backend，即前者是整个推理引擎共用的后端，而后者存在于 `Request` 对象中，只负责对自己所属的请求进行处理。
+
 ### 4.3 分配并应用 Mask
 
+当前置准备完成后，`EngineCore` 会调用 `step()` 进行推理。
+
 ![](./images/3.2.png)
+
+`step()` 的主要步骤如下：
+
+1. `Scheduler` 调用 `schedule()` 方法对请求进行调度。其中，会调用 `StructuredOutputManager` 的 `grammar_bitmask()` 方法，
 
 ## 五、总结
 
 目前，vLLM 的 V1 Engine 还在积极开发中（变动频繁），其 Structured Output 特性也还只支持 `xgrammar` 和 `guidance` 后端。本文中介绍的内容，仅代表写下这篇文章时代码的状态（`v0.8.4`），后面 Structured Output 模块如果还有大的更新，再考虑另写文章进行分享。
+
+> TODO：补充 xgrammar api 说明。
 
 ## 六、参考资料
 
