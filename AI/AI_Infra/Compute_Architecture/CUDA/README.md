@@ -5,6 +5,7 @@
 - 樊哲勇《CUDA 编程：基础与实践》⭐
 - [<u>谭升的博客</u>](https://face2ai.com/program-blog/#GPU%E7%BC%96%E7%A8%8B%EF%BC%88CUDA%EF%BC%89)
 - [<u>zhang's Blog</u>](https://www.armcvai.cn/categories.html)
+- [<u>CUDA stream 和 event 模块详解</u>](https://www.armcvai.cn/2025-03-21/cuda-stream-event.html)
 
 ## 算子编程练习
 
@@ -46,3 +47,4 @@
 - [<u>CUDA C++ Programming Guide - NVIDIA 官方教程</u>](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
 - [<u>CUDA-Programming-Guide-in-Chinese - 官方教程中文版</u>](https://github.com/HeKun-NVIDIA/CUDA-Programming-Guide-in-Chinese?tab=readme-ov-file)
 - [<u>Learn CUDA Programming</u>](https://github.com/PacktPublishing/Learn-CUDA-Programming)
+- [<u>CUDA Runtime API</u>](https://docs.nvidia.com/cuda/cuda-runtime-api/index.html)

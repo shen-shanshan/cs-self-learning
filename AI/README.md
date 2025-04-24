@@ -2,11 +2,15 @@
 
 ---
 
+## LLM
+
+---
+
 ## AI Infra
 
 - [<u>AI System</u>](https://chenzomi12.github.io/)
 - [<u>zhang's Blog ⭐</u>](https://www.armcvai.cn/categories.html)
-- [<u>ezyang's Blog ⭐</u>](http://blog.ezyang.com/archives/)
+- [<u>ezyang's Blog</u>](http://blog.ezyang.com/archives/)
 - [<u>SiriusNEO's Blog</u>](https://me.tric.space/)
 - [<u>ML system 入坑指南</u>](https://fazzie-key.cool/2023/02/21/MLsys/)
 
@@ -29,4 +33,4 @@
 
 ## CUDA
 
-- [<u>CUDA 编程学习路线</u>](./AI_Infra/Compute_Architecture/CUDA/README.md)
+- [<u>CUDA 编程学习路线 ⭐</u>](./AI_Infra/Compute_Architecture/CUDA/README.md)
