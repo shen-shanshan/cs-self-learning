@@ -211,11 +211,11 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 ```bibtex
 @misc{cs-self-learning@2023,
-    title={cs-self-learning},
-    url={https://github.com/shen-shanshan/cs-self-learning},
-    note={Open-source software available at https://github.com/shen-shanshan/cs-self-learning},
-    author={shen-shanshan},
-    year={2023}
+  title  = {cs-self-learning},
+  url    = {https://github.com/shen-shanshan/cs-self-learning},
+  note   = {Open-source software available at https://github.com/shen-shanshan/cs-self-learning},
+  author = {shen-shanshan},
+  year   = {2023}
 }
 ```
 
