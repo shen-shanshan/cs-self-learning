@@ -37,3 +37,10 @@
 ## CUDA
 
 - [<u>CUDA 编程学习路线 ✨</u>](./AI_Infra/Compute_Architecture/CUDA/README.md)
+
+---
+
+## 学习工具
+
+- 源码分析：https://deepwiki.com/
+- 画图工具：https://excalidraw.com/
