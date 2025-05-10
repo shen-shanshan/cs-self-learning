@@ -1,8 +1,4 @@
-# vLLM V1 整体流程｜从请求到算子执行
-
-[toc]
-
-## 一、引言
+# 一、引言
 
 **vLLM V1** 是 vLLM 团队基于 V0 的实践经验并参考工业界其它相关工作提出的最新架构，从 vLLM **0.8.x** 版本开始，**V1 Engine** 将作为 vLLM 启动时的默认选项。
 
@@ -15,7 +11,7 @@
 
 下面，本文将揭秘 vLLM V1 从接收请求到算子执行的推理全流程（附超长流程图，画图不易，欢迎点赞 & 收藏~）。
 
-## 二、整体概览
+# 二、整体概览
 
 在深入具体细节之前，让我们先从整体上认识下 V1 Engine 的推理流程。
 
@@ -36,9 +32,9 @@
 
 > 高清图片链接：[<u>link</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/Open_Source/Projects/vLLM/Notes/%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B/images)，画图不易，走过路过欢迎点一个 Star！
 
-## 三、具体流程
+# 三、具体流程
 
-### 3.1 LLMEngine 执行流程
+## 3.1 LLMEngine 执行流程
 
 `LLMEngine` 是 vLLM 的离线推理引擎 `LLM` 和在线推理引擎 `AsyncLLM` 的基座，主要用于与推理引擎外部进行交互（如：接收并处理用户请求、持续获取并输出推理结果等），属于 `Process 0`。
 
@@ -58,7 +54,7 @@
 3. `OutputProcessor` 对推理结果进行后处理，包括：Detokenization、准备 `RequestOutput` 对象以及终止已经生成结束符的请求等操作；
 4. `LLM` 通过 `generate()` 方法返回 `RequestOutput` 给用户。
 
-### 3.2 EngineCore 执行流程
+## 3.2 EngineCore 执行流程
 
 `EngineCore` 是 vLLM 推理引擎的核心，主要负责**请求调度**和**推理执行**。
 
@@ -78,7 +74,7 @@
 2. `Scheduler` 根据当前调度的 `SchedulerOutput` 和 `Worker` 返回的 `ModelRunnerOutput` 更新状态，生成 `EngineCoreOutputs` 对象并放到 `output_queue` 中；
 3. `EngineCoreProc` 中的 `process_output_socket()` 线程通过 ZMQ Socket 将 `output_queue` 中的推理结果返回给 `LLMEngine`。
 
-### 3.3 Worker 执行流程
+## 3.3 Worker 执行流程
 
 `MultiprocExecutor` 初始化时，会创建对应的 **1~N** 个 `Worker`，每个 `Worker` 分别属于一个独立的进程（每个 `Worker` 对应一张卡）。因此，如果有 **N** 个 `Worker`，则整个 vLLM 应用将包含 **N + 2** 个进程。
 
@@ -97,7 +93,7 @@
 
 1. `Worker` 将模型的推理结果 `ModelRunnerOutput` 通过 `worker_response_mq` 返回给 `EngineCore`。
 
-### 3.4 Model forward 与算子调用
+## 3.4 Model forward 与算子调用
 
 下面以 Qwen 模型为例，展示了各个 Layer 的计算流程，这里不再详细介绍，一切尽在图中~
 
@@ -105,13 +101,13 @@
 
 ![](./images/6_Model.svg)
 
-## 四、总结
+# 四、总结
 
 到此为止，vLLM V1 自顶向下的推理全流程就梳理完了。这里声明一下，本文的主要目的是理清并展示整个推理引擎的 pipeline，从而可以让刚接触 vLLM 或大模型推理领域的读者对整个推理流程的全貌有一个直观的印象，而对于其中的一些细节（如：调度逻辑、KV Cache 处理以及 Socket 通信的实现细节等）选择了略过，感兴趣的读者可以自行阅读源码进行了解，后面我也会考虑再单独写文章对其中的一些模块进行介绍。
 
 另外，目前我的工作就是全职参与 vLLM 社区的开发与维护，后续我还会持续分享更多关于 vLLM 的最新知识，欢迎大家持续关注～
 
-## 五、参考资料
+# 五、参考资料
 
 - [<u>vLLM GitHub</u>](https://github.com/vllm-project/vllm)
 - [<u>vLLM V1: A Major Upgrade to vLLM’s Core Architecture</u>](https://blog.vllm.ai/2025/01/27/v1-alpha-release.html)
