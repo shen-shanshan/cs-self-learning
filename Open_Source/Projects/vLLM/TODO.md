@@ -2,11 +2,15 @@
 
 ## vllm-ascend
 
+- 完成性能调优文档；
+- 开发 V1 Scheduler；
+- 跟踪并适配 Structured Output 最新动态；
+- 了解并适配 Torchcodec（多模态相关）；
+- 多模态适配：https://github.com/vllm-project/vllm-ascend/issues/673
+
 ## vllm
 
-- 在 NPU 上测试 `openai_chat_completion_structured_outputs_structural_tag.py`
-- Spec Decode 相关代码优化
-- V1 代码中的 `TODO`
+- 优化 Spec Decode 相关代码；
 
 ## 技术学习
 
@@ -17,8 +21,6 @@
 
 ## 技术博客
 
-- V1 整体架构
-- V1 推理流程
 - V1 调度机制
 - KVCache 管理
 - speculative decoding
