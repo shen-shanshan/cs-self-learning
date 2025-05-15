@@ -3,7 +3,6 @@
 ## vllm-ascend
 
 - 完成性能调优文档；
-- 开发 V1 Scheduler；
 - 跟踪并适配 Structured Output 最新动态；
 - 了解并适配 Torchcodec（多模态相关）；
 - 多模态适配：https://github.com/vllm-project/vllm-ascend/issues/673
@@ -30,3 +29,4 @@
 - 硬件插件
 - 模型支持
 - 多模态（以 Qwen2.5-VL 为例）
+- 性能调优
