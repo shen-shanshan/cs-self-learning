@@ -46,6 +46,22 @@ docker restart <容器名或ID>
 docker commit <容器名或ID> <镜像名>
 docker rm <容器名或ID>
 
+docker run --rm \
+--name vllm-ascend-sss \
+--device /dev/davinci6 \
+--device /dev/davinci_manager \
+--device /dev/devmm_svm \
+--device /dev/hisi_hdc \
+-v /usr/local/dcmi:/usr/local/dcmi \
+-v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
+-v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
+-v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
+-v /etc/ascend_install.info:/etc/ascend_install.info \
+-v /root/.cache:/root/.cache \
+-it m.daocloud.io/quay.io/ascend/vllm-ascend:v0.7.3 bash
+
+docker exec -it vllm-ascend-sss /bin/bash
+
 ------------------------------------------------------------------------------
 # V1
 if __name__ == "__main__":
@@ -70,7 +86,8 @@ curl http://localhost:8000/v1/completions \
     }'
 
 ------------------------------------------------------------------------------
-
+apt-get update
+apt-get install sudo
 
 ------------------------------------------------------------------------------
 ```
