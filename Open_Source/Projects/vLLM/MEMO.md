@@ -26,6 +26,13 @@ curl http://localhost:8000/v1/completions \
 ps -ef | grep vllm | cut -c 9-16 | xargs kill -9
 ps -ef | grep python | cut -c 9-16 | xargs kill -9
 
+# vllm-ascend format
+yapf -i <file>
+isort <file>  # to solve: Imports are incorrectly sorted and/or formatted.
+
+vllm_ascend/models/qwen3_moe.py
+vllm_ascend/ops/fused_moe.py
+
 ------------------------------------------------------------------------------
 # Git 常用操作
 git chekcout <commit>
@@ -64,9 +71,12 @@ docker exec -it vllm-ascend-sss /bin/bash
 
 ------------------------------------------------------------------------------
 # V1
+VLLM_USE_V1=
+
 if __name__ == "__main__":
 
 Co-authored-by: didongli182 <didongli@huawei.com>
+Co-authored-by: zouyida2002 <didongli@huawei.com>
 
 ------------------------------------------------------------------------------
 # Structured output
@@ -86,8 +96,45 @@ curl http://localhost:8000/v1/completions \
     }'
 
 ------------------------------------------------------------------------------
+# 系统配置
 apt-get update
 apt-get install sudo
+# install curl
+sudo apt update
+sudo apt upgrade
+sudo apt install curl
+
+source /home/sss/Ascend/ascend-toolkit/set_env.sh
+source /home/sss/Ascend/nnal/atb/set_env.sh
+
+source /usr/local/Ascend/ascend-toolkit/set_env.sh
+source /usr/local/Ascend/nnal/atb/set_env.sh
+
+------------------------------------------------------------------------------
+export USE_OPTIMIZED_MODEL=0
+
+vllm serve /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2___5-VL-7B-Instruct \
+--dtype bfloat16 \
+--max_model_len 32768 \
+--max-num-batched-tokens 32768
+
+curl http://localhost:8000/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+    "model": "/home/sss/.cache/modelscope/hub/models/Qwen/Qwen2___5-VL-7B-Instruct",
+    "messages": [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": [
+        {"type": "image_url", "image_url": {"url": "https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png"}},
+        {"type": "text", "text": "What is the text in the illustrate?"}
+    ]}
+    ]
+    }'
+
+------------------------------------------------------------------------------
+# vllm 环境变量
+VLLM_USE_V1
+VLLM_USE_MODELSCOPE
 
 ------------------------------------------------------------------------------
 ```

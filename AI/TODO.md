@@ -25,6 +25,9 @@
 - [ ] [大模型推理 - 为什么要 PD 分离？](https://zhuanlan.zhihu.com/p/1897270081664300462?utm_psn=1897629970966217092)
 - [ ] [图解 vLLM Prefix Prefill Triton Kernel](https://zhuanlan.zhihu.com/p/695799736?share_code=Hz1PZDdfXLy7&utm_psn=1900943218725598209)
 - [ ] [vLLM 的 prefix cache 为何零开销](https://zhuanlan.zhihu.com/p/1896927732027335111)
+- [ ] [prefill 和 decode 该分离到不同的卡上么？](https://zhuanlan.zhihu.com/p/1280567902?share_code=z1ij3mzQpXAE&utm_psn=1902828634068226129)
+- [ ] [vLLM PD 分离 KV cache 传递机制详解与演进分析](https://zhuanlan.zhihu.com/p/1906741007606878764?share_code=1m2xkCswqTA9N&utm_psn=1907185030842782292)
+- [ ] [vLLM PD 分离方案浅析](https://zhuanlan.zhihu.com/p/1889243870430201414?utm_psn=1889596220076426760)
 - [x] [vLLM V1 Scheduler 的调度逻辑 & 优先级分析](https://zhuanlan.zhihu.com/p/1900957007575511876?share_code=o9ZDfDnEpemP&utm_psn=1901069245619635086)
 - [x] [图解 Vllm V1 系列 1：整体流程 - 猛猿](https://zhuanlan.zhihu.com/p/1900126076279160869?share_code=18FtZ4wqQM3hR&utm_psn=1900940137866716878)
 - [x] [图解 Vllm V1 系列 2：Executor-Workers 架构 - 猛猿](https://zhuanlan.zhihu.com/p/1900613601577899465)
@@ -46,3 +49,10 @@
 
 - [ ] [zhang's Blog - CUDA](https://www.armcvai.cn/categories.html)
 - [ ] [腾讯云 CUDA 环境搭建](https://face2ai.com/CUDA-F-0-0-Tencent-GPU-Cloud/)
+- [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
+
+---
+
+## 科研
+
+- [ ] [写在 Ph.D 第 0 年：AI/CV 科研菜鸟的持续进阶之路](https://zhuanlan.zhihu.com/p/960781637?share_code=13GKbPaHvl60E&utm_psn=1904443459802206715)
