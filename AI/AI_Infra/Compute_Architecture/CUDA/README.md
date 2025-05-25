@@ -24,9 +24,10 @@
 
 **常用 CUDA 库：**
 
-- CuBLAS（线性代数库）
-- Nsight（性能分析库）
-- CUTLASS
+- cuDNN
+- cuBLAS（线性代数库）
+- nsight（性能分析库）
+- cuTLASS
 
 **其它内容：**
 

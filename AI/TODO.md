@@ -12,6 +12,8 @@
 
 ## 推理引擎
 
+- [ ] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)
+- [ ] [vLLM调度器解密（下）：chunked prefill是如何进一步优化的？](https://zhuanlan.zhihu.com/p/6144374775?share_code=w9CKto9eLSq2&utm_psn=1909578492246466702)
 - [ ] [3 万字详细解析清华大学最新综述工作：大模型高效推理综述](https://mp.weixin.qq.com/s/U9ESiWehnoKc9SnDz7DVKg)
 - [ ] [vLLM Blog - V1 Metrics](https://docs.vllm.ai/en/stable/design/v1/metrics.html)
 - [ ] [zhang's Blog - LLM Infer](https://www.armcvai.cn/categories.html)
