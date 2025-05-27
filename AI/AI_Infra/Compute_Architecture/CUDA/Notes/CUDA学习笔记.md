@@ -116,7 +116,7 @@ int main(){
 - **Block**：线程块，一组线程（硬件视角：Warps）；
 - **Grid**：网格，一组线程块。
 
-CUDA **SIMT（Single Instruction Multiple Thread）**：多个线程执行同一条指令。
+CUDA **SIMT（Single Instruction Multiple Thread）**：多个线程执行同一条指令（每个线程有自己独立的寄存器）。
 
 > TODO：SIMT 和 SIMD 的区别？（面试常问）
 
@@ -391,3 +391,141 @@ int main() {
   	free(C_cpu_res);
 }
 ```
+
+## 12. GPU 硬件能力查询
+
+```cpp
+#include <cuda_runtime.h>
+#include <cuda.h>
+#include <iostream>
+#include <string>
+
+int main() {
+
+  int deviceCount = 0;
+
+  // 获取当前机器的GPU数量
+  cudaError_t error_id = cudaGetDeviceCount(&deviceCount);
+  if (deviceCount == 0) {
+    printf("There are no available device(s) that support CUDA\n");
+  } else {
+    printf("Detected %d CUDA Capable device(s)\n", deviceCount);
+  }
+
+  for (int dev = 0; dev < deviceCount; ++dev) {
+    cudaSetDevice(dev);
+    // 初始化当前device的属性获取对象
+    cudaDeviceProp deviceProp;
+    cudaGetDeviceProperties(&deviceProp, dev);
+    printf("\nDevice %d: \"%s\"\n", dev, deviceProp.name);
+
+    // 显存容量
+    printf("  Total amount of global memory:                 %.0f MBytes "
+             "(%llu bytes)\n",
+             static_cast<float>(deviceProp.totalGlobalMem / 1048576.0f),
+             (unsigned long long)deviceProp.totalGlobalMem);
+
+    // 时钟频率
+    printf( "  GPU Max Clock rate:                            %.0f MHz (%0.2f "
+        "GHz)\n",
+        deviceProp.clockRate * 1e-3f, deviceProp.clockRate * 1e-6f);
+
+    // L2 cache大小
+    printf("  L2 Cache Size:                                 %d bytes\n",
+             deviceProp.l2CacheSize);
+
+    // high-frequent used
+    // 注释见每个printf内的字符串
+    printf("  Total amount of shared memory per block:       %zu bytes\n",
+           deviceProp.sharedMemPerBlock);
+    printf("  Total shared memory per multiprocessor:        %zu bytes\n",
+           deviceProp.sharedMemPerMultiprocessor);
+    printf("  Total number of registers available per block: %d\n",
+           deviceProp.regsPerBlock);
+    printf("  Warp size:                                     %d\n",
+           deviceProp.warpSize);
+    printf("  Maximum number of threads per multiprocessor:  %d\n",
+           deviceProp.maxThreadsPerMultiProcessor);
+    printf("  Maximum number of threads per block:           %d\n",
+           deviceProp.maxThreadsPerBlock);
+    printf("  Max dimension size of a block size (x,y,z): (%d, %d, %d)\n",
+           deviceProp.maxThreadsDim[0], deviceProp.maxThreadsDim[1],
+           deviceProp.maxThreadsDim[2]);
+    printf("  Max dimension size of a grid size (x,y,z): (%d, %d, %d)\n",
+           deviceProp.maxGridSize[0], deviceProp.maxGridSize[1],
+           deviceProp.maxGridSize[2]);
+  }
+
+  return 0;
+}
+```
+
+## 13. CPU 架构
+
+**CPU 架构：**
+
+- 运算器（ALU）；
+- 控制器（Control）；
+- 存储器：内存（DRAM）、缓存（Cache）。
+
+**CPU 工作流程：**
+
+1. 控制器从内存（用户进程中的代码段）提取指令，并放到指令寄存器；
+2. 解码（指令译码）；
+3. 执行（需要先从内存，从用户进程中的数据段，取数据）；
+4. 写回（可选）。
+
+**CPU 流水线：**
+
+**级数？**——3 级流水线，即有 3 个过程（stage）。
+
+CPU 的流水线级数越多，性能越好（最大吞吐越高），但级数不是越多越好。
+
+级数过多的缺点：
+
+- 电路单元更多，芯片面积 & 功耗增加；
+- 未满载时，性能收益下降。
+
+因此，应该综合考虑以寻得一个 tradeoff。
+
+## 14. GPU 架构
+
+**A100 GPU 架构：**
+
+- 108 个 SM；
+  - 每个 SM 有 4 个独立的区块，可以并行执行 4 组不同指令序列；
+    - 每个区块有 4 个 Tensor Core（总共是 108 * 4 = 432 个）；
+    - 每个区块有独立的 L0 指令缓存、Warp Scheduler、Dispatch Unit 等；
+  - 每个 SM 中的 4 个区块共享 L1 指令缓存、数据缓存、Shared Memory 等；
+- 6912 个 CUDA Core（即 INT32、FP32、FP64 单元）；
+- ……
+
+**CUDA 执行模型：**
+
+kernel 启动 -> 分配 block 到 SM 上执行。
+
+软件 -> 硬件：
+
+- Thread -> CUDA Core
+- Block（n）->（1）SM（即同一个 block 中的线程只能同时在一个 SM 上执行，而一个 SM 上可以同时执行多个 block）
+- Grid -> 整个 device
+
+> 注意：一个 Warp（32 个线程）中的线程只能同时被调度去执行某一条指令，但可以只有部分线程在执行（active thread），剩下的线程只能等待（不能去执行别的指令），直到其它线程执行完当前的指令。
+
+## 15. GPU 存储层次结构
+
+- **全局内存（Global）：**
+  - 所有线程 + CPU；
+  - 片外，访问慢；
+  - 需要连续访问，减少内存事务。
+- **共享内存（Shared）：**
+  - 一个 block 中的线程；
+  - 片上，访问快；
+  - bankconflict：……（重要）
+- **寄存器（Register）：**
+  - 一个线程；
+  - 片上，访问快；
+  - spill：溢出的部分会放到 local memory 上，从而增加延迟。
+- Local
+- Constant
+- Texture
