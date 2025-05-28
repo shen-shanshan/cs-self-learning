@@ -555,3 +555,9 @@ GPU：
 - **Sliding Window**：conv2d、conv3d、maxpool
 - **Scan**：prefixsum、cumsum
 - **Sort**：mergesort
+
+## 18-25. Reduce 算子实现（面试高频）
+
+Reduce：对 N 个数据做累计的算术操作（如：总和、最大值、最小值、均值等）。
+
+baseline：CPU 方式（单线程）+ for 循环。
