@@ -529,3 +529,29 @@ kernel 启动 -> 分配 block 到 SM 上执行。
 - Local
 - Constant
 - Texture
+
+## 16. CPU 和 GPU 架构的区别
+
+GPU：
+
+- 控制单元少 -> 不适合处理分支程序（if else）；
+- Cache 少 -> 不适合处理数据分散的程序；
+- 核心数量多 -> 不适合处理计算分散的程序；
+- 核心频率低 -> 不适合处理计算量小的程序；
+- 标量运算处理器 -> 不支持向量化计算，但支持向量化存取（load & store）。
+
+## 17. 算子类型总结
+
+**入门学习：**
+
+- **Reduce**（规约）：softmax
+- **Elementwise**（加法）：gelu、copy_if
+- **Fused**（融合算子）：MatmulAndBiasAndRelu
+
+**进阶学习：**
+
+- **Gemm**（现在一般是直接调库，各种形状的性能已经优化得比较好了）：matmul
+- **坐标变换**：concat、transpose
+- **Sliding Window**：conv2d、conv3d、maxpool
+- **Scan**：prefixsum、cumsum
+- **Sort**：mergesort

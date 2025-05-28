@@ -138,3 +138,20 @@ VLLM_USE_MODELSCOPE
 
 ------------------------------------------------------------------------------
 ```
+
+```python
+def init_device(self) -> None:
+    gc.collect()
+    NPUPlatform.empty_cache()
+    torch.npu.reset_peak_memory_stats()
+
+def determine_num_available_blocks(self) -> Tuple[int, int]:
+    gc.collect()
+    NPUPlatform.empty_cache()
+    torch.npu.reset_peak_memory_stats()
+
+
+gc.collect()
+NPUPlatform.empty_cache()
+torch.npu.reset_peak_memory_stats()
+```
