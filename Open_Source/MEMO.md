@@ -1,5 +1,5 @@
 ```bash
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # vllm test
 VLLM_USE_V1=0 pytest tests
 VLLM_USE_V1=0 pytest tests -sv
@@ -33,7 +33,7 @@ isort <file>  # to solve: Imports are incorrectly sorted and/or formatted.
 vllm_ascend/models/qwen3_moe.py
 vllm_ascend/ops/fused_moe.py
 
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Git 常用操作
 git chekcout <commit>
 git stash
@@ -43,7 +43,14 @@ git stash clear
 git clone -b 分支名 仓库地址
 git cherry-pick <commitHash>
 
-------------------------------------------------------------------------------
+vim ~/.gitconfig  # 修改 [alias] section.
+# 快速下载 PR
+pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+# 快速将 Pull Request ID 为 12 的代码下载到本地
+git pr 12
+# 参考链接：https://github.com/Yikun/yikun.github.com/issues/89
+
+--------------------------------------------------------------------------------
 # Docker 常用操作
 # cd /data/disk3/sss/docker
 docker-compose -p sss up -d
@@ -69,7 +76,7 @@ docker run --rm \
 
 docker exec -it vllm-ascend-sss /bin/bash
 
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # V1
 VLLM_USE_V1=
 
@@ -78,7 +85,7 @@ if __name__ == "__main__":
 Co-authored-by: didongli182 <didongli@huawei.com>
 Co-authored-by: zouyida2002 <didongli@huawei.com>
 
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Structured output
 pytest tests/v1/entrypoints/llm/test_struct_output_generate.py -sv
 
@@ -95,7 +102,7 @@ curl http://localhost:8000/v1/completions \
         "temperature": 0
     }'
 
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # 系统配置
 apt-get update
 apt-get install sudo
@@ -110,7 +117,7 @@ source /home/sss/Ascend/nnal/atb/set_env.sh
 source /usr/local/Ascend/ascend-toolkit/set_env.sh
 source /usr/local/Ascend/nnal/atb/set_env.sh
 
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 export USE_OPTIMIZED_MODEL=0
 
 vllm serve /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2___5-VL-7B-Instruct \
@@ -131,27 +138,25 @@ curl http://localhost:8000/v1/chat/completions \
     ]
     }'
 
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # vllm 环境变量
 VLLM_USE_V1
 VLLM_USE_MODELSCOPE
 
-------------------------------------------------------------------------------
-```
+--------------------------------------------------------------------------------
+I have rebased on the latest main and nothing changed.
 
-```python
-def init_device(self) -> None:
-    gc.collect()
-    NPUPlatform.empty_cache()
-    torch.npu.reset_peak_memory_stats()
+--------------------------------------------------------------------------------
+# SSH
+ssh user@IP -p port
 
-def determine_num_available_blocks(self) -> Tuple[int, int]:
-    gc.collect()
-    NPUPlatform.empty_cache()
-    torch.npu.reset_peak_memory_stats()
+# 将 id_rsa.pub 公钥放在服务器上的 authorized_keys 文件中
+vim /root/.ssh/authorized_keys
 
+--------------------------------------------------------------------------------
+# VSCode 快捷键
+折叠所有：Ctrl/Cmd + K + 0
+展开所有：Ctrl/Cmd + K + J
 
-gc.collect()
-NPUPlatform.empty_cache()
-torch.npu.reset_peak_memory_stats()
+--------------------------------------------------------------------------------
 ```
