@@ -36,13 +36,27 @@ class Draw:
             )
             # if i == 1:
             #     continue
-            for bar in bars:  # 在每个柱形上显示数值
-                height = bar.get_height()
-                plt.text(bar.get_x() + bar.get_width()/2, height, 
-                        f'{height}', ha='center', va='bottom')
+
+            # for bar in bars:  # 在每个柱形上显示数值
+            #     height = bar.get_height()
+            #     plt.text(bar.get_x() + bar.get_width()/2, height, 
+            #             f'{height}', ha='center', va='bottom')
+
                 # elif i == 2:
                 #     plt.text(bar.get_x(), height, 
                 #             f'{height}', ha='center', va='bottom')
+            
+            for j, bar in enumerate(bars):
+                if j == 0:
+                    continue
+                height = bar.get_height()
+                if i == 0:
+                    bai_height = (86.58 - height) / 86.58
+                else:
+                    bai_height = (32.57 - height) / 32.57
+                print(f"i: {i}, j: {j}, height: {bai_height:.2%}")
+                # plt.text(bar.get_x() + bar.get_width()/2, height, 
+                #         f'{bai_height:.2%}', ha='center', va='bottom')
 
         # 设置网格和背景颜色
         ax.grid(

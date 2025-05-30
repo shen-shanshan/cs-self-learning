@@ -35,10 +35,32 @@ data_2 = {
 }
 
 
+'''
+A: vllm-ascend
+B: vllm-ascend + optimized python/torch/torch-npu
+C: vllm-ascend + mindie-trubo
+D: vllm-ascend + mindie-trubo + optimized python/torch/torch-npu
+
+i: 0, j: 1, height: 19.80%
+i: 0, j: 2, height: 25.56%
+i: 0, j: 3, height: 37.75%
+
+i: 1, j: 1, height: 30.61%
+i: 1, j: 2, height: 32.64%
+i: 1, j: 3, height: 47.07%
+'''
+data_3 = {
+    'Group': ['Group A', 'Group B', 'Group C', 'Group D'],
+    'TTFT (Time to First Token)':   [86.58, 69.44, 64.45, 53.90],
+    'TPOT (Time per Output Token)': [32.57, 22.60, 21.94, 17.24],
+    'ITL (Inter-token Latency)':    [32.57, 22.60, 21.94, 17.24]
+}
+
+
 if __name__ == "__main__":
 
-    bar_width = 0.2  # 柱宽
+    bar_width = 0.25  # 柱宽
     colors = ['#7BC8F6', '#A4D4AE', '#FFB347']  # 柱形颜色
 
     draw = Draw(bar_width=bar_width, colors=colors)
-    draw.run(data=data_2, group='Group')
+    draw.run(data=data_3, group='Group')
