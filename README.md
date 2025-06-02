@@ -1,22 +1,3 @@
-<!--
-<div align="center">
-  <p align="center">
-    <h1>CS Self-Learning Notes</h1>
-  </p>
-  <img src='./assets/cover.jpg' width=180 > <p>
-  <div align='center'>
-      <img src=https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg >
-      <img src=https://img.shields.io/github/watchers/shen-shanshan/cs-self-learning?color=9cc >
-      <img src=https://img.shields.io/github/forks/shen-shanshan/cs-self-learning.svg?style=social >
-      <img src=https://img.shields.io/github/stars/shen-shanshan/cs-self-learning.svg?style=social >
-      <img src=https://img.shields.io/badge/License-MIT-turquoise.svg >
- </div> <p>
-</div>
-<div align="center">
-  <b> This repo is used for archiving my notes, codes and materials of cs learning. </b>
-</div>
--->
-
 # Computer Science Self-Learning Notes
 
 <div align='left'>
@@ -35,8 +16,6 @@
 </p>
 
 This repo is used for archiving my **notes**, **codes** and **materials** of cs learning. 😄
-
----
 
 ## 📌 Contents
 

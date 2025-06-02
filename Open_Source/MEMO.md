@@ -50,6 +50,9 @@ pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} re
 git pr 12
 # 参考链接：https://github.com/Yikun/yikun.github.com/issues/89
 
+git config --global user.email "467638484@qq.com"
+git config --global user.name "shen-shanshan"
+
 --------------------------------------------------------------------------------
 # Docker 常用操作
 # cd /data/disk3/sss/docker

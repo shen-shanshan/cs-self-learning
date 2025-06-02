@@ -79,7 +79,7 @@ __global__ void sum(float *x)
     x[global_tid] += 1;
 }
 
-int main(){
+int main() {
     int N = 32;
     int nbytes = N * sizeof(float);
     float *dx, *hx;
@@ -379,7 +379,7 @@ int main() {
 	}
 	printf("Result right\n");
 	unsigned N = ARRAY_SIZE * 4;
-	/* 测量显存带宽时, 根据实际读写的数组个数, 指定下行是 1*(float)N 还是 2*(float)N 还是 3*(float)N  */
+	/* 测量显存带宽时, 根据实际读写的数组个数, 指定下行是 1*(float)N 还是 2*(float)N 还是 3*(float)N */
 	printf("Mem BW= %f (GB/sec)\n", 3 * (float)N / milliseconds / 1e6);
   	cudaFree(A_g);
   	cudaFree(B_g);
