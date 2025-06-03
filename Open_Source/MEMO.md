@@ -163,3 +163,23 @@ vim /root/.ssh/authorized_keys
 
 --------------------------------------------------------------------------------
 ```
+
+```bash
+Traceback (most recent call last):
+  File "/home/sss/software/miniconda3/envs/vllm-v1/bin/vllm", line 8, in <module>
+    sys.exit(main())
+  File "/home/sss/github/vllm-project/vllm/vllm/entrypoints/cli/main.py", line 50, in main
+    cmd.subparser_init(subparsers).set_defaults(
+  File "/home/sss/github/vllm-project/vllm/vllm/entrypoints/cli/serve.py", line 101, in subparser_init
+    serve_parser = make_arg_parser(serve_parser)
+  File "/home/sss/github/vllm-project/vllm/vllm/entrypoints/openai/cli_args.py", line 254, in make_arg_parser
+    parser = AsyncEngineArgs.add_cli_args(parser)
+  File "/home/sss/github/vllm-project/vllm/vllm/engine/arg_utils.py", line 1582, in add_cli_args
+    current_platform.pre_register_and_update(parser)
+  File "/home/sss/github/vllm-project/vllm-ascend/vllm_ascend/platform.py", line 80, in pre_register_and_update
+    if ASCEND_QUATIZATION_METHOD not in quant_action.choices:
+TypeError: argument of type 'NoneType' is not iterable
+[ERROR] 2025-06-03-02:53:42 (PID:6005, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+
+_StoreAction(option_strings=['--quantization', '-q'], dest='quantization', nargs=None, const=None, default=None, type=<class 'str'>, choices=None, required=False, help='Method used to quantize the weights. If `None`, we first check the\n`quantization_config` attribute in the model config file. If that is\n`None`, we assume the model weights are not quantized and use `dtype` to\ndetermine the data type of the weights.', metavar=None)
+```

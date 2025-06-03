@@ -12,10 +12,9 @@
 
 ## 推理引擎
 
-- [ ] https://github.com/vllm-project/vllm/pull/18751
 - [ ] [大语言模型所有算子逻辑](https://zhuanlan.zhihu.com/p/1909996866432668841?share_code=u4D2wlKwNjAp&utm_psn=1911112698021807580)
 - [ ] [vllm doc - Adding a New Model](https://docs.vllm.ai/en/stable/contributing/model/index.html)
-- [ ] [图解 Vllm V1 系列 4：加载模型权重（load_model）](https://zhuanlan.zhihu.com/p/1908151478557839879?share_code=RlCt8lDNStds&utm_psn=1912310198112059517)
+- [x] [图解 Vllm V1 系列 4：加载模型权重（load_model）](https://zhuanlan.zhihu.com/p/1908151478557839879?share_code=RlCt8lDNStds&utm_psn=1912310198112059517)
 - [ ] [图解 Vllm V1 系列 5：调度器策略（Scheduler）](https://zhuanlan.zhihu.com/p/1908153627639551302?share_code=02jBOS1PfJxF&utm_psn=1912310252315079385)
 - [ ] [被问懵了！腾讯面试官让我手写 PagedAttention](https://zhuanlan.zhihu.com/p/1911455737118457997?share_code=9fRcELOowc4U&utm_psn=1912436101039226918)
 - [ ] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)

@@ -2,15 +2,23 @@
 
 ## vllm-ascend
 
+**多模态：**
+
+- 创建多模态进展跟踪 Issue；
+- 处理 issue 1044；
+- review：https://github.com/vllm-project/vllm-ascend/pull/736；
+
+**其它：**
+
 - 跟踪并适配 Structured Output 最新动态；
-- 多模态适配：https://github.com/vllm-project/vllm-ascend/issues/673
-- 引入 pre-commit 工具
-- 创建多模态进展跟踪 Issue
+- 引入 pre-commit 工具；
 
 ## vllm
 
+- 了解 https://github.com/vllm-project/vllm/pull/18751；
+- 了解新模型支持/注册；
 - 参与 Spec Decode 特性开发；
-- 了解并适配 [torchcodec](https://github.com/pytorch/torchcodec)（多模态相关）；
+- 了解并适配 [torchcodec](https://github.com/pytorch/torchcodec)；
 
 ## 技术学习
 
