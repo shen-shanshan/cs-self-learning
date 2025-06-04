@@ -579,7 +579,7 @@ CPU 方式（单线程）+ for 循环。
 // latency: 3.835ms
 // blockSize 作为模板参数的效果主要用于静态 shared memory 的申请需要传入编译期常量指定大小（L10)
 template<int blockSize>
-__global__ void reduce_v0(float *d_in,float *d_out){
+__global__ void reduce_v0(float *d_in,float *d_out) {
     __shared__ float smem[blockSize];
     // 泛指当前线程在其block内的id
     int tid = threadIdx.x;
@@ -653,7 +653,7 @@ int main() {
     cudaEventCreate(&start);
     cudaEventCreate(&stop);
     cudaEventRecord(start);
-    reduce_v0<blockSize><<<Grid,Block>>>(d_a, d_out);
+    reduce_v0<blockSize><<<Grid, Block>>>(d_a, d_out);
     cudaEventRecord(stop);
     cudaEventSynchronize(stop);
     cudaEventElapsedTime(&milliseconds, start, stop);
