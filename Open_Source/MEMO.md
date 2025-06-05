@@ -46,8 +46,8 @@ git cherry-pick <commitHash>
 vim ~/.gitconfig  # 修改 [alias] section.
 # 快速下载 PR
 pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-# 快速将 Pull Request ID 为 12 的代码下载到本地
-git pr 12
+# 快速将 Pull Request ID 为 736 的代码下载到本地
+git pr 736
 # 参考链接：https://github.com/Yikun/yikun.github.com/issues/89
 
 git config --global user.email "467638484@qq.com"
