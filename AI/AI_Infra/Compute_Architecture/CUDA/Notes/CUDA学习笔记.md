@@ -397,6 +397,14 @@ bank conflict 解决方法：
 
 Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个线程在工作（串行执行），便于排查问题。
 
+## 26-27. Warp level program
+
+**在 Warp 层面进行编程的好处：**
+
+- 可以省去 `__syncthreads()` 的开销，只需在 Warp 内同步线程；
+- 更高的通信带宽（计算更快）；
+- divergence-free across warps (?)
+
 ---
 
 Next：26
