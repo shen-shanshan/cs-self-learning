@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------
 # vllm test
 VLLM_USE_V1=0 pytest tests
-VLLM_USE_V1=0 pytest tests -sv
+VLLM_USE_V1=0 pytest -sv tests
 
 # Model path
 /home/sss/.cache/modelscope/hub/Qwen/Qwen2.5-0.5B-Instruct
@@ -94,7 +94,9 @@ pytest -sv tests/v1/entrypoints/llm/test_struct_output_generate.py::test_structu
 
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct
 
-vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct --max_model_len 26240 --pipeline-parallel-size 2
+vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct \
+--max_model_len 26240 \
+--pipeline-parallel-size 2
 
 curl http://localhost:8000/v1/completions \
     -H "Content-Type: application/json" \
@@ -150,7 +152,11 @@ VLLM_USE_V1
 VLLM_USE_MODELSCOPE
 
 --------------------------------------------------------------------------------
+# 开源社区常用话术
+The CI is finally passed and this PR can be merged.
 I have rebased on the latest main and nothing changed.
+# 常用符号
+🎯
 
 --------------------------------------------------------------------------------
 # SSH

@@ -12,6 +12,7 @@
 
 ## 推理引擎
 
+- [ ] [vLLM 算子开发流程: "保姆级"详细记录](https://zhuanlan.zhihu.com/p/1892966682634473987?share_code=1lbfAKTh5A2Vr&utm_psn=1913354916832997933)
 - [ ] [大语言模型所有算子逻辑](https://zhuanlan.zhihu.com/p/1909996866432668841?share_code=u4D2wlKwNjAp&utm_psn=1911112698021807580)
 - [ ] [vllm doc - Adding a New Model](https://docs.vllm.ai/en/stable/contributing/model/index.html)
 - [x] [图解 Vllm V1 系列 4：加载模型权重（load_model）](https://zhuanlan.zhihu.com/p/1908151478557839879?share_code=RlCt8lDNStds&utm_psn=1912310198112059517)

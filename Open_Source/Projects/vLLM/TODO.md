@@ -2,23 +2,24 @@
 
 ## vllm-ascend
 
+**Structured Output：**
+
+- 适配 Structured Output 叠加 Spec Decode，并补充 UT，[参考实现](https://github.com/vllm-project/vllm-ascend/pulls?q=is%3Apr+is%3Amerged+author%3Amengwei805)；
+
 **多模态：**
 
-- 创建多模态进展跟踪 Issue；
-- 处理 issue 1044；
-- review：https://github.com/vllm-project/vllm-ascend/pull/736；
+- 处理用户 Issue；
 
 **其它：**
 
-- 跟踪并适配 Structured Output 最新动态；
 - 引入 pre-commit 工具；
 
 ## vllm
 
-- 了解 https://github.com/vllm-project/vllm/pull/18751；
 - 了解新模型支持/注册；
 - 参与 Spec Decode 特性开发；
 - 了解并适配 [torchcodec](https://github.com/pytorch/torchcodec)；
+- 了解 [Multimodal Inputs](https://docs.vllm.ai/en/stable/features/multimodal_inputs.html)
 
 ## 技术学习
 

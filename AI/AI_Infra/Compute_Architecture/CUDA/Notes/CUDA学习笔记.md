@@ -395,6 +395,8 @@ bank conflict 解决方法：
 
 当总线程数 < 总数据量时，每个线程以 gridSize * blockSize 为步长循环读取数据。
 
+Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个线程在工作（串行执行），便于排查问题。
+
 ---
 
 Next：26
