@@ -397,7 +397,7 @@ bank conflict 解决方法：
 
 Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个线程在工作（串行执行），便于排查问题。
 
-## 26-27. Warp level program
+## 26-27. Warp-level 编程
 
 **在 Warp 层面进行编程的好处：**
 
@@ -405,6 +405,20 @@ Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个�
 - 更高的通信带宽（计算更快）；
 - divergence-free across warps (?)
 
+在 Warp 内，各个线程间的寄存器可以相互访问（在 block 中，只能去访问 shared memory）。
+
+**常用 Warp 指令：**
+
+- `__shfl_down_sync(mask, var, delta, width=warpSize)`：返回向后偏移 `delta` 个位置的（被 `mask` 过滤的）线程中 `var` 变量的值；
+- `__shfl_up_sync(mask, var, delta, width=warpSize)`：效果与上面相反。
+
+> 注意：使用 Warp 指令时，不需要手动进行线程间同步，它们会自动保证线程间执行顺序的正确性。
+
+**使用 warp level reduce 不一定比 block level reduce 快，为什么？**
+
+因为每个 Warp 只能处理 32 个数据，当数据量很大时，需要启动很多个 Warp 去做 reduce，可能还不如直接启动一个大的 block 去做处理，开销可能反而会更小。因此，是否使用 warp level reduce 需要根据数据量做一个 tradeoff。
+
 ---
 
-Next：26
+- TODO：26 练习
+- Next：27
