@@ -407,12 +407,24 @@ Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个�
 
 在 Warp 内，各个线程间的寄存器可以相互访问（在 block 中，只能去访问 shared memory）。
 
-**常用 Warp 指令：**
+**Warp-level primitive fuction：**
 
-- `__shfl_down_sync(mask, var, delta, width=warpSize)`：返回向后偏移 `delta` 个位置的（被 `mask` 过滤的）线程中 `var` 变量的值；
-- `__shfl_up_sync(mask, var, delta, width=warpSize)`：效果与上面相反。
+- [Warp Vote Functions](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#warp-vote-functions)
+- [Warp Match Functions](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#warp-match-functions)
+- [Warp Reduce Functions](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#warp-reduce-functions)
+- [Warp Shuffle Functions](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#warp-shuffle-functions)
 
-> 注意：使用 Warp 指令时，不需要手动进行线程间同步，它们会自动保证线程间执行顺序的正确性。
+使用 Warp-level primitive fuction 时，不需要手动进行线程间同步，它们会自动保证线程间执行顺序的正确性。
+
+**常用 Warp function：**
+
+- `__shfl_sync(mask, var, srcLane, width=warpSize)`：（被 `mask` 指定的）线程返回 srcLane 号线程中 var 变量的值（即将 srcLane 线程的 var 变量值广播给其它线程）；
+- `__shfl_down_sync(mask, var, delta, width=warpSize)`：返回（被 `mask` 指定的）线程向后偏移 `delta` 个位置的线程中 `var` 变量的值；
+- `__shfl_up_sync(mask, var, delta, width=warpSize)`：效果与上面相反；
+- `__ballot_sync(mask, predicate)`：（被 `mask` 指定的）满足 predicate 判断条件的线程返回 bit 0，反之返回 bit 1，最后返回一个 32 位无符号整数；
+- `__activemask()`：返回 32 位掩码，当前 warp 内活跃的线程对应 id 置 1，反之置 0；
+- `__popc()`：返回当前 warp 中 mask 为 1 的数量；
+- `__lanemask_lt()`：返回 32 位掩码，当前 warp 中小于当前线程 id 的线程对应 bit 位置 1，反之置 0。
 
 **使用 warp level reduce 不一定比 block level reduce 快，为什么？**
 
@@ -420,5 +432,4 @@ Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个�
 
 ---
 
-- TODO：26 练习
-- Next：27
+Next：27

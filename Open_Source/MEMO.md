@@ -170,4 +170,8 @@ vim /root/.ssh/authorized_keys
 展开所有：Ctrl/Cmd + K + J
 
 --------------------------------------------------------------------------------
+# Spec Decode
+tests/long_term/spec_decode/e2e/test_v1_spec_decode.py::test_ngram_correctness
+
+--------------------------------------------------------------------------------
 ```

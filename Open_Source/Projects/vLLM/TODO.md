@@ -2,6 +2,12 @@
 
 ## vllm-ascend
 
+**New Model：**
+
+- 支持盘古-72B，完善 UT；
+- [Support embedding models in V1](https://github.com/vllm-project/vllm/pull/16188)；
+- [Qwen3 Embedding](https://github.com/vllm-project/vllm/pull/19260)
+
 **Structured Output：**
 
 - 适配 Structured Output 叠加 Spec Decode，并补充 UT；
@@ -12,9 +18,11 @@
 
 **其它：**
 
-- 了解图模式用法 & v1 spec decode PR: http://github.com/vllm-project/vllm-ascend/releases
-- 参与 Spec Decode 特性开发；
-- 引入 pre-commit 工具；
+- 了解图模式用法 & 看 v1 spec decode PR：[link](http://github.com/vllm-project/vllm-ascend/releases)；
+  - [N-GRAM](https://github.com/vllm-project/vllm-ascend/pull/874/files)
+  - [Adapt mtp with graph mode in v1](https://github.com/vllm-project/vllm-ascend/pull/1023)
+- 参与 Spec Decode 特性开发（EAGLE）；
+- 修复格式化工具报错；
 
 ## vllm
 
