@@ -430,6 +430,14 @@ Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个�
 
 因为每个 Warp 只能处理 32 个数据，当数据量很大时，需要启动很多个 Warp 去做 reduce，可能还不如直接启动一个大的 block 去做处理，开销可能反而会更小。因此，是否使用 warp level reduce 需要根据数据量做一个 tradeoff。
 
+## 28-29. Histogram
+
+使用原子操作，解决多线程间的访问竞争。
+
+使用 `atomicXxx()` 可以保证当不同线程之间存在竞争时能够串行执行，但不保证不同线程执行的顺序。
+
+## 30. copy_if kernel
+
 ---
 
-Next：27
+Next：30 练习
