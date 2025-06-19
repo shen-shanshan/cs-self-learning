@@ -6,7 +6,6 @@
 
 - 支持盘古-72B，完善 UT；
 - [Support embedding models in V1](https://github.com/vllm-project/vllm/pull/16188)；
-- [Qwen3 Embedding](https://github.com/vllm-project/vllm/pull/19260)
 
 **Structured Output：**
 
@@ -18,10 +17,11 @@
 
 **其它：**
 
-- 了解图模式用法 & 看 v1 spec decode PR：[link](http://github.com/vllm-project/vllm-ascend/releases)；
+- 补充文档：https://github.com/vllm-project/vllm-ascend/issues/1248
+- 参与 V1 Spec Decode 特性开发：
   - [N-GRAM](https://github.com/vllm-project/vllm-ascend/pull/874/files)
   - [Adapt mtp with graph mode in v1](https://github.com/vllm-project/vllm-ascend/pull/1023)
-- 参与 Spec Decode 特性开发（EAGLE）；
+  - EAGLE：……
 - 修复格式化工具报错；
 
 ## vllm
@@ -29,6 +29,11 @@
 - 学习 [Multi-Modal Support](https://docs.vllm.ai/en/latest/contributing/model/multimodal.html)
 - 学习 [Multimodal Inputs](https://docs.vllm.ai/en/stable/features/multimodal_inputs.html)
 - 了解 [torchcodec](https://github.com/pytorch/torchcodec)；
+
+待看 PR：
+
+- https://github.com/vllm-project/vllm/pull/19789
+- https://github.com/vllm-project/vllm/pull/19715
 
 ## 技术学习
 

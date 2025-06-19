@@ -171,7 +171,13 @@ vim /root/.ssh/authorized_keys
 
 --------------------------------------------------------------------------------
 # Spec Decode
+pytest -sv \
 tests/long_term/spec_decode/e2e/test_v1_spec_decode.py::test_ngram_correctness
+
+VLLM_USE_V1=0 pytest -sv \
+tests/e2e/long_term/spec_decode/e2e/test_ngram_correctness.py::test_ngram_e2e_greedy_correctness
+
+isinstance(self.drafter, MtpProposer)
 
 --------------------------------------------------------------------------------
 ```

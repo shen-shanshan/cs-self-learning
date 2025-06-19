@@ -64,6 +64,9 @@
 - [ ] [腾讯云 CUDA 环境搭建](https://face2ai.com/CUDA-F-0-0-Tencent-GPU-Cloud/)
 - [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
 - [ ] [手撕 CUDA 算子：高频面试题汇总~](https://mp.weixin.qq.com/s/kSiQZGTumV1QkUhjQKB6Qg)
+- [ ] [CUDA 性能分析工具](https://zhuanlan.zhihu.com/p/1911179137357419017)
+- [ ] [CUDA 新手性能分析参考](https://zhuanlan.zhihu.com/p/1911511031525646518)
+- [ ] [Cmake for CUDA](https://cliutils.gitlab.io/modern-cmake/chapters/packages/CUDA.html)
 
 ---
 

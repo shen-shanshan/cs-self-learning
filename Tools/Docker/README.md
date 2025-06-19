@@ -38,7 +38,8 @@ docker.1ms.run/467638484/sss-ubuntu-base:v1
 
 ### 4. 环境配置
 
+为什么没有 bashrc 等文件，为什么终端颜色异常？
+
 ```bash
-# 为什么没有bashrc等文件，为什么终端颜色异常？
-cp /etc/skel/.bash_logout /etc/skel/.bashrc  /etc/skel/.profile  ~/
+cp /etc/skel/.bash_logout /etc/skel/.bashrc /etc/skel/.profile ~/
 ```

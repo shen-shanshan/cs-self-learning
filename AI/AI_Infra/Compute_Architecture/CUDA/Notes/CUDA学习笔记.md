@@ -438,6 +438,66 @@ Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个�
 
 ## 30. copy_if kernel
 
+用到的 warp primitive 说明：
+
+- `__activemask()`：返回 32 位掩码，当前 warp 内活跃的线程对应 id 置 1，反之置 0；
+- `__ffs(mask)`：ffs 即 find first set，是 CUDA 的内置函数，用于查找一个整数的第一个置位（即值为 1 的位）的位置，从最低位开始搜索（从 1 开始计数，因此要减 1 后才是对应的 tid）；
+- `__popc(mask)`：与 ffs 类似，计算 mask 中置位的数量；
+- `__shfl_sync(mask, var, srcLane, width=warpSize)`：被 `mask` 指定的线程返回 srcLane 号线程中 var 变量的值（即将 srcLane 线程的 var 变量值广播到其它 mask 线程的 var 变量中）。
+
+## 31. 数据类型
+
+![](./images/data_types.png)
+
+各个数据段的含义：
+
+- **Sign**：符号位，为 1 表示正数，为 0 表示负数；
+- **Range**：指数位，表示数据的大小（整数部分）；
+- **Precision**：小数位，表示数据的精度。
+
+## 32. FP16 GELU 算子
+
+GELU 常用于 Transformers MLP 中的激活函数。
+
+**GELU 计算公式：**
+
+![](./images/gelu.png)
+
+**element-wise**：每个输入 X 都进行相同的计算，并且相互独立、互不干扰。
+
+所有的 element-wise 算子都是访存密集型算子。
+
+**访存密集型算子：**
+
+```
+计算/访存 < 算力/显存带宽
+```
+
+反之，则为**计算密集型算子**，包括：矩阵乘法、卷积，其优化手段比较 tricky。
+
+访存密集型算子的优化思路：
+
+- **访存角度**：向量化 load 和 store；利用 shared memory；
+- **计算角度**：提高并行度，根据 GPU 资源分配尽可能多的 block。
+
+在 NV 中，FP16 叫做 `half`。
+
+在 CUDA 中，最多可以向量化加载 **128 bit** 的数据。当使用 FP16（16 bit）时，最多可以向量化加载 128/16=8 个数据。
+
+参考资料：[Half Precision Intrinsics](https://docs.nvidia.com/cuda/cuda-math-api/cuda_math_api/group__CUDA__MATH__INTRINSIC__HALF.html)
+
 ---
 
-Next：30 练习
+TODO：
+
+1. FP16 GELU 算子练习；
+
+Next：33
+
+---
+
+## 附录
+
+### GPU 架构发展历程
+
+![](./images/gpu_arch.png)
