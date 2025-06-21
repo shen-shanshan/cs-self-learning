@@ -4,8 +4,7 @@
 
 **New Model：**
 
-- 支持盘古-72B，完善 UT；
-- [Support embedding models in V1](https://github.com/vllm-project/vllm/pull/16188)；
+- 支持盘古-72B：https://github.com/vllm-project/vllm-ascend/pull/1204；
 
 **Structured Output：**
 
@@ -18,11 +17,10 @@
 **其它：**
 
 - 补充文档：https://github.com/vllm-project/vllm-ascend/issues/1248
-- 参与 V1 Spec Decode 特性开发：
+- 开发 V1 Spec Decode 特性：
   - [N-GRAM](https://github.com/vllm-project/vllm-ascend/pull/874/files)
   - [Adapt mtp with graph mode in v1](https://github.com/vllm-project/vllm-ascend/pull/1023)
   - EAGLE：……
-- 修复格式化工具报错；
 
 ## vllm
 

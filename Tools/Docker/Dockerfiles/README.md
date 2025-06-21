@@ -79,6 +79,7 @@ chmod +x ./Ascend-cann-toolkit_8.1.RC1_linux-"$(uname -i)".run
 ./Ascend-cann-toolkit_8.1.RC1_linux-"$(uname -i)".run --full
 
 source /usr/local/Ascend/ascend-toolkit/set_env.sh
+source /home/sss/Ascend/ascend-toolkit/set_env.sh
 
 wget --header="Referer: https://www.hiascend.com/" https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%208.1.RC1/Ascend-cann-kernels-910b_8.1.RC1_linux-"$(uname -i)".run
 chmod +x ./Ascend-cann-kernels-910b_8.1.RC1_linux-"$(uname -i)".run
@@ -89,16 +90,10 @@ chmod +x ./Ascend-cann-nnal_8.1.RC1_linux-"$(uname -i)".run
 ./Ascend-cann-nnal_8.1.RC1_linux-"$(uname -i)".run --install
 
 source /usr/local/Ascend/nnal/atb/set_env.sh
+source /home/sss/Ascend/nnal/atb/set_env.sh
 
 # 查看 cann 环境：
 cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
-# package_name=Ascend-cann-toolkit
-# version=8.1.RC1
-# innerversion=V100R001C21SPC001B238
-# compatible_version=[V100R001C15],[V100R001C18],[V100R001C19],[V100R001C20],[V100R001C21]
-# arch=aarch64
-# os=linux
-# path=/home/sss/Ascend/ascend-toolkit/8.1.RC1/aarch64-linux
 ```
 
 ## 安装 vllm & vllm-ascend
