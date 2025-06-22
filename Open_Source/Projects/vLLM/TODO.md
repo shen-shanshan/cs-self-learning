@@ -4,15 +4,11 @@
 
 **New Model：**
 
-- 支持盘古-72B：https://github.com/vllm-project/vllm-ascend/pull/1204；
-
 **Structured Output：**
 
 - 适配 Structured Output 叠加 Spec Decode，并补充 UT；
 
 **Multi-Modal：**
-
-- 处理用户 Issue；
 
 **其它：**
 
@@ -28,8 +24,9 @@
 - 学习 [Multimodal Inputs](https://docs.vllm.ai/en/stable/features/multimodal_inputs.html)
 - 了解 [torchcodec](https://github.com/pytorch/torchcodec)；
 
-待看 PR：
+**待看 PR：**
 
+- https://github.com/vllm-project/vllm/pull/19756
 - https://github.com/vllm-project/vllm/pull/19789
 - https://github.com/vllm-project/vllm/pull/19715
 

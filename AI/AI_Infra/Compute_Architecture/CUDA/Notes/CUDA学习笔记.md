@@ -484,6 +484,11 @@ GELU 常用于 Transformers MLP 中的激活函数。
 
 在 CUDA 中，最多可以向量化加载 **128 bit** 的数据。当使用 FP16（16 bit）时，最多可以向量化加载 128/16=8 个数据。
 
+> To use these functions, include the header file `cuda_fp16.h` in your program. All of the functions defined here are available in device code.
+>
+> - struct `__half`: This structure implements the datatype for storing half-precision floating-point numbers. The structure implements assignment, arithmetic and comparison operators, and type conversions. 16 bits are being used in total: 1 sign bit, 5 bits for the exponent, and the significand is being stored in 10 bits. The total precision is 11 bits.
+> - struct `__half2`: This structure implements the datatype for storing two half-precision floating-point numbers.
+
 参考资料：[Half Precision Intrinsics](https://docs.nvidia.com/cuda/cuda-math-api/cuda_math_api/group__CUDA__MATH__INTRINSIC__HALF.html)
 
 ---
@@ -492,7 +497,7 @@ TODO：
 
 1. FP16 GELU 算子练习；
 
-Next：33
+Next：34
 
 ---
 
