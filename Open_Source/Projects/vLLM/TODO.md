@@ -20,15 +20,11 @@
 
 ## vllm
 
-- 学习 [Multi-Modal Support](https://docs.vllm.ai/en/latest/contributing/model/multimodal.html)
-- 学习 [Multimodal Inputs](https://docs.vllm.ai/en/stable/features/multimodal_inputs.html)
-- 了解 [torchcodec](https://github.com/pytorch/torchcodec)；
+- [Multi-modality Support on vLLM](https://github.com/vllm-project/vllm/issues/4194)
+  - [Multi Modal] V1 spec decode for VLMs
+  - [Multi Modal] Better profiling strategy
 
 **待看 PR：**
-
-- https://github.com/vllm-project/vllm/pull/19756
-- https://github.com/vllm-project/vllm/pull/19789
-- https://github.com/vllm-project/vllm/pull/19715
 
 ## 技术学习
 

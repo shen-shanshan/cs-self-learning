@@ -1,6 +1,6 @@
 # 开发环境搭建
 
-## 通用环境配置
+## NPU 环境配置
 
 `vim ~/.bashrc`：
 
@@ -114,3 +114,5 @@ export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
 pip install -v -e .
 cd ..
 ```
+
+## GPU 环境配置

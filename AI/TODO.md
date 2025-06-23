@@ -4,6 +4,7 @@
 
 ## LLM
 
+- [ ] [MLA 结构代码实现及优化](https://www.armcvai.cn/2025-02-10/mla-code.html)
 - [ ] [zhang's Blog - Transformer](https://www.armcvai.cn/categories.html)
 - [ ] [多模态技术梳理：ViT 系列](https://zhuanlan.zhihu.com/p/26719287825)
 - [ ] [阿里通义千问 Qwen3 系列模型正式发布，该模型有哪些技术亮点？ - 刘聪 NLP 的回答 - 知乎](https://www.zhihu.com/question/1900300358229652607/answer/1900452232018767979)
@@ -62,8 +63,8 @@
 
 ## CUDA
 
+- [ ] [CUDA 内核优化策略](https://www.armcvai.cn/2024-08-25/cuda-kernel.html)
 - [ ] [zhang's Blog - CUDA](https://www.armcvai.cn/categories.html)
-- [ ] [腾讯云 CUDA 环境搭建](https://face2ai.com/CUDA-F-0-0-Tencent-GPU-Cloud/)
 - [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
 - [ ] [手撕 CUDA 算子：高频面试题汇总~](https://mp.weixin.qq.com/s/kSiQZGTumV1QkUhjQKB6Qg)
 - [ ] [CUDA 性能分析工具](https://zhuanlan.zhihu.com/p/1911179137357419017)
