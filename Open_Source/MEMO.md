@@ -54,6 +54,19 @@ docker rm <容器名或ID>
 # 基本配置
 git config --global user.email "467638484@qq.com"
 git config --global user.name "shen-shanshan"
+
+# 设置命令别名
+vim ~/.gitconfig
+# 修改 [alias] section
+# 你的别名 = '!f() { 命令1; 命令2; 命令3; }; f'
+
+# 一键下载 PR（参考链接：https://github.com/Yikun/yikun.github.com/issues/89）
+# 快速将 Pull Request ID 为 736 的代码下载到本地：git pr 736
+pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+# nb (new branch) 同步上游并创建新分支
+nb = "!f() { git fetch upstream && git checkout -b $1 upstream/main; }; f"
+# 提交并推送代码
+# ap = "!f() { git add . && git commit -sm $1 && git push origin; }; f"
 --------------------------------------------------------------------------------
 # 常用命令
 git chekcout <commit>
@@ -63,14 +76,6 @@ git stash drop [stash_id]
 git stash clear
 git clone -b 分支名 仓库地址
 git cherry-pick <commitHash>
---------------------------------------------------------------------------------
-# 一键下载 PR
-vim ~/.gitconfig
-# 修改 [alias] section
-pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-# 快速将 Pull Request ID 为 736 的代码下载到本地
-git pr 736
-# 参考链接：https://github.com/Yikun/yikun.github.com/issues/89
 --------------------------------------------------------------------------------
 # 安装 git-lfs
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
@@ -153,7 +158,7 @@ pytest -sv \
 tests/long_term/spec_decode/e2e/test_v1_spec_decode.py::test_ngram_correctness
 
 VLLM_USE_V1=0 pytest -sv \
-tests/e2e/long_term/spec_decode/e2e/test_ngram_correctness.py::test_ngram_e2e_greedy_correctness
+tests/e2e/long_term/spec_decode_v0/e2e/test_ngram_correctness.py::test_ngram_e2e_greedy_correctness
 
 # Eagel Model
 LLM-Research/Meta-Llama-3.1-8B-Instruct
