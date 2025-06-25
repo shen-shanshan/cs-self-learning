@@ -1,5 +1,7 @@
 # Speculative Decoding 论文阅读
 
+---
+
 [toc]
 
 ---

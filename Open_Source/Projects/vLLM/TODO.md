@@ -2,21 +2,16 @@
 
 ## vllm-ascend
 
-**New Model：**
-
-**Structured Output：**
-
-- 适配 Structured Output 叠加 Spec Decode，并补充 UT；
-
-**Multi-Modal：**
-
 **其它：**
 
+- 优化多模态 dummy profile；
+- 适配 vllm V1 pp（验证 V0）；
 - 补充文档：https://github.com/vllm-project/vllm-ascend/issues/1248
-- 开发 V1 Spec Decode 特性：
+- 完善 V1 Spec Decode：
   - [N-GRAM](https://github.com/vllm-project/vllm-ascend/pull/874/files)
   - [Adapt mtp with graph mode in v1](https://github.com/vllm-project/vllm-ascend/pull/1023)
   - EAGLE：……
+- 适配 Structured Output 叠加 Spec Decode，并补充 UT；
 
 ## vllm
 
@@ -44,3 +39,4 @@
 - 多模态推理（推理 pipeline，以 `Qwen2.5-VL` 为例）
 - 性能调优
 - PD 分离
+- PP 并行

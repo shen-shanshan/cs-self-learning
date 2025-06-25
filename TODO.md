@@ -4,10 +4,34 @@
 
 ## LLM
 
+- [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
+- [ ] [Transformer Pre-Norm 和 Post-Norm 如何选择？](https://zhuanlan.zhihu.com/p/12228475399)
+- [ ] [Transformer 似懂非懂的 Norm 方法](https://zhuanlan.zhihu.com/p/12113221623)
 - [ ] [MLA 结构代码实现及优化](https://www.armcvai.cn/2025-02-10/mla-code.html)
-- [ ] [zhang's Blog - Transformer](https://www.armcvai.cn/categories.html)
+- [ ] [阿里通义千问 Qwen3 系列模型正式发布，该模型有哪些技术亮点？](https://www.zhihu.com/question/1900300358229652607/answer/1900452232018767979)
+- [ ] [deepseek 技术解读(1) - 彻底理解 MLA（Multi-Head Latent Attention）](https://zhuanlan.zhihu.com/p/16730036197)
+- [ ] [deepseek 技术解读(2) - MTP（Multi-Token Prediction）的前世今生](https://zhuanlan.zhihu.com/p/18056041194)
+- [ ] [deepseek 技术解读(3) - MoE的演进之路](https://zhuanlan.zhihu.com/p/18565423596)
+- [ ] [聊聊 Reasoning Model 的精巧实现（ReFT, Kimi K1.5, DeepSeek R1）](https://zhuanlan.zhihu.com/p/20356958978)
+- [ ] [从系统 1 到系统 2 推理范式，300+ 文献总结 o1/R1 类推理大模型的技术路线](https://zhuanlan.zhihu.com/p/27230460558)
+
+---
+
+## 多模态
+
 - [ ] [多模态技术梳理：ViT 系列](https://zhuanlan.zhihu.com/p/26719287825)
-- [ ] [阿里通义千问 Qwen3 系列模型正式发布，该模型有哪些技术亮点？ - 刘聪 NLP 的回答 - 知乎](https://www.zhihu.com/question/1900300358229652607/answer/1900452232018767979)
+- [ ] [Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解](https://zhuanlan.zhihu.com/p/28205969434)
+- [ ] [多模态技术梳理：Qwen-VL 系列](https://zhuanlan.zhihu.com/p/25267823390)
+- [ ] [Qwen2.5-VL 论文](https://arxiv.org/abs/2502.13923)
+- [ ] [Qwen2.5-VL 代码](https://github.com/QwenLM/Qwen2.5-VL)
+- [ ] [torchcodec](https://github.com/pytorch/torchcodec)
+
+**已阅读：**
+
+- [x] [ViT 论文速读](https://www.armcvai.cn/2024-09-08/vit-paper.html)
+- [x] [ViT 解读](https://datawhalechina.github.io/thorough-pytorch/%E7%AC%AC%E5%8D%81%E7%AB%A0/ViT%E8%A7%A3%E8%AF%BB.html)
+- [x] [ViT pytorch 实现](https://github.com/lucidrains/vit-pytorch/blob/main/vit_pytorch/vit.py)
+- [x] [LLaVA 系列模型结构详解](https://www.armcvai.cn/2024-11-28/llava-structure.html)
 
 ---
 
@@ -23,7 +47,6 @@
 - [ ] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)
 - [ ] [vLLM调度器解密（下）：chunked prefill是如何进一步优化的？](https://zhuanlan.zhihu.com/p/6144374775?share_code=w9CKto9eLSq2&utm_psn=1909578492246466702)
 - [ ] [3 万字详细解析清华大学最新综述工作：大模型高效推理综述](https://mp.weixin.qq.com/s/U9ESiWehnoKc9SnDz7DVKg)
-- [ ] [zhang's Blog - LLM Infer](https://www.armcvai.cn/categories.html)
 - [ ] [vLLM 框架 V1 演进分析](https://zhuanlan.zhihu.com/p/1894423873145004335)
 - [ ] [LLM (18)：LLM 的推理优化技术纵览](https://zhuanlan.zhihu.com/p/642412124?utm_psn=1897433318875693188)
 - [ ] [图文详解 LLM inference：KV Cache](https://zhuanlan.zhihu.com/p/1893220743053030641?utm_psn=1897576305303721590)
@@ -73,6 +96,16 @@
 
 ---
 
+## 强化学习
+
+- [ ] [异步 RL 框架 AReaL 速览](https://zhuanlan.zhihu.com/p/1916441720817714438)
+
+---
+
 ## 科研
 
 - [ ] [写在 Ph.D 第 0 年：AI/CV 科研菜鸟的持续进阶之路](https://zhuanlan.zhihu.com/p/960781637?share_code=13GKbPaHvl60E&utm_psn=1904443459802206715)
+- [ ] [<u>CS 读博总结和建议文章</u>](https://zhuanlan.zhihu.com/p/347223193)
+- [ ] [<u>科研大牛们怎么读文献？</u>](https://www.zhihu.com/question/21278186/answer/1269255636)
+
+---
