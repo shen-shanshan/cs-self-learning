@@ -66,7 +66,7 @@ conda config --get/show
 
 国内镜像（通道）：
 
-![image-20240304231035037](PyTorch深度学习实践.assets/image-20240304231035037.png)
+![image-20240304231035037](./images/image-20240304231035037.png)
 
 #### 安装 CUDA
 
@@ -84,7 +84,7 @@ CUDA 是一个让显卡可以进行并行计算的平台（软件）。
 nvidia-smi
 ```
 
-![image-20240304233038227](PyTorch深度学习实践.assets/image-20240304233038227.png)
+![image-20240304233038227](./images/image-20240304233038227.png)
 
 因此，10.0 <= 应该安装的 CUDA 版本 <= 11.4。
 
@@ -94,7 +94,7 @@ nvidia-smi
 
 重新确定 CUDA Driver Version。
 
-![image-20240305002607322](PyTorch深度学习实践.assets/image-20240305002607322.png)
+![image-20240305002607322](./images/image-20240305002607322.png)
 
 #### 安装 PyTorch
 
@@ -102,7 +102,7 @@ nvidia-smi
 
 如果没有显卡，就装 CPU 的版本（CUDA 选 None）。如果有 GPU，就需要先去装 CUDA。安装 CUDA 的时候要选自定义，把 visual studio 的支持去掉，否则可能会出错。
 
-![image-20240304235317370](PyTorch深度学习实践.assets/image-20240304235317370.png)
+![image-20240304235317370](./images/image-20240304235317370.png)
 
 安装命令：
 
@@ -130,11 +130,11 @@ True
 
 #### 注意事项
 
-![image-20240303234534411](PyTorch深度学习实践.assets/image-20240303234534411.png)
+![image-20240303234534411](./images/image-20240303234534411.png)
 
 ---
 
-![image-20240305221050180](PyTorch深度学习实践.assets/image-20240305221050180.png)
+![image-20240305221050180](./images/image-20240305221050180.png)
 
 ## 线性模型
 

@@ -24,6 +24,7 @@
 - [ ] [多模态技术梳理：Qwen-VL 系列](https://zhuanlan.zhihu.com/p/25267823390)
 - [ ] [Qwen2.5-VL 论文](https://arxiv.org/abs/2502.13923)
 - [ ] [Qwen2.5-VL 代码](https://github.com/QwenLM/Qwen2.5-VL)
+- [ ] [Qwen2.5-VL transformer modeling](https://github.com/huggingface/transformers/blob/41925e42135257361b7f02aa20e3bbdab3f7b923/src/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py)
 - [ ] [torchcodec](https://github.com/pytorch/torchcodec)
 
 **已阅读：**
@@ -32,6 +33,7 @@
 - [x] [ViT 解读](https://datawhalechina.github.io/thorough-pytorch/%E7%AC%AC%E5%8D%81%E7%AB%A0/ViT%E8%A7%A3%E8%AF%BB.html)
 - [x] [ViT pytorch 实现](https://github.com/lucidrains/vit-pytorch/blob/main/vit_pytorch/vit.py)
 - [x] [LLaVA 系列模型结构详解](https://www.armcvai.cn/2024-11-28/llava-structure.html)
+- [x] [万字长文图解 Qwen2.5-VL 实现细节](https://zhuanlan.zhihu.com/p/1921289925552210138?share_code=oQnxmXt37SUD&utm_psn=1921301797538076351)
 
 ---
 
@@ -86,10 +88,13 @@
 
 ## CUDA
 
+- [ ] [融合算子的好处之一是减少算子 kernel 的调用，那么算子 kernel 调用的开销主要涉及哪方面呢？](https://www.zhihu.com/question/3339296238/answer/60439069003)
+- [ ] [CUDA 全局内存高效访问——对齐访问和合并内存访问](https://zhuanlan.zhihu.com/p/1921229353515189126?share_code=1eLd5u0xlqUqc&utm_psn=1921481712455624310)
 - [ ] [CUDA 内核优化策略](https://www.armcvai.cn/2024-08-25/cuda-kernel.html)
 - [ ] [zhang's Blog - CUDA](https://www.armcvai.cn/categories.html)
 - [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
 - [ ] [手撕 CUDA 算子：高频面试题汇总~](https://mp.weixin.qq.com/s/kSiQZGTumV1QkUhjQKB6Qg)
+- [ ] [CUDA 算子手撕与面试](https://zhuanlan.zhihu.com/p/12661298743?share_code=19eWXGr1v72R0&utm_psn=1920624157227450744)
 - [ ] [CUDA 性能分析工具](https://zhuanlan.zhihu.com/p/1911179137357419017)
 - [ ] [CUDA 新手性能分析参考](https://zhuanlan.zhihu.com/p/1911511031525646518)
 - [ ] [Cmake for CUDA](https://cliutils.gitlab.io/modern-cmake/chapters/packages/CUDA.html)
@@ -104,6 +109,8 @@
 
 ## 科研
 
+- [ ] [《Instructions for PhD Students》：Dimitris 给 PhD 学生的忠告](https://zhuanlan.zhihu.com/p/400248999?share_code=1a4eZuv2CLy0K&utm_psn=1920625675238372098)
+- [ ] [怎么知道自己适不适合读博？](https://www.zhihu.com/question/13724964306?share_code=1ocLZTWwEgGkz&utm_psn=1920484065313821698)
 - [ ] [写在 Ph.D 第 0 年：AI/CV 科研菜鸟的持续进阶之路](https://zhuanlan.zhihu.com/p/960781637?share_code=13GKbPaHvl60E&utm_psn=1904443459802206715)
 - [ ] [<u>CS 读博总结和建议文章</u>](https://zhuanlan.zhihu.com/p/347223193)
 - [ ] [<u>科研大牛们怎么读文献？</u>](https://www.zhihu.com/question/21278186/answer/1269255636)

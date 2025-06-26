@@ -116,11 +116,17 @@ cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.
 
 ```bash
 --------------------------------------------------------------------------------
+# Ascend 01 & 02
 /home/sss/.cache/modelscope/hub/Qwen/Qwen2.5-0.5B-Instruct
 /home/sss/cache/modelscope/models/Qwen/Qwen2.5-7B-Instruct
 /home/sss/cache/modelscope/models/deepseek-ai/DeepSeek-V2-Lite-Chat
 /home/sss/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct
+# Coder
+# os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"
+/shared/cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
+/shared/cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
+/shared/cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct
 --------------------------------------------------------------------------------
 ```
 
@@ -131,6 +137,23 @@ cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.
 # 环境变量
 VLLM_USE_V1=xxx
 VLLM_USE_MODELSCOPE=xxx
+--------------------------------------------------------------------------------
+# 启动参数（离线）
+model="Qwen/QwQ-32B"
+tensor_parallel_size=4
+pipeline_parallel_size=2
+distributed_executor_backend="mp"
+max_model_len=4096  # Limit context window
+max_num_seqs=4  # Limit batch size
+enforce_eager=True
+trust_remote_code=True
+# 启动参数（在线）
+vllm serve Qwen/Qwen3-8B \
+--max_model_len 16384 \
+--max-num-batched-tokens 16384 \
+--dtype bfloat16 \
+--enforce-eager \
+--trust-remote-code \
 --------------------------------------------------------------------------------
 # vllm-ascend format
 yapf -i <file>
