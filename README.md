@@ -25,7 +25,7 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 | 🤖 [<u>AI</u>][7]                  | [<u>Mathematics</u>][8], [<u>Machine Learning</u>][9], [<u>Deep Learning</u>][10], [<u>AI Infra</u>][11], [<u>LLM</u>][12]                   |
 | 🚀 [<u>Backend & Big Data</u>][13] | [<u>Framework</u>][14], [<u>Database</u>][15], [<u>Engine</u>][16]                                                                           |
 | 🛠️ [<u>Tools</u>][17]             | [<u>Development Tools</u>][18], [<u>Documentation</u>][19]                                                                                   |
-| 🔗 [<u>Others</u>][20]             | [<u>Open Source Development</u>][21], [<u>Research</u>][22], [<u>Employment</u>][23], [<u>Other Repos</u>][24]                               |
+| 🔗 [<u>Others</u>][20]             | [<u>Open Source Contribution</u>][21], [<u>Research</u>][22], [<u>Employment</u>][23]                                                        |
 
 [1]: #-basic-knowledges
 [2]: #01-languages
@@ -51,10 +51,9 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 [19]: #02-documentation
 
 [20]: #-others
-[21]: #01-open-source-development
+[21]: #01-open-source-contribution
 [22]: #02-research
 [23]: #03-employment
-[24]: #04-other-repos
 
 ---
 
@@ -62,28 +61,49 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 #### 01. Languages
 
-- [<u>C/C++ Notes</u>](./Languages/C&C++/Notes/)
-- [<u>Python Notes</u>](./Languages/Python/Notes/)
-- [<u>Java Notes</u>](./Languages/Java/Notes/)
-- [<u>Go Notes</u>](./Languages/Go/Notes/)
+- [<u>Python</u>](./Languages/Python/)
+  - [<u>Python Learning Notes</u>](./Languages/Python/Notes/Python学习笔记.md)
+  - [<u>Python Technical Posts</u>](./Languages/Python/Posts/README.md)
+  - [<u>Python Popular Libraries</u>](./Languages/Python/Libs/)
+  - [<u>Python Programming Practices</u>](./Languages/Python/Codes/)
+- [<u>C/C++</u>](./Languages/C&C++/)
+  - [<u>C/C++ Learning Roadmap</u>](./Languages/C&C++/Roadmap/C++学习路线.md)
+  - [<u>C/C++ Learning Notes</u>](./Languages/C&C++/Notes/C++学习笔记.md)
+  - [<u>C/C++ Learning Materials</u>](./Languages/C&C++/Materials/)
+  - [<u>C/C++ Programming Practices</u>](./Languages/C&C++/Codes/)
+- [<u>Java</u>](./Languages/Java/)
+  - [<u>Java Learning Roadmap</u>](./Languages/Java/Roadmap/)
+  - [<u>Java Learning Notes</u>](./Languages/Java/Notes/Java学习笔记.md)
+  - [<u>Java Learning Materials</u>](./Languages/Java/Materials/)
+  - [<u>Java Programming Practices</u>](./Languages/Java/Codes/)
+- [<u>Go</u>](./Languages/Go/)
+  - [<u>Go Learning Notes</u>](./Languages/Go/Notes/)
+  - [<u>Go Learning Materials</u>](./Languages/Go/Materials/)
 
 #### 02. Data Structure & Algorithm
 
-- [<u>Data Structure & Algorithm Notes</u>](./Data_Structure&Algorithm/Notes/)
-- [<u>LeetCode Practices</u>](./Data_Structure&Algorithm/Codes/)
+- [<u>Data Structure & Algorithm</u>](./Data_Structure&Algorithm/)
+  - [<u>Data Structure & Algorithm Learning Notes</u>](./Data_Structure&Algorithm/Notes/)
+  - [<u>Data Structure & Algorithm Learning Materials</u>](./Data_Structure&Algorithm/Materials/)
+  - [<u>LeetCode Programming Practices</u>](./Data_Structure&Algorithm/Codes/)
 
 #### 03. Network
 
-- [<u>Network Notes</u>](./Network/Notes/)
+- [<u>Network</u>](./Network/)
+  - [<u>Network Learning Notes</u>](./Network/Notes/)
+  - [<u>Network Learning Materials</u>](./Network/Materials/)
 
 #### 04. Operating System
 
-- [<u>Operating System Notes</u>](./Operating_System/Notes/)
+- [<u>Operating System</u>](./Operating_System/)
+  - [<u>Operating System Learning Notes</u>](./Operating_System/Notes/)
+  - [<u>Operating System Learning Materials</u>](./Operating_System/Materials/)
 
 #### 05. Design Pattern
 
-- [<u>Design Pattern Notes</u>](./Design_Pattern/Notes/)
-- [<u>Design Pattern Practices</u>](./Design_Pattern/Codes/)
+- [<u>Design Pattern</u>](./Design_Pattern/)
+  - [<u>Design Pattern Notes</u>](./Design_Pattern/Notes/)
+  - [<u>Design Pattern Programming Practices</u>](./Design_Pattern/Codes/)
 
 ---
 
@@ -98,27 +118,43 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 #### 02. Machine Learning
 
-- [<u>Roadmap</u>](./AI/Machine_Learning/Roadmap/)
+- [<u>Learning Roadmap</u>](./AI/Machine_Learning/Roadmap/如何系统学习机器学习.md)
 
 #### 03. Deep Learning
 
 - [<u>Basic Knowledges</u>](./AI/Deep_Learning/Basic/)
-- [<u>PyTorch Tutorials</u>](./AI/Deep_Learning/PyTorch/PyTorch_Tutorials/)
+- [<u>PyTorch</u>](./AI/Deep_Learning/PyTorch/)
+  - [<u>PyTorch Tutorials</u>](./AI/Deep_Learning/PyTorch/PyTorch_Tutorials/README.md)
 
 #### 04. AI Infra
 
-- [<u>Roadmap</u>](./AI/AI_Infra/Roadmap/)
-- [<u>Basic Knowledges</u>](./AI/AI_Infra/Basic/)
+- [<u>Learning Roadmap</u>](./AI/AI_Infra/Roadmap/README.md)
+- [<u>Environment Preparation</u>](./AI/AI_Infra/Environment_Preparation/README.md)
 - [<u>Hardware</u>](./AI/AI_Infra/Hardware/)
+  - [<u>NVIDIA GPU Architecture</u>](./AI/AI_Infra/Hardware/NVIDIA/)
+  - [<u>Ascend NPU Architecture</u>](./AI/AI_Infra/Hardware/Ascend/)
 - [<u>Compiler</u>](./AI/AI_Infra/Compiler/)
 - [<u>Compute Architecture</u>](./AI/AI_Infra/Compute_Architecture/)
+  - [<u>CUDA Learning Roadmap</u>](./AI/AI_Infra/Compute_Architecture/CUDA/README.md)
+  - [<u>CUDA Learning Notes</u>](./AI/AI_Infra/Compute_Architecture/CUDA/Notes/CUDA学习笔记.md)
+  - [<u>CUDA Programming Practices</u>](./AI/AI_Infra/Compute_Architecture/CUDA/Codes/README.md)
+  - [<u>CANN Learning Notes</u>](./AI/AI_Infra/Compute_Architecture/CANN/)
 - [<u>Training Framework</u>](./AI/AI_Infra/Training_Framework/)
 - [<u>Inference Engine</u>](./AI/AI_Infra/Inference_Engine/)
+  - [<u>Inference Engine Learning Notes</u>](./AI/AI_Infra/Inference_Engine/)
+  - [<u>vLLM Learning Notes</u>](./Open_Source/Projects/vLLM/)
+  - [<u>SGLang Learning Notes</u>](./Open_Source/Projects/SGLang/)
+- [<u>Collective_Communication</u>](./AI/AI_Infra/Collective_Communication/)
+  - [<u>NCCL Learning Notes</u>](./AI/AI_Infra/Collective_Communication/NCCL/NCCL.md)
 
 #### 05. LLM
 
-- [<u>Roadmap</u>](./AI/LLM/Roadmap/)
+- [<u>Learning Roadmap</u>](./AI/LLM/Roadmap/README.md)
 - [<u>Basic Knowledges</u>](./AI/LLM/Basic/)
+  - [<u>LLM Basic Knowledges</u>](./AI/LLM/Basic/Basic/)
+  - [<u>Transformer Learning Notes</u>](./AI/LLM/Basic/Transformer/)
+  - [<u>Multi-Modality Learning Notes</u>](./AI/LLM/Basic/Multi_Modality/)
+  - [<u>MoE Learning Notes</u>](./AI/LLM/Basic/MoE/MoE.md)
 - [<u>Pre-Training</u>](./AI/LLM/Pre_Training/)
 - [<u>Fine-Tuning</u>](./AI/LLM/Fine_Tuning/)
 - [<u>Preference Alignment</u>](./AI/LLM/Preference_Alignment/)
@@ -130,20 +166,35 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 #### 01. Framework
 
-- [<u>Spring Notes</u>](./Backend_Development/Spring/Notes/)
-- [<u>Maven Notes</u>](./Tools/Maven/Notes/)
+- [<u>Spring</u>](./Backend_Development/Spring/)
+  - [<u>Spring Learning Notes</u>](./Backend_Development/Spring/Notes/Spring学习笔记.md)
+  - [<u>Spring Learning Materials</u>](./Backend_Development/Spring/Materials/)
+  - [<u>Spring Programming Practices</u>](./Backend_Development/Spring/Codes/)
+- [<u>Maven</u>](./Tools/Maven/)
+  - [<u>Maven Learning Notes</u>](./Tools/Maven/Notes/)
 
 #### 02. Database
 
-- [<u>MySQL Notes</u>](./Backend_Development/Database/MySQL/Notes/)
-- [<u>Oracle Notes</u>](./Backend_Development/Database/Oracle/Notes/)
-- [<u>Redis Notes</u>](./Backend_Development/Database/Redis/Notes/)
-- [<u>Hudi Notes</u>](./Big_Data/Hudi/Notes/)
+- [<u>MySQL</u>](./Backend_Development/Database/MySQL/)
+  - [<u>MySQL Learning Roadmap</u>](./Backend_Development/Database/MySQL/Roadmap/MySQL学习路线.md)
+  - [<u>MySQL Learning Notes</u>](./Backend_Development/Database/MySQL/Notes/)
+- [<u>Oracle</u>](./Backend_Development/Database/Oracle/)
+  - [<u>Oracle Learning Notes</u>](./Backend_Development/Database/Oracle/Notes/存储过程.md)
+- [<u>Redis</u>](./Backend_Development/Database/Redis/)
+  - [<u>Redis Learning Notes</u>](./Backend_Development/Database/Redis/Notes/)
+  - [<u>Redis Learning Materials</u>](./Backend_Development/Database/Redis/Materials/)
+- [<u>Hudi</u>](./Big_Data/Hudi/)
+  - [<u>Hudi Learning Notes</u>](./Big_Data/Hudi/Notes/Hudi学习笔记.md)
+  - [<u>Hudi Learning Materials</u>](./Big_Data/Hudi/Materials/)
 
 #### 03. Engine
 
-- [<u>Flink Notes</u>](./Big_Data/Flink/Notes/)
-- [<u>ElasticSearch Notes</u>](./Big_Data/ElasticSearch/Notes/)
+- [<u>Flink</u>](./Big_Data/Flink/)
+  - [<u>Flink Learning Notes</u>](./Big_Data/Flink/Notes/Flink学习笔记.md)
+  - [<u>Flink Learning Materials</u>](./Big_Data/Flink/Materials/)
+- [<u>ElasticSearch</u>](./Big_Data/ElasticSearch/)
+  - [<u>ElasticSearch Learning Notes</u>](./Big_Data/ElasticSearch/Notes/ElasticSearch学习笔记.md)
+  - [<u>ElasticSearch Learning Materials</u>](./Big_Data/ElasticSearch/Materials/)
 
 ---
 
@@ -151,25 +202,31 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 #### 01. Development Tools
 
-- [<u>Git Notes</u>](./Tools/Git/Notes/)
-- [<u>Docker Notes</u>](./Tools/Docker/)
+- [<u>Git</u>](./Tools/Git/)
+  - [<u>Git Learning Notes</u>](./Tools/Git/Notes/)
+  - [<u>Git Learning Materials</u>](./Tools/Git/Materials/)
+- [<u>Docker</u>](./Tools/Docker/)
+  - [<u>Docker Learning Materials</u>](./Tools/Docker/Materials/)
+  - [<u>Dockerfiles</u>](./Tools/Docker/Dockerfiles/)
+- [<u>CMake</u>](./Tools/CMake/)
+  - [<u>CMake Learning Notes</u>](./Tools/CMake/Notes/CMake学习笔记.md)
+- [<u>VSCode</u>](./Tools/VSCode/)
+  - [<u>VSCode Learning Notes</u>](./Tools/VSCode/Notes/VSCode学习笔记.md)
 
 #### 02. Documentation
 
-- [<u>Markdown Notes</u>](./Tools/Markdown/Notes/)
-- [<u>reStructuredText Notes</u>](./Tools/reStructuredText/Notes/)
+- [<u>Markdown</u>](./Tools/Markdown/)
+  - [<u>Markdown Learning Notes</u>](./Tools/Markdown/Notes/)
+- [<u>reStructuredText</u>](./Tools/reStructuredText/)
+  - [<u>reStructuredText Learning Notes</u>](./Tools/reStructuredText/Notes/)
 
 ---
 
 ### 🔗 Others
 
-#### 01. Open Source Development
+#### 01. Open Source Contribution
 
-- [<u>Open Source Contribution Notes</u>](./Open_Source/Notes/)
-- [<u>vLLM Notes</u>](./Open_Source/Projects/vLLM/)
-- [<u>SGLang Notes</u>](./Open_Source/Projects/SGLang/)
-- [<u>llama.cpp Notes</u>](./Open_Source/Projects/llama.cpp/)
-- [<u>ChatTTS Notes</u>](./Open_Source/Projects/ChatTTS/)
+- [<u>Open Source Best Practices</u>](./Open_Source/Notes/)
 
 #### 02. Research
 
@@ -179,10 +236,6 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 #### 03. Employment
 
 - [<u>Employment Information</u>](./Employment/)
-
-#### 04. Other Repos
-
-- [<u>My Blogs</u>](https://github.com/shen-shanshan/shen-shanshan.github.io)
 
 ---
 

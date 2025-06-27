@@ -1,4 +1,6 @@
-# VSCode 常用快捷键
+# VSCode 学习笔记
+
+## 常用快捷键
 
 ctrl+alt+N：运行程序；
 
