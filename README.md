@@ -124,7 +124,7 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 - [<u>Basic Knowledges</u>](./AI/Deep_Learning/Basic/)
 - [<u>PyTorch</u>](./AI/Deep_Learning/PyTorch/)
-  - [<u>PyTorch Tutorials</u>](./AI/Deep_Learning/PyTorch/PyTorch_Tutorials/README.md)
+  - [<u>PyTorch Tutorial</u>](./AI/Deep_Learning/PyTorch/PyTorch_Tutorial/README.md)
 
 #### 04. AI Infra
 
