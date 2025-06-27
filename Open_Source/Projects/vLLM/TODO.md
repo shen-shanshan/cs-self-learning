@@ -4,8 +4,7 @@
 
 **其它：**
 
-- 优化多模态 dummy profile；
-- 适配 vllm V1 pp（验证 V0）；
+- [优化多模态 dummy profile](https://github.com/vllm-project/vllm-ascend/issues/1465)；
 - 补充文档：https://github.com/vllm-project/vllm-ascend/issues/1248
 - 完善 V1 Spec Decode：
   - [N-GRAM](https://github.com/vllm-project/vllm-ascend/pull/874/files)
@@ -18,8 +17,6 @@
 - [Multi-modality Support on vLLM](https://github.com/vllm-project/vllm/issues/4194)
   - [Multi Modal] V1 spec decode for VLMs
   - [Multi Modal] Better profiling strategy
-
-**待看 PR：**
 
 ## 技术学习
 

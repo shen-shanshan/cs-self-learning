@@ -1,7 +1,5 @@
 # TODO
 
----
-
 ## LLM
 
 - [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
@@ -14,8 +12,6 @@
 - [ ] [deepseek 技术解读(3) - MoE的演进之路](https://zhuanlan.zhihu.com/p/18565423596)
 - [ ] [聊聊 Reasoning Model 的精巧实现（ReFT, Kimi K1.5, DeepSeek R1）](https://zhuanlan.zhihu.com/p/20356958978)
 - [ ] [从系统 1 到系统 2 推理范式，300+ 文献总结 o1/R1 类推理大模型的技术路线](https://zhuanlan.zhihu.com/p/27230460558)
-
----
 
 ## 多模态
 
@@ -34,8 +30,6 @@
 - [x] [ViT pytorch 实现](https://github.com/lucidrains/vit-pytorch/blob/main/vit_pytorch/vit.py)
 - [x] [LLaVA 系列模型结构详解 ⭐](https://www.armcvai.cn/2024-11-28/llava-structure.html)
 - [x] [万字长文图解 Qwen2.5-VL 实现细节 ⭐](https://zhuanlan.zhihu.com/p/1921289925552210138?share_code=oQnxmXt37SUD&utm_psn=1921301797538076351)
-
----
 
 ## 推理引擎
 
@@ -73,8 +67,6 @@
 - [x] [vLLM 显存管理详解](https://zhuanlan.zhihu.com/p/1916529253169734444?share_code=aePDPg2VonBo&utm_psn=1917144770171606655)
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)（计算显存、推理时延评估方法）
 
----
-
 ## CUDA
 
 - [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
@@ -94,8 +86,6 @@
 - [x] [CUDA 全局内存高效访问——对齐访问和合并内存访问](https://zhuanlan.zhihu.com/p/1921229353515189126?share_code=1eLd5u0xlqUqc&utm_psn=1921481712455624310)
 - [x] [CUDA 编程之 Memory Coalescing](https://zhuanlan.zhihu.com/p/300785893)
 
----
-
 ## PyTorch
 
 - [ ] [PyTorch internals](http://blog.ezyang.com/2019/05/pytorch-internals/)
@@ -105,13 +95,9 @@
 - [ ] [PyTorch 显存管理介绍与源码解析（三）](https://zhuanlan.zhihu.com/p/692614846)
 - [ ] [PyTorch 显存可视化与 Snapshot 数据分析](https://zhuanlan.zhihu.com/p/677203832)
 
----
-
 ## 强化学习
 
 - [ ] [异步 RL 框架 AReaL 速览](https://zhuanlan.zhihu.com/p/1916441720817714438)
-
----
 
 ## 科研
 
@@ -120,5 +106,3 @@
 - [ ] [写在 Ph.D 第 0 年：AI/CV 科研菜鸟的持续进阶之路](https://zhuanlan.zhihu.com/p/960781637?share_code=13GKbPaHvl60E&utm_psn=1904443459802206715)
 - [ ] [CS 读博总结和建议文章](https://zhuanlan.zhihu.com/p/347223193)
 - [ ] [科研大牛们怎么读文献？](https://www.zhihu.com/question/21278186/answer/1269255636)
-
----
