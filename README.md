@@ -239,7 +239,7 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 
 ---
 
-## 📖 Citation
+## ©️ Citation
 
 ```bibtex
 @misc{cs-self-learning@2023,
@@ -256,15 +256,5 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
 MIT License, find more details [<u>here</u>](./LICENSE).
 
 ## ⭐ Star History
-
-<!-- <div align='center'>
-  <a href="https://star-history.com/#shen-shanshan/cs-self-learning&Date">
-   <picture>
-     <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=shen-shanshan/cs-self-learning&type=Date&theme=dark" />
-     <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=shen-shanshan/cs-self-learning&type=Date" />
-     <img width=400 height=300 alt="Star History Chart" src="https://api.star-history.com/svg?repos=shen-shanshan/cs-self-learning&type=Date" />
-   </picture>
-  </a>
-</div> -->
 
 [![Star History Chart](https://api.star-history.com/svg?repos=shen-shanshan/cs-self-learning&type=Timeline)](https://www.star-history.com/#shen-shanshan/cs-self-learning&Timeline)

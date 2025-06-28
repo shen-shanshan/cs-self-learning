@@ -2,6 +2,8 @@
 
 ## NPU 环境配置
 
+### 系统基本配置
+
 `vim ~/.bashrc`：
 
 ```bash
@@ -57,7 +59,7 @@ cat ~/.ssh/id_ed25519.pub  # Add it to your github
 - https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 - https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
 
-## 安装 miniconda
+### 安装 miniconda
 
 ```bash
 # 查看操作系统：
@@ -67,7 +69,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh
 bash Miniconda3-latest-Linux-aarch64.sh
 ```
 
-## 安装 CANN
+### 安装 CANN
 
 ```bash
 # Install required python packages.
@@ -96,7 +98,7 @@ source /home/sss/Ascend/nnal/atb/set_env.sh
 cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
 ```
 
-## 安装 vllm & vllm-ascend
+### 安装 vllm & vllm-ascend
 
 ```bash
 # Install vLLM
@@ -116,3 +118,87 @@ cd ..
 ```
 
 ## GPU 环境配置
+
+### 安装 CUDA
+
+查看 GPU 驱动信息：
+
+```bash
+nvidia-smi
+
+Sat Jun 28 01:36:08 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.216.03             Driver Version: 535.216.03   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Tesla T4                       Off | 00000000:00:0D.0 Off |                    0 |
+| N/A   31C    P8              15W /  70W |      0MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+```
+
+我们安装的 CUDA 版本必须 <= 12.2。
+
+下载 [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit-archive)：
+
+![](./images/cuda_installation.png)
+
+```bash
+cd ~
+mkdir cuda
+cd cuda
+wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda_12.2.0_535.54.03_linux.run
+sudo sh cuda_12.2.0_535.54.03_linux.run
+
+# 默认安装到了 /usr/local/cuda-12.2/，这里我移动到了自己的家目录下
+cd ~
+mkdir cuda-12.2
+mv /usr/local/cuda-12.2 ~/cuda-12.2
+```
+
+如果你尚未安装驱动，可以顺便一起安装了。摁一下空格取消 Driver 安装，直接选择 Install 安装。
+
+配置环境变量：
+
+```bash
+vim ~/.bashrc
+
+# 配置以下环境变量
+export CUDA_HOME=/home/sss/cuda-12.2
+export PATH=$PATH:$CUDA_HOME/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/extras/CUPTI/lib64
+# 保存退出
+
+# 使配置生效
+source ~/.bashrc
+```
+
+验证安装是否成功：
+
+```bash
+nvcc --version
+
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2023 NVIDIA Corporation
+Built on Tue_Jun_13_19:16:58_PDT_2023
+Cuda compilation tools, release 12.2, V12.2.91
+Build cuda_12.2.r12.2/compiler.32965470_0
+```
+
+### 参考资料
+
+- [Ubuntu 系统如何安装 CUDA 保姆级教程](https://blog.csdn.net/Sihang_Xie/article/details/127347139)
+- [CUDA Toolkit Archive](https://developer.nvidia.com/cuda-toolkit-archive)
+- [CUDA Installation Guide for Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)

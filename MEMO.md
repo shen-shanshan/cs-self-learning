@@ -155,6 +155,7 @@ vllm serve Qwen/Qwen3-8B \
 # vllm-ascend format
 yapf -i <file>
 isort <file>
+ruff check <file>
 
 # Clear process
 ps -ef | grep vllm | cut -c 9-16 | xargs kill -9

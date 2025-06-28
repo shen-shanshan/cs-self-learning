@@ -37,6 +37,7 @@ RUN apt-get update && \
     vim \
     wget \
     rsync \
+    openssh-client \
     tmux && \
     rm -rf /var/lib/apt/lists/*
 
@@ -48,7 +49,9 @@ ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
-# Remove the `ubuntu` user and add a user `sss` so that you're not developing as the `root` user
+# Remove the `ubuntu` user and add a user `sss` so that you're not developing as
+# the `root` user.
+# NOTE: Replace `sss` with your own user name.
 RUN userdel -r ubuntu && \
     useradd sss \
     --create-home \

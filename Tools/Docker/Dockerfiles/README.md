@@ -11,3 +11,8 @@ swr.cn-southwest-2.myhuaweicloud.com/modelfoundry/dev_images/s00845128/sss_ubunt
 ```
 
 [Coder 开发环境使用方法](https://github.com/cosdt/cosdt.github.io/issues/29)
+
+```bash
+# 挂载的目录没有必要的文件
+cp /etc/skel/.bash_logout /etc/skel/.bashrc /etc/skel/.profile ~/
+```
