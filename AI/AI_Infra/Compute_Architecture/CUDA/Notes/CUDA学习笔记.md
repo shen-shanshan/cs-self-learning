@@ -455,7 +455,7 @@ Debug 方法：将 block 数量和 block 大小都设为 1，此时只有一个�
 - **Range**：指数位，表示数据的大小（整数部分）；
 - **Precision**：小数位，表示数据的精度。
 
-## 32. FP16 GELU 算子
+## 32-33. FP16 GELU 算子
 
 GELU 常用于 Transformers MLP 中的激活函数。
 
@@ -491,13 +491,77 @@ GELU 常用于 Transformers MLP 中的激活函数。
 
 参考资料：[Half Precision Intrinsics](https://docs.nvidia.com/cuda/cuda-math-api/cuda_math_api/group__CUDA__MATH__INTRINSIC__HALF.html)
 
+## 34. MaskScaleAndElemwiseAdd 融合算子
+
+> 思考：为什么算子融合的时候不将所有算子融合在一起？
+>
+> 1. 全部融合起来技术难度很大，几乎不可能实现；
+> 2. 不够通用，费劲这这么大，结果算子只能用在这个模型上，并不是所有模型都长一样。
+>
+> 评论：实现个 flash-attention 都引起了这么大轰动，别说整个 transformer 了，如果真的能广泛应用，业界早就炸了。
+
+## 35-36. Softmax 算子
+
+```
+(zi - M)
+M = max(zi)
+```
+
+**M 的作用**：使所有输入的范围都 **<= 0**，防止输入取指数后值过大，超出了 float 的范围（溢出），从而导致结果错误。
+
+**计算步骤拆解（相当于是一个融合算子）：**
+
+1. reduce_max：求 M
+2. exp
+3. reduce_sum：求分母
+4. div
+
+**实现要点**：Vector/Thread/Warp level reduce（定义好每个线程的寄存器用量）。
+
+## 37. 实测显存带宽
+
+**带宽**：每秒可以读/写多少数据量的显存（GB/s）。
+
+“关闭” GPU 缓存（L2 Cache，一般 <= 40 M）：Warm up 操作。
+
+## 38. GPU 优化手段总结
+
+**计算优化：**
+
+- 充分利用 GPU 计算资源，分配尽可能多的 block，让更多的 thread/warp 在工作；
+- 使用位运算或乘法代替耗时的除法指令；
+- 尽可能避免 warp divergence；
+- 尽可能少用 `__syncthreads()`；
+- 尽可能少用 global 的 atomics 操作，转为使用 shared/warp aggregated atomics；
+- 尽可能多用 warp primitive function；
+- ……
+
+**访存优化：**
+
+- 合并访问：连续读取 global memory；
+- 对齐访问：被访问数据的起始地址是数据类型的整数倍；
+- 将数据搬移到 shared memory 减少访存延迟（注意消除 bank conflict）；
+- 尽可能复用在寄存器上做计算而得的结果，减少对 global memory 或 shared memory 的读写；
+- 向量化 load & store；
+- ……
+
+## 39. 课后练习
+
+- [ ] 实现 concat 算子
+- [ ] 实现 index_select 算子（embedding）
+- [ ] 实现 im2col 算子（卷积 -> 矩阵乘）
+- [ ] 实现 batch_norm 算子
+- [ ] 实现“快速排序”算子
+- [ ] 实现 matmul 算子
+
 ---
 
 TODO：
 
-1. FP16 GELU 算子练习；
+- Softmax 算子练习（warp/block level，根据数据量 dispatch 到不同的 kernel）
+- VecAdd 练习：实测显存带宽
 
-Next：34
+Next：40
 
 ---
 

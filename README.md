@@ -145,7 +145,6 @@ This repo is used for archiving my **notes**, **codes** and **materials** of cs 
   - [<u>vLLM Learning Notes</u>](./Open_Source/Projects/vLLM/)
   - [<u>SGLang Learning Notes</u>](./Open_Source/Projects/SGLang/)
 - [<u>Collective_Communication</u>](./AI/AI_Infra/Collective_Communication/)
-  - [<u>NCCL Learning Notes</u>](./AI/AI_Infra/Collective_Communication/NCCL/NCCL.md)
 
 #### 05. LLM
 

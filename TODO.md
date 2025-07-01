@@ -101,6 +101,9 @@
 
 ## 科研
 
+- [ ] [Writing AI Conference Papers: A Handbook for Beginners「黄哲威」](https://github.com/hzwer/WritingAIPaper)
+- [ ] [转行大模型工程师——AI 研究方法与经验「黄哲威」](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
+- [ ] [读博那些事儿](https://zhuanlan.zhihu.com/p/82579410?share_code=1mKWQMYAGFAZ6&utm_psn=1922088666123198736)
 - [ ] [《Instructions for PhD Students》：Dimitris 给 PhD 学生的忠告](https://zhuanlan.zhihu.com/p/400248999?share_code=1a4eZuv2CLy0K&utm_psn=1920625675238372098)
 - [ ] [怎么知道自己适不适合读博？](https://www.zhihu.com/question/13724964306?share_code=1ocLZTWwEgGkz&utm_psn=1920484065313821698)
 - [ ] [写在 Ph.D 第 0 年：AI/CV 科研菜鸟的持续进阶之路](https://zhuanlan.zhihu.com/p/960781637?share_code=13GKbPaHvl60E&utm_psn=1904443459802206715)
