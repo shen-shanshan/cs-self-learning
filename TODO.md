@@ -101,6 +101,7 @@
 
 ## 科研
 
+- [ ] [科研能力是指什么能力？](https://www.zhihu.com/question/60042037/answer/3601970421)
 - [ ] [Writing AI Conference Papers: A Handbook for Beginners「黄哲威」](https://github.com/hzwer/WritingAIPaper)
 - [ ] [转行大模型工程师——AI 研究方法与经验「黄哲威」](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
 - [ ] [读博那些事儿](https://zhuanlan.zhihu.com/p/82579410?share_code=1mKWQMYAGFAZ6&utm_psn=1922088666123198736)
