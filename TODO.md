@@ -69,6 +69,7 @@
 
 ## CUDA
 
+- [ ] [DiT推理加速综述: Caching](https://zhuanlan.zhihu.com/p/711223667?share_code=14mIAOoTFRYPB&utm_psn=1923895335429832738)
 - [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
 - [ ] [手撕 CUDA 算子：高频面试题汇总~](https://mp.weixin.qq.com/s/kSiQZGTumV1QkUhjQKB6Qg)
 - [ ] [CUDA 算子手撕与面试](https://zhuanlan.zhihu.com/p/12661298743?share_code=19eWXGr1v72R0&utm_psn=1920624157227450744)

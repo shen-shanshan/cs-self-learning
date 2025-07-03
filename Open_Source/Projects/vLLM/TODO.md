@@ -2,7 +2,7 @@
 
 ## vllm-ascend
 
-- 梳理全量模型清单，并划分优先级
+- https://github.com/vllm-project/vllm/pull/20355
 - 适配 Spec Decode 最新 PR：
   - https://github.com/vllm-project/vllm/pull/20238
   - https://github.com/vllm-project/vllm/pull/20240
