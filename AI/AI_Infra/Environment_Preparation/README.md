@@ -105,6 +105,7 @@ cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.
 git clone git@github.com:shen-shanshan/vllm.git
 cd vllm
 VLLM_TARGET_DEVICE=empty pip install -v -e .
+git remote add upstream git@github.com:vllm-project/vllm.git
 cd ..
 
 # Install vLLM Ascend
@@ -114,6 +115,7 @@ export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
 # disable build custom ops
 # export COMPILE_CUSTOM_KERNELS=0
 pip install -v -e .
+git remote add upstream git@github.com:vllm-project/vllm-ascend.git
 cd ..
 ```
 

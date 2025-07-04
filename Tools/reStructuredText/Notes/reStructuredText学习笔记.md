@@ -2,15 +2,16 @@
 
 ## 官方网站
 
-- [<u>Sphinx</u>](https://www.sphinx-doc.org/en/master/)；
-- [<u>sphinx_rtd_theme</u>](https://github.com/readthedocs/sphinx_rtd_theme)；
-- [<u>Read the Docs</u>](https://about.readthedocs.com/?ref=readthedocs.org)。
+- [<u>Sphinx</u>](https://www.sphinx-doc.org/en/master/)
+- [Sphinx 文档配置](https://daobook.github.io/sphinx/usage/configuration.html#confval-singlehtml_sidebars)
+- [<u>sphinx_rtd_theme</u>](https://github.com/readthedocs/sphinx_rtd_theme)
+- [<u>Read the Docs</u>](https://about.readthedocs.com/?ref=readthedocs.org)
 
 ## 入门教程
 
-- [<u>Learn reStructureText</u>](https://learn-rst.readthedocs.io/zh-cn/latest/reST-%E5%85%A5%E9%97%A8.html)；
-- [<u>sphinx 文档规范与模板</u>](https://ebf-contribute-guide.readthedocs.io/zh-cn/latest/README.html)；
-- [<u>赵子清技术文章</u>](https://zzqcn.github.io/design/rest/index.html)。
+- [<u>Learn reStructureText</u>](https://learn-rst.readthedocs.io/zh-cn/latest/reST-%E5%85%A5%E9%97%A8.html)
+- [<u>sphinx 文档规范与模板</u>](https://ebf-contribute-guide.readthedocs.io/zh-cn/latest/README.html)
+- [<u>赵子清技术文章</u>](https://zzqcn.github.io/design/rest/index.html)
 
 ## 环境搭建
 
