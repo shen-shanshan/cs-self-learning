@@ -554,14 +554,158 @@ M = max(zi)
 - [ ] 实现“快速排序”算子
 - [ ] 实现 matmul 算子
 
+## 40. GPU Warp 调度逻辑
+
+**为什么同一个 block 中的线程只能在一个 SM 上运行？**
+
+因为，每个 SM 中都有一块供多个分区共享的 shared memory，如果同一个 block 中的线程能够跨 SM 执行，那么在硬件和算法的设计上会更有难度。
+
+**Warp 发射的基本逻辑和要求：**
+
+一个 Warp 经由 Warp Scheduler 发射需要满足：
+
+- **依赖关系**：数据、指令都已经准备好；
+- **资源需求**：寄存器、共享内存等有足够的空间；
+- **功能单元**（INT32/FP32/TENSOR CORES）、**dispatch port** 有限，当它们处于空闲状态时才可以发射，否则需要排队等待。
+
+> SFU：特殊函数单元，用于处理 sin/cos/tan 等计算。
+
+## 41. 实测峰值算力（TODO）
+
+……
+
+## 42. 线程分配
+
+**维度考虑：**
+
+一般来说（根据先验知识），给一个 block 分配 **256/512** 个线程的时候，性能会比较好。
+
+- Reduce（一维输入）：……；
+- Softmax/Matmul（二维输入）：一个 warp/block 循环处理一行（x），在列（y）上分配多个 block；
+- 卷积/Batchnorm（四维输入，NCHW）：N -> z, C -> y, HW -> x。
+
+**数量考虑：**
+
+一般先根据先验知识设置 block 数量或 thread 数量中的一个，再计算另一个。
+
+**block 数量：可以根据输入数据的外层维度进行分配。**
+
+- 一维输入：
+  - 先确定 block 数量：**2～4 * SMcount**（SM 数量）；
+  - 先确定 thread 数量：min(ceil(总数据量/thread 数量), max_block_nums)；
+- 二维输入：和一维类似，先确定 x 维度的数量，再计算 y 维度的数量。
+
+**thread 数量：可以根据输入数据的内层维度进行分配。**
+
+- 一维输入：
+  - 先确定 thread 数量：一般为 **128/256/512**（同时也需要考虑数据量），一般是 2 的倍数；
+  - 先确定 block 数量：min(round2power2(ceil(总数据量/thread 数量)), max_thread_nums)；
+- 二维输入：和一维类似，先确定 x 维度的数量，再计算 y 维度的数量。
+
+## 43. 占有率
+
+**占有率（occupancy）**：主要用于衡量 GPU SM 的计算利用率，与每个线程使用的寄存器数量和 shared memory 大小有关。
+
+```
+occupancy = active warp(thread) / total warp(thread)
+```
+
+occupancy 越接近 1 越好（利用率越高），一般只有 matmul/convolution 这种算子的 occupancy 才会比较低。
+
+## 44. cudaStream 基本概念
+
+**cudaStream**：CPU 提交 CUDA kernel 到 stream（队列），GPU 从 stream 队列中顺序启动与执行。
+
+**四种并行：**
+
+- CPU 上的函数和 GPU 上的 kernel 并行；
+- CPU 上的函数和 CPU 到 GPU 的数据传输并行（`cudaMemCpyAsync()`）；
+- CPU 到 GPU 的数据传输和 GPU 上的 kernel 并行；
+- GPU 上的多个 kernel 并行（必须互相独立、互不依赖）。
+
+启动 kernel 时指定 stream：
+
+```cpp
+kernel<<<gridSize, blockSize, smemSize, streamId>>>();
+```
+
+**cudaStream 分为两种：**
+
+- 默认流（同步流）：
+  - 其它 stream 上的操作没结束，默认流不会开始；
+  - 其它 stream 开始执行之前，默认流必须先完成。
+- 非默认流
+
+**总结：默认流启动时，同一时刻只有这一个 stream 在执行。**
+
+CUDA runtime **同步** API：
+
+- `cudaMemcpy()`
+- `cudaDeviceSynchronize()`：CPU 等待整个 GPU 上的操作执行完成；
+- `cudaStreamSynchronize()`：CPU 等待 GPU 上的某个 stream 执行完成；
+- `cudaEventSynchronize()`：CPU 等待 GPU 上的某个 event 执行完成；
+- `cudaStreamWaitEvent()`：某个 stream 等待某个 event 执行完成；
+- `cudaMalloc()`
+- `cudaMallocHost()`：在 CPU 上分配 Pinned Memory（页锁定内存），使用 `cudaFreeHost()` 释放；
+- `cudaMemset()`：在 GPU 显存上快速初始化或填充指定值。
+
+CUDA runtime **异步** API：
+
+- `cudaMemCpyAsync()`
+
+> **CPU Pinned Memory**：这种内存也称为“固定内存”，它的特点是不会被操作系统换出到磁盘（确保物理地址固定），从而可以通过 DMA（直接内存访问）加速与设备（Device）之间的数据传输，提高数据拷贝的效率。
+
+## 45-46. cudaStream Schedule
+
+**实现异步的前提条件：**
+
+- CUDA kernel 和 `cudaMemCpyAsync()` 必须都在非默认流上；
+- `cudaMallocHost()` 分配的内存必须为 pinned memory。
+
+**为什么要用 pinned memory？**
+
+- **正确性**：`malloc()` 分配的内存为 pageable memory，对于 host 操作，系统可能会动这块内存，造成异步 copy 到 GPU 的数据不正确；
+- **高性能**：对于 host 操作，系统不能动 pinned memory，该内存始终驻留在 physical memory，可以通过 DMA（直接内存访问）在 host 和 GPU 之间 copy 数据，速度更快；并且省去了临时 buffer 的创建和销毁，以及 pageable memory 到临时 buffer 的拷贝。
+
+**多种 overlap：**
+
+- 数据传输和 kernel 执行 overlap；
+- kernel 之间并发执行。
+
+**Stream 性能收益影响因素：**
+
+- 存储资源（寄存器、共享内存）；
+- 计算资源（CUDA CORE）；
+- Issue Order（不同任务的发射顺序，入队顺序）。
+
+**Stream 调度规则：**
+
+分为 **kernel engine** 和 **copy engine**（又分为 **H2D** 和 **D2H**），总共是 3 个 Queue。
+
+1. 提交 CUDA 操作（`cudaXxx()` 和 kernel）时，按照 issue 顺序分发到对应的 engine（queue）；
+2. GPU 从 engine 中获取并 launch CUDA 操作：
+   - CUDA 操作 launch 条件：
+     - **同一 stream 之前的操作都已完成**；
+     - **同一 queue 之前的操作都已 launch**；
+     - **当前时刻 GPU 资源充足**。
+   - 不同 stream 的 kernel 在资源充足的情况下会并发/并行执行。
+
+> 相关 paper：《Nimble: Lightweight and Parrallel GPU Task Scheduling for Deep Learning》。
+
 ---
 
-TODO：
+**TODO：**
 
-- Softmax 算子练习（warp/block level，根据数据量 dispatch 到不同的 kernel）
-- VecAdd 练习：实测显存带宽
+- 36 课：Softmax 算子练习（根据数据量 dispatch 到不同的 kernel）
+- 37 课：实测显存带宽（练习）
+- 41 课：实测峰值算力（看视频）
+- 46 课：cuda stream 练习
 
-Next：40
+**Next：**
+
+47（量化）
+
+老师可不可以出个视频讲下cublas、cudnn、cutlass相关的知识和应用？[呲牙]
 
 ---
 
