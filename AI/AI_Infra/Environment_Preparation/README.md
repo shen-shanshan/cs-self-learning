@@ -29,10 +29,12 @@ email = 467638484@qq.com
 name = shen-shanshan
 [alias]
 pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+sync = "!f() { git fetch upstream && git rebase upstream/main; }; f"
+nb = "!f() { git fetch upstream && git checkout -b $1 upstream/main; }; f"
 # 检查配置：git config --list
 ```
 
-`vim ~/.pip/pip.conf`:
+`vim ~/.pip/v`:
 
 ```bash
 [global]
@@ -46,12 +48,13 @@ trusted-host = https://pypi.tuna.tsinghua.edu.cn
 ```bash
 # 若未安装 ssh-keygen：
 sudo apt update
-sudo apt install openssh-client
+sudo apt install openssh-client -y
 
 ssh-keygen -t ed25519 -C "467638484@qq.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub  # Add it to your github
+# ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICawFGYmXA4fJI56B0lFZXypXmjRvE6N5X2lIC14ddDJ 467638484@qq.com
 ```
 
 参考资料：
@@ -101,21 +104,24 @@ cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.
 ### 安装 vllm & vllm-ascend
 
 ```bash
+mkdir github
+cd github
+
 # Install vLLM
 git clone git@github.com:shen-shanshan/vllm.git
 cd vllm
-VLLM_TARGET_DEVICE=empty pip install -v -e .
 git remote add upstream git@github.com:vllm-project/vllm.git
+VLLM_TARGET_DEVICE=empty pip install -v -e .
 cd ..
 
 # Install vLLM Ascend
 git clone git@github.com:shen-shanshan/vllm-ascend.git
 cd vllm-ascend
+git remote add upstream git@github.com:vllm-project/vllm-ascend.git
 export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
 # disable build custom ops
 # export COMPILE_CUSTOM_KERNELS=0
 pip install -v -e .
-git remote add upstream git@github.com:vllm-project/vllm-ascend.git
 cd ..
 ```
 
@@ -166,7 +172,7 @@ sudo sh cuda_12.2.0_535.54.03_linux.run
 # 默认安装到了 /usr/local/cuda-12.2/，这里我移动到了自己的家目录下
 cd ~
 mkdir cuda-12.2
-mv /usr/local/cuda-12.2 ~/cuda-12.2
+sudo mv /usr/local/cuda-12.2/* ~/cuda-12.2/
 ```
 
 如果你尚未安装驱动，可以顺便一起安装了。摁一下空格取消 Driver 安装，直接选择 Install 安装。
@@ -197,6 +203,24 @@ Copyright (c) 2005-2023 NVIDIA Corporation
 Built on Tue_Jun_13_19:16:58_PDT_2023
 Cuda compilation tools, release 12.2, V12.2.91
 Build cuda_12.2.r12.2/compiler.32965470_0
+```
+
+### 安装问题
+
+```bash
+unsupported GNU version! gcc versions later than 12 are not supported! The nvcc flag '-allow-unsupported-compiler' can be used to override this version check; however, using an unsupported host compiler may cause compilation failure or incorrect run time execution. Use at your own risk.
+```
+
+解决：安装低版本的 gcc。
+
+```bash
+sudo apt remove gcc -y
+sudo apt-get install gcc-11 g++-11 -y
+sudo ln -s /usr/bin/gcc-11 /usr/bin/gcc
+sudo ln -s /usr/bin/g++-11 /usr/bin/g++
+sudo ln -s /usr/bin/gcc-11 /usr/bin/cc
+sudo ln -s /usr/bin/g++-11 /usr/bin/c++
+gcc --version
 ```
 
 ### 参考资料

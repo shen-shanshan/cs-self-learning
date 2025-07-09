@@ -30,13 +30,7 @@ docker push your-dockerhub-username/image-name:tag
 # mine: docker push 467638484/sss-ubuntu-base:v1.0
 ```
 
-### 3. 拉取镜像时，使用代理加速
-
-```bash
-docker.1ms.run/467638484/sss-ubuntu-base:v1
-```
-
-### 4. 环境配置
+### 3. 环境配置
 
 为什么没有 bashrc 等文件，为什么终端颜色异常？
 

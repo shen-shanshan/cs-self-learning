@@ -692,18 +692,45 @@ CUDA runtime **异步** API：
 
 > 相关 paper：《Nimble: Lightweight and Parrallel GPU Task Scheduling for Deep Learning》。
 
+## 47-48. quantize 算子
+
+量化算子：将输入的 FP32 数据量化为 INT8 数据。
+
+**计算步骤：**
+
+1. **计算 per tensor/channel 的 max 和 min**：使用 reduce kernel，利用 shared memory 进行优化；
+2. **计算 scale 和 zeropoint**：标量计算，只需要启动一个线程；
+3. **将 scale 和 zeropoint 带入量化公式得到每个元素的 INT8 输出**：是 element-wise 的 kernel。
+
+## 49. CUDA 算子调试技巧
+
+- 确保 CPU 的计算结果（baseline）一定要正确；
+- 打印重要信息；
+- 将并行改为串行，即将 grid_size 和 block_size 都设为 1（单线程执行）。
+
+## 50-53. GEMV 算子
+
+**GEMV**：矩阵向量乘法。
+
+- **Row major**：横着访问时，缓存命中率更高；
+- **Col major**：竖着访问时，缓存命中率更高。
+
+> Q：缓存连续性？
+
 ---
 
 **TODO：**
 
-- 36 课：Softmax 算子练习（根据数据量 dispatch 到不同的 kernel）
 - 37 课：实测显存带宽（练习）
 - 41 课：实测峰值算力（看视频）
-- 46 课：cuda stream 练习
+- 48 课：Quantize 算子练习
+- 53 课：GEMV 算子练习
 
 **Next：**
 
-47（量化）
+51/53
+
+gemv / dropout / NCU 性能分析
 
 老师可不可以出个视频讲下cublas、cudnn、cutlass相关的知识和应用？[呲牙]
 
