@@ -1,5 +1,10 @@
 # TODO
 
+## 专栏系列
+
+- [猛猿的知乎](https://zhuanlan.zhihu.com/p/654910335)
+- [转行大模型工程师——AI 研究方法与经验「黄哲威」](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
+
 ## LLM
 
 - [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
@@ -83,6 +88,8 @@
 
 **已阅读：**
 
+- [x] [CUDA 编程入门极简教程](https://zhuanlan.zhihu.com/p/34587739)（基本概念入门）
+- [x] [从啥也不会到 CUDA GEMM 优化 ⭐](https://zhuanlan.zhihu.com/p/703256080)（深入分析了什么是 bank conflict）
 - [x] [CUDA 内核优化策略 ⭐](https://www.armcvai.cn/2024-08-25/cuda-kernel.html)（全面介绍了各类优化手段，**实际案例：TODO**）
 - [x] [CUDA 全局内存高效访问——对齐访问和合并内存访问](https://zhuanlan.zhihu.com/p/1921229353515189126?share_code=1eLd5u0xlqUqc&utm_psn=1921481712455624310)
 - [x] [CUDA 编程之 Memory Coalescing](https://zhuanlan.zhihu.com/p/300785893)
@@ -104,7 +111,6 @@
 
 - [ ] [科研能力是指什么能力？](https://www.zhihu.com/question/60042037/answer/3601970421)
 - [ ] [Writing AI Conference Papers: A Handbook for Beginners「黄哲威」](https://github.com/hzwer/WritingAIPaper)
-- [ ] [转行大模型工程师——AI 研究方法与经验「黄哲威」](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
 - [ ] [读博那些事儿](https://zhuanlan.zhihu.com/p/82579410?share_code=1mKWQMYAGFAZ6&utm_psn=1922088666123198736)
 - [ ] [《Instructions for PhD Students》：Dimitris 给 PhD 学生的忠告](https://zhuanlan.zhihu.com/p/400248999?share_code=1a4eZuv2CLy0K&utm_psn=1920625675238372098)
 - [ ] [怎么知道自己适不适合读博？](https://www.zhihu.com/question/13724964306?share_code=1ocLZTWwEgGkz&utm_psn=1920484065313821698)
