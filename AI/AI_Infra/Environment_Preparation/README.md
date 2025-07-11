@@ -115,12 +115,13 @@ VLLM_TARGET_DEVICE=empty pip install -v -e .
 cd ..
 
 # Install vLLM Ascend
+# disable build custom ops
+# export COMPILE_CUSTOM_KERNELS=0
 git clone git@github.com:shen-shanshan/vllm-ascend.git
 cd vllm-ascend
 git remote add upstream git@github.com:vllm-project/vllm-ascend.git
+git fetch upstream
 export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
-# disable build custom ops
-# export COMPILE_CUSTOM_KERNELS=0
 pip install -v -e .
 cd ..
 ```

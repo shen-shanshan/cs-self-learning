@@ -71,6 +71,7 @@ git stash drop [stash_id]
 git stash clear
 git clone -b 分支名 仓库地址
 git cherry-pick <commitHash>
+git checkout -b <branch_name> <tag_name>
 
 # 提交代码时，添加共同作者
 $ git commit -m "Refactor usability tests. \
