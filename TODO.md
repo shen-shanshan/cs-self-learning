@@ -7,6 +7,7 @@
 
 ## LLM
 
+- [ ] [避开复数推导，我们还可以怎么理解 RoPE？](https://zhuanlan.zhihu.com/p/863378538?share_code=kfC2mCzqjeww&utm_psn=1925889251461031860)
 - [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
 - [ ] [Transformer Pre-Norm 和 Post-Norm 如何选择？](https://zhuanlan.zhihu.com/p/12228475399)
 - [ ] [Transformer 似懂非懂的 Norm 方法](https://zhuanlan.zhihu.com/p/12113221623)
@@ -17,6 +18,7 @@
 - [ ] [deepseek 技术解读(3) - MoE的演进之路](https://zhuanlan.zhihu.com/p/18565423596)
 - [ ] [聊聊 Reasoning Model 的精巧实现（ReFT, Kimi K1.5, DeepSeek R1）](https://zhuanlan.zhihu.com/p/20356958978)
 - [ ] [从系统 1 到系统 2 推理范式，300+ 文献总结 o1/R1 类推理大模型的技术路线](https://zhuanlan.zhihu.com/p/27230460558)
+- [ ] [超全解析！大模型面试宝典 60 题](https://mp.weixin.qq.com/s/Q6FPYenia1aHl-8e8Nhx4g)
 
 ## 多模态
 
@@ -74,6 +76,7 @@
 
 ## CUDA
 
+- [ ] [pybind 11 doc](https://pybind11.readthedocs.io/en/stable/index.html)
 - [ ] [DiT推理加速综述: Caching](https://zhuanlan.zhihu.com/p/711223667?share_code=14mIAOoTFRYPB&utm_psn=1923895335429832738)
 - [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
 - [ ] [手撕 CUDA 算子：高频面试题汇总~](https://mp.weixin.qq.com/s/kSiQZGTumV1QkUhjQKB6Qg)
@@ -109,6 +112,7 @@
 
 ## 科研
 
+- [ ] [论文阅读模板](https://wentao.site/flash_attention_v3_summary/)
 - [ ] [科研能力是指什么能力？](https://www.zhihu.com/question/60042037/answer/3601970421)
 - [ ] [Writing AI Conference Papers: A Handbook for Beginners「黄哲威」](https://github.com/hzwer/WritingAIPaper)
 - [ ] [读博那些事儿](https://zhuanlan.zhihu.com/p/82579410?share_code=1mKWQMYAGFAZ6&utm_psn=1922088666123198736)
