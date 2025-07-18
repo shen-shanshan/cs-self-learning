@@ -1,12 +1,8 @@
 # TODO
 
-## 专栏系列
-
-- [猛猿的知乎](https://zhuanlan.zhihu.com/p/654910335)
-- [转行大模型工程师——AI 研究方法与经验「黄哲威」](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
-
 ## LLM
 
+- [ ] [深入理解 AWQ 量化技术](https://zhuanlan.zhihu.com/p/697761176)
 - [ ] [避开复数推导，我们还可以怎么理解 RoPE？](https://zhuanlan.zhihu.com/p/863378538?share_code=kfC2mCzqjeww&utm_psn=1925889251461031860)
 - [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
 - [ ] [Transformer Pre-Norm 和 Post-Norm 如何选择？](https://zhuanlan.zhihu.com/p/12228475399)
@@ -40,6 +36,7 @@
 
 ## 推理引擎
 
+- [ ] [vLLM 源码之 PageAttention](https://zhuanlan.zhihu.com/p/711304830)
 - [ ] [面向 ML 玩家的 Docker 零帧起手](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
 - [ ] [Speculative Decoding: 总结、分析、展望](https://zhuanlan.zhihu.com/p/1904881828906668879?share_code=hDIX8nBBfJOQ&utm_psn=1918275277408142518)
 - [ ] [vLLM 推理引擎深入浅出 - 知乎专栏](https://www.zhihu.com/column/c_1397348083538153472)
@@ -62,15 +59,15 @@
 
 **已阅读：**
 
-- [x] [vLLM V1 源码阅读](https://zhuanlan.zhihu.com/p/32045324831)（V1 全流程讲解，很详细）
 - [x] [图解 vLLM V1 系列 1：整体流程 ⭐](https://zhuanlan.zhihu.com/p/1900126076279160869?share_code=18FtZ4wqQM3hR&utm_psn=1900940137866716878)
 - [x] [图解 vLLM V1 系列 2：Executor-Workers 架构 ⭐](https://zhuanlan.zhihu.com/p/1900613601577899465)
 - [x] [图解 vLLM V1 系列 3：KV Cache 初始化](https://zhuanlan.zhihu.com/p/1900932850829730567)
 - [x] [图解 vLLM V1 系列 4：加载模型权重（load_model）](https://zhuanlan.zhihu.com/p/1908151478557839879?share_code=RlCt8lDNStds&utm_psn=1912310198112059517)
 - [x] [图解 vLLM V1 系列 5：调度器策略（Scheduler）⭐](https://zhuanlan.zhihu.com/p/1908153627639551302?share_code=02jBOS1PfJxF&utm_psn=1912310252315079385)
+- [x] [vLLM V1 源码阅读](https://zhuanlan.zhihu.com/p/32045324831)（V1 全流程讲解，很细节）
 - [x] [vLLM V1 Scheduler 的调度逻辑 & 优先级分析](https://zhuanlan.zhihu.com/p/1900957007575511876?share_code=o9ZDfDnEpemP&utm_psn=1901069245619635086)
 - [x] [vLLM 模型权重加载：使用 setattr](https://zhuanlan.zhihu.com/p/714531623?utm_psn=1916989579635975888)
-- [x] [vLLM 算子开发流程: "保姆级"详细记录 ⭐](https://zhuanlan.zhihu.com/p/1892966682634473987?share_code=1lbfAKTh5A2Vr&utm_psn=1913354916832997933)（如何向 vLLM 提交一个 kernel 优化的 PR）
+- [x] [vLLM 算子开发流程：“保姆级”详细记录 ⭐](https://zhuanlan.zhihu.com/p/1892966682634473987?share_code=1lbfAKTh5A2Vr&utm_psn=1913354916832997933)（如何向 vLLM 提交一个优化 kernel 的 PR）
 - [x] [vLLM 显存管理详解](https://zhuanlan.zhihu.com/p/1916529253169734444?share_code=aePDPg2VonBo&utm_psn=1917144770171606655)
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)（计算显存、推理时延评估方法）
 
@@ -91,7 +88,6 @@
 
 **已阅读：**
 
-- [x] [CUDA 编程入门极简教程](https://zhuanlan.zhihu.com/p/34587739)（基本概念入门）
 - [x] [从啥也不会到 CUDA GEMM 优化 ⭐](https://zhuanlan.zhihu.com/p/703256080)（深入分析了什么是 bank conflict）
 - [x] [CUDA 内核优化策略 ⭐](https://www.armcvai.cn/2024-08-25/cuda-kernel.html)（全面介绍了各类优化手段，**实际案例：TODO**）
 - [x] [CUDA 全局内存高效访问——对齐访问和合并内存访问](https://zhuanlan.zhihu.com/p/1921229353515189126?share_code=1eLd5u0xlqUqc&utm_psn=1921481712455624310)
@@ -112,6 +108,8 @@
 
 ## 科研
 
+- [ ] [Research Taste Exercises](https://colah.github.io/notes/taste/)
+- [ ] [锻炼研究品味的种种方法](https://zhuanlan.zhihu.com/p/1904764443784647788)
 - [ ] [论文阅读模板](https://wentao.site/flash_attention_v3_summary/)
 - [ ] [科研能力是指什么能力？](https://www.zhihu.com/question/60042037/answer/3601970421)
 - [ ] [Writing AI Conference Papers: A Handbook for Beginners「黄哲威」](https://github.com/hzwer/WritingAIPaper)
@@ -121,3 +119,13 @@
 - [ ] [写在 Ph.D 第 0 年：AI/CV 科研菜鸟的持续进阶之路](https://zhuanlan.zhihu.com/p/960781637?share_code=13GKbPaHvl60E&utm_psn=1904443459802206715)
 - [ ] [CS 读博总结和建议文章](https://zhuanlan.zhihu.com/p/347223193)
 - [ ] [科研大牛们怎么读文献？](https://www.zhihu.com/question/21278186/answer/1269255636)
+
+---
+
+**博客专栏：**
+
+- [猛猿的知乎](https://zhuanlan.zhihu.com/p/654910335)
+- [转行大模型工程师（AI 研究方法与经验）- 黄哲威](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
+- [100+ 高性能计算与分布式技术博客 - DefTruth](https://github.com/xlite-dev/LeetCUDA?tab=readme-ov-file#-100-%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2)
+
+---

@@ -61,7 +61,8 @@ pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} re
 # 同步上游最新代码
 sync = "!f() { git fetch upstream && git rebase upstream/main; }; f"
 # nb (new branch) 同步上游并创建新分支
-nb = "!f() { git fetch upstream && git checkout -b $1 upstream/main; }; f"
+nb = "!f() { git fetch upstream && git checkout -b $1 upstream/main && git branch; }; f"
+db = "!f() { git branch -D $1 && git branch; }; f"
 
 # 常用命令
 git chekcout <commit>
@@ -79,11 +80,17 @@ $ git commit -m "Refactor usability tests. \
 > Co-authored-by: NAME <NAME@EXAMPLE.COM>
 > Co-authored-by: linfeng-yuan <1102311262@qq.com>"
 
-# 安装 git-lfs
+# 安装 git-lfs（官网：https://git-lfs.com/）
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
 git lfs install
-# 官方网站：https://git-lfs.com/
+
+# 安装 pre-commit 报错 --> 需要安装 go 并设置国内代理
+sudo apt update
+# apt search golang-go
+sudo apt install golang-go -y
+go version
+go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
 ## Pip
@@ -125,13 +132,6 @@ cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.
 ## vLLM
 
 ```bash
-# 安装 pre-commit 报错 -> 需要安装 go 并设置国内代理
-sudo apt update
-apt search golang-go
-sudo apt install golang-go
-go version
-go env -w GOPROXY=https://goproxy.cn,direct
-
 # 环境变量
 VLLM_USE_V1=xxx
 VLLM_USE_MODELSCOPE=xxx
