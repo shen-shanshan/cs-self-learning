@@ -200,6 +200,9 @@ I have rebased on the latest main and nothing changed.
 
 # 常用符号
 🎯
+
+> [!NOTE]
+>
 ```
 
 ## VSCode

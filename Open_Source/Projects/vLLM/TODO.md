@@ -16,6 +16,8 @@
 
 ## vllm
 
+- Elastic EP:
+  - pull: 20775 / issue: 20323
 - [Multi-modality Support on vLLM](https://github.com/vllm-project/vllm/issues/4194)
   - [Multi Modal] V1 spec decode for VLMs
   - [Multi Modal] Better profiling strategy
