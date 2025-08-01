@@ -114,6 +114,14 @@ cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.
 
 ## Model
 
+```python
+import os
+from modelscope import snapshot_download
+
+os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"
+model_dir = snapshot_download('Qwen/Qwen2.5-0.5B-Instruct')
+```
+
 ```bash
 # Ascend 01 & 02
 /home/sss/.cache/modelscope/hub/Qwen/Qwen2.5-0.5B-Instruct
@@ -124,6 +132,7 @@ cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.
 
 # Coder
 # os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"
+/shared/cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct

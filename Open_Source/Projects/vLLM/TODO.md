@@ -2,16 +2,7 @@
 
 ## vllm-ascend
 
-- https://github.com/vllm-project/vllm/pull/20355
-- 适配 Spec Decode 最新 PR：
-  - https://github.com/vllm-project/vllm/pull/20238
-  - https://github.com/vllm-project/vllm/pull/20240
-- [优化多模态 dummy profile](https://github.com/vllm-project/vllm-ascend/issues/1465)
-- 补充文档：https://github.com/vllm-project/vllm-ascend/issues/1248
-- 完善 V1 Spec Decode：
-  - [N-GRAM](https://github.com/vllm-project/vllm-ascend/pull/874/files)
-  - [Adapt mtp with graph mode in v1](https://github.com/vllm-project/vllm-ascend/pull/1023)
-  - EAGLE：……
+- 优化多模态 dummy profile：https://github.com/vllm-project/vllm-ascend/issues/1465
 - 适配 Structured Output 叠加 Spec Decode，并补充 UT
 
 ## vllm
@@ -21,6 +12,13 @@
 - [Multi-modality Support on vLLM](https://github.com/vllm-project/vllm/issues/4194)
   - [Multi Modal] V1 spec decode for VLMs
   - [Multi Modal] Better profiling strategy
+
+**structured outputs 的 bug：**
+
+- https://github.com/vllm-project/vllm/issues/19493
+- https://github.com/vllm-project/vllm/pull/19565
+- https://github.com/vllm-project/vllm/pull/18780
+- vllm-ascend 支持 outlines 后端
 
 ## 技术学习
 

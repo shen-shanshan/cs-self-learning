@@ -2,6 +2,7 @@
 
 ## LLM
 
+- [ ] [再读 MLA，还有多少细节是你不知道的](https://zhuanlan.zhihu.com/p/19585986234?share_code=YaRCFnX257AQ&utm_psn=1931045105759913204)
 - [ ] [深入理解 AWQ 量化技术](https://zhuanlan.zhihu.com/p/697761176)
 - [ ] [避开复数推导，我们还可以怎么理解 RoPE？](https://zhuanlan.zhihu.com/p/863378538?share_code=kfC2mCzqjeww&utm_psn=1925889251461031860)
 - [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
@@ -36,6 +37,8 @@
 
 ## 推理引擎
 
+- [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
+- [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [vLLM 源码之 PageAttention](https://zhuanlan.zhihu.com/p/711304830)
 - [ ] [面向 ML 玩家的 Docker 零帧起手](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
 - [ ] [Speculative Decoding: 总结、分析、展望](https://zhuanlan.zhihu.com/p/1904881828906668879?share_code=hDIX8nBBfJOQ&utm_psn=1918275277408142518)
@@ -73,6 +76,9 @@
 
 ## CUDA
 
+- [ ] [[MLSys 入门向读书笔记] CUDA by Example: An Introduction to General-Purpose GPU Programming（下）](https://zhuanlan.zhihu.com/p/718988880)
+- [ ] [[MLSys 入门向读书笔记] CUDA by Example: An Introduction to General-Purpose GPU Programming（上）](https://zhuanlan.zhihu.com/p/709427098)
+- [ ] [高性能计算方向面试问题总结](https://zhuanlan.zhihu.com/p/721562983)
 - [ ] [pybind 11 doc](https://pybind11.readthedocs.io/en/stable/index.html)
 - [ ] [DiT推理加速综述: Caching](https://zhuanlan.zhihu.com/p/711223667?share_code=14mIAOoTFRYPB&utm_psn=1923895335429832738)
 - [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
@@ -121,6 +127,11 @@
 - [ ] [CS 读博总结和建议文章](https://zhuanlan.zhihu.com/p/347223193)
 - [ ] [科研大牛们怎么读文献？](https://www.zhihu.com/question/21278186/answer/1269255636)
 
+## 未分类
+
+- [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
+- [ ] [DeepSeek V3/R1 推理效率分析: 满血版逆向工程分解](https://mp.weixin.qq.com/s/oa7ZW7qNW-B05K_iF5YNYA)（PD 分离解析）
+
 ---
 
 **博客专栏：**
@@ -130,5 +141,14 @@
 - [100+ 高性能计算与分布式技术博客 - DefTruth](https://github.com/xlite-dev/LeetCUDA?tab=readme-ov-file#-100-%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2)
 - [Awesome Reading Material for phd](https://galeselee.gitbook.io/awesome-papers/awesome_reading_material)
 - [Doing The PhD](https://github.com/shengyp/doing_the_PhD)
+- [insujang.github.io](https://insujang.github.io/posts/)（大模型推理技术/序列并行）
+- 月球大叔
+- GPU-mode
+- [460 篇多模态大语言模型论文合集](https://rcncqctdyl3f.feishu.cn/docx/QyFZd3ig3oiCPgxAvXhc1xPYnch)
+
+**教学课程：**
+
+- cs336
+- [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
 
 ---
