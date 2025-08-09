@@ -26,6 +26,11 @@ ssh-keygen -t ed25519 -C "467638484@qq.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub  # Add it to your github
+
+tmux ls
+tmux new -s download
+
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/c++/13:/usr/include/c++/13/x86_64-openEuler-linux
 ```
 
 ## Docker
@@ -105,11 +110,13 @@ pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/si
 # set env
 source /home/sss/Ascend/ascend-toolkit/set_env.sh
 source /home/sss/Ascend/nnal/atb/set_env.sh
+
 source /usr/local/Ascend/ascend-toolkit/set_env.sh
 source /usr/local/Ascend/nnal/atb/set_env.sh
 
 # show env
 cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
+cat /usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
 ```
 
 ## Model
@@ -131,11 +138,14 @@ model_dir = snapshot_download('Qwen/Qwen2.5-0.5B-Instruct')
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct
 
 # Coder
-# os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"
-/shared/cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct
+/shared/cache/modelscope/hub/models/Qwen/Qwen3-30B-A3B  # tensor_parallel_size=4
+# Spec Decode
+/shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
+/home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B
+/home/sss/models/models/models/vllm-ascend/DeepSeek-R1-W8A8
 ```
 
 ## vLLM
@@ -147,13 +157,15 @@ VLLM_USE_MODELSCOPE=xxx
 
 # 启动参数（离线）
 model="Qwen/QwQ-32B"
-tensor_parallel_size=4
+tensor_parallel_size=2
 pipeline_parallel_size=2
 distributed_executor_backend="mp"
 max_model_len=4096  # Limit context window
 max_num_seqs=4  # Limit batch size
 enforce_eager=True
 trust_remote_code=True
+gpu_memory_utilization=0.9
+
 # 启动参数（在线）
 vllm serve Qwen/Qwen3-8B \
 --max_model_len 16384 \
@@ -195,9 +207,61 @@ tests/long_term/spec_decode/e2e/test_v1_spec_decode.py::test_ngram_correctness
 VLLM_USE_V1=0 pytest -sv \
 tests/e2e/long_term/spec_decode_v0/e2e/test_ngram_correctness.py::test_ngram_e2e_greedy_correctness
 
-# Eagel Model
-LLM-Research/Meta-Llama-3.1-8B-Instruct
-vllm-ascend/EAGLE-LLaMA3.1-Instruct-8B
+# Ngram
+python /home/sss/github/vllm/examples/offline_inference/spec_decode.py \
+--method ngram \
+--num-spec-tokens 2 \
+--prompt-lookup-max 5 \
+--prompt-lookup-min 3 \
+--model-dir /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
+# Online
+vllm serve /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \
+--max-model-len 1024 \
+--speculative-config '{"method": "ngram", "num_speculative_tokens": 3, "prompt_lookup_max": 5, "prompt_lookup_min": 3}' \
+--gpu_memory_utilization 0.9 \
+--trust-remote-code \
+--enforce-eager
+
+# Eagel 3
+python /home/sss/github/vllm/examples/offline_inference/spec_decode.py \
+--method eagle3 \
+--num-spec-tokens 2 \
+--model-dir /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \
+--eagle-dir /home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B
+# ValueError: Speculative tokens > 2 are not supported yet.
+# Online
+vllm serve /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \
+--max-model-len 1024 \
+--speculative-config '{"method": "eagle3", "num_speculative_tokens": 2, "max_model_len": 128, "model": "/home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B"}' \
+--gpu_memory_utilization 0.9 \
+--trust-remote-code \
+--enforce-eager
+
+# MTP
+# https://github.com/vllm-project/vllm-ascend/pull/2145
+vllm serve /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks/modelscope/hub/models/vllm-ascend/DeepSeek-V3-W8A8 \
+--max-model-len 1024 \
+--max-num-seqs 16 \
+--no-enable-prefix-caching \
+--tensor-parallel-size 4 \
+--data_parallel_size 4 \
+--enable_expert_parallel \
+--speculative-config '{"method":"deepseek_mtp", "num_speculative_tokens": 1}' \
+--quantization ascend \
+--additional-config '{"ascend_scheduler_config": {"enabled": true, "enable_chunked_prefill": false}, "torchair_graph_config": {"enabled": true, "graph_batch_sizes": [16]}, "enable_weight_nz_layout": true}' \
+--gpu_memory_utilization 0.9 \
+--trust-remote-code
+```
+
+```bash
+curl http://localhost:8000/v1/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "/shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct",
+        "prompt": "The future of AI is",
+        "max_tokens": 100,
+        "temperature": 0
+    }'
 ```
 
 ## Open Source
@@ -220,4 +284,29 @@ I have rebased on the latest main and nothing changed.
 # 常用快捷键
 折叠所有：Ctrl/Cmd + K + 0
 展开所有：Ctrl/Cmd + K + J
+```
+
+## Machines
+
+```
+新型A3集群
+密码：
+%cQlTuPZOdE+/T4TnIPGUNw+
+
+挂载卷：
+mkdir -p /mnt/sfs_turbo
+mount -t nfs -o vers=3,nolock,proto=tcp,noresvport 23021270-7ebf-43b2-925c-b1686da4868a.sfsturbo.internal:/ /mnt/sfs_turbo
+
+1.95.9.213 (172.22.0.218)
+172.22.0.155
+172.22.0.188
+172.22.0.212
+
+ssh root@172.22.0.218
+ssh root@172.22.0.155
+ssh root@172.22.0.188
+ssh root@172.22.0.212
+
+# Execute on the target node (replace with actual IP)
+hccn_tool -i 0 -ping -g address 1.95.9.213
 ```

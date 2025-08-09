@@ -25,12 +25,14 @@ source /home/sss/Ascend/nnal/atb/set_env.sh
 
 ```bash
 [user]
-email = 467638484@qq.com
-name = shen-shanshan
+        email = 467638484@qq.com
+        name = shen-shanshan
 [alias]
-pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-sync = "!f() { git fetch upstream && git rebase upstream/main; }; f"
-nb = "!f() { git fetch upstream && git checkout -b $1 upstream/main; }; f"
+        pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+        sync = "!f() { git fetch upstream && git rebase upstream/main; }; f"
+        nb = "!f() { git fetch upstream && git checkout -b $1 upstream/main && git branch; }; f"
+        db = "!f() { git branch -D $1 && git branch; }; f"
+        cb = "!f() { git checkout $1 ; }; f"
 # 检查配置：git config --list
 ```
 
@@ -109,6 +111,7 @@ cd github
 
 # Install vLLM
 git clone git@github.com:shen-shanshan/vllm.git
+# git clone git@github.com:vllm-project/vllm.git
 cd vllm
 git remote add upstream git@github.com:vllm-project/vllm.git
 VLLM_TARGET_DEVICE=empty pip install -v -e .

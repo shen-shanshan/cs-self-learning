@@ -2,8 +2,11 @@
 
 ## vllm-ascend
 
-- 优化多模态 dummy profile：https://github.com/vllm-project/vllm-ascend/issues/1465
+Structured Output：
+
 - 适配 Structured Output 叠加 Spec Decode，并补充 UT
+- 清除异常 leak：GrammarMatcher、CompiledGrammar
+- xgrammar dynamo 后端增加 npu (torchair)
 
 ## vllm
 
@@ -18,7 +21,6 @@
 - https://github.com/vllm-project/vllm/issues/19493
 - https://github.com/vllm-project/vllm/pull/19565
 - https://github.com/vllm-project/vllm/pull/18780
-- vllm-ascend 支持 outlines 后端
 
 ## 技术学习
 

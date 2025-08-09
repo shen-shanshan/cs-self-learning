@@ -37,6 +37,10 @@
 
 ## 推理引擎
 
+- [ ] [LLM Inference: Autoregressive Generation and Attention KV Cache](https://insujang.github.io/2024-01-07/llm-inference-autoregressive-generation-and-attention-kv-cache/)
+- [ ] [LLM Inference: Continuous Batching and PagedAttention](https://insujang.github.io/2024-01-07/llm-inference-continuous-batching-and-pagedattention/)
+- [ ] [Flash Attention](https://insujang.github.io/2024-01-21/flash-attention/#the-top)
+- [ ] [DeepSeek V3/R1 推理效率分析: 满血版逆向工程分解](https://mp.weixin.qq.com/s/oa7ZW7qNW-B05K_iF5YNYA)（PD 分离解析）
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [vLLM 源码之 PageAttention](https://zhuanlan.zhihu.com/p/711304830)
@@ -101,13 +105,17 @@
 
 ## PyTorch
 
-- [ ] [PyTorch 图模式技术概览](https://zhuanlan.zhihu.com/p/1921889729026172253)
 - [ ] [PyTorch internals](http://blog.ezyang.com/2019/05/pytorch-internals/)
 - [ ] [PyTorch dispatcher](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)
 - [ ] [PyTorch 显存管理介绍与源码解析（一）](https://zhuanlan.zhihu.com/p/680769942)
 - [ ] [PyTorch 显存管理介绍与源码解析（二）](https://zhuanlan.zhihu.com/p/681651660)
 - [ ] [PyTorch 显存管理介绍与源码解析（三）](https://zhuanlan.zhihu.com/p/692614846)
 - [ ] [PyTorch 显存可视化与 Snapshot 数据分析](https://zhuanlan.zhihu.com/p/677203832)
+
+**已阅读：**
+
+- [x] [Accelerating PyTorch with CUDA Graphs](https://pytorch.org/blog/accelerating-pytorch-with-cuda-graphs/)
+- [x] [PyTorch 图模式技术概览](https://zhuanlan.zhihu.com/p/1921889729026172253)
 
 ## 强化学习
 
@@ -127,10 +135,9 @@
 - [ ] [CS 读博总结和建议文章](https://zhuanlan.zhihu.com/p/347223193)
 - [ ] [科研大牛们怎么读文献？](https://www.zhihu.com/question/21278186/answer/1269255636)
 
-## 未分类
+## 其它
 
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
-- [ ] [DeepSeek V3/R1 推理效率分析: 满血版逆向工程分解](https://mp.weixin.qq.com/s/oa7ZW7qNW-B05K_iF5YNYA)（PD 分离解析）
 
 ---
 
@@ -141,14 +148,14 @@
 - [100+ 高性能计算与分布式技术博客 - DefTruth](https://github.com/xlite-dev/LeetCUDA?tab=readme-ov-file#-100-%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2)
 - [Awesome Reading Material for phd](https://galeselee.gitbook.io/awesome-papers/awesome_reading_material)
 - [Doing The PhD](https://github.com/shengyp/doing_the_PhD)
-- [insujang.github.io](https://insujang.github.io/posts/)（大模型推理技术/序列并行）
+- [insujang.github.io](https://insujang.github.io/posts/)（大模型推理：序列并行）
 - 月球大叔
 - GPU-mode
 - [460 篇多模态大语言模型论文合集](https://rcncqctdyl3f.feishu.cn/docx/QyFZd3ig3oiCPgxAvXhc1xPYnch)
 
 **教学课程：**
 
-- cs336
+- Stanford cs336
 - [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
 
 ---
