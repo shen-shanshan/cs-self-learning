@@ -37,6 +37,7 @@
 
 ## 推理引擎
 
+- [ ] [25 种 LLM 部署框架你知道多少？](https://zhuanlan.zhihu.com/p/1933217002698306629)
 - [ ] [LLM Inference: Autoregressive Generation and Attention KV Cache](https://insujang.github.io/2024-01-07/llm-inference-autoregressive-generation-and-attention-kv-cache/)
 - [ ] [LLM Inference: Continuous Batching and PagedAttention](https://insujang.github.io/2024-01-07/llm-inference-continuous-batching-and-pagedattention/)
 - [ ] [Flash Attention](https://insujang.github.io/2024-01-21/flash-attention/#the-top)
