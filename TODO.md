@@ -6,7 +6,6 @@
 
 - [ ] [The Unreasonable Effectiveness of Recurrent Neural Networks](https://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 - [ ] [The Illustrated Word2vec - Jay Alammar](https://jalammar.github.io/illustrated-word2vec/)
-- [ ] [The Illustrated GPT-2 (Visualizing Transformer Language Models) - Jay Alammar](https://jalammar.github.io/illustrated-gpt2/)
 - [ ] [再读 MLA，还有多少细节是你不知道的](https://zhuanlan.zhihu.com/p/19585986234?share_code=YaRCFnX257AQ&utm_psn=1931045105759913204)
 - [ ] [深入理解 AWQ 量化技术](https://zhuanlan.zhihu.com/p/697761176)
 - [ ] [避开复数推导，我们还可以怎么理解 RoPE？](https://zhuanlan.zhihu.com/p/863378538?share_code=kfC2mCzqjeww&utm_psn=1925889251461031860)
@@ -24,7 +23,8 @@
 
 **已阅读：**
 
-- [x] [The Illustrated Transformer - Jay Alammar](https://jalammar.github.io/illustrated-transformer/)
+- [x] [The Illustrated Transformer - Jay Alammar ⭐](https://jalammar.github.io/illustrated-transformer/)
+- [x] [The Illustrated GPT-2 (Visualizing Transformer Language Models) - Jay Alammar ⭐](https://jalammar.github.io/illustrated-gpt2/)
 
 ## 多模态
 
@@ -46,9 +46,14 @@
 
 ## LLM 推理加速
 
+- [ ] [PagedAttention 论文新鲜出炉](https://zhuanlan.zhihu.com/p/617015570)
+- [ ] [大模型推理各方向新发展整理](https://zhuanlan.zhihu.com/p/693680304)
+- [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
+- [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
+- [ ] [原理 & 图解 vLLM Automatic Prefix Cache (RadixAttention): 首 Token 时延优化](https://zhuanlan.zhihu.com/p/693556044)
+- [ ] [vLLM + DeepSeek-R1 671B 多机部署及修 Bug 笔记](https://zhuanlan.zhihu.com/p/29950052712)
 - [ ] [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference)
 - [ ] [25 种 LLM 部署框架你知道多少？](https://zhuanlan.zhihu.com/p/1933217002698306629)
-- [ ] [Flash Attention](https://insujang.github.io/2024-01-21/flash-attention/#the-top)
 - [ ] [DeepSeek V3/R1 推理效率分析: 满血版逆向工程分解](https://mp.weixin.qq.com/s/oa7ZW7qNW-B05K_iF5YNYA)（PD 分离解析）
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
@@ -78,9 +83,6 @@
 
 基础知识：
 
-- [x] [LLM Inference: Autoregressive Generation and Attention KV Cache](https://insujang.github.io/2024-01-07/llm-inference-autoregressive-generation-and-attention-kv-cache/)
-- [x] [LLM Inference: Continuous Batching and PagedAttention](https://insujang.github.io/2024-01-07/llm-inference-continuous-batching-and-pagedattention/)（过时了，vllm 版本太低）
-
 vLLM 源码解析：
 
 - [x] [图解 vLLM V1 系列 1：整体流程 ⭐](https://zhuanlan.zhihu.com/p/1900126076279160869?share_code=18FtZ4wqQM3hR&utm_psn=1900940137866716878)
@@ -102,6 +104,8 @@ vLLM 源码解析：
 
 ## CUDA
 
+- [ ] [高频面试题汇总-大模型手撕 CUDA](https://zhuanlan.zhihu.com/p/678903537)
+- [ ] [LeetCUDA: v3.0 大升级-面试刷题不迷路](https://zhuanlan.zhihu.com/p/19862356369)
 - [ ] [[MLSys 入门向读书笔记] CUDA by Example: An Introduction to General-Purpose GPU Programming（下）](https://zhuanlan.zhihu.com/p/718988880)
 - [ ] [[MLSys 入门向读书笔记] CUDA by Example: An Introduction to General-Purpose GPU Programming（上）](https://zhuanlan.zhihu.com/p/709427098)
 - [ ] [高性能计算方向面试问题总结](https://zhuanlan.zhihu.com/p/721562983)
