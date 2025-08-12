@@ -1,7 +1,12 @@
 # TODO
 
-## LLM
+---
 
+## LLM 基础
+
+- [ ] [The Unreasonable Effectiveness of Recurrent Neural Networks](https://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+- [ ] [The Illustrated Word2vec - Jay Alammar](https://jalammar.github.io/illustrated-word2vec/)
+- [ ] [The Illustrated GPT-2 (Visualizing Transformer Language Models) - Jay Alammar](https://jalammar.github.io/illustrated-gpt2/)
 - [ ] [再读 MLA，还有多少细节是你不知道的](https://zhuanlan.zhihu.com/p/19585986234?share_code=YaRCFnX257AQ&utm_psn=1931045105759913204)
 - [ ] [深入理解 AWQ 量化技术](https://zhuanlan.zhihu.com/p/697761176)
 - [ ] [避开复数推导，我们还可以怎么理解 RoPE？](https://zhuanlan.zhihu.com/p/863378538?share_code=kfC2mCzqjeww&utm_psn=1925889251461031860)
@@ -16,6 +21,10 @@
 - [ ] [聊聊 Reasoning Model 的精巧实现（ReFT, Kimi K1.5, DeepSeek R1）](https://zhuanlan.zhihu.com/p/20356958978)
 - [ ] [从系统 1 到系统 2 推理范式，300+ 文献总结 o1/R1 类推理大模型的技术路线](https://zhuanlan.zhihu.com/p/27230460558)
 - [ ] [超全解析！大模型面试宝典 60 题](https://mp.weixin.qq.com/s/Q6FPYenia1aHl-8e8Nhx4g)
+
+**已阅读：**
+
+- [x] [The Illustrated Transformer - Jay Alammar](https://jalammar.github.io/illustrated-transformer/)
 
 ## 多模态
 
@@ -35,11 +44,10 @@
 - [x] [LLaVA 系列模型结构详解 ⭐](https://www.armcvai.cn/2024-11-28/llava-structure.html)
 - [x] [万字长文图解 Qwen2.5-VL 实现细节 ⭐](https://zhuanlan.zhihu.com/p/1921289925552210138?share_code=oQnxmXt37SUD&utm_psn=1921301797538076351)
 
-## 推理引擎
+## LLM 推理加速
 
+- [ ] [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference)
 - [ ] [25 种 LLM 部署框架你知道多少？](https://zhuanlan.zhihu.com/p/1933217002698306629)
-- [ ] [LLM Inference: Autoregressive Generation and Attention KV Cache](https://insujang.github.io/2024-01-07/llm-inference-autoregressive-generation-and-attention-kv-cache/)
-- [ ] [LLM Inference: Continuous Batching and PagedAttention](https://insujang.github.io/2024-01-07/llm-inference-continuous-batching-and-pagedattention/)
 - [ ] [Flash Attention](https://insujang.github.io/2024-01-21/flash-attention/#the-top)
 - [ ] [DeepSeek V3/R1 推理效率分析: 满血版逆向工程分解](https://mp.weixin.qq.com/s/oa7ZW7qNW-B05K_iF5YNYA)（PD 分离解析）
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
@@ -64,8 +72,16 @@
 - [ ] [prefill 和 decode 该分离到不同的卡上么？](https://zhuanlan.zhihu.com/p/1280567902?share_code=z1ij3mzQpXAE&utm_psn=1902828634068226129)
 - [ ] [vLLM PD 分离 KV cache 传递机制详解与演进分析](https://zhuanlan.zhihu.com/p/1906741007606878764?share_code=1m2xkCswqTA9N&utm_psn=1907185030842782292)
 - [ ] [vLLM PD 分离方案浅析](https://zhuanlan.zhihu.com/p/1889243870430201414?utm_psn=1889596220076426760)
+- [ ] [<u>清华大模型推理综述</u>](https://mp.weixin.qq.com/s/U9ESiWehnoKc9SnDz7DVKg)
 
 **已阅读：**
+
+基础知识：
+
+- [x] [LLM Inference: Autoregressive Generation and Attention KV Cache](https://insujang.github.io/2024-01-07/llm-inference-autoregressive-generation-and-attention-kv-cache/)
+- [x] [LLM Inference: Continuous Batching and PagedAttention](https://insujang.github.io/2024-01-07/llm-inference-continuous-batching-and-pagedattention/)（过时了，vllm 版本太低）
+
+vLLM 源码解析：
 
 - [x] [图解 vLLM V1 系列 1：整体流程 ⭐](https://zhuanlan.zhihu.com/p/1900126076279160869?share_code=18FtZ4wqQM3hR&utm_psn=1900940137866716878)
 - [x] [图解 vLLM V1 系列 2：Executor-Workers 架构 ⭐](https://zhuanlan.zhihu.com/p/1900613601577899465)
@@ -77,7 +93,12 @@
 - [x] [vLLM 模型权重加载：使用 setattr](https://zhuanlan.zhihu.com/p/714531623?utm_psn=1916989579635975888)
 - [x] [vLLM 算子开发流程：“保姆级”详细记录 ⭐](https://zhuanlan.zhihu.com/p/1892966682634473987?share_code=1lbfAKTh5A2Vr&utm_psn=1913354916832997933)（如何向 vLLM 提交一个优化 kernel 的 PR）
 - [x] [vLLM 显存管理详解](https://zhuanlan.zhihu.com/p/1916529253169734444?share_code=aePDPg2VonBo&utm_psn=1917144770171606655)
+
+其它：
+
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)（计算显存、推理时延评估方法）
+
+---
 
 ## CUDA
 
@@ -118,9 +139,7 @@
 - [x] [Accelerating PyTorch with CUDA Graphs](https://pytorch.org/blog/accelerating-pytorch-with-cuda-graphs/)
 - [x] [PyTorch 图模式技术概览](https://zhuanlan.zhihu.com/p/1921889729026172253)
 
-## 强化学习
-
-- [ ] [异步 RL 框架 AReaL 速览](https://zhuanlan.zhihu.com/p/1916441720817714438)
+---
 
 ## 科研
 
@@ -135,6 +154,10 @@
 - [ ] [写在 Ph.D 第 0 年：AI/CV 科研菜鸟的持续进阶之路](https://zhuanlan.zhihu.com/p/960781637?share_code=13GKbPaHvl60E&utm_psn=1904443459802206715)
 - [ ] [CS 读博总结和建议文章](https://zhuanlan.zhihu.com/p/347223193)
 - [ ] [科研大牛们怎么读文献？](https://www.zhihu.com/question/21278186/answer/1269255636)
+- [ ] [Awesome Reading Material for phd](https://galeselee.gitbook.io/awesome-papers/awesome_reading_material)
+- [ ] [Doing The PhD](https://github.com/shengyp/doing_the_PhD)
+
+---
 
 ## 其它
 
@@ -144,17 +167,21 @@
 
 **博客专栏：**
 
+- [Jay Alammar's blog](https://jalammar.github.io/)
 - [猛猿的知乎](https://zhuanlan.zhihu.com/p/654910335)
-- [转行大模型工程师（AI 研究方法与经验）- 黄哲威](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
+- [转行大模型工程师 - 黄哲威](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
 - [100+ 高性能计算与分布式技术博客 - DefTruth](https://github.com/xlite-dev/LeetCUDA?tab=readme-ov-file#-100-%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2)
-- [Awesome Reading Material for phd](https://galeselee.gitbook.io/awesome-papers/awesome_reading_material)
-- [Doing The PhD](https://github.com/shengyp/doing_the_PhD)
-- [insujang.github.io](https://insujang.github.io/posts/)（大模型推理：序列并行）
-- 月球大叔
-- GPU-mode
+- [insujang.github.io](https://insujang.github.io/posts/)（LLM 推理技术）
+- [zhang's Blog](https://www.armcvai.cn/categories.html)
+- [ezyang's Blog](http://blog.ezyang.com/archives/)
+- 月球大叔（b站/小红书）
+- GPU-mode（GitHub）
+- [LLM 推理论文合集](https://zhuanlan.zhihu.com/p/669777159)
 - [460 篇多模态大语言模型论文合集](https://rcncqctdyl3f.feishu.cn/docx/QyFZd3ig3oiCPgxAvXhc1xPYnch)
 
-**教学课程：**
+---
+
+**学习课程：**
 
 - Stanford cs336
 - [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
