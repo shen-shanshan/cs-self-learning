@@ -187,6 +187,9 @@ ps -ef | grep python | cut -c 9-16 | xargs kill -9
 pytest -sv \
 tests/v1/entrypoints/llm/test_struct_output_generate.py::test_structured_output
 
+pytest -sv \
+tests/e2e/singlecard/test_guided_decoding.py::test_guided_regex[outlines]
+
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct \
 --max_model_len 26240 \
 --pipeline-parallel-size 2
