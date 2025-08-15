@@ -46,6 +46,11 @@
 
 ## LLM 推理加速
 
+- [ ] [详解 CacheBlend：RAG 场景 KV 复用，打破前缀相同的限制](https://zhuanlan.zhihu.com/p/7781800255)
+- [ ] [大模型缓存系统 LMCache](https://cloud.tencent.com/developer/article/2533591)
+- [ ] [Step-3 推理系统：从 PD 分离到 AF 分离（AFD）](https://zhuanlan.zhihu.com/p/1932920900203807997?share_code=ba1MSyrS0qF6&utm_psn=1939003570323165191)
+- [ ] [赏析阶跃星辰 step3 AF 分离推理系统 vs deepseek EP 推理系统](https://mp.weixin.qq.com/s/CI_QZkmvh4mJh4PtXg__pw)
+- [ ] [梳理 SGLang 中 DP Attention 及其 Padding 问题](https://mp.weixin.qq.com/s/W0e6W4-v8PmzP10qXY71rQ)
 - [ ] [PagedAttention 论文新鲜出炉](https://zhuanlan.zhihu.com/p/617015570)
 - [ ] [大模型推理各方向新发展整理](https://zhuanlan.zhihu.com/p/693680304)
 - [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
