@@ -1,7 +1,5 @@
 # TorchAir 学习笔记
 
-## 一、基本概念
-
 **Eager Mode（单算子模式）：**
 
 - 优点：立即执行并返回结果；易用、可调试；动态构建计算图（图的形状和大小可以在运行时改变）；
@@ -33,18 +31,3 @@ torch.jit -> lazy tensor -> **TorchDynamo**（PyTorch 2.0 正式集成，对外�
 - Graph Engine Adapter：调用 GE（Graph Engine）提供的接口进行图编译和图执行。
 
 > Ascend IR：基于昇腾软件栈，对不同机器学习框架提供统一的 IR 接口，对接上层网络模型框架。
-
----
-
-**参考资料：**
-
-- [ ] [Optimizing Production PyTorch Models’ Performance with Graph Transformations](https://pytorch.org/blog/optimizing-production-pytorch-performance-with-graph-transformations/)
-- [ ] [Dynamo Overview](https://docs.pytorch.org/docs/main/torch.compiler_dynamo_overview.html)
-- [ ] [torch.compile](https://docs.pytorch.org/docs/stable/generated/torch.compile.html#torch-compile)
-- [ ] [torch.fx](https://docs.pytorch.org/docs/stable/fx.html)
-- [ ] [Custom Compiler Passes and Partitioners](https://docs.pytorch.org/executorch/stable/compiler-custom-compiler-passes.html)
-- [x] [Accelerating PyTorch with CUDA Graphs](https://pytorch.org/blog/accelerating-pytorch-with-cuda-graphs/)
-- [x] [PyTorch 图模式使用（TorchAir）](https://www.hiascend.com/document/detail/zh/Pytorch/710/modthirdparty/torchairuseguide/torchair_00003.html)
-- [ ] [reduce-overhead 模式配置](https://www.hiascend.com/document/detail/zh/Pytorch/710/modthirdparty/torchairuseguide/torchair_00038.html)
-- [ ] [GE 图引擎](https://www.hiascend.com/cann/graph-engine)
-- [ ] 刘逸舟 aclgraph 赋能培训

@@ -46,6 +46,8 @@
 
 ## LLM 推理加速
 
+- [ ] [一文深度全面解析大模型分布式并行策略：DP/TP/PP/CP/EP/SP](https://zhuanlan.zhihu.com/p/1937826285264011929)
+- [ ] [LLM 推理并行优化的必备知识](https://zhuanlan.zhihu.com/p/1937449564509545940)
 - [ ] [详解 CacheBlend：RAG 场景 KV 复用，打破前缀相同的限制](https://zhuanlan.zhihu.com/p/7781800255)
 - [ ] [大模型缓存系统 LMCache](https://cloud.tencent.com/developer/article/2533591)
 - [ ] [Step-3 推理系统：从 PD 分离到 AF 分离（AFD）](https://zhuanlan.zhihu.com/p/1932920900203807997?share_code=ba1MSyrS0qF6&utm_psn=1939003570323165191)

@@ -9,11 +9,12 @@
 - Structured Output 特性适配：
   - 适配 Structured Output 叠加 Spec Decode，并补充 UT
   - 清除异常 leak：GrammarMatcher、CompiledGrammar
-  - xgrammar dynamo 后端增加 npu (torchair)
+- 梳理 vllm-ascend 模型支持标准（issue：1608）
 
 ## vllm
 
 - [ATTN-FFN Disaggregation for MoE Models](https://github.com/vllm-project/vllm/issues/22799)
+- forward context
 
 ---
 
@@ -25,7 +26,7 @@
 
 ## 技术博客
 
-- [ ] Torchair 图模式
+- [ ] Graph Mode
 - [ ] 算子调用方式
 - [ ] ModelRunner Forward 与 PagedAttention([Reference](https://github.com/vllm-project/vllm-ascend/pull/1493)、sliding window)
 - [ ] Speculative Decoding
@@ -33,5 +34,6 @@
 - [ ] PD 分离（AF 分离）
 - [x] V1 整体流程
 - [x] Guided Decoding
+- [ ] Version Release
 
 ---
