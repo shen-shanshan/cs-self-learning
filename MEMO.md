@@ -142,6 +142,7 @@ model_dir = snapshot_download('Qwen/Qwen2.5-0.5B-Instruct')
 /shared/cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen3-30B-A3B  # tensor_parallel_size=4
+deepseek-ai/DeepSeek-V2-Lite
 # Spec Decode
 /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
 /home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B
