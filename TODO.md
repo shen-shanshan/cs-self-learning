@@ -11,6 +11,9 @@ NLP：
 
 Transformer：
 
+- [ ] [缓存与效果的极限拉扯：从 MHA、MQA、GQA 到 MLA - 苏剑林](https://spaces.ac.cn/archives/10091)
+- [ ] GQA
+- [ ] MQA
 - [ ] [避开复数推导，我们还可以怎么理解 RoPE？](https://zhuanlan.zhihu.com/p/863378538?share_code=kfC2mCzqjeww&utm_psn=1925889251461031860)
 - [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
 - [ ] [Transformer Pre-Norm 和 Post-Norm 如何选择？](https://zhuanlan.zhihu.com/p/12228475399)
@@ -18,11 +21,11 @@ Transformer：
 
 DeepSeek：
 
-- [ ] [deepseek 技术解读(1) - 彻底理解 MLA（Multi-Head Latent Attention）](https://zhuanlan.zhihu.com/p/16730036197)
-- [ ] [deepseek 技术解读(2) - MTP（Multi-Token Prediction）的前世今生](https://zhuanlan.zhihu.com/p/18056041194)
-- [ ] [deepseek 技术解读(3) - MoE 的演进之路](https://zhuanlan.zhihu.com/p/18565423596)
+- [ ] [DeepSeek 技术解读（2）- MTP（Multi-Token Prediction）的前世今生](https://zhuanlan.zhihu.com/p/18056041194)
+- [ ] [再读 MLA，还有多少细节是你不知道的 - 猛猿](https://zhuanlan.zhihu.com/p/19585986234?share_code=YaRCFnX257AQ&utm_psn=1931045105759913204)
 - [ ] [MLA 结构代码实现及优化](https://www.armcvai.cn/2025-02-10/mla-code.html)
-- [ ] [再读 MLA，还有多少细节是你不知道的](https://zhuanlan.zhihu.com/p/19585986234?share_code=YaRCFnX257AQ&utm_psn=1931045105759913204)
+- [ ] [DeepSeek MLA 矩阵吸收浅谈](https://zhuanlan.zhihu.com/p/1888290264377976190)
+- [ ] [带你从头发明 MLA](https://zhuanlan.zhihu.com/p/1911795330434986569)
 
 Others：
 
@@ -56,21 +59,20 @@ Others：
 - [ ] [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference)
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)（计算显存、推理时延评估方法）
 
-Transformer 优化：
+Transformer：
 
 - [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
 - [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
 
-分布式并行：
+并行策略（Parallel Strategy）：
 
 - [ ] [大模型数据并行 - DP、DDP 和 FSDP](https://zhuanlan.zhihu.com/p/28960311154)
 - [ ] [大模型分布式训练 — 流水线并行 PP](https://zhuanlan.zhihu.com/p/32724741626)
 - [ ] [大模型分布式训练 — 张量并行 TP](https://zhuanlan.zhihu.com/p/32157338202)
 - [ ] [一文深度全面解析大模型分布式并行策略：DP/TP/PP/CP/EP/SP](https://zhuanlan.zhihu.com/p/1937826285264011929)
 - [ ] [梳理 SGLang 中 DP Attention 及其 Padding 问题](https://mp.weixin.qq.com/s/W0e6W4-v8PmzP10qXY71rQ)
-- [x] [LLM 推理并行优化的必备知识](https://zhuanlan.zhihu.com/p/1937449564509545940)（TODO：MLA TP）
 
-vLLM 解析：
+vLLM：
 
 - [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
 - [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
@@ -95,6 +97,9 @@ PD 分离：
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
 
 AF 分离：
+
+- [ ] [ATTN-FFN Disaggregation for MoE Models - vLLM](https://github.com/vllm-project/vllm/issues/22799)
+- [ ] [Support AF Disaggregation - SGLang](https://github.com/sgl-project/sglang/issues/9401)
 
 KVCache Store（Mooncake、LMCache）：
 
@@ -168,6 +173,8 @@ DeepSeek：
 - [ ] [面向 ML 玩家的 Docker 零帧起手](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
 
+## 学习资料
+
 ---
 
 **博客专栏：**
@@ -197,7 +204,8 @@ DeepSeek：
 
 - 计算访存比？
 - MFU（model float util）？
-- roofline 甜点位？
+- Roofline 甜点位？
 - MoE 稀疏 & 稠密？
+- 消融实验？
 
 ---
