@@ -186,9 +186,10 @@ ps -ef | grep python | cut -c 9-16 | xargs kill -9
 # Structured Output
 pytest -sv \
 tests/v1/entrypoints/llm/test_struct_output_generate.py::test_structured_output
-
 pytest -sv \
 tests/e2e/singlecard/test_guided_decoding.py::test_guided_regex
+# Benchmark (with thinking disabled)
+python benchmarks/benchmark_serving_structured_output.py --backend vllm --model Qwen/Qwen3-1.7B --dataset json --structured-output-ratio 1.0 --request-rate 1000 --num-prompts 2000
 
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct \
 --max_model_len 26240 \
