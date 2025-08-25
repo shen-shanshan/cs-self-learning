@@ -21,7 +21,6 @@ Transformer：
 
 DeepSeek：
 
-- [ ] [DeepSeek 技术解读（2）- MTP（Multi-Token Prediction）的前世今生](https://zhuanlan.zhihu.com/p/18056041194)
 - [ ] [再读 MLA，还有多少细节是你不知道的 - 猛猿](https://zhuanlan.zhihu.com/p/19585986234?share_code=YaRCFnX257AQ&utm_psn=1931045105759913204)
 - [ ] [MLA 结构代码实现及优化](https://www.armcvai.cn/2025-02-10/mla-code.html)
 - [ ] [DeepSeek MLA 矩阵吸收浅谈](https://zhuanlan.zhihu.com/p/1888290264377976190)
@@ -98,8 +97,7 @@ PD 分离：
 
 AF 分离：
 
-- [ ] [ATTN-FFN Disaggregation for MoE Models - vLLM](https://github.com/vllm-project/vllm/issues/22799)
-- [ ] [Support AF Disaggregation - SGLang](https://github.com/sgl-project/sglang/issues/9401)
+- [ ] [StepMesh: A Communication Library for Attention-FFN Disaggregation](https://github.com/stepfun-ai/StepMesh/blob/main/Introduction.md)
 
 KVCache Store（Mooncake、LMCache）：
 
@@ -200,12 +198,15 @@ DeepSeek：
 
 ---
 
-**Question：**
+## Question
 
 - 计算访存比？
 - MFU（model float util）？
 - Roofline 甜点位？
 - MoE 稀疏 & 稠密？
 - 消融实验？
+- Remote Direct Memory Access (RDMA)？
+- ZeroCopy（零拷贝）？
+- NIXL ？
 
 ---

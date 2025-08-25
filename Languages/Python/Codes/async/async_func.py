@@ -4,9 +4,9 @@ import time
 
 async def compute():  # 使用 async 定义异步（协程）函数
     """
-    await：
+    await:
     等到对象的结果返回，才会继续执行后续的代码
-    使用方式：await + 可等待对象（如：协程，Future，Task（IO等待））
+    使用方式: await + 可等待对象（如：协程，Future，Task（IO等待））
     """
     await asyncio.sleep(5)
     print('compute finished.')

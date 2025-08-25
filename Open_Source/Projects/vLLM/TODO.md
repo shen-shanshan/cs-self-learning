@@ -5,16 +5,16 @@
 ## vllm-ascend
 
 - Torchair 代码重构
-- Sliding Window 特性适配
 - Structured Output 特性适配：
+  - 重构 apply_grammar_bitmask() 方法
   - 适配 Structured Output 叠加 Spec Decode，并补充 UT
-  - 清除异常 leak：GrammarMatcher、CompiledGrammar
-- 梳理 vllm-ascend 模型支持标准（issue：1608）
+  - 思考性能优化方案（图模式？并行？）
 
 ## vllm
 
 - [ATTN-FFN Disaggregation for MoE Models](https://github.com/vllm-project/vllm/issues/22799)
-- forward context
+- forward_context ?
+- TODO(woosuk)
 
 ---
 
