@@ -148,7 +148,7 @@ DeepSeek：
 
 ---
 
-## 科研
+## Research
 
 - [ ] [Research Taste Exercises](https://colah.github.io/notes/taste/)
 - [ ] [锻炼研究品味的种种方法](https://zhuanlan.zhihu.com/p/1904764443784647788)
@@ -205,8 +205,11 @@ DeepSeek：
 - Roofline 甜点位？
 - MoE 稀疏 & 稠密？
 - 消融实验？
-- Remote Direct Memory Access (RDMA)？
-- ZeroCopy（零拷贝）？
 - NIXL ？
+- torch.distributed
+- threading.Thread(target=ffn_worker_loop, daemon=True)
+- vllm.forward_context
+
+- **零拷贝**：是不需要在用户空间和内核空间中来回复制数据；
 
 ---
