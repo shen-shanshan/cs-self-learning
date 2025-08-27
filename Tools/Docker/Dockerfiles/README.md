@@ -1,5 +1,11 @@
 # Dockerfiles
 
+Build images:
+
+```bash
+docker build -t sss:1.0 .
+```
+
 ```bash
 crpi-4u800xgxt7n61vri.cn-beijing.personal.cr.aliyuncs.com/opensourcetest/vllm-ascend090
 

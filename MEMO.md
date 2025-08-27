@@ -122,11 +122,15 @@ cat /usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install
 ## Model
 
 ```python
+# 防止终端断开连接，导致下载中断：
+# tmux new -s download
+
 import os
 from modelscope import snapshot_download
 
 os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"
-model_dir = snapshot_download('Qwen/Qwen2.5-0.5B-Instruct')
+os.environ["MODELSCOPE_CACHE"] = "/root/.cache/modelscope/hub"  # A3
+model_dir = snapshot_download('ZhipuAI/glm-4-9b')
 ```
 
 ```bash
@@ -142,10 +146,15 @@ model_dir = snapshot_download('Qwen/Qwen2.5-0.5B-Instruct')
 /shared/cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen3-30B-A3B  # tensor_parallel_size=4
+/shared/cache/modelscope/hub/models/ZhipuAI/glm-4-9b
 # Spec Decode
 /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
 /home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B
 /home/sss/models/models/models/vllm-ascend/DeepSeek-R1-W8A8
+
+# A3
+/root/.cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
+/root/.cache/modelscope/hub/models/ZhipuAI/glm-4-9b
 ```
 
 ## Open Source
@@ -170,14 +179,15 @@ I have rebased on the latest main and nothing changed.
 展开所有：Ctrl/Cmd + K + J
 ```
 
-## Machines
+## A3 集群
 
-```
-新型A3集群
-密码：
-%cQlTuPZOdE+/T4TnIPGUNw+
+基本信息：
 
-挂载卷：
+```bash
+# 密码：
+# %cQlTuPZOdE+/T4TnIPGUNw+
+
+# 挂载卷：
 mkdir -p /mnt/sfs_turbo
 mount -t nfs -o vers=3,nolock,proto=tcp,noresvport 23021270-7ebf-43b2-925c-b1686da4868a.sfsturbo.internal:/ /mnt/sfs_turbo
 
@@ -191,6 +201,86 @@ ssh root@172.22.0.155
 ssh root@172.22.0.188
 ssh root@172.22.0.212
 
-# Execute on the target node (replace with actual IP)
-hccn_tool -i 0 -ping -g address 1.95.9.213
+exit
+
+npu-list
+npu-smi info
+
+# Models
+
+```
+
+启动容器：
+
+```bash
+# docker run --privileged=true -it ubuntu
+# davinci0 ~ davinci15
+# export IMAGE=quay.io/ascend/vllm-ascend:main-a3
+# docker run --rm \
+# --privileged=true \
+# --name vllm-ascend \
+# --device /dev/davinci8 \
+# --device /dev/davinci9 \
+# --device /dev/davinci10 \
+# --device /dev/davinci11 \
+# --device /dev/davinci12 \
+# --device /dev/davinci13 \
+# --device /dev/davinci14 \
+# --device /dev/davinci15 \
+# --device /dev/davinci_manager \
+# --device /dev/devmm_svm \
+# --device /dev/hisi_hdc \
+# -v /usr/local/dcmi:/usr/local/dcmi \
+# -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
+# -v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
+# -v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
+# -v /etc/ascend_install.info:/etc/ascend_install.info \
+# -v /root/.cache:/root/.cache \
+# -p 8000:8000 \
+# -it $IMAGE bash
+
+export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
+export IMAGE=quay.io/ascend/vllm-ascend:main-a3
+docker run -itd \
+--privileged=true \
+--name sss \
+--net=host \
+-e ASCEND_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
+--device /dev/davinci0 \
+--device /dev/davinci1 \
+--device /dev/davinci2 \
+--device /dev/davinci3 \
+--device /dev/davinci4 \
+--device /dev/davinci5 \
+--device /dev/davinci6 \
+--device /dev/davinci7 \
+--device /dev/davinci8 \
+--device /dev/davinci9 \
+--device /dev/davinci10 \
+--device /dev/davinci11 \
+--device /dev/davinci12 \
+--device /dev/davinci13 \
+--device /dev/davinci14 \
+--device /dev/davinci15 \
+--device /dev/davinci_manager \
+--device /dev/devmm_svm \
+--device /dev/hisi_hdc \
+-v /home/sss:/home/sss \
+-v /usr/local/dcmi:/usr/local/dcmi \
+-v /usr/local/Ascend/driver/tools/hccn_tool:/usr/local/Ascend/driver/tools/hccn_tool \
+-v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
+-v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
+-v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
+-v /etc/ascend_install.info:/etc/ascend_install.info \
+-v /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks:/root/.cache \
+-p 8002:8002 \
+-e VLLM_USE_MODELSCOPE=True \
+-e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
+-it $IMAGE \
+/bin/bash
+
+docker start/stop sss
+docker exec -it sss /bin/bash
+
+exit
 ```
