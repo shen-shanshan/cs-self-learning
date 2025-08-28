@@ -155,6 +155,8 @@ model_dir = snapshot_download('ZhipuAI/glm-4-9b')
 # A3
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
 /root/.cache/modelscope/hub/models/ZhipuAI/glm-4-9b
+# /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks/modelscope/hub/models/ZhipuAI/GLM-4___5
+/root/.cache/modelscope/hub/models/ZhipuAI/GLM-4___5
 ```
 
 ## Open Source

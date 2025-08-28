@@ -209,6 +209,7 @@ DeepSeek：
 - torch.distributed
 - threading.Thread(target=ffn_worker_loop, daemon=True)
 - vllm.forward_context
+- ETP
 
 - **零拷贝**：不需要在用户空间和内核空间中来回复制数据；
 
