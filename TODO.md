@@ -11,6 +11,7 @@ NLP：
 
 Transformer：
 
+- [ ] [一文详解 MoE 模型](https://zhuanlan.zhihu.com/p/1940373778589802523)
 - [ ] [缓存与效果的极限拉扯：从 MHA、MQA、GQA 到 MLA - 苏剑林](https://spaces.ac.cn/archives/10091)
 - [ ] GQA
 - [ ] MQA
@@ -65,10 +66,10 @@ Transformer：
 
 并行策略（Parallel Strategy）：
 
+- [ ] [一文深度全面解析大模型分布式并行策略：DP/TP/PP/CP/EP/SP](https://zhuanlan.zhihu.com/p/1937826285264011929)
 - [ ] [大模型数据并行 - DP、DDP 和 FSDP](https://zhuanlan.zhihu.com/p/28960311154)
 - [ ] [大模型分布式训练 — 流水线并行 PP](https://zhuanlan.zhihu.com/p/32724741626)
 - [ ] [大模型分布式训练 — 张量并行 TP](https://zhuanlan.zhihu.com/p/32157338202)
-- [ ] [一文深度全面解析大模型分布式并行策略：DP/TP/PP/CP/EP/SP](https://zhuanlan.zhihu.com/p/1937826285264011929)
 - [ ] [梳理 SGLang 中 DP Attention 及其 Padding 问题](https://mp.weixin.qq.com/s/W0e6W4-v8PmzP10qXY71rQ)
 
 vLLM：
