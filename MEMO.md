@@ -144,6 +144,7 @@ model_dir = snapshot_download('ZhipuAI/glm-4-9b')
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct
 
 # Coder
+/home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-1.5B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct
@@ -217,33 +218,7 @@ npu-smi info
 启动容器：
 
 ```bash
-# docker run --privileged=true -it ubuntu
-# davinci0 ~ davinci15
-# export IMAGE=quay.io/ascend/vllm-ascend:main-a3
-# docker run --rm \
-# --privileged=true \
-# --name vllm-ascend \
-# --device /dev/davinci8 \
-# --device /dev/davinci9 \
-# --device /dev/davinci10 \
-# --device /dev/davinci11 \
-# --device /dev/davinci12 \
-# --device /dev/davinci13 \
-# --device /dev/davinci14 \
-# --device /dev/davinci15 \
-# --device /dev/davinci_manager \
-# --device /dev/devmm_svm \
-# --device /dev/hisi_hdc \
-# -v /usr/local/dcmi:/usr/local/dcmi \
-# -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
-# -v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
-# -v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
-# -v /etc/ascend_install.info:/etc/ascend_install.info \
-# -v /root/.cache:/root/.cache \
-# -p 8000:8000 \
-# -it $IMAGE bash
-
-export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
+# export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
 export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 docker run -itd \
 --privileged=true \

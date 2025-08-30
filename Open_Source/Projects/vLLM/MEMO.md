@@ -44,6 +44,8 @@ pytest -sv \
 tests/v1/entrypoints/llm/test_struct_output_generate.py::test_structured_output
 pytest -sv \
 tests/e2e/singlecard/test_guided_decoding.py::test_guided_regex
+# v0.9.1
+pytest -sv tests/singlecard/test_guided_decoding.py
 
 
 # Benchmark (with thinking disabled)
@@ -98,14 +100,16 @@ python /home/sss/github/vllm/examples/offline_inference/spec_decode.py \
 --num-spec-tokens 2 \
 --prompt-lookup-max 5 \
 --prompt-lookup-min 3 \
---model-dir /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
+--model-dir /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \
+-tp 2
 # Online
 vllm serve /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \
 --max-model-len 1024 \
 --speculative-config '{"method": "ngram", "num_speculative_tokens": 3, "prompt_lookup_max": 5, "prompt_lookup_min": 3}' \
 --gpu_memory_utilization 0.9 \
 --trust-remote-code \
---enforce-eager
+--enforce-eager \
+-tp 2
 
 # Eagel 3
 python /home/sss/github/vllm/examples/offline_inference/spec_decode.py \
@@ -120,10 +124,19 @@ vllm serve /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-In
 --speculative-config '{"method": "eagle3", "num_speculative_tokens": 2, "max_model_len": 128, "model": "/home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B"}' \
 --gpu_memory_utilization 0.9 \
 --trust-remote-code \
---enforce-eager
+--enforce-eager \
+-tp 2
+
+vllm serve /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \
+--max-model-len 1024 \
+--speculative-config '{"method": "eagle", "num_speculative_tokens": 2, "model": "/home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B"}' \
+--gpu_memory_utilization 0.9 \
+--trust-remote-code \
+--enforce-eager \
+-tp 2
 
 # MTP
-# https://github.com/vllm-project/vllm-ascend/pull/2145
+# Doc: https://vllm-ascend.readthedocs.io/en/latest/tutorials/multi_node.html
 vllm serve /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks/modelscope/hub/models/vllm-ascend/DeepSeek-V3-W8A8 \
 --max-model-len 1024 \
 --max-num-seqs 16 \
