@@ -1,5 +1,7 @@
 # TODO
 
+AF分离、弹性论文、vllm博客、torch图模式、DP和MoE培训视频、vllm profiling、PD分离部署、PD分离论文
+
 ---
 
 ## LLM 基础
@@ -11,7 +13,6 @@ NLP：
 
 Transformer：
 
-- [ ] [一文详解 MoE 模型](https://zhuanlan.zhihu.com/p/1940373778589802523)
 - [ ] [缓存与效果的极限拉扯：从 MHA、MQA、GQA 到 MLA - 苏剑林](https://spaces.ac.cn/archives/10091)
 - [ ] GQA
 - [ ] MQA
@@ -66,7 +67,6 @@ Transformer：
 
 并行策略（Parallel Strategy）：
 
-- [ ] [一文深度全面解析大模型分布式并行策略：DP/TP/PP/CP/EP/SP](https://zhuanlan.zhihu.com/p/1937826285264011929)
 - [ ] [大模型数据并行 - DP、DDP 和 FSDP](https://zhuanlan.zhihu.com/p/28960311154)
 - [ ] [大模型分布式训练 — 流水线并行 PP](https://zhuanlan.zhihu.com/p/32724741626)
 - [ ] [大模型分布式训练 — 张量并行 TP](https://zhuanlan.zhihu.com/p/32157338202)
@@ -202,7 +202,7 @@ DeepSeek：
 ## Question
 
 - 计算访存比？
-- MFU（model float util）？
+- MFU？
 - Roofline 甜点位？
 - MoE 稀疏 & 稠密？
 - 消融实验？
@@ -211,7 +211,13 @@ DeepSeek：
 - threading.Thread(target=ffn_worker_loop, daemon=True)
 - vllm.forward_context
 - ETP
+- DeepEP/DeepGEMM kernels
+- DBO (Dual Batch Overlap)
 
-- **零拷贝**：不需要在用户空间和内核空间中来回复制数据；
+A key motivation for DP attention is reduced memory footprint in MLA models like DeepSeek V2, V3, and R1. If Tensor Parallelism is used in an MLA model, we duplicate the KV cache across GPUs, wasting memory. This reduces our batch size for throughput and high-QPS serving use cases, which kills our performance. ???
+
+---
+
+**零拷贝**：不需要在用户空间和内核空间中来回复制数据。
 
 ---
