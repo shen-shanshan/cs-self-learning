@@ -207,14 +207,10 @@ DeepSeek：
 - MoE 稀疏 & 稠密？
 - 消融实验？
 - NIXL ？
-- torch.distributed
 - threading.Thread(target=ffn_worker_loop, daemon=True)
 - vllm.forward_context
-- ETP
 - DeepEP/DeepGEMM kernels
 - DBO (Dual Batch Overlap)
-
-A key motivation for DP attention is reduced memory footprint in MLA models like DeepSeek V2, V3, and R1. If Tensor Parallelism is used in an MLA model, we duplicate the KV cache across GPUs, wasting memory. This reduces our batch size for throughput and high-QPS serving use cases, which kills our performance. ???
 
 ---
 

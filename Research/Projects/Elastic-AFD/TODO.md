@@ -7,8 +7,10 @@
 - [ ] EP/ETP/EPLB
 - [ ] torch.distributed, ProcessGroup
 - [ ] Cudagraphs and torch.compile
-- [ ] physical_experts/logical_experts
 - [ ] python: async/await/future
+- [ ] copy.deepcopy
+- [ ] Ray 原理与使用
+- [ ] 看视频：DP、MoE 分享视频
 
 ## Paper
 
@@ -21,10 +23,6 @@
 
 - [x] 看 Issue：ATTN-FFN Disaggregation for MoE Models - [#22799](https://github.com/vllm-project/vllm/issues/22799)
 - [x] 看 Issue：Elastic Expert Parallelism - [#20323](https://github.com/vllm-project/vllm/issues/20323)
-- [ ] 看 PR：Elastic Expert Parallel Initial Support - [#20775](https://github.com/vllm-project/vllm/pull/20775)
-- [ ] 看 PR 学习 vllm 中分布式并行的代码 - [#16037](https://github.com/vllm-project/vllm/issues/16037)
-- [ ] 看代码：vllm/v1/engine/coordinator.py
-- [ ] 看代码：vllm/v1/engine/core_client.py/self.resources.engine_manager (CoreEngineActorManager for RayDPClient)
-- [ ] 看代码：DPEngineCoreActor
-- [ ] 看代码：PD 分离代码实现
-- [ ] 适配 Elastic Expert Parallelism 到 vllm-ascend
+- [x] 看 PR：Elastic Expert Parallel Initial Support - [#20775](https://github.com/vllm-project/vllm/pull/20775)
+- [ ] 开发：适配 Elastic Expert Parallelism 到 vllm-ascend
+- [ ] 开发：将 EEP 与 worker 和 model_runner 解耦
