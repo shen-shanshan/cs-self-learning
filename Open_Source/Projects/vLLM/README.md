@@ -2,18 +2,16 @@
 
 ## 源码阅读
 
+- [ ] vllm.distributed (learn `torch.distributed` first)
 - [ ] Data Parallel Attention and Expert Parallel MoEs [#16037](https://github.com/vllm-project/vllm/issues/16037)
-- [ ] EPLB [#18343](https://github.com/vllm-project/vllm/pull/18343)
+- [x] EPLB [#18343](https://github.com/vllm-project/vllm/pull/18343)
 - [ ] FusedMoE
 - [ ] External DPLB [#19790](https://github.com/vllm-project/vllm/pull/19790)
 - [ ] Internal DPLB [#21238](https://github.com/vllm-project/vllm/pull/21238)
-- [ ] vllm.distributed
-- [ ] vllm/v1/engine/coordinator.py
+- [ ] vllm/v1/engine/coordinator.py (DPCoordinator)
 - [ ] vllm/v1/engine/core_client.py/self.resources.engine_manager (CoreEngineActorManager for RayDPClient)
 - [ ] DPEngineCoreActor
-- [ ] physical_experts/logical_experts/redundant_experts
-- [ ] PD 分离代码实现
-- [ ] DPCoordinator
+- [ ] PD 分离
 
 ## Notes
 
