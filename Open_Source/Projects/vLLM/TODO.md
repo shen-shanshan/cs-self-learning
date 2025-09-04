@@ -1,39 +1,34 @@
 # TODO
 
----
-
-## vllm-ascend
-
-- Torchair 代码重构
-- Structured Output 特性适配：
-  - 重构 apply_grammar_bitmask() 方法
-  - 适配 Structured Output 叠加 Spec Decode，并补充 UT
-  - 思考性能优化方案（图模式？并行？）
-
-## vllm
+## vllm Tasks
 
 - [ATTN-FFN Disaggregation for MoE Models](https://github.com/vllm-project/vllm/issues/22799)
-- forward_context ?
-- TODO(woosuk)
+- 弹性/容错 AFD
 
----
+## vllm-ascend Tasks
 
-## 技术学习
+- Torchair 代码重构
+- Structured Output 特性适配：重构 apply_grammar_bitmask() 方法
 
-- DeepSeek 推理优化技术（MLA、MTP、DeepEP）
-- 分布式并行（TP、DP、PP、SP、……）
-- 分布式部署（PD 分离、AF 分离）
+## 源码阅读
+
+- [ ] vllm.distributed (learn `torch.distributed` first)
+- [ ] Data Parallel Attention and Expert Parallel MoEs [#16037](https://github.com/vllm-project/vllm/issues/16037)
+- [x] EPLB [#18343](https://github.com/vllm-project/vllm/pull/18343)
+- [ ] FusedMoE
+- [ ] External DPLB [#19790](https://github.com/vllm-project/vllm/pull/19790)
+- [ ] Internal DPLB [#21238](https://github.com/vllm-project/vllm/pull/21238)
+- [ ] vllm/v1/engine/coordinator.py (DPCoordinator)
+- [ ] vllm/v1/engine/core_client.py/self.resources.engine_manager (CoreEngineActorManager for RayDPClient)
+- [ ] DPEngineCoreActor
+- [ ] PD 分离
+- [ ] forward_context
 
 ## 技术博客
 
-- [ ] Graph Mode
-- [ ] 算子调用方式
-- [ ] ModelRunner Forward 与 PagedAttention([Reference](https://github.com/vllm-project/vllm-ascend/pull/1493)、sliding window)
-- [ ] Speculative Decoding
-- [ ] 多模态推理（推理 Pipeline，以 `Qwen2.5-VL` 为例）
-- [ ] PD 分离（AF 分离）
+- [ ] vLLM 分离式架构 - 从 PD 分离到 AF 分离
+- [ ] vLLM 推理可靠性 - 弹性伸缩与容错
+- [ ] EPLB/DPLB
+- [ ] ModelRunner Forward
 - [x] V1 整体流程
-- [x] Guided Decoding
-- [ ] Version Release
-
----
+- [x] Guided Decoding V0/V1

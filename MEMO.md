@@ -158,7 +158,6 @@ model_dir = snapshot_download('ZhipuAI/glm-4-9b')
 # A3
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
 /root/.cache/modelscope/hub/models/ZhipuAI/glm-4-9b
-# /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks/modelscope/hub/models/ZhipuAI/GLM-4___5
 /root/.cache/modelscope/hub/models/ZhipuAI/GLM-4___5
 ```
 
@@ -189,8 +188,7 @@ I have rebased on the latest main and nothing changed.
 基本信息：
 
 ```bash
-# 密码：
-# %cQlTuPZOdE+/T4TnIPGUNw+
+# 密码：%cQlTuPZOdE+/T4TnIPGUNw+
 
 # 挂载卷：
 mkdir -p /mnt/sfs_turbo
@@ -210,16 +208,13 @@ exit
 
 npu-list
 npu-smi info
-
-# Models
-
 ```
 
 启动容器：
 
 ```bash
-# export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
-export IMAGE=quay.io/ascend/vllm-ascend:main-a3
+# export IMAGE=quay.io/ascend/vllm-ascend:main-a3
+export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
 docker run -itd \
 --privileged=true \
 --name sss \
@@ -258,8 +253,8 @@ docker run -itd \
 -it $IMAGE \
 /bin/bash
 
-docker start/stop sss
 docker exec -it sss /bin/bash
+docker start/stop sss
 
 exit
 ```
