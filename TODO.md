@@ -93,6 +93,8 @@ Speculative Decoding：
 
 PD 分离：
 
+- [ ] [vLLM PD分离方案入门：核心概念、优势与适应场景梳理🌟](https://mp.weixin.qq.com/s/_2RefJ7l9a_g3xFvr6fbQA)
+- [ ] [从原理到演进：vLLM PD分离KV cache传递机制全解析🌟](https://mp.weixin.qq.com/s/Na0hzIqACdU9lWBQFqiarw)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
 
@@ -140,6 +142,7 @@ DeepSeek：
 ## PyTorch
 
 - [ ] [Graph Mode](./Open_Source/Projects/vLLM/Features/Graph_Mode/README.md)
+- [ ] [torch.compile 训练的现状总结](https://mp.weixin.qq.com/s/cNTkNZyyETQrHDDYdSSyvw)
 - [ ] [PyTorch internals](http://blog.ezyang.com/2019/05/pytorch-internals/)
 - [ ] [PyTorch dispatcher](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)
 - [ ] [PyTorch 显存管理介绍与源码解析（一）](https://zhuanlan.zhihu.com/p/680769942)

@@ -213,9 +213,10 @@ npu-smi info
 启动容器：
 
 ```bash
-# export IMAGE=quay.io/ascend/vllm-ascend:main-a3
+# export IMAGE=quay.io/ascend/vllm-ascend:main-a3 -itd
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
-docker run -itd \
+export IMAGE=quay.io/ascend/vllm-ascend:v0.10.0rc1-a3
+docker run \
 --privileged=true \
 --name sss \
 --net=host \
@@ -250,11 +251,12 @@ docker run -itd \
 -p 8002:8002 \
 -e VLLM_USE_MODELSCOPE=True \
 -e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
--it $IMAGE \
-/bin/bash
+-it $IMAGE /bin/bash
 
 docker exec -it sss /bin/bash
-docker start/stop sss
+
+docker stop sss
+docker rm sss
 
 exit
 ```

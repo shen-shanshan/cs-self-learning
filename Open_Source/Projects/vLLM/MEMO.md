@@ -25,6 +25,8 @@ vllm serve Qwen/Qwen3-8B \
 --dtype bfloat16 \
 --enforce-eager \
 --trust-remote-code \
+--enable-expert-parallel \
+--no-enable-expert-parallel \
 
 # vllm-ascend format
 yapf -i <file>
