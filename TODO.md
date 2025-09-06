@@ -71,6 +71,9 @@ Transformer：
 - [ ] [大模型分布式训练 — 流水线并行 PP](https://zhuanlan.zhihu.com/p/32724741626)
 - [ ] [大模型分布式训练 — 张量并行 TP](https://zhuanlan.zhihu.com/p/32157338202)
 - [ ] [梳理 SGLang 中 DP Attention 及其 Padding 问题](https://mp.weixin.qq.com/s/W0e6W4-v8PmzP10qXY71rQ)
+- [ ] [大规模 EP 优化](https://zhuanlan.zhihu.com/p/1944715179439924643?share_code=oSqHiWjct1QC&utm_psn=1946182101884965795)
+- [ ] [PP, TP, DP, ZeRO 一点理解](https://zhuanlan.zhihu.com/p/19480848641?share_code=1mdHLZXyhVgPd&utm_psn=1946517314418746403)
+- [ ] [The Ultra-Scale Playbook: Training LLMs on GPU Clusters🌟](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview)
 
 vLLM：
 
@@ -86,6 +89,7 @@ vLLM：
 - [ ] [vLLM 源码之 PageAttention](https://zhuanlan.zhihu.com/p/711304830)
 - [ ] [被问懵了！腾讯面试官让我手写 PagedAttention](https://zhuanlan.zhihu.com/p/1911455737118457997?share_code=9fRcELOowc4U&utm_psn=1912436101039226918)
 - [ ] [vLLM 框架 V1 演进分析](https://zhuanlan.zhihu.com/p/1894423873145004335)
+- [ ] [三行代码提升一倍 vllm 性能](https://zhuanlan.zhihu.com/p/1946143263867241420)
 
 Speculative Decoding：
 
@@ -167,6 +171,7 @@ DeepSeek：
 - [ ] [科研大牛们怎么读文献？](https://www.zhihu.com/question/21278186/answer/1269255636)
 - [ ] [Awesome Reading Material for phd](https://galeselee.gitbook.io/awesome-papers/awesome_reading_material)
 - [ ] [Doing The PhD](https://github.com/shengyp/doing_the_PhD)
+- [ ] [博士申请套磁信的撰写模板](https://mp.weixin.qq.com/s/u1YtAqHKmFrfpG1KI_lBSg)
 
 ---
 
@@ -174,6 +179,12 @@ DeepSeek：
 
 - [ ] [面向 ML 玩家的 Docker 零帧起手](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
+
+**vLLM PR：**
+
+- https://github.com/vllm-project/vllm/pull/23569
+
+昇腾社区有 msprof 工具的使用文档。
 
 ## 学习资料
 
@@ -199,6 +210,7 @@ DeepSeek：
 
 - Stanford cs336
 - [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
+- [LeetCode 刷题路线图](https://labuladong.online/algo/intro/quick-learning-plan/)
 
 ---
 
