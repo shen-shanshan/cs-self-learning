@@ -1,9 +1,5 @@
 # TODO
 
-AF分离、弹性论文、vllm博客、torch图模式、DP和MoE培训视频、vllm profiling、PD分离部署、PD分离论文
-
----
-
 ## LLM 基础
 
 NLP：
@@ -64,6 +60,8 @@ Transformer：
 
 - [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
 - [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
+- [ ] MoE survey 论文🌟
+- [ ] [Mixture of Experts Explained🌟](https://huggingface.co/blog/moe)
 
 并行策略（Parallel Strategy）：
 
@@ -74,13 +72,16 @@ Transformer：
 - [ ] [大规模 EP 优化](https://zhuanlan.zhihu.com/p/1944715179439924643?share_code=oSqHiWjct1QC&utm_psn=1946182101884965795)
 - [ ] [PP, TP, DP, ZeRO 一点理解](https://zhuanlan.zhihu.com/p/19480848641?share_code=1mdHLZXyhVgPd&utm_psn=1946517314418746403)
 - [ ] [The Ultra-Scale Playbook: Training LLMs on GPU Clusters🌟](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview)
+- [ ] [MoE 并行负载均衡：EPLB 的深度解析与可视化🌟](https://zhuanlan.zhihu.com/p/29963005584)
+- [ ] [LLM 推理数据并行负载均衡(DPLB)浅析🌟](https://zhuanlan.zhihu.com/p/1927317160889386326)
+- [ ] [分布式推理优化思路🌟](https://zhuanlan.zhihu.com/p/1937556222371946860)
 
 vLLM：
 
-- [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
-- [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
-- [ ] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)
-- [ ] [vLLM调度器解密（下）：chunked prefill是如何进一步优化的？](https://zhuanlan.zhihu.com/p/6144374775?share_code=w9CKto9eLSq2&utm_psn=1909578492246466702)
+- [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理🌟](https://zhuanlan.zhihu.com/p/1916187125931554299)
+- [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching🌟](https://zhuanlan.zhihu.com/p/1916181593229334390)
+- [ ] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？🌟](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)
+- [ ] [vLLM调度器解密（下）：chunked prefill是如何进一步优化的？🌟](https://zhuanlan.zhihu.com/p/6144374775?share_code=w9CKto9eLSq2&utm_psn=1909578492246466702)
 - [ ] [PagedAttention 论文新鲜出炉](https://zhuanlan.zhihu.com/p/617015570)
 - [ ] [图解 vLLM Prefix Prefill Triton Kernel](https://zhuanlan.zhihu.com/p/695799736?share_code=Hz1PZDdfXLy7&utm_psn=1900943218725598209)
 - [ ] [vLLM 的 prefix cache 为何零开销](https://zhuanlan.zhihu.com/p/1896927732027335111)
@@ -88,8 +89,8 @@ vLLM：
 - [ ] [vLLM + DeepSeek-R1 671B 多机部署及修 Bug 笔记](https://zhuanlan.zhihu.com/p/29950052712)
 - [ ] [vLLM 源码之 PageAttention](https://zhuanlan.zhihu.com/p/711304830)
 - [ ] [被问懵了！腾讯面试官让我手写 PagedAttention](https://zhuanlan.zhihu.com/p/1911455737118457997?share_code=9fRcELOowc4U&utm_psn=1912436101039226918)
-- [ ] [vLLM 框架 V1 演进分析](https://zhuanlan.zhihu.com/p/1894423873145004335)
 - [ ] [三行代码提升一倍 vllm 性能](https://zhuanlan.zhihu.com/p/1946143263867241420)
+- [ ] [vLLM DP 特性与演进方案分析🌟](https://zhuanlan.zhihu.com/p/1909265969823580330)
 
 Speculative Decoding：
 
@@ -97,30 +98,23 @@ Speculative Decoding：
 
 PD 分离：
 
-- [ ] [vLLM PD分离方案入门：核心概念、优势与适应场景梳理🌟](https://mp.weixin.qq.com/s/_2RefJ7l9a_g3xFvr6fbQA)
-- [ ] [从原理到演进：vLLM PD分离KV cache传递机制全解析🌟](https://mp.weixin.qq.com/s/Na0hzIqACdU9lWBQFqiarw)
+- [ ] [vLLM PD分离方案浅析🌟](https://zhuanlan.zhihu.com/p/1889243870430201414)
+- [ ] [vLLM PD 分离 KV cache 传递机制详解与演进分析🌟](https://zhuanlan.zhihu.com/p/1906741007606878764)
+- [ ] [0.5x 提升：PD 分离 KV cache 传输的实践经验🌟](https://zhuanlan.zhihu.com/p/1946608360259577576)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
 
 AF 分离：
 
-- [ ] [StepMesh: A Communication Library for Attention-FFN Disaggregation](https://github.com/stepfun-ai/StepMesh/blob/main/Introduction.md)
-
-KVCache Store（Mooncake、LMCache）：
-
-- [ ] [大模型缓存系统 LMCache](https://cloud.tencent.com/developer/article/2533591)
-- [ ] [详解 CacheBlend：RAG 场景 KV 复用，打破前缀相同的限制](https://zhuanlan.zhihu.com/p/7781800255)
-
 DeepSeek：
 
 - [ ] [DeepSeek-V3/R1 推理效率分析: 满血版逆向工程分解](https://mp.weixin.qq.com/s/oa7ZW7qNW-B05K_iF5YNYA)（PD 分离数据分析）
 - [ ] [DeepSeek-V3/R1 推理系统概览](https://zhuanlan.zhihu.com/p/27181462601)
-- [ ] DeepEP
-
----
 
 ## CUDA
 
+- [ ] [20 行代码入门 PyTorch 自定义 CUDA/C++](https://zhuanlan.zhihu.com/p/579395211)
+- [ ] [CUDA 编程：常用技巧/方法](https://zhuanlan.zhihu.com/p/584501634)
 - [ ] [大语言模型所有算子逻辑](https://zhuanlan.zhihu.com/p/1909996866432668841?share_code=u4D2wlKwNjAp&utm_psn=1911112698021807580)
 - [ ] [CUDA Core Dump: An Effective Tool to Debug Memory Access Issues and Beyond](https://blog.vllm.ai/2025/08/11/cuda-debugging.html)
 - [ ] [高频面试题汇总-大模型手撕 CUDA](https://zhuanlan.zhihu.com/p/678903537)
@@ -175,20 +169,18 @@ DeepSeek：
 
 ---
 
-## 其它
+## Others
 
 - [ ] [面向 ML 玩家的 Docker 零帧起手](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
 
-**vLLM PR：**
+**vLLM 待看 PR：**
 
 - https://github.com/vllm-project/vllm/pull/23569
 
 昇腾社区有 msprof 工具的使用文档。
 
 ## 学习资料
-
----
 
 **博客专栏：**
 
@@ -204,15 +196,11 @@ DeepSeek：
 - [LLM 推理论文合集](https://zhuanlan.zhihu.com/p/669777159)
 - [460 篇多模态大语言模型论文合集](https://rcncqctdyl3f.feishu.cn/docx/QyFZd3ig3oiCPgxAvXhc1xPYnch)
 
----
-
 **学习课程：**
 
 - Stanford cs336
 - [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
 - [LeetCode 刷题路线图](https://labuladong.online/algo/intro/quick-learning-plan/)
-
----
 
 ## Question
 
@@ -227,8 +215,4 @@ DeepSeek：
 - DeepEP/DeepGEMM kernels
 - DBO (Dual Batch Overlap)
 
----
-
 **零拷贝**：不需要在用户空间和内核空间中来回复制数据。
-
----
