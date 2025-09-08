@@ -18,8 +18,9 @@ torch:
 
 分布式并行：
 
-- [ ] EP/ETP/EPLB
-- [ ] Ray 原理与使用
+- [x] EP/ETP/EPLB
+- [ ] Ray
+- [ ] AFD 设计文档
 
 ## Paper
 

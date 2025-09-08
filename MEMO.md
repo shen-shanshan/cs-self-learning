@@ -72,7 +72,8 @@ nb = "!f() { git fetch upstream && git checkout -b $1 upstream/main && git branc
 db = "!f() { git branch -D $1 && git branch; }; f"
 
 # 常用命令
-git chekcout <commit>
+git checkout <commit>
+git checkout -b <commit>
 git stash
 git stash pop
 git stash drop [stash_id]
@@ -104,6 +105,7 @@ go env -w GOPROXY=https://goproxy.cn,direct
 
 ```bash
 pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+pip install --upgrade transformers
 ```
 
 ## CANN
@@ -213,9 +215,12 @@ npu-smi info
 启动容器：
 
 ```bash
-# export IMAGE=quay.io/ascend/vllm-ascend:main-a3 -itd
+# -itd
+export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.0rc1-a3
+
+export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 docker run \
 --privileged=true \
 --name sss \
@@ -254,9 +259,10 @@ docker run \
 -it $IMAGE /bin/bash
 
 docker exec -it sss /bin/bash
-
+docker start sss
 docker stop sss
 docker rm sss
-
 exit
+
+git@github.com:vllm-project/vllm-ascend.git
 ```

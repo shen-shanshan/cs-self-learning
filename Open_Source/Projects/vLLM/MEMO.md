@@ -4,8 +4,10 @@
 
 ```bash
 # 环境变量
-VLLM_USE_V1=xxx
-VLLM_USE_MODELSCOPE=xxx
+export VLLM_USE_V1=1
+export VLLM_WORKER_MULTIPROC_METHOD="spawn"
+
+export VLLM_USE_MODELSCOPE=True
 
 # 启动参数（离线）
 model="Qwen/QwQ-32B"
