@@ -81,8 +81,8 @@ Transformer：
 
 vLLM：
 
-- [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理🌟](https://zhuanlan.zhihu.com/p/1916187125931554299)
-- [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching🌟](https://zhuanlan.zhihu.com/p/1916181593229334390)
+- [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
+- [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
 - [ ] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？🌟](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)
 - [ ] [vLLM调度器解密（下）：chunked prefill是如何进一步优化的？🌟](https://zhuanlan.zhihu.com/p/6144374775?share_code=w9CKto9eLSq2&utm_psn=1909578492246466702)
 - [ ] [PagedAttention 论文新鲜出炉](https://zhuanlan.zhihu.com/p/617015570)
@@ -93,6 +93,8 @@ vLLM：
 - [ ] [vLLM 源码之 PageAttention](https://zhuanlan.zhihu.com/p/711304830)
 - [ ] [被问懵了！腾讯面试官让我手写 PagedAttention](https://zhuanlan.zhihu.com/p/1911455737118457997?share_code=9fRcELOowc4U&utm_psn=1912436101039226918)
 - [ ] [三行代码提升一倍 vllm 性能](https://zhuanlan.zhihu.com/p/1946143263867241420)
+- [ ] [Introduction to torch.compile and How It Works with vLLM🌟](https://blog.vllm.ai/2025/08/20/torch-compile.html)
+- [ ] [Inside vLLM: Anatomy of a High-Throughput LLM Inference System🌟](https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html)
 
 Speculative Decoding：
 
@@ -100,7 +102,7 @@ Speculative Decoding：
 
 PD 分离：
 
-- [ ] [vLLM PD分离方案浅析🌟](https://zhuanlan.zhihu.com/p/1889243870430201414)
+- [ ] [vLLM PD 分离方案浅析🌟](https://zhuanlan.zhihu.com/p/1889243870430201414)
 - [ ] [vLLM PD 分离 KV cache 传递机制详解与演进分析🌟](https://zhuanlan.zhihu.com/p/1906741007606878764)
 - [ ] [0.5x 提升：PD 分离 KV cache 传输的实践经验🌟](https://zhuanlan.zhihu.com/p/1946608360259577576)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
@@ -112,6 +114,11 @@ DeepSeek：
 
 - [ ] [DeepSeek-V3/R1 推理效率分析: 满血版逆向工程分解](https://mp.weixin.qq.com/s/oa7ZW7qNW-B05K_iF5YNYA)（PD 分离数据分析）
 - [ ] [DeepSeek-V3/R1 推理系统概览](https://zhuanlan.zhihu.com/p/27181462601)
+
+Kernel：
+
+- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念🌟](https://zhuanlan.zhihu.com/p/1930681680127047148)
+- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter🌟](https://zhuanlan.zhihu.com/p/1948749443802313796)
 
 ## CUDA
 
@@ -181,6 +188,7 @@ DeepSeek：
 
 **博客专栏：**
 
+- [vLLM Blog](https://blog.vllm.ai/)
 - [Jay Alammar's blog](https://jalammar.github.io/)
 - [猛猿的知乎](https://zhuanlan.zhihu.com/p/654910335)
 - [转行大模型工程师 - 黄哲威](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
