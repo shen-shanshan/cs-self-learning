@@ -64,11 +64,23 @@ The **states** of engine-core:
 
 ---
 
+**EPLB 补充:**
+
+![](./images/eplb.png)
+
+> PR: EPLB [#18343](https://github.com/vllm-project/vllm/pull/18343)
+
+---
+
 ## Q & A
 
 **Q: 为什么是 Bring up/tear down **DP** engine-cores？不是 Elastic EP 吗？**
 
-对于 MoE 模型，由于 expert 的稀疏性，导致 MoE 部分的 MFU 很难打满。在 AF 不分离的情况下，一个经典的组合是 DP+EP，来增大输入的 batchsize，从而提高 MoE 的算力利用率。
+对于 MoE 模型，由于 expert 的稀疏性，导致 MoE 部分的 MFU 很难打满。
+
+![](./images/moe.png)
+
+在 AF 不分离的情况下，一个经典的组合是 DP+EP，来增大输入的 batchsize，从而提高 MoE 的算力利用率。
 
 ![](./images/DP+EP.png)
 
@@ -213,8 +225,12 @@ call `reinitialize_distributed()`.
 
 调整 `rank_mapping` --> `model_runner.eplb_state.rearrange()`。
 
-### 7. ModelRunner
+`_reconfigure_parallel_config()`: Update parallel config with provided reconfig_request.
+
+`_reconfigure_moe()`: Reconfigure MoE modules with provided reconfig_request.
+
+<!-- ### 7. ModelRunner
 
 ### 8. Model
 
-### 9. Layer
+### 9. Layer -->
