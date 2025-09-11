@@ -159,6 +159,7 @@ model_dir = snapshot_download('ZhipuAI/glm-4-9b')
 
 # A3
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
+/root/.cache/modelscope/hub/models/Qwen/Qwen3-30B-A3B
 /root/.cache/modelscope/hub/models/ZhipuAI/glm-4-9b
 /root/.cache/modelscope/hub/models/ZhipuAI/GLM-4___5
 ```
@@ -220,7 +221,6 @@ export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.0rc1-a3
 
-export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 docker run \
 --privileged=true \
 --name sss \
@@ -262,7 +262,6 @@ docker exec -it sss /bin/bash
 docker start sss
 docker stop sss
 docker rm sss
-exit
 
-git@github.com:vllm-project/vllm-ascend.git
+exit
 ```

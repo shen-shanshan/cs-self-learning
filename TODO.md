@@ -59,10 +59,11 @@ Others：
 
 基础知识：
 
+- [ ] [图解大模型计算加速系列：分离式推理架构 1，从 DistServe 谈起 🌟](https://zhuanlan.zhihu.com/p/706761664)
 - [ ] [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference)
-- [ ] [图解大模型计算加速系列：分离式推理架构2，模糊分离与合并边界的chunked-prefills 🌟](https://aijishu.com/a/1060000000476542#item-4)
 - [x] [图文详解 Continuous Batch：不写 CUDA Kernel 也能成倍优化推理效率](https://zhuanlan.zhihu.com/p/876908831)
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)
+- [x] [为什么现在大模型在推理阶段都是左 padding？](https://mp.weixin.qq.com/s/qNSHpmUZrHQsTeXLwSZVCA)
 
 DeepSeek：
 
@@ -71,6 +72,7 @@ DeepSeek：
 
 vLLM：
 
+- [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理 🌟](https://zhuanlan.zhihu.com/p/691038809)
 - [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
 - [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
 - [ ] [PagedAttention 论文新鲜出炉](https://zhuanlan.zhihu.com/p/617015570)
@@ -109,10 +111,12 @@ PD 分离：
 
 Kernel：
 
-- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念 🌟](https://zhuanlan.zhihu.com/p/1930681680127047148)
-- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter 🌟](https://zhuanlan.zhihu.com/p/1948749443802313796)
+- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念](https://zhuanlan.zhihu.com/p/1930681680127047148)
+- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter](https://zhuanlan.zhihu.com/p/1948749443802313796)
 - [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
 - [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
+- [ ] [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑](https://zhuanlan.zhihu.com/p/669926191)
+- [ ] [图解大模型计算加速系列：FlashAttention V2，从原理到并行计算](https://zhuanlan.zhihu.com/p/691067658)
 
 ## CUDA
 
