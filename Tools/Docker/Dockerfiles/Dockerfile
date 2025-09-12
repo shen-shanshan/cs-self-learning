@@ -38,6 +38,7 @@ RUN apt-get update && \
     wget \
     rsync \
     openssh-client \
+    openssh-server \
     tmux && \
     rm -rf /var/lib/apt/lists/*
 

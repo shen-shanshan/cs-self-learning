@@ -3,7 +3,7 @@
 Build images:
 
 ```bash
-docker build -t sss:1.0 .
+docker build -t sss:dev .
 ```
 
 ```bash

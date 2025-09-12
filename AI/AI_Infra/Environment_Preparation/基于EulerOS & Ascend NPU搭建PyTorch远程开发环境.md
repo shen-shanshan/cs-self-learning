@@ -497,12 +497,12 @@ ps -e | grep ssh
 sudo vim /etc/ssh/sshd_config
 
 # ssh config:
-# PubkeyAuthentication yes #启用公钥私钥配对认证方式 
-# AuthorizedKeysFile .ssh/authorized_keys #公钥文件路径（和上面生成的文件同） 
-# PermitRootLogin yes #root能使用ssh登录
-# ClientAliveInterval 60  #参数数值是秒 , 是指超时时间
-# ClientAliveCountMax 3 #设置允许超时的次数
-# UsePAM yes # 更改为 UsePAM no
+PubkeyAuthentication yes #启用公钥私钥配对认证方式 
+AuthorizedKeysFile .ssh/authorized_keys #公钥文件路径（和上面生成的文件同） 
+PermitRootLogin yes #root能使用ssh登录
+ClientAliveInterval 60  #参数数值是秒 , 是指超时时间
+ClientAliveCountMax 3 #设置允许超时的次数
+UsePAM yes # 更改为 UsePAM no
 Port 22 #指定好端口号，默认是22 后面这个数字要在你run容器的时候用到
 ```
 

@@ -19,19 +19,40 @@ vim /root/.ssh/authorized_keys
 
 # 安装 SSH 服务
 sudo apt update
-sudo apt install openssh-client
+sudo apt install openssh-client -y
 
 # 将 SSH 公钥配置到 GitHub 上
 ssh-keygen -t ed25519 -C "467638484@qq.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
-cat ~/.ssh/id_ed25519.pub  # Add it to your github
+cat ~/.ssh/id_ed25519.pub  # Add to https://github.com/settings/keys
 
+# 配置容器内 SSH 服务
+sudo apt-get update
+sudo apt-get install openssh-server
+# 查看 SSH 是否启动（打印 sshd 则说明已成功启动）
+ps -e | grep ssh
+sudo vim /etc/ssh/sshd_config
+# systemctl restart sshd.service
+sudo /etc/init.d/ssh restart
+systemctl enable sshd.service
+```
+
+Vim 配置：
+
+```bash
+vim ~/.vimrc
+
+set number
+```
+
+其它：
+
+```bash
 tmux ls
 tmux new -s download
 
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/c++/13:/usr/include/c++/13/x86_64-openEuler-linux
-
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 ```
 
@@ -254,6 +275,7 @@ docker run \
 -v /etc/ascend_install.info:/etc/ascend_install.info \
 -v /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks:/root/.cache \
 -p 8002:8002 \
+-p 8333:22 \
 -e VLLM_USE_MODELSCOPE=True \
 -e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
 -it $IMAGE /bin/bash
