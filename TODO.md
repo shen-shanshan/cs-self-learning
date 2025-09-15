@@ -1,5 +1,18 @@
 # TODO
 
+---
+
+**本周学习内容：**
+
+- [ ] vLLM 官方长文博客
+- [ ] 计算 AFD 资料
+- [ ] serverlessLLM 论文
+- [ ] profiling 博客与实操
+- [ ] fusedMoE 代码
+- [ ] vLLM 并行代码（并行配制、DPLB）
+
+---
+
 ## Tasks
 
 - [vLLM TODO](./Open_Source/Projects/vLLM/TODO.md)
