@@ -29,16 +29,28 @@ cat ~/.ssh/id_ed25519.pub  # Add to https://github.com/settings/keys
 
 # 配置容器内 SSH 服务
 sudo apt-get update
-sudo apt-get install openssh-server
+sudo apt-get install openssh-server -y
+# 启动 SSH 服务
+sudo service sshd status
+sudo service sshd start
 # 查看 SSH 是否启动（打印 sshd 则说明已成功启动）
-ps -e | grep ssh
+ps -e | grep sshd
 sudo vim /etc/ssh/sshd_config
+# ------------------------------------------------------------------------
+Port 22
+PermitRootLogin yes
+# ------------------------------------------------------------------------
 # systemctl restart sshd.service
+# systemctl enable sshd.service
+# sudo systemctl enable sshd
 sudo /etc/init.d/ssh restart
-systemctl enable sshd.service
+
+# sshd: unrecognized service
+cat /etc/hostname  # liteserver-for-vllm-ascend-00001 f26631d36eaa
+sudo vim /etc/hosts
 ```
 
-Vim 配置：
+Vim 配置：d
 
 ```bash
 vim ~/.vimrc
@@ -54,6 +66,8 @@ tmux new -s download
 
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/c++/13:/usr/include/c++/13/x86_64-openEuler-linux
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+
+echo "要追加的文本" >> 文件名
 ```
 
 ## Docker
@@ -142,6 +156,15 @@ source /usr/local/Ascend/nnal/atb/set_env.sh
 # show env
 cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
 cat /usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
+
+# libascend_hal.so 找不到
+find . -name libascend_hal.so
+# /usr/local/Ascend/driver/lib64/driver
+# /home/sss/Ascend/ascend-toolkit/8.2.RC1/aarch64-linux/devlib/linux/aarch64
+# /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/devlib
+env | grep LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/devlib:$LD_LIBRARY_PATH
 ```
 
 ## Model
@@ -179,6 +202,7 @@ model_dir = snapshot_download('ZhipuAI/glm-4-9b')
 /home/sss/models/models/models/vllm-ascend/DeepSeek-R1-W8A8
 
 # A3
+/root/.cache/modelscope/hub/models/Qwen/Qwen2___5-0___5B-Instruct
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-7B-Instruct
 /root/.cache/modelscope/hub/models/Qwen/Qwen3-30B-A3B
 /root/.cache/modelscope/hub/models/ZhipuAI/glm-4-9b
@@ -242,6 +266,31 @@ export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.0rc1-a3
 
+# 2 卡
+docker run \
+--privileged=true \
+--name sss \
+-e ASCEND_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
+--device /dev/davinci14 \
+--device /dev/davinci15 \
+--device /dev/davinci_manager \
+--device /dev/devmm_svm \
+--device /dev/hisi_hdc \
+-v /home/sss:/home/sss \
+-v /usr/local/dcmi:/usr/local/dcmi \
+-v /usr/local/Ascend/driver/tools/hccn_tool:/usr/local/Ascend/driver/tools/hccn_tool \
+-v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
+-v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
+-v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
+-v /etc/ascend_install.info:/etc/ascend_install.info \
+-v /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks:/root/.cache \
+-p 8002:8002 \
+-p 8333:22 \
+-e VLLM_USE_MODELSCOPE=True \
+-e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
+-it $IMAGE /bin/bash
+
+# 16 卡
 docker run \
 --privileged=true \
 --name sss \
@@ -279,6 +328,9 @@ docker run \
 -e VLLM_USE_MODELSCOPE=True \
 -e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
 -it $IMAGE /bin/bash
+
+# --net=host
+# host 模式直接使用宿主机的网络空间，该模式下无法使用 -p 命令选项映射端口，容器和宿主机直接共享端口
 
 docker exec -it sss /bin/bash
 docker start sss

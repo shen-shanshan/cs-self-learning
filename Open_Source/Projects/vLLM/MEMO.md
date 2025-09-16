@@ -6,7 +6,6 @@
 # 环境变量
 export VLLM_USE_V1=1
 export VLLM_WORKER_MULTIPROC_METHOD="spawn"
-
 export VLLM_USE_MODELSCOPE=True
 
 # 启动参数（离线）

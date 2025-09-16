@@ -36,18 +36,28 @@ source /home/sss/Ascend/nnal/atb/set_env.sh
 # 检查配置：git config --list
 ```
 
-`vim ~/.pip/v`:
+`vim ~/.pip/pip.conf`:
 
 ```bash
 [global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+        index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 [install]
-trusted-host = https://pypi.tuna.tsinghua.edu.cn
+        trusted-host = https://pypi.tuna.tsinghua.edu.cn
+```
+
+`vim ~/.vimrc`：
+
+```bash
+set number
 ```
 
 配置 github ssh 密钥：
 
 ```bash
+# 安装 sudo
+apt-get update
+apt-get install sudo
+
 # 若未安装 ssh-keygen：
 sudo apt update
 sudo apt install openssh-client -y
@@ -56,7 +66,7 @@ ssh-keygen -t ed25519 -C "467638484@qq.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub  # Add it to your github
-# ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICawFGYmXA4fJI56B0lFZXypXmjRvE6N5X2lIC14ddDJ 467638484@qq.com
+# ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILGL/Ax0Xd252ub/V0N2y96RdNnpm+7nWSY2jbiqUvTT 467638484@qq.com
 ```
 
 参考资料：

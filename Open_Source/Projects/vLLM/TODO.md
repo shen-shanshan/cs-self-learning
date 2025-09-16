@@ -3,12 +3,28 @@
 ## vllm Tasks
 
 - [ATTN-FFN Disaggregation for MoE Models](https://github.com/vllm-project/vllm/issues/22799)
-- AFD 弹性与容错
+- EEP
 
 ## vllm-ascend Tasks
 
-- Torchair 代码重构
-- Structured Output 特性适配：重构 `apply_grammar_bitmask()` 方法
+## 文档阅读
+
+**User Guide:**
+
+- [ ] [Data Parallel Deployment](https://docs.vllm.ai/en/latest/serving/data_parallel_deployment.html)
+- [ ] [Expert Parallel Deployment](https://docs.vllm.ai/en/latest/serving/expert_parallel_deployment.html)
+- [ ] [Parallelism and Scaling](https://docs.vllm.ai/en/latest/serving/parallelism_scaling.html)
+- [ ] [Disaggregated Prefilling](https://docs.vllm.ai/en/latest/features/disagg_prefill.html)
+
+**Developer Guide:**
+
+- [ ] [Profiling vLLM](https://docs.vllm.ai/en/latest/contributing/profiling.html)
+- [ ] [Fused MoE Modular Kernel](https://docs.vllm.ai/en/latest/design/fused_moe_modular_kernel.html)
+- [ ] [Integration with Hugging Face](https://docs.vllm.ai/en/latest/design/huggingface_integration.html)
+- [ ] [Hybrid KV Cache Manager](https://docs.vllm.ai/en/latest/design/hybrid_kv_cache_manager.html)
+- [ ] [Paged Attention](https://docs.vllm.ai/en/latest/design/paged_attention.html)
+- [ ] [Plugin System](https://docs.vllm.ai/en/latest/design/plugin_system.html)
+- [ ] [torch.compile integration](https://docs.vllm.ai/en/latest/design/torch_compile.html)
 
 ## 源码阅读
 

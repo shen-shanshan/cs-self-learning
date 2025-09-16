@@ -1,6 +1,9 @@
 # TODO
 
----
+## Tasks
+
+- [vLLM TODO](./Open_Source/Projects/vLLM/TODO.md)
+- [AFD TODO](./Research/Projects/Elastic-AFD/TODO.md)
 
 **本周学习内容：**
 
@@ -10,13 +13,6 @@
 - [ ] profiling 博客与实操
 - [ ] fusedMoE 代码
 - [ ] vLLM 并行代码（并行配制、DPLB）
-
----
-
-## Tasks
-
-- [vLLM TODO](./Open_Source/Projects/vLLM/TODO.md)
-- [AFD TODO](./Research/Projects/Elastic-AFD/TODO.md)
 
 ## LLM 基础
 
