@@ -68,6 +68,14 @@ export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/c++/13:/usr/include/c
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 
 echo "要追加的文本" >> 文件名
+
+# 测试网络连接
+telnet [ip] [port]
+nc -zv 1.95.9.213 2222
+
+# 缺少驱动 xxx.so 库
+sudo find / -name "libdrvdsmi_host.so"
+export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH
 ```
 
 ## Docker
@@ -83,6 +91,7 @@ docker stop <容器名或ID>
 docker restart <容器名或ID>
 docker commit <容器名或ID> <镜像名>
 docker rm <容器名或ID>
+docker rename <old name> <new name>
 ```
 
 ## Git
@@ -157,6 +166,9 @@ source /usr/local/Ascend/nnal/atb/set_env.sh
 cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
 cat /usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
 
+# ImportError: libascend_hal.so: cannot open shared object file: No such file or directory
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/Ascend/ascend-toolkit/latest/`uname -i`-linux/devlib
+
 # libascend_hal.so 找不到
 find . -name libascend_hal.so
 # /usr/local/Ascend/driver/lib64/driver
@@ -182,12 +194,14 @@ model_dir = snapshot_download('ZhipuAI/glm-4-9b')
 ```
 
 ```bash
-# Ascend 01 & 02
+# Ascend 01
 /home/sss/.cache/modelscope/hub/Qwen/Qwen2.5-0.5B-Instruct
 /home/sss/cache/modelscope/models/Qwen/Qwen2.5-7B-Instruct
 /home/sss/cache/modelscope/models/deepseek-ai/DeepSeek-V2-Lite-Chat
 /home/sss/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
+# Ascend 01 docker
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct
+/root/.cache/modelscope/hub/models/deepseek-ai/DeepSeek-V2-Lite
 
 # Coder
 /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-1.5B-Instruct
@@ -231,12 +245,74 @@ I have rebased on the latest main and nothing changed.
 展开所有：Ctrl/Cmd + K + J
 ```
 
+## Ascend 01
+
+```bash
+export IMAGE=quay.io/ascend/vllm-ascend:main
+
+docker run \
+--name sss \
+-e ASCEND_VISIBLE_DEVICES=0,1 \
+--device /dev/davinci0 \
+--device /dev/davinci1 \
+--device /dev/davinci_manager \
+--device /dev/devmm_svm \
+--device /dev/hisi_hdc \
+-v /home/sss:/home/sss \
+-v /usr/local/dcmi:/usr/local/dcmi \
+-v /usr/local/Ascend/driver/tools/hccn_tool:/usr/local/Ascend/driver/tools/hccn_tool \
+-v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
+-v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
+-v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
+-v /etc/ascend_install.info:/etc/ascend_install.info \
+-v /data/disk2/cache:/root/.cache \
+-p 8002:8002 \
+-p 8333:22 \
+-it $IMAGE /bin/bash
+
+cd /home/sss/
+docker-compose -p sss up -d
+```
+
+`docker-compose.yaml`：
+
+```yaml
+services:
+  sss:
+    image: quay.io/ascend/vllm-ascend:main
+    container_name: sss
+    volumes:
+      - /usr/local/dcmi:/usr/local/dcmi
+      - /usr/local/bin/npu-smi:/usr/local/bin/npu-smi
+      - /usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64
+      - /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info
+      - /etc/ascend_install.info:/etc/ascend_install.info
+      - /home/sss:/home/sss
+      - /data/disk2/cache:/root/.cache
+    ports:
+      - 8333:22
+      - 8009:8009
+    restart: unless-stopped
+    hostname: ascend-01
+    tty: true
+    devices:
+      - /dev/davinci0
+      - /dev/davinci1
+      - /dev/davinci_manager
+      - /dev/devmm_svm
+      - /dev/hisi_hdc
+    cap_add:
+      - SYS_PTRACE
+    shm_size: 20gb
+```
+
 ## A3 集群
 
 基本信息：
 
 ```bash
-# 密码：%cQlTuPZOdE+/T4TnIPGUNw+
+# 密码：
+%cQlTuPZOdE+/T4TnIPGUNw+
 
 # 挂载卷：
 mkdir -p /mnt/sfs_turbo
@@ -262,6 +338,7 @@ npu-smi info
 
 ```bash
 # -itd
+export IMAGE=quay.io/ascend/vllm-ascend:main
 export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.0rc1-a3
@@ -271,6 +348,20 @@ docker run \
 --privileged=true \
 --name sss \
 -e ASCEND_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
+--device /dev/davinci0 \
+--device /dev/davinci1 \
+--device /dev/davinci2 \
+--device /dev/davinci3 \
+--device /dev/davinci4 \
+--device /dev/davinci5 \
+--device /dev/davinci6 \
+--device /dev/davinci7 \
+--device /dev/davinci8 \
+--device /dev/davinci9 \
+--device /dev/davinci10 \
+--device /dev/davinci11 \
+--device /dev/davinci12 \
+--device /dev/davinci13 \
 --device /dev/davinci14 \
 --device /dev/davinci15 \
 --device /dev/davinci_manager \

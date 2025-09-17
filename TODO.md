@@ -8,11 +8,11 @@
 **本周学习内容：**
 
 - [ ] vLLM 官方长文博客
-- [ ] 计算 AFD 资料
-- [ ] serverlessLLM 论文
+- [ ] 计算 AFD 资料（AFD Connector）
+- [x] serverlessLLM 论文
 - [ ] profiling 博客与实操
-- [ ] fusedMoE 代码
-- [ ] vLLM 并行代码（并行配制、DPLB）
+- [ ] fusedMoE 文档与代码
+- [ ] vLLM 并行（并行配制、DPLB）
 
 ## LLM 基础
 
@@ -37,6 +37,7 @@ DeepSeek：
 - [ ] [MLA 结构代码实现及优化](https://www.armcvai.cn/2025-02-10/mla-code.html)
 - [ ] [DeepSeek MLA 矩阵吸收浅谈](https://zhuanlan.zhihu.com/p/1888290264377976190)
 - [ ] [带你从头发明 MLA](https://zhuanlan.zhihu.com/p/1911795330434986569)
+- [ ] [Implementation of Multi-Head Latent Attention (MLA) mechanism](https://github.com/Sailkiki/MLA-DeepSeekV3)
 
 Others：
 
