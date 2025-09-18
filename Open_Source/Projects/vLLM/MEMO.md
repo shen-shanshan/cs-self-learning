@@ -39,6 +39,15 @@ ps -ef | grep vllm | cut -c 9-16 | xargs kill -9
 ps -ef | grep python | cut -c 9-16 | xargs kill -9
 ```
 
+## Debug
+
+```python
+from vllm.logger import init_logger
+logger = init_logger(__name__)
+
+logger.info_once(f"...")
+```
+
 ## Structured Output
 
 ```bash
