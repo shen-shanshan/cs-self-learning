@@ -340,6 +340,7 @@ npu-smi info
 # -itd
 export IMAGE=quay.io/ascend/vllm-ascend:main
 export IMAGE=quay.io/ascend/vllm-ascend:main-a3
+export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.0rc1-a3
 
@@ -415,7 +416,6 @@ docker run \
 -v /etc/ascend_install.info:/etc/ascend_install.info \
 -v /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks:/root/.cache \
 -p 8002:8002 \
--p 8333:22 \
 -e VLLM_USE_MODELSCOPE=True \
 -e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
 -it $IMAGE /bin/bash

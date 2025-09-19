@@ -19,13 +19,13 @@ torch:
 分布式并行：
 
 - [x] EP/ETP/EPLB
-- [ ] Ray
-- [ ] AFD 设计文档
+- [x] Ray
+- [x] AFD 设计文档
 
 ## Paper
 
 - [x] 看 Step3 AFD 论文
-- [ ] 看 serverlessLLM 论文
+- [x] 看 serverlessLLM 论文
 - [ ] 看 serverlessLLM 源码 - [GitHub](https://github.com/ServerlessLLM/ServerlessLLM)
 
 ## vLLM
@@ -33,8 +33,7 @@ torch:
 - [x] 看 Issue：ATTN-FFN Disaggregation for MoE Models - [#22799](https://github.com/vllm-project/vllm/issues/22799)
 - [x] 看 Issue：Elastic Expert Parallelism - [#20323](https://github.com/vllm-project/vllm/issues/20323)
 - [x] 看 PR：Elastic Expert Parallel Initial Support - [#20775](https://github.com/vllm-project/vllm/pull/20775)
-- [ ] 开发：适配 Elastic Expert Parallelism 到 vllm-ascend
-- [ ] 开发：将 EEP 与 worker 和 model_runner 解耦
+- [ ] 看 PR：draft AFD implementation for step3 [#25162](https://github.com/vllm-project/vllm/pull/25162)
 
 ## Idea
 

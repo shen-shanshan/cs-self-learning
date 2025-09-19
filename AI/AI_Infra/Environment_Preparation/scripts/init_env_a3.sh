@@ -74,6 +74,8 @@ cd /vllm-workspace/vllm-ascend/
 git remote remove origin
 git remote add origin git@github.com:shen-shanshan/vllm-ascend.git
 git remote add upstream git@github.com:vllm-project/vllm-ascend.git
+# git fetch origin
+# git checkout -b op origin/op
 git sync
 pip install -v -e .
 # pip install -r requirements-dev.txt
