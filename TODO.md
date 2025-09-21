@@ -7,7 +7,7 @@
 
 **本周学习内容：**
 
-- [ ] vLLM 官方长文博客
+- [x] vLLM 官方长文博客
 - [ ] 计算 AFD 资料（AFD Connector）
 - [x] serverlessLLM 论文
 - [ ] profiling 博客与实操
@@ -38,6 +38,7 @@ DeepSeek：
 - [ ] [DeepSeek MLA 矩阵吸收浅谈](https://zhuanlan.zhihu.com/p/1888290264377976190)
 - [ ] [带你从头发明 MLA](https://zhuanlan.zhihu.com/p/1911795330434986569)
 - [ ] [Implementation of Multi-Head Latent Attention (MLA) mechanism](https://github.com/Sailkiki/MLA-DeepSeekV3)
+- [ ] [超细图解 MLA 计算流 & 吸收矩阵对比分析](https://zhuanlan.zhihu.com/p/1948769945132470860)
 
 Others：
 
@@ -94,7 +95,6 @@ vLLM：
 - [ ] [被问懵了！腾讯面试官让我手写 PagedAttention](https://zhuanlan.zhihu.com/p/1911455737118457997?share_code=9fRcELOowc4U&utm_psn=1912436101039226918)
 - [ ] [三行代码提升一倍 vllm 性能](https://zhuanlan.zhihu.com/p/1946143263867241420)
 - [ ] [Introduction to torch.compile and How It Works with vLLM 🌟](https://blog.vllm.ai/2025/08/20/torch-compile.html)
-- [ ] [Inside vLLM: Anatomy of a High-Throughput LLM Inference System 🌟](https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html)
 - [x] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)
 - [x] [vLLM调度器解密（下）：chunked prefill是如何进一步优化的？](https://zhuanlan.zhihu.com/p/6144374775?share_code=w9CKto9eLSq2&utm_psn=1909578492246466702)
 
@@ -113,11 +113,12 @@ Speculative Decoding：
 
 - [ ] [Speculative Decoding: 总结、分析、展望](https://zhuanlan.zhihu.com/p/1904881828906668879?share_code=hDIX8nBBfJOQ&utm_psn=1918275277408142518)
 
-PD 分离：
+PD/AF 分离：
 
 - [ ] [0.5x 提升：PD 分离 KV cache 传输的实践经验 🌟](https://zhuanlan.zhihu.com/p/1946608360259577576)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
+- [ ] [LLM 推理提速：Attention 与 FFN 分离方案解析 🌟](https://zhuanlan.zhihu.com/p/1952393747112367273)
 
 Kernel：
 

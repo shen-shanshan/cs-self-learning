@@ -46,11 +46,11 @@
 - [ ] PD 分离
 - [ ] forward_context
 - [ ] Fully overlap model execution [#23569](https://github.com/vllm-project/vllm/pull/23569)
+- [ ] model_runner input_batch
 
 ## 技术博客
 
 - [ ] vLLM 分离式架构 - 从 PD 分离到 AF 分离
 - [ ] vLLM 推理可靠性 - 弹性伸缩与容错
-- [ ] ModelRunner Forward
 - [x] V1 整体流程
 - [x] Guided Decoding V0/V1
