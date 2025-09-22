@@ -27,6 +27,9 @@ torch:
 - [x] 看 Step3 AFD 论文
 - [x] 看 serverlessLLM 论文
 - [ ] 看 serverlessLLM 源码 - [GitHub](https://github.com/ServerlessLLM/ServerlessLLM)
+- [ ] 看 StepMesh 源码 - [GitHub](https://github.com/stepfun-ai/StepMesh)
+  - [x] [中文介绍](https://github.com/stepfun-ai/StepMesh/blob/main/Introduction_cn.md)
+  - [ ] GPU Direct RDMA 技术
 
 ## vLLM
 
@@ -38,3 +41,12 @@ torch:
 ## Idea
 
 - [ ] [ALaaS](https://github.com/HuaizhengZhang/Active-Learning-as-a-Service)
+
+## Notes
+
+弹性扩缩容：
+
+- **Attention** 模块可根据 **Seq Length** 动态调整规模；
+- **FFN** 模块则依据 **Batch Size** 实现弹性扩缩容。
+
+NVSHMEM

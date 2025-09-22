@@ -70,7 +70,6 @@ Others：
 
 基础知识：
 
-- [ ] [图解大模型计算加速系列：分离式推理架构 1，从 DistServe 谈起 🌟](https://zhuanlan.zhihu.com/p/706761664)
 - [ ] [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference)
 - [x] [图文详解 Continuous Batch：不写 CUDA Kernel 也能成倍优化推理效率](https://zhuanlan.zhihu.com/p/876908831)
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)
@@ -83,6 +82,7 @@ DeepSeek：
 
 vLLM：
 
+- [ ] [Introduction to torch.compile and How It Works with vLLM 🌟](https://blog.vllm.ai/2025/08/20/torch-compile.html)
 - [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理 🌟](https://zhuanlan.zhihu.com/p/691038809)
 - [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
 - [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
@@ -94,7 +94,6 @@ vLLM：
 - [ ] [vLLM 源码之 PageAttention](https://zhuanlan.zhihu.com/p/711304830)
 - [ ] [被问懵了！腾讯面试官让我手写 PagedAttention](https://zhuanlan.zhihu.com/p/1911455737118457997?share_code=9fRcELOowc4U&utm_psn=1912436101039226918)
 - [ ] [三行代码提升一倍 vllm 性能](https://zhuanlan.zhihu.com/p/1946143263867241420)
-- [ ] [Introduction to torch.compile and How It Works with vLLM 🌟](https://blog.vllm.ai/2025/08/20/torch-compile.html)
 - [x] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)
 - [x] [vLLM调度器解密（下）：chunked prefill是如何进一步优化的？](https://zhuanlan.zhihu.com/p/6144374775?share_code=w9CKto9eLSq2&utm_psn=1909578492246466702)
 
@@ -118,7 +117,6 @@ PD/AF 分离：
 - [ ] [0.5x 提升：PD 分离 KV cache 传输的实践经验 🌟](https://zhuanlan.zhihu.com/p/1946608360259577576)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
-- [ ] [LLM 推理提速：Attention 与 FFN 分离方案解析 🌟](https://zhuanlan.zhihu.com/p/1952393747112367273)
 
 Kernel：
 
