@@ -29,6 +29,9 @@ vllm serve Qwen/Qwen3-8B \
 --enable-expert-parallel \
 --no-enable-expert-parallel \
 
+enable_expert_parallel
+--additional-config='{"multistream_overlap_shared_expert": True}'
+
 # vllm-ascend format
 yapf -i <file>
 isort <file>

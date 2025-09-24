@@ -82,6 +82,9 @@ cat ~/.ssh/id_ed25519.pub  # Add it to your github
 
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh
 bash Miniconda3-latest-Linux-aarch64.sh
+
+conda create -n vllm python=3.10 -y
+conda activate vllm
 ```
 
 ### 安装 CANN

@@ -84,6 +84,7 @@ export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH
 # 启动容器（Ascend 01 and 02）
 cd /data/disk3/sss/docker
 docker-compose -p sss up -d
+docker exec -it sss /bin/bash
 
 # 常用命令
 docker exec -it <容器名或ID> /bin/bash
@@ -168,8 +169,6 @@ cat /usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install
 
 # ImportError: libascend_hal.so: cannot open shared object file: No such file or directory
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/Ascend/ascend-toolkit/latest/`uname -i`-linux/devlib
-
-# libascend_hal.so 找不到
 find . -name libascend_hal.so
 # /usr/local/Ascend/driver/lib64/driver
 # /home/sss/Ascend/ascend-toolkit/8.2.RC1/aarch64-linux/devlib/linux/aarch64
@@ -177,6 +176,22 @@ find . -name libascend_hal.so
 env | grep LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/devlib:$LD_LIBRARY_PATH
+
+# ImportError: /usr/local/Ascend/ascend-toolkit/latest/lib64/libruntime_common.so: undefined symbol: _ZN12ErrorManager19ATCReportErrMessageESsRKSt6vectorISsSaISsEES4_
+source /usr/local/Ascend/ascend-toolkit/set_env.sh
+source /usr/local/Ascend/nnal/atb/set_env.sh
+```
+
+## HCCL
+
+```bash
+export HCCL_BUFFSIZE=2048
+
+# ERR02200 DIST call hccl api failed.
+# Failed to bind the IP port. Reason: The IP address and port have been bound already.
+export HCCL_IF_BASE_PORT=50000
+sysctl -w net.ipv4.ip_local_reserved_ports=50000-50015
+sysctl -w net.ipv4.ip_local_reserved_ports=60000-60015
 ```
 
 ## Model
@@ -296,7 +311,6 @@ services:
     hostname: ascend-01
     tty: true
     devices:
-      - /dev/davinci0
       - /dev/davinci1
       - /dev/davinci_manager
       - /dev/devmm_svm
