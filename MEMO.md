@@ -1,5 +1,11 @@
 # MEMO
 
+## 环境搭建
+
+- [Preparation](./AI/AI_Infra/Environment_Preparation/README.md)
+- [Init env script](./AI/AI_Infra/Environment_Preparation/scripts/init_env_a3.sh)
+- [Dockerfile](./Tools/Docker/Dockerfiles/README.md)
+
 ## Linux
 
 ```bash
@@ -127,6 +133,13 @@ git clone -b 分支名 仓库地址
 git cherry-pick <commitHash>
 git checkout -b <branch_name> <tag_name>
 
+# 回退到某个commit（包含该commit之后的所有更改）
+git revert <commit-hash>..HEAD --no-edit
+# 回退单个commit
+git revert <commit-hash>
+# 回退多个连续的commit（从commitA到commitB，不包括commitA）
+git revert <commitA>..<commitB>
+
 # 提交代码时，添加共同作者
 $ git commit -m "Refactor usability tests. \
 >
@@ -157,22 +170,18 @@ pip install --upgrade transformers
 
 ```bash
 # set env
+source /usr/local/Ascend/ascend-toolkit/set_env.sh
+source /usr/local/Ascend/nnal/atb/set_env.sh
 source /home/sss/Ascend/ascend-toolkit/set_env.sh
 source /home/sss/Ascend/nnal/atb/set_env.sh
 
-source /usr/local/Ascend/ascend-toolkit/set_env.sh
-source /usr/local/Ascend/nnal/atb/set_env.sh
-
 # show env
-cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
 cat /usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
+cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
 
 # ImportError: libascend_hal.so: cannot open shared object file: No such file or directory
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/Ascend/ascend-toolkit/latest/`uname -i`-linux/devlib
 find . -name libascend_hal.so
-# /usr/local/Ascend/driver/lib64/driver
-# /home/sss/Ascend/ascend-toolkit/8.2.RC1/aarch64-linux/devlib/linux/aarch64
-# /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/devlib
 env | grep LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/devlib:$LD_LIBRARY_PATH
@@ -351,57 +360,18 @@ npu-smi info
 启动容器：
 
 ```bash
-# -itd
 export IMAGE=quay.io/ascend/vllm-ascend:main
 export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
 export IMAGE=quay.io/ascend/vllm-ascend:v0.10.0rc1-a3
 
-# 2 卡
-docker run \
---privileged=true \
---name sss \
--e ASCEND_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
---device /dev/davinci0 \
---device /dev/davinci1 \
---device /dev/davinci2 \
---device /dev/davinci3 \
---device /dev/davinci4 \
---device /dev/davinci5 \
---device /dev/davinci6 \
---device /dev/davinci7 \
---device /dev/davinci8 \
---device /dev/davinci9 \
---device /dev/davinci10 \
---device /dev/davinci11 \
---device /dev/davinci12 \
---device /dev/davinci13 \
---device /dev/davinci14 \
---device /dev/davinci15 \
---device /dev/davinci_manager \
---device /dev/devmm_svm \
---device /dev/hisi_hdc \
--v /home/sss:/home/sss \
--v /usr/local/dcmi:/usr/local/dcmi \
--v /usr/local/Ascend/driver/tools/hccn_tool:/usr/local/Ascend/driver/tools/hccn_tool \
--v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
--v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
--v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
--v /etc/ascend_install.info:/etc/ascend_install.info \
--v /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks:/root/.cache \
--p 8002:8002 \
--p 8333:22 \
--e VLLM_USE_MODELSCOPE=True \
--e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
--it $IMAGE /bin/bash
-
-# 16 卡
+export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
 docker run \
 --privileged=true \
 --name sss \
 --net=host \
--e ASCEND_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
+-e ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
 --device /dev/davinci0 \
 --device /dev/davinci1 \
 --device /dev/davinci2 \
@@ -421,13 +391,13 @@ docker run \
 --device /dev/davinci_manager \
 --device /dev/devmm_svm \
 --device /dev/hisi_hdc \
--v /home/sss:/home/sss \
 -v /usr/local/dcmi:/usr/local/dcmi \
 -v /usr/local/Ascend/driver/tools/hccn_tool:/usr/local/Ascend/driver/tools/hccn_tool \
 -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
 -v /usr/local/Ascend/driver/lib64/:/usr/local/Ascend/driver/lib64/ \
 -v /usr/local/Ascend/driver/version.info:/usr/local/Ascend/driver/version.info \
 -v /etc/ascend_install.info:/etc/ascend_install.info \
+-v /home/sss:/home/sss \
 -v /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks:/root/.cache \
 -p 8002:8002 \
 -e VLLM_USE_MODELSCOPE=True \

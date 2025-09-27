@@ -7,12 +7,24 @@
 
 **本周学习内容：**
 
-- [x] vLLM 官方长文博客
 - [ ] 计算 AFD 资料（AFD Connector）
-- [x] serverlessLLM 论文
 - [ ] profiling 博客与实操
 - [ ] fusedMoE 文档与代码
 - [ ] vLLM 并行（并行配制、DPLB）
+
+**Python:**
+
+- [ ] python: async/await/future
+- [ ] copy.deepcopy
+- [ ] threading: Event(set/is_set), Thread(start/join)
+- [ ] time: perf_counter
+
+**Concepts:**
+
+- [ ] NVSHMEM
+- [ ] SSD and DRAM
+- [ ] PCIe
+- [ ] Pinned Memory (in-memory storage)
 
 ## LLM 基础
 
@@ -82,7 +94,6 @@ DeepSeek：
 
 vLLM：
 
-- [ ] [Introduction to torch.compile and How It Works with vLLM 🌟](https://blog.vllm.ai/2025/08/20/torch-compile.html)
 - [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理 🌟](https://zhuanlan.zhihu.com/p/691038809)
 - [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
 - [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
@@ -106,6 +117,7 @@ vLLM：
 - [ ] [大规模 EP 优化](https://zhuanlan.zhihu.com/p/1944715179439924643?share_code=oSqHiWjct1QC&utm_psn=1946182101884965795)
 - [ ] [PP, TP, DP, ZeRO 一点理解](https://zhuanlan.zhihu.com/p/19480848641?share_code=1mdHLZXyhVgPd&utm_psn=1946517314418746403)
 - [ ] [The Ultra-Scale Playbook: Training LLMs on GPU Clusters 🌟](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview)
+- [ ] [LLM 推理并行优化的必备知识 🌟](https://zhuanlan.zhihu.com/p/1937449564509545940)
 - [ ] [分布式推理优化思路 🌟](https://zhuanlan.zhihu.com/p/1937556222371946860)
 
 Speculative Decoding：

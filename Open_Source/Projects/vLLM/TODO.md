@@ -4,8 +4,11 @@
 
 - [ATTN-FFN Disaggregation for MoE Models](https://github.com/vllm-project/vllm/issues/22799)
 - EEP
+- Serverless
 
 ## vllm-ascend Tasks
+
+- Mamba attn backend plugin
 
 ## 文档阅读
 
@@ -47,6 +50,7 @@
 - [ ] forward_context
 - [ ] Fully overlap model execution [#23569](https://github.com/vllm-project/vllm/pull/23569)
 - [ ] model_runner input_batch
+- [ ] DeviceMemoryProfiler
 
 ## 技术博客
 

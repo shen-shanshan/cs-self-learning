@@ -2,11 +2,6 @@
 
 ## Basic
 
-python:
-
-- [ ] python: async/await/future
-- [ ] copy.deepcopy
-
 torch:
 
 - [x] [torch.distributed](https://docs.pytorch.org/docs/stable/distributed.html)
@@ -41,6 +36,7 @@ torch:
 ## Idea
 
 - [ ] [ALaaS](https://github.com/HuaizhengZhang/Active-Learning-as-a-Service)
+- [ ] copy `~/.cache/vllm/torch_compile_cache` - [doc](https://docs.vllm.ai/en/latest/design/torch_compile.html#compilation-cache)
 
 ## Notes
 
@@ -48,5 +44,3 @@ torch:
 
 - **Attention** 模块可根据 **Seq Length** 动态调整规模；
 - **FFN** 模块则依据 **Batch Size** 实现弹性扩缩容。
-
-NVSHMEM

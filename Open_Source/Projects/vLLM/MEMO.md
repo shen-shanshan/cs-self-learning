@@ -30,7 +30,7 @@ vllm serve Qwen/Qwen3-8B \
 --no-enable-expert-parallel \
 
 enable_expert_parallel
---additional-config='{"multistream_overlap_shared_expert": True}'
+--additional-config '{"multistream_overlap_shared_expert": true}'
 
 # vllm-ascend format
 yapf -i <file>
@@ -39,16 +39,34 @@ ruff check <file>
 
 # Clear process
 ps -ef | grep vllm | cut -c 9-16 | xargs kill -9
+ps -ef | grep VLLM | cut -c 9-16 | xargs kill -9
 ps -ef | grep python | cut -c 9-16 | xargs kill -9
 ```
 
 ## Debug
+
+```bash
+VLLM_LOGGING_LEVEL=DEBUG vllm serve ...
+```
 
 ```python
 from vllm.logger import init_logger
 logger = init_logger(__name__)
 
 logger.info_once(f"...")
+```
+
+## Version
+
+```python
+if not vllm_version_is("v0.10.2"):
+    ...
+```
+
+## Comments
+
+```bash
+# Return a dummy tensor for interface compatibility
 ```
 
 ## Structured Output
