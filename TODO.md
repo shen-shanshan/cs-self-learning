@@ -5,7 +5,7 @@
 - [vLLM TODO](./Open_Source/Projects/vLLM/TODO.md)
 - [AFD TODO](./Research/Projects/Elastic-AFD/TODO.md)
 
-**本周学习内容：**
+**TODO（P0）：**
 
 - [ ] 计算 AFD 资料（AFD Connector）
 - [ ] profiling 博客与实操
@@ -21,10 +21,16 @@
 
 **Concepts:**
 
-- [ ] NVSHMEM
+- [ ] [NVSHMEM 🌟](https://developer.nvidia.com/nvshmem)
 - [ ] SSD and DRAM
 - [ ] PCIe
 - [ ] Pinned Memory (in-memory storage)
+- [ ] 计算访存比
+- [ ] MFU
+- [ ] Roofline
+- [ ] 消融实验
+- [ ] NIXL
+- [ ] 零拷贝：即不需要在用户空间和内核空间中来回复制数据。
 
 ## LLM 基础
 
@@ -43,6 +49,16 @@ Transformer：
 - [ ] [Transformer Pre-Norm 和 Post-Norm 如何选择？](https://zhuanlan.zhihu.com/p/12228475399)
 - [ ] [Transformer 似懂非懂的 Norm 方法](https://zhuanlan.zhihu.com/p/12113221623)
 
+多模态：
+
+- [ ] [多模态技术梳理：ViT 系列](https://zhuanlan.zhihu.com/p/26719287825)
+- [ ] [Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解](https://zhuanlan.zhihu.com/p/28205969434)
+- [ ] [多模态技术梳理：Qwen-VL 系列](https://zhuanlan.zhihu.com/p/25267823390)
+- [ ] [Qwen2.5-VL 论文](https://arxiv.org/abs/2502.13923)
+- [ ] [Qwen2.5-VL 代码](https://github.com/QwenLM/Qwen2.5-VL)
+- [ ] [Qwen2.5-VL transformer modeling](https://github.com/huggingface/transformers/blob/41925e42135257361b7f02aa20e3bbdab3f7b923/src/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py)
+- [ ] [torchcodec](https://github.com/pytorch/torchcodec)
+
 DeepSeek：
 
 - [ ] [再读 MLA，还有多少细节是你不知道的 - 猛猿](https://zhuanlan.zhihu.com/p/19585986234?share_code=YaRCFnX257AQ&utm_psn=1931045105759913204)
@@ -59,16 +75,6 @@ Others：
 - [ ] [聊聊 Reasoning Model 的精巧实现（ReFT, Kimi K1.5, DeepSeek R1）](https://zhuanlan.zhihu.com/p/20356958978)
 - [ ] [从系统 1 到系统 2 推理范式，300+ 文献总结 o1/R1 类推理大模型的技术路线](https://zhuanlan.zhihu.com/p/27230460558)
 - [ ] [超全解析！大模型面试宝典 60 题](https://mp.weixin.qq.com/s/Q6FPYenia1aHl-8e8Nhx4g)
-
-## 多模态
-
-- [ ] [多模态技术梳理：ViT 系列](https://zhuanlan.zhihu.com/p/26719287825)
-- [ ] [Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解](https://zhuanlan.zhihu.com/p/28205969434)
-- [ ] [多模态技术梳理：Qwen-VL 系列](https://zhuanlan.zhihu.com/p/25267823390)
-- [ ] [Qwen2.5-VL 论文](https://arxiv.org/abs/2502.13923)
-- [ ] [Qwen2.5-VL 代码](https://github.com/QwenLM/Qwen2.5-VL)
-- [ ] [Qwen2.5-VL transformer modeling](https://github.com/huggingface/transformers/blob/41925e42135257361b7f02aa20e3bbdab3f7b923/src/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py)
-- [ ] [torchcodec](https://github.com/pytorch/torchcodec)
 
 ## LLM 推理加速
 
@@ -94,6 +100,7 @@ DeepSeek：
 
 vLLM：
 
+- [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记 🌟](https://mp.weixin.qq.com/s/JCzBtIAMVOiNtisHxZBTUw)
 - [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理 🌟](https://zhuanlan.zhihu.com/p/691038809)
 - [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
 - [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
@@ -111,8 +118,6 @@ vLLM：
 并行策略（Parallel Strategy）：
 
 - [ ] [大模型数据并行 - DP、DDP 和 FSDP](https://zhuanlan.zhihu.com/p/28960311154)
-- [ ] [大模型分布式训练 — 流水线并行 PP](https://zhuanlan.zhihu.com/p/32724741626)
-- [ ] [大模型分布式训练 — 张量并行 TP](https://zhuanlan.zhihu.com/p/32157338202)
 - [ ] [梳理 SGLang 中 DP Attention 及其 Padding 问题](https://mp.weixin.qq.com/s/W0e6W4-v8PmzP10qXY71rQ)
 - [ ] [大规模 EP 优化](https://zhuanlan.zhihu.com/p/1944715179439924643?share_code=oSqHiWjct1QC&utm_psn=1946182101884965795)
 - [ ] [PP, TP, DP, ZeRO 一点理解](https://zhuanlan.zhihu.com/p/19480848641?share_code=1mdHLZXyhVgPd&utm_psn=1946517314418746403)
@@ -132,8 +137,8 @@ PD/AF 分离：
 
 Kernel：
 
-- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念](https://zhuanlan.zhihu.com/p/1930681680127047148)
-- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter](https://zhuanlan.zhihu.com/p/1948749443802313796)
+- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念 🌟](https://zhuanlan.zhihu.com/p/1930681680127047148)
+- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter 🌟](https://zhuanlan.zhihu.com/p/1948749443802313796)
 - [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
 - [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
 - [ ] [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑](https://zhuanlan.zhihu.com/p/669926191)
@@ -167,10 +172,9 @@ Kernel：
 
 ## PyTorch
 
-- [ ] [Graph Mode](./Open_Source/Projects/vLLM/Features/Graph_Mode/README.md)
-- [ ] [torch.compile 训练的现状总结](https://mp.weixin.qq.com/s/cNTkNZyyETQrHDDYdSSyvw)
-- [ ] [PyTorch internals](http://blog.ezyang.com/2019/05/pytorch-internals/)
-- [ ] [PyTorch dispatcher](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)
+- [ ] [Graph Mode 🌟](./Open_Source/Projects/vLLM/Features/Graph_Mode/README.md)
+- [ ] [PyTorch internals 🌟](http://blog.ezyang.com/2019/05/pytorch-internals/)
+- [ ] [PyTorch dispatcher 🌟](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)
 - [ ] [PyTorch 显存管理介绍与源码解析（一）](https://zhuanlan.zhihu.com/p/680769942)
 - [ ] [PyTorch 显存管理介绍与源码解析（二）](https://zhuanlan.zhihu.com/p/681651660)
 - [ ] [PyTorch 显存管理介绍与源码解析（三）](https://zhuanlan.zhihu.com/p/692614846)
@@ -195,11 +199,11 @@ Kernel：
 
 ## Others
 
-- [ ] [面向 ML 玩家的 Docker 零帧起手](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
+- [ ] [面向 ML 玩家的 Docker 零帧起手 🌟](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
-- [ ] 昇腾社区 msprof 工具使用文档
-- [ ] [GPU/NPU 推理 Profiling 阅读引导（上）](https://mp.weixin.qq.com/s/xNKdTl5cUPnpVe3OQ3wXKg)
-- [ ] [GPU/NPU 推理 Profiling 阅读引导（下）](https://mp.weixin.qq.com/s/Qv15u-dw3jWz3IFCaBnS9A)
+- [ ] 昇腾社区 msprof 工具使用文档（Mind Studio）
+- [ ] [GPU/NPU 推理 Profiling 阅读引导（上）🌟](https://mp.weixin.qq.com/s/xNKdTl5cUPnpVe3OQ3wXKg)
+- [ ] [GPU/NPU 推理 Profiling 阅读引导（下）🌟](https://mp.weixin.qq.com/s/Qv15u-dw3jWz3IFCaBnS9A)
 
 ## 学习资料
 
@@ -210,31 +214,17 @@ Kernel：
 - [猛猿的知乎](https://zhuanlan.zhihu.com/p/654910335)
 - [转行大模型工程师 - 黄哲威](https://zhuanlan.zhihu.com/p/1916911329987503232?share_code=vlp9og7xKQt&utm_psn=1922571024798552459)
 - [100+ 高性能计算与分布式技术博客 - DefTruth](https://github.com/xlite-dev/LeetCUDA?tab=readme-ov-file#-100-%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2)
-- [insujang.github.io](https://insujang.github.io/posts/)（LLM 推理技术）
 - [zhang's Blog](https://www.armcvai.cn/categories.html)
 - [ezyang's Blog](http://blog.ezyang.com/archives/)
-- 月球大叔（b站/小红书）
-- GPU-mode（GitHub）
+
+**论文合集：**
+
 - [LLM 推理论文合集](https://zhuanlan.zhihu.com/p/669777159)
 - [460 篇多模态大语言模型论文合集](https://rcncqctdyl3f.feishu.cn/docx/QyFZd3ig3oiCPgxAvXhc1xPYnch)
 
-**学习课程：**
+**自学课程：**
 
 - Stanford cs336
+- GPU-mode（GitHub）
 - [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
 - [LeetCode 刷题路线图](https://labuladong.online/algo/intro/quick-learning-plan/)
-
-## Question
-
-- 计算访存比？
-- MFU？
-- Roofline 甜点位？
-- MoE 稀疏 & 稠密？
-- 消融实验？
-- NIXL ？
-- threading.Thread(target=ffn_worker_loop, daemon=True)
-- vllm.forward_context
-- DeepEP/DeepGEMM kernels
-- DBO (Dual Batch Overlap)
-
-**零拷贝**：不需要在用户空间和内核空间中来回复制数据。
