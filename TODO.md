@@ -21,7 +21,6 @@
 
 **Concepts:**
 
-- [ ] [NVSHMEM 🌟](https://developer.nvidia.com/nvshmem)
 - [ ] SSD and DRAM
 - [ ] PCIe
 - [ ] Pinned Memory (in-memory storage)
@@ -30,7 +29,9 @@
 - [ ] Roofline
 - [ ] 消融实验
 - [ ] NIXL
-- [ ] 零拷贝：即不需要在用户空间和内核空间中来回复制数据。
+- [ ] NVMe
+- [x] **DMA**: By enabling a direct-memory access (DMA) engine near the network adapter or storage, it moves data into or out of GPU memory—without burdening the CPU.
+- [x] **零拷贝**：即不需要在用户空间和内核空间中来回复制数据。
 
 ## LLM 基础
 
@@ -134,6 +135,7 @@ PD/AF 分离：
 - [ ] [0.5x 提升：PD 分离 KV cache 传输的实践经验 🌟](https://zhuanlan.zhihu.com/p/1946608360259577576)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
+- [ ] [LLM 推理优化：MLA 算力均衡实践（提升 0.3x）](https://mp.weixin.qq.com/s/Hl0D3OJ1nk-4ANgUAoZPNw)
 
 Kernel：
 
@@ -144,6 +146,16 @@ Kernel：
 - [ ] [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑](https://zhuanlan.zhihu.com/p/669926191)
 - [ ] [图解大模型计算加速系列：FlashAttention V2，从原理到并行计算](https://zhuanlan.zhihu.com/p/691067658)
 
+## PyTorch
+
+- [ ] [Graph Mode 🌟](./Open_Source/Projects/vLLM/Features/Graph_Mode/README.md)
+- [ ] [PyTorch internals 🌟](http://blog.ezyang.com/2019/05/pytorch-internals/)
+- [ ] [PyTorch dispatcher 🌟](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)
+- [ ] [PyTorch 显存管理介绍与源码解析（一）](https://zhuanlan.zhihu.com/p/680769942)
+- [ ] [PyTorch 显存管理介绍与源码解析（二）](https://zhuanlan.zhihu.com/p/681651660)
+- [ ] [PyTorch 显存管理介绍与源码解析（三）](https://zhuanlan.zhihu.com/p/692614846)
+- [ ] [PyTorch 显存可视化与 Snapshot 数据分析](https://zhuanlan.zhihu.com/p/677203832)
+
 ## CUDA
 
 - [ ] [20 行代码入门 PyTorch 自定义 CUDA/C++](https://zhuanlan.zhihu.com/p/579395211)
@@ -152,11 +164,10 @@ Kernel：
 - [ ] [CUDA Core Dump: An Effective Tool to Debug Memory Access Issues and Beyond](https://blog.vllm.ai/2025/08/11/cuda-debugging.html)
 - [ ] [高频面试题汇总-大模型手撕 CUDA](https://zhuanlan.zhihu.com/p/678903537)
 - [ ] [LeetCUDA: v3.0 大升级-面试刷题不迷路](https://zhuanlan.zhihu.com/p/19862356369)
-- [ ] [[MLSys 入门向读书笔记] CUDA by Example: An Introduction to General-Purpose GPU Programming（下）](https://zhuanlan.zhihu.com/p/718988880)
-- [ ] [[MLSys 入门向读书笔记] CUDA by Example: An Introduction to General-Purpose GPU Programming（上）](https://zhuanlan.zhihu.com/p/709427098)
+- [ ] [[MLSys 入门向读书笔记] CUDA by Example: An Introduction to General-Purpose GPU Programming（下）🌟](https://zhuanlan.zhihu.com/p/718988880)
+- [ ] [[MLSys 入门向读书笔记] CUDA by Example: An Introduction to General-Purpose GPU Programming（上）🌟](https://zhuanlan.zhihu.com/p/709427098)
 - [ ] [高性能计算方向面试问题总结](https://zhuanlan.zhihu.com/p/721562983)
 - [ ] [pybind 11 doc](https://pybind11.readthedocs.io/en/stable/index.html)
-- [ ] [DiT推理加速综述: Caching](https://zhuanlan.zhihu.com/p/711223667?share_code=14mIAOoTFRYPB&utm_psn=1923895335429832738)
 - [ ] [CUDA 练手小项目 — Parallel Prefix Sum (Scan)](https://zhuanlan.zhihu.com/p/661460705?share_code=pseQOXxySVcl&utm_psn=1902627229709624968)
 - [ ] [手撕 CUDA 算子：高频面试题汇总~](https://mp.weixin.qq.com/s/kSiQZGTumV1QkUhjQKB6Qg)
 - [ ] [CUDA 算子手撕与面试](https://zhuanlan.zhihu.com/p/12661298743?share_code=19eWXGr1v72R0&utm_psn=1920624157227450744)
@@ -170,15 +181,32 @@ Kernel：
 - [x] [CUDA 全局内存高效访问——对齐访问和合并内存访问](https://zhuanlan.zhihu.com/p/1921229353515189126?share_code=1eLd5u0xlqUqc&utm_psn=1921481712455624310)
 - [x] [CUDA 编程之 Memory Coalescing](https://zhuanlan.zhihu.com/p/300785893)
 
-## PyTorch
+[NVIDIA Developer](https://developer.nvidia.com/)：
 
-- [ ] [Graph Mode 🌟](./Open_Source/Projects/vLLM/Features/Graph_Mode/README.md)
-- [ ] [PyTorch internals 🌟](http://blog.ezyang.com/2019/05/pytorch-internals/)
-- [ ] [PyTorch dispatcher 🌟](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)
-- [ ] [PyTorch 显存管理介绍与源码解析（一）](https://zhuanlan.zhihu.com/p/680769942)
-- [ ] [PyTorch 显存管理介绍与源码解析（二）](https://zhuanlan.zhihu.com/p/681651660)
-- [ ] [PyTorch 显存管理介绍与源码解析（三）](https://zhuanlan.zhihu.com/p/692614846)
-- [ ] [PyTorch 显存可视化与 Snapshot 数据分析](https://zhuanlan.zhihu.com/p/677203832)
+Doc:
+
+- [ ] [An Even Easier Introduction to CUDA (Updated)](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
+- [x] [NVIDIA CUDA-X Libraries](https://developer.nvidia.com/gpu-accelerated-libraries)
+  - [ ] [CUTLASS](https://docs.nvidia.com/cutlass/index.html)
+  - [ ] [TensorRT](https://developer.nvidia.com/tensorrt)
+  - [ ] [cuDNN](https://developer.nvidia.com/cudnn)
+- [x] [NVIDIA Magnum IO](https://www.nvidia.com/en-us/data-center/magnum-io/)
+  - [x] [GPUDirect](https://developer.nvidia.com/gpudirect)
+    - [x] [GPUDirect Storage](https://developer.nvidia.com/gpudirect-storage)
+    - [ ] [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/?ncid=no-ncid)
+    - [ ] GPUDirect P2P
+    - [ ] GPUDirect Video
+  - [x] [NVSHMEM](https://developer.nvidia.com/nvshmem)
+    - [ ] [NVSHMEM Introduction](https://docs.nvidia.com/nvshmem/api/introduction.html)
+    - [ ] IBGDA (InfiniBand GPUDirect Async)
+  - [ ] NCCL
+
+Blog: [Inference Performance](https://developer.nvidia.com/blog/tag/inference-performance/)
+
+- [ ] [Accelerating IO in the Modern Data Center: Magnum IO Architecture](https://developer.nvidia.com/blog/accelerating-io-in-the-modern-data-center-magnum-io-architecture?ncid=no-ncid)
+- [ ] [GPUDirect Storage: A Direct Path Between Storage and GPU Memory](https://developer.nvidia.com/blog/gpudirect-storage/?ncid=no-ncid)
+- [ ] [Scaling Scientific Computing with NVSHMEM](https://developer.nvidia.com/blog/scaling-scientific-computing-with-nvshmem/)
+- [x] [IBGDA: Improving Network Performance of HPC Systems Using NVIDIA Magnum IO NVSHMEM and GPUDirect Async](https://developer.nvidia.com/blog/improving-network-performance-of-hpc-systems-using-nvidia-magnum-io-nvshmem-and-gpudirect-async/)
 
 ## Research
 
@@ -216,6 +244,7 @@ Kernel：
 - [100+ 高性能计算与分布式技术博客 - DefTruth](https://github.com/xlite-dev/LeetCUDA?tab=readme-ov-file#-100-%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2)
 - [zhang's Blog](https://www.armcvai.cn/categories.html)
 - [ezyang's Blog](http://blog.ezyang.com/archives/)
+- [Research Journey](https://xtra-computing.github.io/raintreebook/)
 
 **论文合集：**
 

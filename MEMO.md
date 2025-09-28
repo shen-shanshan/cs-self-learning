@@ -133,6 +133,14 @@ git clone -b 分支名 仓库地址
 git cherry-pick <commitHash>
 git checkout -b <branch_name> <tag_name>
 
+git fetch --tags
+# 查看所有 tag
+git tag -l
+# 切换到 v2.0.1 标签并创建分支
+git checkout -b release-2.0.1 v2.0.1
+# 或者直接查看 tag 内容（这会进入"分离头指针"状态，在此状态下的修改需要创建新分支来保存）
+git checkout v2.0.1
+
 # 回退到某个commit（包含该commit之后的所有更改）
 git revert <commit-hash>..HEAD --no-edit
 # 回退单个commit
