@@ -101,7 +101,9 @@ DeepSeek：
 
 vLLM：
 
-- [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记 🌟](https://mp.weixin.qq.com/s/JCzBtIAMVOiNtisHxZBTUw)
+- [ ] [Distributed Inference with vLLM 🌟](https://blog.vllm.ai/2025/02/17/distributed-inference.html)
+- [ ] [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention 🌟](https://blog.vllm.ai/2023/06/20/vllm.html)
+- [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记 🌟](https://zhuanlan.zhihu.com/p/1955402895890560120)
 - [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理 🌟](https://zhuanlan.zhihu.com/p/691038809)
 - [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
 - [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)

@@ -38,6 +38,11 @@ torch:
 - [ ] [ALaaS](https://github.com/HuaizhengZhang/Active-Learning-as-a-Service)
 - [ ] copy `~/.cache/vllm/torch_compile_cache` - [doc](https://docs.vllm.ai/en/latest/design/torch_compile.html#compilation-cache)
 
+## Paper List
+
+- [ ] [大模型推理加速技术的学习路线是什么?](https://www.zhihu.com/question/591646269/answer/93480081073)
+- [ ] [请问一下，将来如果打算做AI infra的工作需要在读博前学习什么呢，以及这个方向的前景如何？](https://www.zhihu.com/question/3627356519/answer/1954947783241994585)
+
 ## Notes
 
 弹性扩缩容：
