@@ -220,9 +220,11 @@ sysctl -w net.ipv4.ip_local_reserved_ports=60000-60015
 import os
 from modelscope import snapshot_download
 
-os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"
+os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"  # Coder
+os.environ["MODELSCOPE_CACHE"] = "/data/disk2/cache/modelscope/hub"  # A2 (01)
 os.environ["MODELSCOPE_CACHE"] = "/root/.cache/modelscope/hub"  # A3
-model_dir = snapshot_download('ZhipuAI/glm-4-9b')
+
+model_dir = snapshot_download('ZhipuAI/GLM-4.5-Air')
 ```
 
 ```bash
