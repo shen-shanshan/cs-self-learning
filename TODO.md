@@ -68,6 +68,8 @@ DeepSeek：
 - [ ] [带你从头发明 MLA](https://zhuanlan.zhihu.com/p/1911795330434986569)
 - [ ] [Implementation of Multi-Head Latent Attention (MLA) mechanism](https://github.com/Sailkiki/MLA-DeepSeekV3)
 - [ ] [超细图解 MLA 计算流 & 吸收矩阵对比分析](https://zhuanlan.zhihu.com/p/1948769945132470860)
+- [ ] [DeepSeek-V3.2-Exp 版本更新，有哪些信息值得关注？](https://www.zhihu.com/question/1956013610666005512/answer/1956104405892969405?share_code=18u0uUzQDSDeP&utm_psn=1956143330766324043)
+- [ ] [学习一下 DeepSeek-V3.2](https://mp.weixin.qq.com/s/LYhfpduM72hEJJGe2GFDXw)
 
 Others：
 
@@ -101,6 +103,7 @@ DeepSeek：
 
 vLLM：
 
+- [ ] [LMCache + vLLM 实战指南，让大模型的推理速度显著提升！](https://mp.weixin.qq.com/s/J2iyrSjJ7JYjoHoIMAQP4w)
 - [ ] [Distributed Inference with vLLM 🌟](https://blog.vllm.ai/2025/02/17/distributed-inference.html)
 - [ ] [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention 🌟](https://blog.vllm.ai/2023/06/20/vllm.html)
 - [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记 🌟](https://zhuanlan.zhihu.com/p/1955402895890560120)
@@ -134,6 +137,7 @@ Speculative Decoding：
 
 PD/AF 分离：
 
+- [ ] [Step3 大模型 AE 分离的量化解析，兼谈 DeepSeek 为何不分离](https://mp.weixin.qq.com/s/8zGNWlEyZISgJXm9ygg_1w)
 - [ ] [0.5x 提升：PD 分离 KV cache 传输的实践经验 🌟](https://zhuanlan.zhihu.com/p/1946608360259577576)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
@@ -147,6 +151,11 @@ Kernel：
 - [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
 - [ ] [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑](https://zhuanlan.zhihu.com/p/669926191)
 - [ ] [图解大模型计算加速系列：FlashAttention V2，从原理到并行计算](https://zhuanlan.zhihu.com/p/691067658)
+- [ ] [Flash Attention 学习过程详解](https://www.bilibili.com/video/BV1FM9XYoEQ5/?buvid=XX09F7F01632BC5A89A856F4746F7484F93FD&from_spmid=main.space-contribution.0.0&is_story_h5=false&mid=7x3gpfL5LaqpE%2FSuWLsT4A%3D%3D&p=7&plat_id=116&share_from=ugc&share_medium=android&share_plat=android&share_session_id=164cfebd-b6f9-4d1a-9140-6cea76c26bb1&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1758016444&unique_k=Sv4E1Ev&up_id=218427631&vd_source=2754a9b73cb316d2cad8eb1195f5aa23)
+
+通信：
+
+- [ ] [集合通信库 VCCL 释放 GPU 极致算力，创智、基流、智谱、联通、北航、清华、东南重磅开源](https://mp.weixin.qq.com/s/_Tb5FGApGrAl7_Wjym1Ejg)
 
 ## PyTorch
 
@@ -247,6 +256,7 @@ Blog: [Inference Performance](https://developer.nvidia.com/blog/tag/inference-pe
 - [zhang's Blog](https://www.armcvai.cn/categories.html)
 - [ezyang's Blog](http://blog.ezyang.com/archives/)
 - [Research Journey](https://xtra-computing.github.io/raintreebook/)
+- [How to Scale Your Model](https://jax-ml.github.io/scaling-book/)
 
 **论文合集：**
 
@@ -256,6 +266,8 @@ Blog: [Inference Performance](https://developer.nvidia.com/blog/tag/inference-pe
 **自学课程：**
 
 - Stanford cs336
+  - 视频：b 站
+  - 课件：[link](https://github.com/stanford-cs336/spring2025-lectures)
 - GPU-mode（GitHub）
 - [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
 - [LeetCode 刷题路线图](https://labuladong.online/algo/intro/quick-learning-plan/)
