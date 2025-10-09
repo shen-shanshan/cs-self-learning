@@ -45,7 +45,12 @@ torch:
 
 ## Notes
 
-弹性扩缩容：
+**状态：**
 
-- **Attention** 模块可根据 **Seq Length** 动态调整规模；
-- **FFN** 模块则依据 **Batch Size** 实现弹性扩缩容。
+- **Stateful Attention Layers:** These layers maintain the Key-Value (KV) cache, which stores the **contextual state** for each individual generation sequence. This component is inherently stateful and session-specific.
+- **Stateless MoE Layers:** The expert networks within MoE layers perform a pure, idempotent function. They take a token’s hidden state as input and produce an output, without retaining any memory or state from previous tokens in the same sequence.
+
+**弹性：**
+
+- **Attention 模块**：根据 **Seq Length** 动态伸缩；
+- **FFN 模块**：根据 **Batch Size** 动态伸缩。

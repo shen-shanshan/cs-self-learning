@@ -292,7 +292,10 @@ I have rebased on the latest main and nothing changed.
 ## Ascend 01
 
 ```bash
+docker pull quay.nju.edu.cn/ascend/vllm-ascend:main
+
 export IMAGE=quay.io/ascend/vllm-ascend:main
+export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main
 
 docker run \
 --name sss \
@@ -323,7 +326,7 @@ docker-compose -p sss up -d
 ```yaml
 services:
   sss:
-    image: quay.io/ascend/vllm-ascend:main
+    image: quay.nju.edu.cn/ascend/vllm-ascend:main
     container_name: sss
     volumes:
       - /usr/local/dcmi:/usr/local/dcmi
@@ -340,7 +343,8 @@ services:
     hostname: ascend-01
     tty: true
     devices:
-      - /dev/davinci1
+      - /dev/davinci4
+      - /dev/davinci5
       - /dev/davinci_manager
       - /dev/devmm_svm
       - /dev/hisi_hdc

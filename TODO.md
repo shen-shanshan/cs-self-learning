@@ -18,6 +18,7 @@
 - [ ] copy.deepcopy
 - [ ] threading: Event(set/is_set), Thread(start/join)
 - [ ] time: perf_counter
+- [ ] functools: cache
 
 **Concepts:**
 
