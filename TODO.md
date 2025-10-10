@@ -2,12 +2,12 @@
 
 ## Tasks
 
-- [vLLM TODO](./Open_Source/Projects/vLLM/TODO.md)
-- [AFD TODO](./Research/Projects/Elastic-AFD/TODO.md)
+- [vLLM & vLLM-Ascend](./Open_Source/Projects/vLLM/TODO.md)
+- [Elastic-AFD](./Research/Projects/Elastic-AFD/TODO.md)
 
 **TODO（P0）：**
 
-- [ ] 计算 AFD 资料（AFD Connector）
+- [x] 计算 AFD 资料（AFD Connector）
 - [ ] profiling 博客与实操
 - [ ] fusedMoE 文档与代码
 - [ ] vLLM 并行（并行配制、DPLB）
@@ -22,17 +22,20 @@
 
 **Concepts:**
 
+- [ ] 动态通信链
 - [ ] SSD and DRAM
 - [ ] PCIe
 - [ ] Pinned Memory (in-memory storage)
 - [ ] 计算访存比
 - [ ] MFU
 - [ ] Roofline
-- [ ] 消融实验
+- [x] 消融实验
 - [ ] NIXL
 - [ ] NVMe
 - [x] **DMA**: By enabling a direct-memory access (DMA) engine near the network adapter or storage, it moves data into or out of GPU memory—without burdening the CPU.
 - [x] **零拷贝**：即不需要在用户空间和内核空间中来回复制数据。
+
+---
 
 ## LLM 基础
 
@@ -193,9 +196,11 @@ Kernel：
 - [x] [CUDA 全局内存高效访问——对齐访问和合并内存访问](https://zhuanlan.zhihu.com/p/1921229353515189126?share_code=1eLd5u0xlqUqc&utm_psn=1921481712455624310)
 - [x] [CUDA 编程之 Memory Coalescing](https://zhuanlan.zhihu.com/p/300785893)
 
-[NVIDIA Developer](https://developer.nvidia.com/)：
+---
 
-Doc:
+**[NVIDIA Developer](https://developer.nvidia.com/)：**
+
+Docs:
 
 - [ ] [An Even Easier Introduction to CUDA (Updated)](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
 - [x] [NVIDIA CUDA-X Libraries](https://developer.nvidia.com/gpu-accelerated-libraries)
@@ -213,12 +218,15 @@ Doc:
     - [ ] IBGDA (InfiniBand GPUDirect Async)
   - [ ] NCCL
 
-Blog: [Inference Performance](https://developer.nvidia.com/blog/tag/inference-performance/)
+Blogs:
 
+- [ ] [Getting Started with CUDA Graphs](https://developer.nvidia.com/blog/cuda-graphs/)
 - [ ] [Accelerating IO in the Modern Data Center: Magnum IO Architecture](https://developer.nvidia.com/blog/accelerating-io-in-the-modern-data-center-magnum-io-architecture?ncid=no-ncid)
 - [ ] [GPUDirect Storage: A Direct Path Between Storage and GPU Memory](https://developer.nvidia.com/blog/gpudirect-storage/?ncid=no-ncid)
-- [ ] [Scaling Scientific Computing with NVSHMEM](https://developer.nvidia.com/blog/scaling-scientific-computing-with-nvshmem/)
+- [x] [Scaling Scientific Computing with NVSHMEM](https://developer.nvidia.com/blog/scaling-scientific-computing-with-nvshmem/)
 - [x] [IBGDA: Improving Network Performance of HPC Systems Using NVIDIA Magnum IO NVSHMEM and GPUDirect Async](https://developer.nvidia.com/blog/improving-network-performance-of-hpc-systems-using-nvidia-magnum-io-nvshmem-and-gpudirect-async/)
+
+> Find More: [NV Blogs: Inference Performance](https://developer.nvidia.com/blog/tag/inference-performance/)
 
 ## Research
 
