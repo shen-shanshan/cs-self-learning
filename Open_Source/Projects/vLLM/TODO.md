@@ -1,5 +1,7 @@
 # TODO
 
+- [Multi-Modal Tasks](./Multi-Modal/TODO.md)
+
 ## 开发任务
 
 - Mamba attn backend plugin
@@ -34,11 +36,22 @@
 - [ ] FusedMoE in vllm-ascend
 - [x] EPLB [#18343](https://github.com/vllm-project/vllm/pull/18343)
 
+### Async Scheduling
+
+- [x] Restructure the core loop to allow more asynchrony [#23233](https://github.com/vllm-project/vllm/issues/23233)
+- [ ] Fully overlap model execution [#23569](https://github.com/vllm-project/vllm/pull/23569)
+
+```
+vllm_config.scheduler_config.async_scheduling
+```
+
 ### Dual Batch Overlap
 
 - [x] [Dual Batch Overlap](https://docs.vllm.ai/en/latest/design/dbo.html?h=dual+batch+overlap)
 - [x] Add support for "splitting" the CommonAttentionMetadata [#21153](https://github.com/vllm-project/vllm/pull/21153)
 - [ ] Add Dual-Batch Overlap mechanism to VLLM [#23693](https://github.com/vllm-project/vllm/pull/23693)
+- [ ] Dual-Batch Overlap add DeepEP High Throughput support and Prefill support [#24845](https://github.com/vllm-project/vllm/pull/24845)
+- [ ] Reduce the Cuda Graph memory footprint when running with DBO [#25779](https://github.com/vllm-project/vllm/pull/25779)
 
 ### CUDA Graph
 
@@ -59,7 +72,6 @@
 - [ ] [Paged Attention](https://docs.vllm.ai/en/latest/design/paged_attention.html)
 - [ ] [Plugin System](https://docs.vllm.ai/en/latest/design/plugin_system.html)
 - [x] forward_context
-- [ ] Fully overlap model execution [#23569](https://github.com/vllm-project/vllm/pull/23569)
 - [ ] model_runner input_batch
 - [ ] DeviceMemoryProfiler
 
@@ -67,5 +79,7 @@
 
 - [ ] vLLM 分离式架构 - 从 PD 分离到 AF 分离
 - [ ] vLLM 推理可靠性 - 弹性伸缩与容错
+- [ ] 异步 ModelRunner - DBO/TBO
+- [ ] 多模态
 - [x] V1 整体流程
 - [x] Guided Decoding V0/V1

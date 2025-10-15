@@ -2,8 +2,9 @@
 
 ## Tasks
 
-- [vLLM & vLLM-Ascend](./Open_Source/Projects/vLLM/TODO.md)
-- [Elastic-AFD](./Research/Projects/Elastic-AFD/TODO.md)
+- [vLLM & vLLM-Ascend Tasks](./Open_Source/Projects/vLLM/TODO.md)
+- [Elastic-AFD Tasks](./Research/Projects/Elastic-AFD/TODO.md)
+- [Multi-Modal Tasks](./Open_Source/Projects/vLLM/Multi-Modal/TODO.md)
 
 **TODO（P0）：**
 
