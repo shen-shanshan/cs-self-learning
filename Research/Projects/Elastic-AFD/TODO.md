@@ -1,14 +1,22 @@
 # Elastic-AFD TODO
 
+## 待办事项
+
+- [ ] 看 AFD 弹性分析资料
+- [ ] 看 ACLGraph 技术文档
+- [ ] 看 vllm DP 相关代码
+- [ ] 写 vllm AFD 弹性 RFC
+
 ## 论文阅读
 
+- [ ] PipeDream
 - [ ] BurstGPT
 - [x] ElasWave
 - [x] EaaS
 - [x] Step3 AFD
 - [x] serverlessLLM
 
-## 源码学习
+## 源码阅读
 
 - [ ] AFD implementation for dsv3 [#3447](https://github.com/vllm-project/vllm-ascend/pull/3447)
 - [ ] Draft AFD implementation for step3 [#25162](https://github.com/vllm-project/vllm/pull/25162)

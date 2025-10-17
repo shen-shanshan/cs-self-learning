@@ -3,8 +3,8 @@
 ## 环境搭建
 
 - [Preparation](./AI/AI_Infra/Environment_Preparation/README.md)
-- [Init env script](./AI/AI_Infra/Environment_Preparation/scripts/init_env_a3.sh)
 - [Dockerfile](./Tools/Docker/Dockerfiles/README.md)
+- [Init env script](./AI/AI_Infra/Environment_Preparation/scripts/init_env.sh)
 
 ## Linux
 
@@ -319,6 +319,7 @@ docker run \
 
 cd /home/sss/
 docker-compose -p sss up -d
+docker-compose -p sss-cann-test up -d
 ```
 
 `docker-compose.yaml`：

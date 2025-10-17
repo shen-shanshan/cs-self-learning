@@ -116,6 +116,28 @@ source /home/sss/Ascend/nnal/atb/set_env.sh
 cat /home/sss/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
 ```
 
+Install CANN `8.3.RC1.alpha003`:
+
+```bash
+wget --header="Referer: https://www.hiascend.com/" https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/Milan-ASL/Milan-ASL%20V100R001C23B800TP024/Ascend-cann-toolkit_8.3.RC1.alpha003_linux-aarch64.run
+chmod +x Ascend-cann-toolkit_8.3.RC1.alpha003_linux-aarch64.run
+./Ascend-cann-toolkit_8.3.RC1.alpha003_linux-aarch64.run --full
+
+source /usr/local/Ascend/ascend-toolkit/set_env.sh
+
+wget --header="Referer: https://www.hiascend.com/" https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/Milan-ASL/Milan-ASL%20V100R001C23B800TP024/Ascend-cann-kernels-910b_8.3.RC1.alpha003_linux-aarch64.run
+chmod +x ./Ascend-cann-kernels-910b_8.3.RC1.alpha003_linux-aarch64.run
+./Ascend-cann-kernels-910b_8.3.RC1.alpha003_linux-aarch64.run --install
+
+wget --header="Referer: https://www.hiascend.com/" https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/Milan-ASL/Milan-ASL%20V100R001C23B800TP024/Ascend-cann-nnal_8.3.RC1.alpha003_linux-aarch64.run
+chmod +x ./Ascend-cann-nnal_8.3.RC1.alpha003_linux-aarch64.run
+./Ascend-cann-nnal_8.3.RC1.alpha003_linux-aarch64.run --install
+
+source /usr/local/Ascend/nnal/atb/set_env.sh
+
+cat /usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info
+```
+
 ### 安装 vllm & vllm-ascend
 
 ```bash
