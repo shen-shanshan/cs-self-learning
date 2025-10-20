@@ -74,6 +74,7 @@ echo "-------------------------------------------------------------------------"
 cd /home/sss/software/miniconda/
 bash Miniconda3-latest-Linux-aarch64.sh
 source ~/.bashrc
+# eval "$(/root/miniconda3/bin/conda shell.bash hook)"
 conda create -n vllm python=3.10 -y
 conda activate vllm
 

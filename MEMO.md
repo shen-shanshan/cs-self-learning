@@ -67,6 +67,7 @@ set number
 其它：
 
 ```bash
+# sudo apt install tmux -y
 tmux ls
 tmux new -s download
 # 基本操作
