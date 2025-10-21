@@ -2,10 +2,10 @@
 
 ## 待办事项
 
-- [ ] 看 AFD 弹性分析资料
-- [ ] 看 ACLGraph 技术文档
-- [ ] 看 vllm DP 相关代码
-- [ ] 写 vllm AFD 弹性 RFC
+- [x] 看 AFD 弹性分析资料
+- [x] 看 ACLGraph 技术文档
+- [x] 看 vllm DP 相关代码
+- [x] 写 vllm AFD 弹性 RFC
 
 ## 论文阅读
 

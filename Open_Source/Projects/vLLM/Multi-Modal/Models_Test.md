@@ -17,29 +17,9 @@ export HF_ENDPOINT="https://hf-mirror.com"
 pip install lm-eval
 ```
 
-## Qwen2.5-VL-7B-Instruct
+## Acc Test
 
 ```bash
-vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct \
---max_model_len 16384 \
---max-num-batched-tokens 16384 \
---tensor-parallel-size 2 \
---enforce-eager
-
-curl -X POST http://localhost:8000/v1/chat/completions \
-    -H "Content-Type: application/json" \
-    -d '{
-        "model": "/root/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct",
-        "messages": [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": [
-                {"type": "image_url", "image_url": {"url": "https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png"}},
-                {"type": "text", "text": "What is the text in the illustrate? How does it look?"}
-            ]}
-        ],
-        "max_tokens": 100
-    }'
-
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
 lm_eval \
@@ -47,8 +27,11 @@ lm_eval \
 --model_args pretrained=/root/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct,max_model_len=4096 \
 --tasks mmmu_val \
 --batch_size auto
+```
 
+报错：
 
+```bash
 2025-10-20:09:40:15 INFO     [evaluator:574] Running generate_until requests
 Adding requests:   0%|                                                                                                               | 0/900 [00:04<?, ?it/s]
 Traceback (most recent call last):                                                                                                   | 0/900 [00:00<?, ?it/s]
@@ -98,11 +81,99 @@ AssertionError: Failed to apply prompt replacement for mm_items['image'][0]
 [ERROR] 2025-10-20-09:40:20 (PID:31615, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
 ```
 
+## Qwen2-Audio-7B-Instruct
+
+```python
+from vllm.assets.audio import AudioAsset
+
+audio_url = AudioAsset("winning_call").url
+print(audio_url)
+# https://vllm-public-assets.s3.us-west-2.amazonaws.com/multimodal_asset/winning_call.ogg
+```
+
+```bash
+vllm serve /root/.cache/modelscope/models/Qwen/Qwen2-Audio-7B-Instruct \
+--max_model_len 4096 \
+--trust-remote-code \
+--tensor-parallel-size 2 \
+--limit-mm-per-prompt '{"audio":2}' \
+--chat-template /home/sss/vllm/template_qwen2_audio.jinja \
+--enforce-eager
+
+curl -X POST http://localhost:8000/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "/root/.cache/modelscope/models/Qwen/Qwen2-Audio-7B-Instruct",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": [
+                {"type": "audio_url", "audio_url": {"url": "https://vllm-public-assets.s3.us-west-2.amazonaws.com/multimodal_asset/winning_call.ogg"}},
+                {"type": "text", "text": "What is in this audio? How does it sound?"}
+            ]}
+        ],
+        "max_tokens": 100
+    }'
+```
+
+## Qwen2.5-VL-7B-Instruct
+
+```bash
+vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct \
+--max_model_len 16384 \
+--max-num-batched-tokens 16384 \
+--tensor-parallel-size 2 \
+--enforce-eager
+
+curl -X POST http://localhost:8000/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "/root/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": [
+                {"type": "image_url", "image_url": {"url": "https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png"}},
+                {"type": "text", "text": "What is the text in the illustrate? How does it look?"}
+            ]}
+        ],
+        "max_tokens": 100
+    }'
+
+export VLLM_USE_MODELSCOPE=False
+export HF_ENDPOINT="https://hf-mirror.com"
+lm_eval \
+--model vllm-vlm \
+--model_args pretrained=/root/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct,max_model_len=4096 \
+--tasks mmmu_val \
+--batch_size auto
+```
+
+## Qwen3-VL-8B-Instruct
+
+```bash
+vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
+--max_model_len 16384 \
+--max-num-batched-tokens 16384 \
+--tensor-parallel-size 2 \
+--enforce-eager
+
+curl -X POST http://localhost:8000/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "/root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": [
+                {"type": "image_url", "image_url": {"url": "https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png"}},
+                {"type": "text", "text": "What is the text in the illustrate? How does it look?"}
+            ]}
+        ],
+        "max_tokens": 100
+    }'
+```
+
 ## Qwen3-VL-30B-A3B-Instruct
 
 ```bash
-/root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-30B-A3B-Instruct
-
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-30B-A3B-Instruct \
 --max_model_len 16384 \
 --max-num-batched-tokens 16384 \

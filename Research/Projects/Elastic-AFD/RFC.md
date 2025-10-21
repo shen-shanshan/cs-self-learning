@@ -65,3 +65,7 @@ Add: call compile_or_warm_up_model() in the worker or shutdown current rank.
 Recoverer (EP granularity):
 `detect_fault()` -> `stop_device()` -> `reinitialize_distributed()`/`reinitialize_afd_connector()`
 
+---
+
+宇新，想请教下 afd connector 的 reconfig 这个动作应该放在哪里和什么时候～
+这个是属于 elastic controller 整体 reconfig 一下就行，还是需要每个 engine core 和 ffn executor 的 worker 都要重配。
