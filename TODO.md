@@ -23,7 +23,7 @@
 
 **Concepts:**
 
-- [ ] 动态通信链
+- [x] 动态通信链
 - [ ] SSD and DRAM
 - [ ] PCIe
 - [ ] Pinned Memory (in-memory storage)
@@ -109,7 +109,7 @@ DeepSeek：
 vLLM：
 
 - [ ] [LMCache + vLLM 实战指南，让大模型的推理速度显著提升！](https://mp.weixin.qq.com/s/J2iyrSjJ7JYjoHoIMAQP4w)
-- [ ] [Distributed Inference with vLLM 🌟](https://blog.vllm.ai/2025/02/17/distributed-inference.html)
+- [ ] [Distributed Inference with vLLM](https://blog.vllm.ai/2025/02/17/distributed-inference.html)
 - [ ] [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention 🌟](https://blog.vllm.ai/2023/06/20/vllm.html)
 - [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记 🌟](https://zhuanlan.zhihu.com/p/1955402895890560120)
 - [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理 🌟](https://zhuanlan.zhihu.com/p/691038809)
@@ -231,17 +231,9 @@ Blogs:
 
 ## Research
 
-- [ ] [Research Taste Exercises](https://colah.github.io/notes/taste/)
-- [ ] [锻炼研究品味的种种方法](https://zhuanlan.zhihu.com/p/1904764443784647788)
-- [ ] [论文阅读模板](https://wentao.site/flash_attention_v3_summary/)
-- [ ] [科研能力是指什么能力？](https://www.zhihu.com/question/60042037/answer/3601970421)
-- [ ] [Writing AI Conference Papers: A Handbook for Beginners「黄哲威」](https://github.com/hzwer/WritingAIPaper)
+- [ ] [Writing AI Conference Papers: A Handbook for Beginners（GitHub）](https://github.com/hzwer/WritingAIPaper)
 - [ ] [读博那些事儿](https://zhuanlan.zhihu.com/p/82579410?share_code=1mKWQMYAGFAZ6&utm_psn=1922088666123198736)
-- [ ] [《Instructions for PhD Students》：Dimitris 给 PhD 学生的忠告](https://zhuanlan.zhihu.com/p/400248999?share_code=1a4eZuv2CLy0K&utm_psn=1920625675238372098)
-- [ ] [怎么知道自己适不适合读博？](https://www.zhihu.com/question/13724964306?share_code=1ocLZTWwEgGkz&utm_psn=1920484065313821698)
-- [ ] [写在 Ph.D 第 0 年：AI/CV 科研菜鸟的持续进阶之路](https://zhuanlan.zhihu.com/p/960781637?share_code=13GKbPaHvl60E&utm_psn=1904443459802206715)
-- [ ] [CS 读博总结和建议文章](https://zhuanlan.zhihu.com/p/347223193)
-- [ ] [科研大牛们怎么读文献？](https://www.zhihu.com/question/21278186/answer/1269255636)
+- [ ] [CS 读博总结和建议文章（合集）🌟](https://zhuanlan.zhihu.com/p/347223193)
 - [ ] [Awesome Reading Material for phd](https://galeselee.gitbook.io/awesome-papers/awesome_reading_material)
 - [ ] [Doing The PhD](https://github.com/shengyp/doing_the_PhD)
 - [ ] [博士申请套磁信的撰写模板](https://mp.weixin.qq.com/s/u1YtAqHKmFrfpG1KI_lBSg)

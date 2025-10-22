@@ -113,6 +113,9 @@ curl -X POST http://localhost:8000/v1/chat/completions \
         ],
         "max_tokens": 100
     }'
+
+# output:
+{"id":"chatcmpl-31f5f698f6734a4297f6492a830edb3f","object":"chat.completion","created":1761097383,"model":"/root/.cache/modelscope/models/Qwen/Qwen2-Audio-7B-Instruct","choices":[{"index":0,"message":{"role":"assistant","content":"The audio contains a background of a crowd cheering, a ball bouncing, and an object being hit. A man speaks in English saying 'and the o one pitch on the way to edgar martinez swung on and lined out.' The speech has a happy mood.","refusal":null,"annotations":null,"audio":null,"function_call":null,"tool_calls":[],"reasoning_content":null},"logprobs":null,"finish_reason":"stop","stop_reason":null,"token_ids":null}],"service_tier":null,"system_fingerprint":null,"usage":{"prompt_tokens":689,"total_tokens":743,"completion_tokens":54,"prompt_tokens_details":null},"prompt_logprobs":null,"prompt_token_ids":null,"kv_transfer_params":null}
 ```
 
 ## Qwen2.5-VL-7B-Instruct
