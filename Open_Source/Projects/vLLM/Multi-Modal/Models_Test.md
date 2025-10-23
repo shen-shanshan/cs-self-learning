@@ -10,16 +10,17 @@ git checkout -b v0.11.0rc3 v0.11.0rc3
 # vllm-ascend
 git checkout -b v0.11.0rc0 v0.11.0rc0
 
+tmux attach -t download
+
 eval "$(/root/miniconda3/bin/conda shell.bash hook)"
 conda activate vllm
-
-export HF_ENDPOINT="https://hf-mirror.com"
-pip install lm-eval
 ```
 
 ## Acc Test
 
 ```bash
+pip install lm-eval
+
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
 lm_eval \
