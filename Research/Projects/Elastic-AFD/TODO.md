@@ -23,3 +23,9 @@
 - [x] Elastic Expert Parallel Initial Support [#20775](https://github.com/vllm-project/vllm/pull/20775)
 - [x] ATTN-FFN Disaggregation for MoE Models [#22799](https://github.com/vllm-project/vllm/issues/22799)
 - [x] Elastic Expert Parallelism [#20323](https://github.com/vllm-project/vllm/issues/20323)
+
+---
+
+- [kvcached](https://github.com/ovg-project/kvcached)
+- [Solve the GPU Cost Crisis with kvcached](https://yifanqiao.notion.site/Solve-the-GPU-Cost-Crisis-with-kvcached-289da9d1f4d68034b17bf2774201b141)
+- [专家即服务(EaaS)解读，大规模DeepSeek类MoE模型推理的高效通信实现和一些碎碎念](https://zhuanlan.zhihu.com/p/1961841132536338098)

@@ -288,6 +288,9 @@ I have rebased on the latest main and nothing changed.
 # 常用快捷键
 折叠所有：Ctrl/Cmd + K + 0
 展开所有：Ctrl/Cmd + K + J
+
+# vllm 代码阅读（排除文件）
+*.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,test*.py,*.cmake,examples/*,tests/*,
 ```
 
 ## Ascend 01
