@@ -23,7 +23,7 @@ echo "export PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256" >> ~/.bashrc
 echo "export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi" >> ~/.bashrc
 echo "export LD_LIBRARY_PATH=/usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/devlib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo "export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH" >> ~/.bashrc
-source ~/.bashrc
+# source ~/.bashrc
 # export LD_LIBRARY_PATH=/usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/devlib:$LD_LIBRARY_PATH
 # export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH
 
@@ -83,8 +83,8 @@ cd /vllm-workspace/vllm/
 git remote remove origin
 git remote add origin git@github.com:shen-shanshan/vllm.git
 git remote add upstream git@github.com:vllm-project/vllm.git
-git cb main
-git sync
+git fetch upstream
+git nb main
 VLLM_TARGET_DEVICE=empty pip install -v -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 pre-commit install
 
@@ -95,7 +95,7 @@ git remote remove origin
 git remote add origin git@github.com:shen-shanshan/vllm-ascend.git
 git remote add upstream git@github.com:vllm-project/vllm-ascend.git
 # git fetch origin
-git cb main
+# git cb main
 git sync
 source /usr/local/Ascend/ascend-toolkit/set_env.sh
 source /usr/local/Ascend/nnal/atb/set_env.sh

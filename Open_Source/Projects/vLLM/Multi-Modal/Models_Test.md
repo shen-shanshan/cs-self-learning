@@ -10,11 +10,19 @@ git checkout -b v0.11.0rc3 v0.11.0rc3
 # vllm-ascend
 git checkout -b v0.11.0rc0 v0.11.0rc0
 
+# vllm
+17c540a
+git reset --hard 17c540a993af88204ad1b78345c8a865cf58ce44
+# vllm-ascend
+main
+
 tmux attach -t download
 python download.py
 
 eval "$(/root/miniconda3/bin/conda shell.bash hook)"
 conda activate vllm
+
+export HCCL_BUFFSIZE=1024
 ```
 
 ## Acc Test
@@ -182,7 +190,7 @@ curl -X POST http://localhost:8000/v1/chat/completions \
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-30B-A3B-Instruct \
 --max_model_len 16384 \
 --max-num-batched-tokens 16384 \
---tensor-parallel-size 2 \
+--tensor-parallel-size 4 \
 --enable-expert-parallel \
 --enforce-eager
 
@@ -190,6 +198,41 @@ curl -X POST http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
     -d '{
         "model": "/root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-30B-A3B-Instruct",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": [
+                {"type": "image_url", "image_url": {"url": "https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png"}},
+                {"type": "text", "text": "What is the text in the illustrate? How does it look?"}
+            ]}
+        ],
+        "max_tokens": 100
+    }'
+
+--max_model_len  # 手动设置的值不应超过模型本身的位置编码能力（max_position_embeddings）
+"max_position_embeddings": 262144  # 这通常是模型在训练时见过的最长序列长度，也是该模型能保证效果的安全长度
+
+vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-30B-A3B-Instruct \
+--max_model_len 262144 \
+--tensor-parallel-size 4 \
+--enable-expert-parallel \
+--enforce-eager
+```
+
+## Qwen3-Omni-30B-A3B-Instruct
+
+```bash
+vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-Omni-30B-A3B-Instruct \
+--max_model_len 16384 \
+--tensor-parallel-size 4 \
+--enable-expert-parallel \
+--enforce-eager
+
+--max-num-batched-tokens 16384 \
+
+curl -X POST http://localhost:8000/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "/root/.cache/modelscope/hub/models/Qwen/Qwen3-Omni-30B-A3B-Instruct",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": [
