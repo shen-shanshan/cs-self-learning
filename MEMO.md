@@ -290,7 +290,7 @@ I have rebased on the latest main and nothing changed.
 展开所有：Ctrl/Cmd + K + J
 
 # vllm 代码阅读（排除文件）
-*.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,test*.py,*.cmake,examples/*,tests/*,
+*.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,test*.py,*.cmake,examples/*,tests/*,*.sh,*.env
 ```
 
 ## Ascend 01
