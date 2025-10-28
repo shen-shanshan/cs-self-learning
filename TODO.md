@@ -15,11 +15,13 @@
 
 **Python:**
 
-- [ ] python: async/await/future
-- [ ] copy.deepcopy
-- [ ] threading: Event(set/is_set), Thread(start/join)
-- [ ] time: perf_counter
-- [ ] functools: cache
+- [x] python: async/await/future
+- [x] copy.deepcopy
+- [x] threading: Event(set/is_set), Thread(start/join/daemon=True)
+- [x] time: perf_counter
+- [x] functools: cache
+- [x] with torch.cuda.graph(graph, pool=xxx)
+- [ ] vllm.distributed.parallel_state: graph_capture
 
 **Concepts:**
 
