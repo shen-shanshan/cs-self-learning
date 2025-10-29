@@ -81,6 +81,12 @@ tmux kill-session -t session_name   # 结束会话
 # Ctrl+b %      # 垂直分割窗格
 # Ctrl+b ←→↑↓   # 在窗格间切换
 
+# 从本地复制文件到远程主机
+scp example.txt user@remote_host:/home/user/
+scp 1.png root@139.9.155.20:/home/sss/images/
+# 从远程主机复制文件到本地
+scp user@remote_host:/home/user/example.txt .
+
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/c++/13:/usr/include/c++/13/x86_64-openEuler-linux
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 

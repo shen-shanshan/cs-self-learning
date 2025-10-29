@@ -165,7 +165,6 @@ lm_eval \
 ```bash
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
 --max_model_len 16384 \
---max-num-batched-tokens 16384 \
 --tensor-parallel-size 2 \
 --enforce-eager
 

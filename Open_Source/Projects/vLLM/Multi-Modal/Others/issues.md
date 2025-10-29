@@ -1,0 +1,23 @@
+## 🛠️ Known Issues
+
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3819
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3818
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3810
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3637
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3623
+- [x] https://github.com/vllm-project/vllm-ascend/issues/3543
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3493
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3468
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3452
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3395
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3367
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3286
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/3198
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/2997
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/2965
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/2948
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/2891
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/2267
+- [x] https://github.com/vllm-project/vllm-ascend/issues/1155
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/968
+- [ ] https://github.com/vllm-project/vllm-ascend/issues/216
