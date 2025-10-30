@@ -11,8 +11,8 @@ git checkout -b v0.11.0rc3 v0.11.0rc3
 git checkout -b v0.11.0rc0 v0.11.0rc0
 
 # vllm
-17c540a
-git reset --hard 17c540a993af88204ad1b78345c8a865cf58ce44
+# git reset --hard 17c540a993af88204ad1b78345c8a865cf58ce44
+git rebase upstream/releases/v0.11.1
 # vllm-ascend
 main
 
@@ -188,7 +188,6 @@ curl -X POST http://localhost:8000/v1/chat/completions \
 ```bash
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-30B-A3B-Instruct \
 --max_model_len 16384 \
---max-num-batched-tokens 16384 \
 --tensor-parallel-size 4 \
 --enable-expert-parallel \
 --enforce-eager
@@ -225,8 +224,6 @@ vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-Omni-30B-A3B-Instruct \
 --tensor-parallel-size 4 \
 --enable-expert-parallel \
 --enforce-eager
-
---max-num-batched-tokens 16384 \
 
 curl -X POST http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
