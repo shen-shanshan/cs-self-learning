@@ -95,9 +95,11 @@ Others：
 - [ ] [大模型推理各方向新发展整理](https://zhuanlan.zhihu.com/p/693680304)
 - [ ] [LLM (18)：LLM 的推理优化技术纵览](https://zhuanlan.zhihu.com/p/642412124?utm_psn=1897433318875693188)
 - [ ] MoE survey 论文
+- [ ] [3 万字长文！通俗解析大语言模型 LLM 原理](https://mp.weixin.qq.com/s/EX8uQUfZvFbYlrbpiGhd9Q)
 
 基础知识：
 
+- [ ] [大模型显存计算公式与优化](https://mp.weixin.qq.com/s/DLOJwXJfr5cdswRJDMlzhA)
 - [ ] [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference)
 - [x] [图文详解 Continuous Batch：不写 CUDA Kernel 也能成倍优化推理效率](https://zhuanlan.zhihu.com/p/876908831)
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)
@@ -130,6 +132,7 @@ vLLM：
 
 并行策略（Parallel Strategy）：
 
+- [ ] [全面解析 MoE 专家并行 EP all-to-all 算子](https://mp.weixin.qq.com/s/yFy9pKTcMfB4ciLF4uEs1g)
 - [ ] [大模型数据并行 - DP、DDP 和 FSDP](https://zhuanlan.zhihu.com/p/28960311154)
 - [ ] [梳理 SGLang 中 DP Attention 及其 Padding 问题](https://mp.weixin.qq.com/s/W0e6W4-v8PmzP10qXY71rQ)
 - [ ] [大规模 EP 优化](https://zhuanlan.zhihu.com/p/1944715179439924643?share_code=oSqHiWjct1QC&utm_psn=1946182101884965795)
@@ -247,6 +250,8 @@ Blogs:
 - [ ] 昇腾社区 msprof 工具使用文档（Mind Studio）
 - [ ] [GPU/NPU 推理 Profiling 阅读引导（上）🌟](https://mp.weixin.qq.com/s/xNKdTl5cUPnpVe3OQ3wXKg)
 - [ ] [GPU/NPU 推理 Profiling 阅读引导（下）🌟](https://mp.weixin.qq.com/s/Qv15u-dw3jWz3IFCaBnS9A)
+- [ ] [Nsight Systems 工具原理与 GPU 性能优化实战详解](https://zhuanlan.zhihu.com/p/1966508767869932083?share_code=UqBOEuwTgHss&utm_psn=1967250648773928246)
+- [ ] 云服务器租赁平台：优云智算
 
 ## 学习资料
 
@@ -269,6 +274,7 @@ Blogs:
 
 **自学课程：**
 
+- [傅傅猪 vllm 课程](https://space.bilibili.com/1822828582)
 - Stanford cs336
   - 视频：b 站
   - 课件：[link](https://github.com/stanford-cs336/spring2025-lectures)
