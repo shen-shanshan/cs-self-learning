@@ -301,6 +301,7 @@ I have rebased on the latest main and nothing changed.
 
 # vllm 代码阅读（排除文件）
 *.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,test*.py,*.cmake,examples/*,tests/*,*.sh,*.env,*.yml,.gitignore
+*.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,*.cmake,examples/*,*.sh,*.env,*.yml,.gitignore
 ```
 
 ## Ascend 01

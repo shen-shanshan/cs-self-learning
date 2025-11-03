@@ -30,4 +30,37 @@ def is_moe_model(vllm_config: VllmConfig):
             _IS_MOE_MODEL = any("experts" in key.lower()
                                 for key in model_configs)
     return _IS_MOE_MODEL
+
+
+def is_moe_model_by_layer(model: torch.nn.Module) -> bool:
+    """Checks if the model is a MoE model by layer"""
+    from vllm.model_executor.layers.fused_moe import FusedMoE
+
+    global _IS_MOE_MODEL
+    if _IS_MOE_MODEL is None:
+        _IS_MOE_MODEL =  bool(any(isinstance(module, FusedMoE) for module in model.modules()))
+    return _IS_MOE_MODEL
+```
+
+is_moe_model
+update_aclgraph_sizes
+
+```python
+def is_moe_model(vllm_config: VllmConfig):
+    """Checks if the model is a MoE model by config"""
+    global _IS_MOE_MODEL
+    if _IS_MOE_MODEL is None:
+        model_configs = vllm_config.model_config.hf_config.to_dict()
+        _IS_MOE_MODEL = _is_contain_expert(model_configs)
+    return _IS_MOE_MODEL
+
+
+def _is_contain_expert(config: dict | str):
+    if isinstance(config, dict):
+        for k, v in config.items():
+            if "expert" in str(k):
+                return True
+            if _is_contain_expert(v):
+                return True
+    return False
 ```
