@@ -99,7 +99,8 @@ git remote add upstream git@github.com:vllm-project/vllm-ascend.git
 git sync
 source /usr/local/Ascend/ascend-toolkit/set_env.sh
 source /usr/local/Ascend/nnal/atb/set_env.sh
-export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
+export COMPILE_CUSTOM_KERNELS=1
+export e=https://mirrors.huaweicloud.com/ascend/repos/pypi
 pip install -v -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install -r requirements-dev.txt
 pip install modelscope>=1.18.1
