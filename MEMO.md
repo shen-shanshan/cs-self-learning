@@ -281,6 +281,10 @@ model_dir = snapshot_download('ZhipuAI/GLM-4.5-Air')
 The CI is finally passed and this PR can be merged.
 I have rebased on the latest main and nothing changed.
 
+Hello Russell, I have worked on some structured output PR before and really thanks for your review and suggestion. I apologize for the intrusion, but I was hoping you could take a look at https://github.com/vllm-project/vllm/pull/21999 and https://github.com/vllm-project/vllm/pull/22481, or if there is a sig about this feature and contributors can share their PRs needed review? Looking forward to your reply~
+
+Hello, I'm really thanks for your review and suggestion about https://github.com/vllm-project/vllm/pull/26487. I have updated the code and related doc recently. Could you please help take a look at this PR? Thanks~
+
 # 常用符号
 🎯
 

@@ -126,3 +126,12 @@ ModelRunner:
 1. `initialize_attn_backend(...)`
 2. `get_attn_backends_for_group(...)`
 3. `attn_backend = layers[layer_name].get_attn_backend()`
+
+---
+
+Kimi:
+
+```python
+from vllm.model_executor.layers.kda import KimiDeltaAttention
+class KimiDeltaAttention
+```
