@@ -105,7 +105,8 @@ export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH
 
 ```bash
 # 启动容器（Ascend 01 and 02）
-cd /data/disk3/sss/docker
+# cd /data/disk3/sss/docker
+cd /home/sss/docker/
 docker-compose -p sss up -d
 docker exec -it sss /bin/bash
 
