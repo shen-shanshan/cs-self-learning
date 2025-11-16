@@ -8,10 +8,8 @@
 
 **TODO（P0）：**
 
-- [x] 计算 AFD 资料（AFD Connector）
 - [ ] profiling 博客与实操
-- [ ] fusedMoE 文档与代码
-- [ ] vLLM 并行（并行配制、DPLB）
+- [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems](https://blog.vllm.ai/2025/11/13/shm-ipc-cache.html)
 
 **Python:**
 
@@ -37,8 +35,6 @@
 - [ ] NVMe
 - [x] **DMA**: By enabling a direct-memory access (DMA) engine near the network adapter or storage, it moves data into or out of GPU memory—without burdening the CPU.
 - [x] **零拷贝**：即不需要在用户空间和内核空间中来回复制数据。
-
----
 
 ## LLM 基础
 
@@ -246,11 +242,11 @@ Blogs:
 ## Others
 
 - [ ] [面向 ML 玩家的 Docker 零帧起手 🌟](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
-- [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
-- [ ] 昇腾社区 msprof 工具使用文档（Mind Studio）
+- [ ] 昇腾社区 msprof 工具使用文档（Mind Studio）🌟
 - [ ] [GPU/NPU 推理 Profiling 阅读引导（上）🌟](https://mp.weixin.qq.com/s/xNKdTl5cUPnpVe3OQ3wXKg)
 - [ ] [GPU/NPU 推理 Profiling 阅读引导（下）🌟](https://mp.weixin.qq.com/s/Qv15u-dw3jWz3IFCaBnS9A)
 - [ ] [Nsight Systems 工具原理与 GPU 性能优化实战详解](https://zhuanlan.zhihu.com/p/1966508767869932083?share_code=UqBOEuwTgHss&utm_psn=1967250648773928246)
+- [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
 - [ ] 云服务器租赁平台：优云智算
 
 ## 学习资料
