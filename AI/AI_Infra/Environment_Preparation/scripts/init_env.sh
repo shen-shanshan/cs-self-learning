@@ -92,8 +92,8 @@ pre-commit install
 # install vllm-ascend
 cd /vllm-workspace/vllm-ascend/
 git remote remove origin
-git remote add origin git@github.com:shen-shanshan/vllm-ascend.git
-git remote add upstream git@github.com:vllm-project/vllm-ascend.git
+git remote add origin git@github.com:shen-shanshan/vllm.git
+git remote add upstream git@github.com:vllm-project/vllm.git
 git sync
 source /usr/local/Ascend/ascend-toolkit/set_env.sh
 source /usr/local/Ascend/nnal/atb/set_env.sh
