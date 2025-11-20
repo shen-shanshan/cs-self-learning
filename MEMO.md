@@ -183,6 +183,8 @@ sudo apt update
 sudo apt install golang-go -y
 go version
 go env -w GOPROXY=https://goproxy.cn,direct
+# 禁用 pre-commit 检查
+--no-verify
 ```
 
 ## Pip
