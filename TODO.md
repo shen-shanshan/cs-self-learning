@@ -10,6 +10,7 @@
 
 - [ ] profiling 博客与实操
 - [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems](https://blog.vllm.ai/2025/11/13/shm-ipc-cache.html)
+- [ ] [GPU Model Runner V2](https://github.com/vllm-project/vllm/pull/25266)
 
 **Python:**
 
