@@ -174,10 +174,3 @@ x = x.matmul(self.proj.weight.data.view(self.hidden_size, -1).transpose(0, 1))
 
 - 参数不兼容
 - 算子替换：`torch_npu._npu_flash_attention_unpad()`
-
----
-
-```python
-# vllm
-# vllm-ascend
-```

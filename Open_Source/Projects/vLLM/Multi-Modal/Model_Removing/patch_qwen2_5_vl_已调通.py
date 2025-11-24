@@ -20,17 +20,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch_npu
 from einops import rearrange
-
 from vllm.model_executor.models.qwen2_5_vl import Qwen2_5_VisionAttention
-from vllm.model_executor.layers.quantization import QuantizationConfig
-from vllm.attention.backends.registry import _Backend
-from vllm.distributed import parallel_state
-from vllm.distributed import utils as dist_utils
-from vllm.model_executor.layers.linear import (
-    QKVParallelLinear,
-    RowParallelLinear,
-)
-
 
 MIN_PAD_SIZE = 64  # min_size to pad weight
 MAX_PAD_SIZE = 128  # max_size to pad weight
@@ -51,7 +41,7 @@ class AscendQwen2_5_VisionAttention(nn.Module):
             bs,
             self.num_attention_heads_per_partition,
             self.origin_hidden_size_per_attention_head,
-        )  # [176, 1, 8, 80]
+        )
         q, k, v = (x.view(*new_shape) for x in (q, k, v))
         return q, k, v
 
@@ -61,12 +51,13 @@ class AscendQwen2_5_VisionAttention(nn.Module):
         cu_seqlens: torch.Tensor,
         rotary_pos_emb_cos: torch.Tensor,
         rotary_pos_emb_sin: torch.Tensor,
-        # max_seqlen: torch.Tensor,  # Only used for Flash Attention
-        # seqlens: torch.Tensor,  # Only used for xFormers
+        max_seqlen: torch.Tensor,
+        seqlens: torch.Tensor,
     ) -> torch.Tensor:
         self.enable_pad = False
         self.origin_hidden_size_per_attention_head = self.hidden_size_per_attention_head
         self.half_origin_hidden_size_per_attention_head = self.hidden_size_per_attention_head // 2
+
         if self.hidden_size_per_attention_head > MIN_PAD_SIZE \
             and self.hidden_size_per_attention_head < MAX_PAD_SIZE:
             self.enable_pad = True
@@ -86,40 +77,32 @@ class AscendQwen2_5_VisionAttention(nn.Module):
 
         cos = rotary_pos_emb_cos
         sin = rotary_pos_emb_sin
+
         if self.enable_pad:
             origin_shape = q.shape[-1]
             pad_len = MAX_PAD_SIZE - origin_shape
-            # [b, s, head, head_dim]
+            # q/k/v: [b, s, head, head_dim] -> [b, s, head, MAX_PAD_SIZE]
             q = F.pad(q, (0, pad_len), mode="constant", value=0)
             k = F.pad(k, (0, pad_len), mode="constant", value=0)
             v = F.pad(v, (0, pad_len), mode="constant", value=0)
-            # cos/sin: [seqlen, rotary_dim / 2]
-            # cos = torch.nn.functional.pad(
-            #     cos, (0, self.half_pad_hidden_size_per_attention_head))
-            # sin = torch.nn.functional.pad(
-            #     sin, (0, self.half_pad_hidden_size_per_attention_head))
+            # cos/sin: [seqlen, rotary_dim / 2] -> [b, s, head, MAX_PAD_SIZE / 2]
+            cos = torch.nn.functional.pad(
+                cos, (0, self.half_pad_hidden_size_per_attention_head))
+            sin = torch.nn.functional.pad(
+                sin, (0, self.half_pad_hidden_size_per_attention_head))
 
-        # cos = rearrange(
-        #     torch.stack((cos, cos), dim=-1),
-        #     "... d two -> ...(d two)",
-        #     two=2,
-        # )
-        # sin = rearrange(
-        #     torch.stack((sin, sin), dim=-1),
-        #     "... d two -> ...(d two)",
-        #     two=2,
-        # )
-        # cos = cos.reshape(1, -1, 1, self.hidden_size_per_attention_head)
-        # sin = sin.reshape(1, -1, 1, self.hidden_size_per_attention_head)
-
-        print("-"*100)
-        print(f"q.shape: {q.shape}")  # [1, 176, 8, 128]
-        print(f"k.shape: {k.shape}")
-        print(f"v.shape: {v.shape}")
-        print(f"cos.shape: {cos.shape}")  # [1, 176, 1, 128]
-        print(f"sin.shape: {sin.shape}")
-        print(f"cu_seqlens: {cu_seqlens}")  # [64, 64, 48] -> [0, 64, 128, 176]
-        print("-"*100)
+        cos = rearrange(
+            torch.stack((cos, cos), dim=-1),
+            "... d two -> ...(d two)",
+            two=2,
+        )
+        sin = rearrange(
+            torch.stack((sin, sin), dim=-1),
+            "... d two -> ...(d two)",
+            two=2,
+        )
+        cos = cos.reshape(1, -1, 1, self.hidden_size_per_attention_head)
+        sin = sin.reshape(1, -1, 1, self.hidden_size_per_attention_head)
 
         q = torch_npu.npu_rotary_mul(q, cos, sin)
         k = torch_npu.npu_rotary_mul(k, cos, sin)
@@ -128,6 +111,9 @@ class AscendQwen2_5_VisionAttention(nn.Module):
             rearrange(x, "b s h d -> (b s) h d").contiguous()
             for x in (q, k, v)
         ]
+
+        # Convert cumulative tensor to intervals and move it to cpu.
+        cu_seqlens = torch.diff(cu_seqlens).to("cpu")
 
         context_layer = torch.empty_like(q)
 
@@ -140,11 +126,12 @@ class AscendQwen2_5_VisionAttention(nn.Module):
             scale_value=self.origin_hidden_size_per_attention_head**-0.5,
             num_heads=self.num_attention_heads_per_partition,
             num_kv_heads=self.num_attention_heads_per_partition,
-            out=context_layer)
+            out=context_layer,
+        )
 
         if self.enable_pad:
             context_layer = context_layer[..., :origin_shape]
-        
+
         context_layer = rearrange(context_layer,
                                   "(b s) h d -> s b (h d)",
                                   b=batch_size).contiguous()

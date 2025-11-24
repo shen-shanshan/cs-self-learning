@@ -66,6 +66,10 @@ vllm_config.scheduler_config.async_scheduling
 
 ### AF Disaggregation
 
+### Multi-Modal
+
+- [ ] [Multi-Modal Data Processing](https://docs.vllm.ai/en/stable/design/mm_processing/)
+
 ### Others
 
 - [ ] [Profiling vLLM](https://docs.vllm.ai/en/latest/contributing/profiling.html)
@@ -76,6 +80,7 @@ vllm_config.scheduler_config.async_scheduling
 - [x] forward_context
 - [ ] model_runner input_batch
 - [ ] DeviceMemoryProfiler
+- [ ] [GPU Model Runner V2](https://github.com/vllm-project/vllm/pull/25266)
 
 ## 技术博客
 

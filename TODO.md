@@ -9,8 +9,7 @@
 **TODO（P0）：**
 
 - [ ] profiling 博客与实操
-- [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems](https://blog.vllm.ai/2025/11/13/shm-ipc-cache.html)
-- [ ] [GPU Model Runner V2](https://github.com/vllm-project/vllm/pull/25266)
+- [ ] vllm-omni 源码
 
 **Python:**
 
@@ -53,6 +52,19 @@ Transformer：
 - [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
 - [ ] [Transformer Pre-Norm 和 Post-Norm 如何选择？](https://zhuanlan.zhihu.com/p/12228475399)
 - [ ] [Transformer 似懂非懂的 Norm 方法](https://zhuanlan.zhihu.com/p/12113221623)
+- [ ] [LLM预训练MFU计算公式&计算工具构建思路分享（上）](https://mp.weixin.qq.com/s/Og_iggeQBmicg2OWQo2spw)
+- [ ] [The Big LLM Architecture Comparison 🌟](https://sebastianraschka.com/blog/2025/the-big-llm-architecture-comparison.html)
+
+LinearAttention：
+
+- [ ] [Qwen/Kimi带火的LinearAttention：原理与细节解析（上）](https://mp.weixin.qq.com/s/GSplGYVQYU42M-zrazJp8g)
+- [ ] [Qwen/Kimi带火的LinearAttention：原理与细节解析（下）](https://mp.weixin.qq.com/s/Z6a1Fq_bnnZSSaVs-rn8vg)
+- [ ] [LinearAttention在KV cache的存储上有多大优势？用计算来推演](https://mp.weixin.qq.com/s/LPKzHcHLx2pMMcr2foMsUQ)
+
+MoE：
+
+- [ ] [MoE 中的路由机制 🌟](https://apxml.com/zh/courses/how-to-build-a-large-language-model/chapter-14-advanced-architectural-modifications/routing-mechanisms-moe)
+- [ ] [全面解析MoE专家并行EP all-to-all Pytorch算子 🌟](https://zhuanlan.zhihu.com/p/1967192540953425479)
 
 多模态：
 
@@ -63,6 +75,7 @@ Transformer：
 - [ ] [Qwen2.5-VL 代码](https://github.com/QwenLM/Qwen2.5-VL)
 - [ ] [Qwen2.5-VL transformer modeling](https://github.com/huggingface/transformers/blob/41925e42135257361b7f02aa20e3bbdab3f7b923/src/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py)
 - [ ] [torchcodec](https://github.com/pytorch/torchcodec)
+- [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems](https://blog.vllm.ai/2025/11/13/shm-ipc-cache.html)
 
 DeepSeek：
 
@@ -109,11 +122,13 @@ DeepSeek：
 
 vLLM：
 
+- [ ] [Docker Model Runner 携手 vLLM：让高吞吐推理如江入海](https://mp.weixin.qq.com/s/wGBiGjCuLnJHf3Z7hr25yQ)
+- [ ] [vLLM插件系统深度解析：手术刀式代码修改的艺术](https://mp.weixin.qq.com/s/F3V71TfhZqYRnAaayC-E1g)
 - [ ] [LMCache + vLLM 实战指南，让大模型的推理速度显著提升！](https://mp.weixin.qq.com/s/J2iyrSjJ7JYjoHoIMAQP4w)
 - [ ] [Distributed Inference with vLLM](https://blog.vllm.ai/2025/02/17/distributed-inference.html)
-- [ ] [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention 🌟](https://blog.vllm.ai/2023/06/20/vllm.html)
-- [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记 🌟](https://zhuanlan.zhihu.com/p/1955402895890560120)
-- [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理 🌟](https://zhuanlan.zhihu.com/p/691038809)
+- [ ] [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention](https://blog.vllm.ai/2023/06/20/vllm.html)
+- [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记](https://zhuanlan.zhihu.com/p/1955402895890560120)
+- [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理](https://zhuanlan.zhihu.com/p/691038809)
 - [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
 - [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
 - [ ] [PagedAttention 论文新鲜出炉](https://zhuanlan.zhihu.com/p/617015570)
@@ -134,26 +149,27 @@ vLLM：
 - [ ] [梳理 SGLang 中 DP Attention 及其 Padding 问题](https://mp.weixin.qq.com/s/W0e6W4-v8PmzP10qXY71rQ)
 - [ ] [大规模 EP 优化](https://zhuanlan.zhihu.com/p/1944715179439924643?share_code=oSqHiWjct1QC&utm_psn=1946182101884965795)
 - [ ] [PP, TP, DP, ZeRO 一点理解](https://zhuanlan.zhihu.com/p/19480848641?share_code=1mdHLZXyhVgPd&utm_psn=1946517314418746403)
-- [ ] [The Ultra-Scale Playbook: Training LLMs on GPU Clusters 🌟](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview)
+- [ ] [The Ultra-Scale Playbook: Training LLMs on GPU Clusters](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview)
 - [ ] [LLM 推理并行优化的必备知识 🌟](https://zhuanlan.zhihu.com/p/1937449564509545940)
 - [ ] [分布式推理优化思路 🌟](https://zhuanlan.zhihu.com/p/1937556222371946860)
 
 Speculative Decoding：
 
 - [ ] [Speculative Decoding: 总结、分析、展望](https://zhuanlan.zhihu.com/p/1904881828906668879?share_code=hDIX8nBBfJOQ&utm_psn=1918275277408142518)
+- [ ] [Speculators：生产级训练投机解码的标准化方案](https://mp.weixin.qq.com/s/ndmaREajMMWu79dyZeJj1w)
 
 PD/AF 分离：
 
 - [ ] [Step3 大模型 AE 分离的量化解析，兼谈 DeepSeek 为何不分离](https://mp.weixin.qq.com/s/8zGNWlEyZISgJXm9ygg_1w)
-- [ ] [0.5x 提升：PD 分离 KV cache 传输的实践经验 🌟](https://zhuanlan.zhihu.com/p/1946608360259577576)
+- [ ] [0.5x 提升：PD 分离 KV cache 传输的实践经验](https://zhuanlan.zhihu.com/p/1946608360259577576)
 - [ ] [vLLM 的 PD 分离：作用、使用和实现](https://zhuanlan.zhihu.com/p/1929881199985263900?share_code=19q5ciyJnpgSQ&utm_psn=1930968089199088481)
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
 - [ ] [LLM 推理优化：MLA 算力均衡实践（提升 0.3x）](https://mp.weixin.qq.com/s/Hl0D3OJ1nk-4ANgUAoZPNw)
 
 Kernel：
 
-- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念 🌟](https://zhuanlan.zhihu.com/p/1930681680127047148)
-- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter 🌟](https://zhuanlan.zhihu.com/p/1948749443802313796)
+- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念](https://zhuanlan.zhihu.com/p/1930681680127047148)
+- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter](https://zhuanlan.zhihu.com/p/1948749443802313796)
 - [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
 - [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
 - [ ] [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑](https://zhuanlan.zhihu.com/p/669926191)
@@ -249,6 +265,7 @@ Blogs:
 - [ ] [Nsight Systems 工具原理与 GPU 性能优化实战详解](https://zhuanlan.zhihu.com/p/1966508767869932083?share_code=UqBOEuwTgHss&utm_psn=1967250648773928246)
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
 - [ ] 云服务器租赁平台：优云智算
+- [ ] [python实现异步的底层原理是什么？🌟](https://www.zhihu.com/question/432814091/answer/1969082606936110671)
 
 ## 学习资料
 
@@ -268,6 +285,7 @@ Blogs:
 
 - [LLM 推理论文合集](https://zhuanlan.zhihu.com/p/669777159)
 - [460 篇多模态大语言模型论文合集](https://rcncqctdyl3f.feishu.cn/docx/QyFZd3ig3oiCPgxAvXhc1xPYnch)
+- [大模型推理必看！2025最值得读的14篇论文和2篇博客 🌟](https://mp.weixin.qq.com/s/dg8FGNZ0mZOxF4b5fwUxkw)
 
 **自学课程：**
 
