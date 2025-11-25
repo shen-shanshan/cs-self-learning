@@ -42,12 +42,6 @@ echo '        cb = "!f() { git checkout $1 ; }; f"' >> ~/.gitconfig
 
 
 # config pip
-# mkdir ~/.pip
-# echo "[global]" >> ~/.pip/pip.conf
-# echo "        index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >> ~/.pip/pip.conf
-# echo "[install]" >> ~/.pip/pip.conf
-# echo "        trusted-host = https://pypi.tuna.tsinghua.edu.cn" >> ~/.pip/pip.conf
-# pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 
@@ -92,12 +86,12 @@ pre-commit install
 # install vllm-ascend
 cd /vllm-workspace/vllm-ascend/
 git remote remove origin
-git remote add origin git@github.com:shen-shanshan/vllm.git
-git remote add upstream git@github.com:vllm-project/vllm.git
+git remote add origin git@github.com:shen-shanshan/vllm-ascend.git
+git remote add upstream git@github.com:vllm-project/vllm-ascend.git
 git sync
 source /usr/local/Ascend/ascend-toolkit/set_env.sh
 source /usr/local/Ascend/nnal/atb/set_env.sh
-export COMPILE_CUSTOM_KERNELS=1
+# export COMPILE_CUSTOM_KERNELS=1
 export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
 pip install -v -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install -r requirements-dev.txt

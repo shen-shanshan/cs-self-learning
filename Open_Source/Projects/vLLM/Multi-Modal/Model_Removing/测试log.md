@@ -10,3 +10,18 @@
 
 {"id":"chatcmpl-dcec377ffdda48f99252e6c45a418721","object":"chat.completion","created":1763971067,"model":"/root/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct","choices":[{"index":0,"message":{"role":"assistant","content":"The text in the image appears to be a series of characters that are not standard letters or symbols. It looks like a pattern or a code rather than readable text. The characters seem to be a mix of shapes and lines, possibly representing a specific language or a stylized form of writing, but without additional context, it's difficult to determine its meaning or purpose. If you have any specific questions about the pattern or need help with a particular aspect of the image, please let me know!","refusal":null,"annotations":null,"audio":null,"function_call":null,"tool_calls":[],"reasoning_content":null},"logprobs":null,"finish_reason":"stop","stop_reason":null,"token_ids":null}],"service_tier":null,"system_fingerprint":null,"usage":{"prompt_tokens":78,"total_tokens":177,"completion_tokens":99,"prompt_tokens_details":null},"prompt_logprobs":null,"prompt_token_ids":null,"kv_transfer_params":null}
 ```
+
+/root/miniconda3/envs/vllm/lib/python3.10/site-packages/transformers/tokenization_utils_base.py
+return tokenizer
+
+with set_ascend_forward_context(None, self.vllm_config):
+
+```python
+    @classmethod
+    def get_forward_context_manager(cls):
+        from vllm.forward_context import set_forward_context
+        return set_forward_context
+
+from vllm.platforms import current_platform
+set_forward_context = current_platform.get_forward_context_manager()
+```
