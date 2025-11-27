@@ -233,6 +233,23 @@ sysctl -w net.ipv4.ip_local_reserved_ports=60000-60015
 
 ## Model
 
+```bash
+# sudo apt install tmux -y
+tmux ls
+tmux new -s download
+# 基本操作
+tmux new-session -s session_name    # 创建新会话
+tmux attach -t session_name         # 连接到会话
+# tmux attach -t download
+tmux list-sessions                  # 列出所有会话
+tmux kill-session -t session_name   # 结束会话
+# 会话内操作
+# Ctrl+b d      # 分离当前会话
+# Ctrl+b "      # 水平分割窗格
+# Ctrl+b %      # 垂直分割窗格
+# Ctrl+b ←→↑↓   # 在窗格间切换
+```
+
 ```python
 # 防止终端断开连接，导致下载中断：
 # tmux new -s download
