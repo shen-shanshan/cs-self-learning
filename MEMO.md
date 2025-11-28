@@ -294,40 +294,6 @@ model_dir = snapshot_download('ZhipuAI/GLM-4.5-Air')
 /root/.cache/modelscope/hub/models/ZhipuAI/GLM-4___5
 ```
 
-## Open Source
-
-```bash
-# 开源社区常用话术
-The CI is finally passed and this PR can be merged.
-I have rebased on the latest main and nothing changed.
-
-Hello Russell, I have worked on some structured output PR before and really thanks for your review and suggestion. I apologize for the intrusion, but I was hoping you could take a look at https://github.com/vllm-project/vllm/pull/21999 and https://github.com/vllm-project/vllm/pull/22481, or if there is a sig about this feature and contributors can share their PRs needed review? Looking forward to your reply~
-
-Hello, I'm really thanks for your review and suggestion about https://github.com/vllm-project/vllm/pull/26487. I have updated the code and related doc recently. Could you please help take a look at this PR? Thanks~
-
-# 常用符号
-🎯
-
-> [!NOTE]
->
-
-<details>
-<summary>logs</summary>
-</details>
-```
-
-## VSCode
-
-```bash
-# 常用快捷键
-折叠所有：Ctrl/Cmd + K + 0
-展开所有：Ctrl/Cmd + K + J
-
-# vllm 代码阅读（排除文件）
-*.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,test*.py,*.cmake,examples/*,tests/*,*.sh,*.env,*.yml,.gitignore
-*.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,*.cmake,examples/*,*.sh,*.env,*.yml,.gitignore
-```
-
 ## Ascend 01
 
 ```bash
@@ -477,4 +443,77 @@ docker stop sss
 docker rm sss
 
 exit
+```
+
+## VSCode
+
+```bash
+# 常用快捷键
+折叠所有：Ctrl/Cmd + K + 0
+展开所有：Ctrl/Cmd + K + J
+
+# vllm 代码阅读（排除文件）
+*.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,test*.py,*.cmake,examples/*,tests/*,*.sh,*.env,*.yml,.gitignore
+*.md,*.yaml,*.h,*.hpp,*.cu,*.cuh,*.cmake,examples/*,*.sh,*.env,*.yml,.gitignore
+```
+
+## Debug
+
+```bash
+# https://zhuanlan.zhihu.com/p/1948019110530232787
+# 只允许 rank0 打印日志
+if torch.distributed.get_rank() == 0:
+    print("xxx")
+
+# 将日志按照 rank 写入不同的文件下
+with open(f"./debug_{torch.distributed.get_rank()}.log","w") as f:
+    print(f"scheduler_output: {scheduler_output}",file=f, flush=True)
+
+# 立即把缓冲区里的内容写到输出（stdout）中，而不是等到缓冲区填满或程序结束才输出
+print(..., flush=True)
+```
+
+VSCode 调试配置：
+
+```json
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python 调试程序: 当前文件",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "python": "/root/miniconda3/envs/vllm/bin/python",  // 指定虚拟环境
+            "subProcess": true,  // 开启多进程调试
+            "justMyCode": false,  // 允许进入并调试第三方库源码、Python 标准库代码
+        }
+    ]
+}
+```
+
+## Open Source
+
+```bash
+# 开源社区常用话术
+The CI is finally passed and this PR can be merged.
+I have rebased on the latest main and nothing changed.
+
+Hello Russell, I have worked on some structured output PR before and really thanks for your review and suggestion. I apologize for the intrusion, but I was hoping you could take a look at https://github.com/vllm-project/vllm/pull/21999 and https://github.com/vllm-project/vllm/pull/22481, or if there is a sig about this feature and contributors can share their PRs needed review? Looking forward to your reply~
+
+Hello, I'm really thanks for your review and suggestion about https://github.com/vllm-project/vllm/pull/26487. I have updated the code and related doc recently. Could you please help take a look at this PR? Thanks~
+
+# 常用符号
+🎯
+
+> [!NOTE]
+>
+
+<details>
+<summary>logs</summary>
+</details>
 ```
