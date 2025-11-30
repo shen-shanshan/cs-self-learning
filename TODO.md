@@ -122,6 +122,8 @@ DeepSeek：
 
 vLLM：
 
+- [ ] [Ray symmetric-run：让 vLLM 多节点部署更轻盈](https://mp.weixin.qq.com/s/1cZtyTDr97qLZ40VfOQ5xw)
+- [ ] [混合注意力的KV cache该如何设计？框架已给出答案](https://mp.weixin.qq.com/s/Bl3AHM9K9b0ovj8DUe1OqA)
 - [ ] [Docker Model Runner 携手 vLLM：让高吞吐推理如江入海](https://mp.weixin.qq.com/s/wGBiGjCuLnJHf3Z7hr25yQ)
 - [ ] [vLLM插件系统深度解析：手术刀式代码修改的艺术](https://mp.weixin.qq.com/s/F3V71TfhZqYRnAaayC-E1g)
 - [ ] [LMCache + vLLM 实战指南，让大模型的推理速度显著提升！](https://mp.weixin.qq.com/s/J2iyrSjJ7JYjoHoIMAQP4w)
@@ -166,17 +168,7 @@ PD/AF 分离：
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
 - [ ] [LLM 推理优化：MLA 算力均衡实践（提升 0.3x）](https://mp.weixin.qq.com/s/Hl0D3OJ1nk-4ANgUAoZPNw)
 
-Kernel：
-
-- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念](https://zhuanlan.zhihu.com/p/1930681680127047148)
-- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter](https://zhuanlan.zhihu.com/p/1948749443802313796)
-- [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
-- [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
-- [ ] [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑](https://zhuanlan.zhihu.com/p/669926191)
-- [ ] [图解大模型计算加速系列：FlashAttention V2，从原理到并行计算](https://zhuanlan.zhihu.com/p/691067658)
-- [ ] [Flash Attention 学习过程详解](https://www.bilibili.com/video/BV1FM9XYoEQ5/?buvid=XX09F7F01632BC5A89A856F4746F7484F93FD&from_spmid=main.space-contribution.0.0&is_story_h5=false&mid=7x3gpfL5LaqpE%2FSuWLsT4A%3D%3D&p=7&plat_id=116&share_from=ugc&share_medium=android&share_plat=android&share_session_id=164cfebd-b6f9-4d1a-9140-6cea76c26bb1&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1758016444&unique_k=Sv4E1Ev&up_id=218427631&vd_source=2754a9b73cb316d2cad8eb1195f5aa23)
-
-通信：
+通信库：
 
 - [ ] [集合通信库 VCCL 释放 GPU 极致算力，创智、基流、智谱、联通、北航、清华、东南重磅开源](https://mp.weixin.qq.com/s/_Tb5FGApGrAl7_Wjym1Ejg)
 
@@ -192,6 +184,14 @@ Kernel：
 
 ## CUDA
 
+- [ ] [大模型计算/通信overlapped kernel(一)--动机和概念](https://zhuanlan.zhihu.com/p/1930681680127047148)
+- [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter](https://zhuanlan.zhihu.com/p/1948749443802313796)
+- [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)
+- [ ] [原理篇: 从 Online-Softmax 到 FlashAttention V1/V2/V3](https://zhuanlan.zhihu.com/p/668888063)
+- [ ] [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑](https://zhuanlan.zhihu.com/p/669926191)
+- [ ] [图解大模型计算加速系列：FlashAttention V2，从原理到并行计算](https://zhuanlan.zhihu.com/p/691067658)
+- [ ] [Flash Attention 学习过程详解](https://www.bilibili.com/video/BV1FM9XYoEQ5/?buvid=XX09F7F01632BC5A89A856F4746F7484F93FD&from_spmid=main.space-contribution.0.0&is_story_h5=false&mid=7x3gpfL5LaqpE%2FSuWLsT4A%3D%3D&p=7&plat_id=116&share_from=ugc&share_medium=android&share_plat=android&share_session_id=164cfebd-b6f9-4d1a-9140-6cea76c26bb1&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1758016444&unique_k=Sv4E1Ev&up_id=218427631&vd_source=2754a9b73cb316d2cad8eb1195f5aa23)
+- [ ] [20行代码入门PyTorch自定义CUDA/C++](https://mp.weixin.qq.com/s/yJIjuT2Hsjg4dY10fqjUWQ)
 - [ ] [20 行代码入门 PyTorch 自定义 CUDA/C++](https://zhuanlan.zhihu.com/p/579395211)
 - [ ] [CUDA 编程：常用技巧/方法](https://zhuanlan.zhihu.com/p/584501634)
 - [ ] [大语言模型所有算子逻辑](https://zhuanlan.zhihu.com/p/1909996866432668841?share_code=u4D2wlKwNjAp&utm_psn=1911112698021807580)
@@ -249,6 +249,9 @@ Blogs:
 
 ## Research
 
+- [ ] [当 CEO 重读 PhD：论智慧与勇气 🌟](https://zhuanlan.zhihu.com/p/1893638374646079902)
+- [ ] [有哪些读博读废了的案例？🌟](https://www.zhihu.com/question/281702832/answer/1898063916208230560)
+- [ ] [最全 AI Infra主题的 顶会award论文解读（MLSys、EuroSys HPCA、ASPLOS、SC、 ICLR、ICML、MICRO、 ISCA、OSDI、SOSP）🌟](https://zhuanlan.zhihu.com/p/1976227735400638099?share_code=YFzaBqPJ6BET&utm_psn=1977349340990309748)
 - [ ] [Writing AI Conference Papers: A Handbook for Beginners（GitHub）](https://github.com/hzwer/WritingAIPaper)
 - [ ] [读博那些事儿](https://zhuanlan.zhihu.com/p/82579410?share_code=1mKWQMYAGFAZ6&utm_psn=1922088666123198736)
 - [ ] [CS 读博总结和建议文章（合集）🌟](https://zhuanlan.zhihu.com/p/347223193)
