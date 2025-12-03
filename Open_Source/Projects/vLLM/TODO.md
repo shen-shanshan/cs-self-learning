@@ -4,9 +4,7 @@
 
 ## 开发任务
 
-- Mamba attn backend plugin
-- `TODO(rui): validate passed-in placement groups`
-- ActorManager 移除指定 Actor
+- csrc/output/ -> ignore
 
 ## 源码学习
 
