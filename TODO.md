@@ -3,8 +3,6 @@
 ## Tasks
 
 - [vLLM & vLLM-Ascend Tasks](./Open_Source/Projects/vLLM/TODO.md)
-- [Elastic-AFD Tasks](./Research/Projects/Elastic-AFD/TODO.md)
-- [Multi-Modal Tasks](./Open_Source/Projects/vLLM/Multi-Modal/TODO.md)
 
 **TODO（P0）：**
 
@@ -68,14 +66,10 @@ MoE：
 
 多模态：
 
-- [ ] [多模态技术梳理：ViT 系列](https://zhuanlan.zhihu.com/p/26719287825)
-- [ ] [Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解](https://zhuanlan.zhihu.com/p/28205969434)
-- [ ] [多模态技术梳理：Qwen-VL 系列](https://zhuanlan.zhihu.com/p/25267823390)
-- [ ] [Qwen2.5-VL 论文](https://arxiv.org/abs/2502.13923)
-- [ ] [Qwen2.5-VL 代码](https://github.com/QwenLM/Qwen2.5-VL)
-- [ ] [Qwen2.5-VL transformer modeling](https://github.com/huggingface/transformers/blob/41925e42135257361b7f02aa20e3bbdab3f7b923/src/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py)
-- [ ] [torchcodec](https://github.com/pytorch/torchcodec)
-- [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems](https://blog.vllm.ai/2025/11/13/shm-ipc-cache.html)
+- [ ] [深度研读 Qwen3-VL：当视觉模型学会“慢思考”与 256K 超长视野 🌟](https://zhuanlan.zhihu.com/p/1980240971909337328?share_code=n5piaWev0MEt&utm_psn=1980718678996707264)
+- [ ] [多模态技术梳理：ViT 系列 🌟](https://zhuanlan.zhihu.com/p/26719287825)
+- [ ] [Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解 🌟](https://zhuanlan.zhihu.com/p/28205969434)
+- [ ] [多模态技术梳理：Qwen-VL 系列 🌟](https://zhuanlan.zhihu.com/p/25267823390)
 
 DeepSeek：
 
@@ -109,7 +103,9 @@ Others：
 
 基础知识：
 
-- [ ] [大模型显存计算公式与优化](https://mp.weixin.qq.com/s/DLOJwXJfr5cdswRJDMlzhA)
+- [ ] [LLM 推理基础：采样(Sampling)常见知识概览](https://mp.weixin.qq.com/s/ohUN2SzTfYMCCcH_OgyRKw)
+- [ ] [LLM 确定性推理](https://mp.weixin.qq.com/s/5XJNolYVhYTCvI5TjNQrkA)
+- [ ] [大模型显存计算公式与优化 🌟](https://mp.weixin.qq.com/s/DLOJwXJfr5cdswRJDMlzhA)
 - [ ] [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference)
 - [x] [图文详解 Continuous Batch：不写 CUDA Kernel 也能成倍优化推理效率](https://zhuanlan.zhihu.com/p/876908831)
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)
@@ -122,11 +118,13 @@ DeepSeek：
 
 vLLM：
 
-- [ ] [Ray symmetric-run：让 vLLM 多节点部署更轻盈](https://mp.weixin.qq.com/s/1cZtyTDr97qLZ40VfOQ5xw)
+- [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems](https://blog.vllm.ai/2025/11/13/shm-ipc-cache.html)
+- [ ] [大模型推理框架，SGLang和vLLM有哪些区别？](https://www.zhihu.com/question/666943660/answer/1914348903668651349?share_code=X0cS0WZalNIH&utm_psn=1980344296080164538)
+- [ ] [Ray symmetric-run：让 vLLM 多节点部署更轻盈 🌟](https://mp.weixin.qq.com/s/1cZtyTDr97qLZ40VfOQ5xw)
 - [ ] [混合注意力的KV cache该如何设计？框架已给出答案](https://mp.weixin.qq.com/s/Bl3AHM9K9b0ovj8DUe1OqA)
 - [ ] [Docker Model Runner 携手 vLLM：让高吞吐推理如江入海](https://mp.weixin.qq.com/s/wGBiGjCuLnJHf3Z7hr25yQ)
 - [ ] [vLLM插件系统深度解析：手术刀式代码修改的艺术](https://mp.weixin.qq.com/s/F3V71TfhZqYRnAaayC-E1g)
-- [ ] [LMCache + vLLM 实战指南，让大模型的推理速度显著提升！](https://mp.weixin.qq.com/s/J2iyrSjJ7JYjoHoIMAQP4w)
+- [ ] [LMCache + vLLM 实战指南，让大模型的推理速度显著提升！🌟](https://mp.weixin.qq.com/s/J2iyrSjJ7JYjoHoIMAQP4w)
 - [ ] [Distributed Inference with vLLM](https://blog.vllm.ai/2025/02/17/distributed-inference.html)
 - [ ] [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention](https://blog.vllm.ai/2023/06/20/vllm.html)
 - [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记](https://zhuanlan.zhihu.com/p/1955402895890560120)
@@ -146,7 +144,7 @@ vLLM：
 
 并行策略（Parallel Strategy）：
 
-- [ ] [全面解析 MoE 专家并行 EP all-to-all 算子](https://mp.weixin.qq.com/s/yFy9pKTcMfB4ciLF4uEs1g)
+- [ ] [全面解析 MoE 专家并行 EP all-to-all 算子 🌟](https://mp.weixin.qq.com/s/yFy9pKTcMfB4ciLF4uEs1g)
 - [ ] [大模型数据并行 - DP、DDP 和 FSDP](https://zhuanlan.zhihu.com/p/28960311154)
 - [ ] [梳理 SGLang 中 DP Attention 及其 Padding 问题](https://mp.weixin.qq.com/s/W0e6W4-v8PmzP10qXY71rQ)
 - [ ] [大规模 EP 优化](https://zhuanlan.zhihu.com/p/1944715179439924643?share_code=oSqHiWjct1QC&utm_psn=1946182101884965795)
@@ -157,6 +155,7 @@ vLLM：
 
 Speculative Decoding：
 
+- [ ] [搞懂投机推理难？这篇总结+框架实践帮你快速上手](https://mp.weixin.qq.com/s/bnRFKs6EBfBojhgG-wSczQ)
 - [ ] [Speculative Decoding: 总结、分析、展望](https://zhuanlan.zhihu.com/p/1904881828906668879?share_code=hDIX8nBBfJOQ&utm_psn=1918275277408142518)
 - [ ] [Speculators：生产级训练投机解码的标准化方案](https://mp.weixin.qq.com/s/ndmaREajMMWu79dyZeJj1w)
 
@@ -184,6 +183,7 @@ PD/AF 分离：
 
 ## CUDA
 
+- [ ] [从GPU卡死到精准锁定出错代码：vLLM CUDA 调试实战技巧](https://mp.weixin.qq.com/s/VHFnA9nkasOJ-svIFp7IXQ)
 - [ ] [大模型计算/通信overlapped kernel(一)--动机和概念](https://zhuanlan.zhihu.com/p/1930681680127047148)
 - [ ] [大模型计算/通信overlapped kernel(二)--AllGather+Gemm/Gemm+ReduceScatter](https://zhuanlan.zhihu.com/p/1948749443802313796)
 - [ ] [原理 & 图解 FlashDecoding/FlashDecoding++](https://zhuanlan.zhihu.com/p/696075602)

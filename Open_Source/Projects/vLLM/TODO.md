@@ -1,10 +1,10 @@
 # TODO
 
-- [Multi-Modal Tasks](./Multi-Modal/TODO.md)
+- Multi-Modal Tasks [#3508](https://github.com/vllm-project/vllm-ascend/issues/3508)
+- vLLM Ascend On Call Dashboard [#4748](https://github.com/vllm-project/vllm-ascend/issues/4748)
+- Elegant main2main scrolling upgrade [#4709](https://github.com/vllm-project/vllm-ascend/issues/4709)
 
 ## 开发任务
-
-- csrc/output/ -> ignore
 
 ## 源码学习
 
@@ -67,6 +67,9 @@ vllm_config.scheduler_config.async_scheduling
 ### Multi-Modal
 
 - [ ] [Multi-Modal Data Processing](https://docs.vllm.ai/en/stable/design/mm_processing/)
+- [ ] `@support_torch_compile`
+- [ ] Move multimodal_cpu_fields definition to field config [#30181](https://github.com/vllm-project/vllm/pull/30181)
+- [ ] Add PrefixLM support to FlexAttention backend [#27938](https://github.com/vllm-project/vllm/pull/27938)
 
 ### Others
 
@@ -84,7 +87,7 @@ vllm_config.scheduler_config.async_scheduling
 
 - [ ] vLLM 分离式架构 - 从 PD 分离到 AF 分离
 - [ ] vLLM 推理可靠性 - 弹性伸缩与容错
-- [ ] 异步 ModelRunner - DBO/TBO
-- [ ] 多模态
+- [ ] 多模态推理流程
+- [x] 卷积计算加速
 - [x] V1 整体流程
 - [x] Guided Decoding V0/V1
