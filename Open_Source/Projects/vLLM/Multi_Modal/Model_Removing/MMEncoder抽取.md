@@ -34,3 +34,8 @@ vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
 ```
 
 ## NVIDIA A100 GPU
+
+---
+
+from vllm.attention.layers.mm_encoder_attention import maybe_get_vit_flash_attn_backend
+maybe_get_vit_flash_attn_backend

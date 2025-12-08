@@ -261,7 +261,7 @@ os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"  # Coder
 os.environ["MODELSCOPE_CACHE"] = "/data/disk2/cache/modelscope/hub"  # A2 (01)
 os.environ["MODELSCOPE_CACHE"] = "/root/.cache/modelscope/hub"  # A3
 
-model_dir = snapshot_download('ZhipuAI/GLM-4.5-Air')
+model_dir = snapshot_download('deepseek-ai/DeepSeek-V2-Lite')
 ```
 
 ```bash
@@ -281,6 +281,8 @@ model_dir = snapshot_download('ZhipuAI/GLM-4.5-Air')
 /shared/cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct
 /shared/cache/modelscope/hub/models/Qwen/Qwen3-30B-A3B  # tensor_parallel_size=4
 /shared/cache/modelscope/hub/models/ZhipuAI/glm-4-9b
+# A100
+/home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
 # Spec Decode
 /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
 /home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B

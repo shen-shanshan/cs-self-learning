@@ -23,25 +23,25 @@ cp /etc/skel/.bash_logout /etc/skel/.bashrc /etc/skel/.profile ~/
 
 ```bash
 nvidia-smi
-# +-----------------------------------------------------------------------------------------+
-# | NVIDIA-SMI 550.163.01             Driver Version: 550.163.01     CUDA Version: 12.4     |
-# |-----------------------------------------+------------------------+----------------------+
-# | GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
-# | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
-# |                                         |                        |               MIG M. |
-# |=========================================+========================+======================|
-# |   0  NVIDIA A100-SXM4-80GB          On  |   00000000:9D:00.0 Off |                    0 |
-# | N/A   33C    P0             61W /  400W |       1MiB /  81920MiB |      0%      Default |
-# |                                         |                        |             Disabled |
-# +-----------------------------------------+------------------------+----------------------+
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.163.01             Driver Version: 550.163.01     CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:9D:00.0 Off |                    0 |
+| N/A   33C    P0             61W /  400W |       1MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
                                                                                          
-# +-----------------------------------------------------------------------------------------+
-# | Processes:                                                                              |
-# |  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
-# |        ID   ID                                                               Usage      |
-# |=========================================================================================|
-# |  No running processes found                                                             |
-# +-----------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
 ```
 
 查看系统 Ubuntu 版本：
@@ -67,6 +67,10 @@ sudo sh cuda_12.4.0_550.54.14_linux.run
 cd ~
 mkdir cuda-12.4
 sudo mv /usr/local/cuda-12.4/* ~/cuda-12.4/
+
+# 12.9
+wget https://developer.download.nvidia.com/compute/cuda/12.9.0/local_installers/cuda_12.9.0_575.51.03_linux.run
+sudo sh cuda_12.9.0_575.51.03_linux.run
 ```
 
 配置环境变量：
@@ -109,9 +113,6 @@ uv
 安装 vllm：[official doc](https://docs.vllm.ai/en/stable/getting_started/installation/gpu/)
 
 ```bash
-uv venv --python 3.12 --seed
-source .venv/bin/activate
-
 cd ~
 mkdir github
 cd github
@@ -121,8 +122,30 @@ cd vllm
 # Set up using Python-only build (without compilation)
 git remote add upstream git@github.com:vllm-project/vllm.git
 git sync
-VLLM_USE_PRECOMPILED=1 uv pip install --editable .
 
-VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . --extra-index-url https://download.pytorch.org/whl/cu129 --index-strategy unsafe-best-match --prerelease=allow
+uv venv --python 3.12 --seed
+source .venv/bin/activate
+
+VLLM_USE_PRECOMPILED=1 uv pip install \
+--editable . \
+--extra-index-url https://download.pytorch.org/whl/cu124 \
+--index-strategy unsafe-best-match \
+--prerelease=allow
+# -i https://pypi.tuna.tsinghua.edu.cn/simple \
+# VLLM_USE_PRECOMPILED=1 uv pip install --editable . --extra-index-url https://download.pytorch.org/whl/cu124 --index-strategy unsafe-best-match --prerelease=allow
+
 # vLLM supports different CUDA versions but you need to install pytorch that corresponds to your CUDA version and then build vLLM from source.
+uv pip install -v torch torchvision torchaudio \
+--index-url https://download.pytorch.org/whl/cu124  # cu121 与 CUDA 12.4 runtime 完全兼容
+
+# Install vllm
+VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
+--extra-index-url https://download.pytorch.org/whl/cu124 \
+--index-strategy unsafe-best-match \
+--prerelease=allow
+
+--index-url https://mirrors.aliyun.com/pypi/simple \
+--extra-index-url https://download.pytorch.org/whl/cu124 \
+
+VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . --extra-index-url https://download.pytorch.org/whl/cu124 --index-strategy unsafe-best-match --prerelease=allow -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
