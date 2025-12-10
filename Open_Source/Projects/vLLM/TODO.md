@@ -6,6 +6,10 @@
 
 ## 开发任务
 
+- qk apply_rotary_emb 合并
+- 优化 xgrammar npu 性能
+- `@support_torch_compile`
+
 ## 源码学习
 
 ### Parallelism
@@ -67,7 +71,6 @@ vllm_config.scheduler_config.async_scheduling
 ### Multi-Modal
 
 - [ ] [Multi-Modal Data Processing](https://docs.vllm.ai/en/stable/design/mm_processing/)
-- [ ] `@support_torch_compile`
 - [ ] Move multimodal_cpu_fields definition to field config [#30181](https://github.com/vllm-project/vllm/pull/30181)
 - [ ] Add PrefixLM support to FlexAttention backend [#27938](https://github.com/vllm-project/vllm/pull/27938)
 

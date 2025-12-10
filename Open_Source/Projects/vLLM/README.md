@@ -82,9 +82,7 @@ export PATH=$PATH:$CUDA_HOME/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/extras/CUPTI/lib64
 
-echo "export CUDA_HOME=/home/sss/cuda-12.4" >> ~/.bashrc
-echo "export PATH=$PATH:$CUDA_HOME/bin" >> ~/.bashrc
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64" >> ~/.bashrc
+alias gpus='nvidia-smi'
 
 # 使配置生效
 source ~/.bashrc
