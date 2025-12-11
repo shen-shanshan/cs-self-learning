@@ -124,11 +124,12 @@ git sync
 uv venv --python 3.12 --seed
 source .venv/bin/activate
 
-VLLM_USE_PRECOMPILED=1 uv pip install \
---editable . \
---extra-index-url https://download.pytorch.org/whl/cu124 \
---index-strategy unsafe-best-match \
---prerelease=allow
+# VLLM_USE_PRECOMPILED=1 uv pip install \
+# --editable . \
+# --extra-index-url https://download.pytorch.org/whl/cu124 \
+# --index-strategy unsafe-best-match \
+# --prerelease=allow
+
 # -i https://pypi.tuna.tsinghua.edu.cn/simple \
 # VLLM_USE_PRECOMPILED=1 uv pip install --editable . --extra-index-url https://download.pytorch.org/whl/cu124 --index-strategy unsafe-best-match --prerelease=allow
 
@@ -142,8 +143,15 @@ VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
 --index-strategy unsafe-best-match \
 --prerelease=allow
 
---index-url https://mirrors.aliyun.com/pypi/simple \
---extra-index-url https://download.pytorch.org/whl/cu124 \
+# --index-url https://mirrors.aliyun.com/pypi/simple \
+# --extra-index-url https://download.pytorch.org/whl/cu124 \
 
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . --extra-index-url https://download.pytorch.org/whl/cu124 --index-strategy unsafe-best-match --prerelease=allow -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+uv pip install torch==2.9.0 -f https://mirrors.aliyun.com/pytorch-wheels/cu124  # 秒装 cuda pytorch
+
+# https://github.com/vllm-project/vllm/issues/30464
+
+uv pip install pre-commit -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+pre-commit install
 ```

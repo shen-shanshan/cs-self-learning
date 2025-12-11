@@ -66,3 +66,35 @@ def forward_static(): pass
 https://github.com/vllm-project/flash-attention/blob/main/vllm_flash_attn/layers/rotary.py
 https://github.com/vllm-project/flash-attention/blob/main/vllm_flash_attn/ops/triton/rotary.py
 https://github.com/Dao-AILab/flash-attention/blob/main/flash_attn/ops/triton/rotary.py
+
+---
+
+模型测试（GPU）：
+
+rednote-hilab/dots.ocr:
+
+```bash
+# You need to register model to vllm at first
+python3 tools/download_model.py
+
+export hf_model_path=./weights/DotsOCR  # Path to your downloaded model weights, Please use a directory name without periods (e.g., `DotsOCR` instead of `dots.ocr`) for the model save path. This is a temporary workaround pending our integration with Transformers.
+export PYTHONPATH=$(dirname "$hf_model_path"):$PYTHONPATH
+
+sed -i '/^from vllm\.entrypoints\.cli\.main import main$/a\
+from DotsOCR import modeling_dots_ocr_vllm' `which vllm`  # If you downloaded model weights by yourself, please replace `DotsOCR` by your model saved directory name, and remember to use a directory name without periods (e.g., `DotsOCR` instead of `dots.ocr`) 
+
+# launch vllm server
+CUDA_VISIBLE_DEVICES=0 vllm serve /home/sss/.cache/huggingface/hub/models/dots_ocr \
+--gpu-memory-utilization 0.95 \
+--chat-template-content-format string \
+--served-model-name model \
+--trust-remote-code
+
+# offline
+python examples/offline_inference/vision_language.py -m dots_ocr
+```
+
+---
+
+Signed-off-by: shen-shanshan <467638484@qq.com>
+Co-authored-by: gcanlin <canlinguosdu@gmail.com>

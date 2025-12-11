@@ -177,6 +177,7 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.s
 sudo apt-get install git-lfs
 git lfs install
 
+pre-commit install
 # 安装 pre-commit 报错 --> 需要安装 go 并设置国内代理
 sudo apt update
 # apt search golang-go
@@ -253,15 +254,30 @@ tmux kill-session -t session_name   # 结束会话
 ```python
 # 防止终端断开连接，导致下载中断：
 # tmux new -s download
-
 import os
 from modelscope import snapshot_download
 
-os.environ["MODELSCOPE_CACHE"] = "/shared/cache/modelscope/hub"  # Coder
+os.environ["MODELSCOPE_CACHE"] = "/home/sss/.cache/modelscope/hub"  # Coder
 os.environ["MODELSCOPE_CACHE"] = "/data/disk2/cache/modelscope/hub"  # A2 (01)
 os.environ["MODELSCOPE_CACHE"] = "/root/.cache/modelscope/hub"  # A3
 
 model_dir = snapshot_download('deepseek-ai/DeepSeek-V2-Lite')
+
+
+# huggingface 下载
+# uv pip install huggingface_hub -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+# export HF_ENDPOINT=https://hf-mirror.com
+from huggingface_hub import snapshot_download
+
+MODEL = "rednote-hilab/dots.ocr"
+
+model_dir = snapshot_download(
+    repo_id=MODEL,
+    revision="main",
+    local_dir="/home/sss/.cache/huggingface/hub/models/model_name",
+    local_dir_use_symlinks=False,  # 把文件真实拷贝下来（推荐）
+)
+print(f"Download {MODEL} to {model_dir} finished.")
 ```
 
 ```bash
@@ -283,6 +299,7 @@ model_dir = snapshot_download('deepseek-ai/DeepSeek-V2-Lite')
 /shared/cache/modelscope/hub/models/ZhipuAI/glm-4-9b
 # A100
 /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
+/home/sss/.cache/huggingface/hub/models/dots_ocr
 # Spec Decode
 /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
 /home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B
@@ -462,6 +479,9 @@ exit
 ## Debug
 
 ```bash
+# logger = init_logger(__name__)
+# logger.info_once("...")
+
 # https://zhuanlan.zhihu.com/p/1948019110530232787
 # 只允许 rank0 打印日志
 if torch.distributed.get_rank() == 0:

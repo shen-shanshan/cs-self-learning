@@ -11,6 +11,16 @@ sudo apt install golang-go -y
 go env -w GOPROXY=https://goproxy.cn,direct
 
 
+# for cuda
+# sudo apt remove gcc -y
+# sudo apt-get install gcc-11 g++-11 -y
+# sudo ln -s /usr/bin/gcc-11 /usr/bin/gcc
+# sudo ln -s /usr/bin/g++-11 /usr/bin/g++
+# sudo ln -s /usr/bin/gcc-11 /usr/bin/cc
+# sudo ln -s /usr/bin/g++-11 /usr/bin/c++
+# gcc --version
+
+
 # config env var
 echo " " >> ~/.bashrc
 echo "# --------------------- custom env vars ---------------------" >> ~/.bashrc
@@ -59,13 +69,3 @@ source ~/.bashrcl
 # eval "$(/root/miniconda3/bin/conda shell.bash hook)"
 conda create -n vllm python=3.11 -y
 conda activate vllm
-
-
-# for cuda
-# sudo apt remove gcc -y
-# sudo apt-get install gcc-11 g++-11 -y
-# sudo ln -s /usr/bin/gcc-11 /usr/bin/gcc
-# sudo ln -s /usr/bin/g++-11 /usr/bin/g++
-# sudo ln -s /usr/bin/gcc-11 /usr/bin/cc
-# sudo ln -s /usr/bin/g++-11 /usr/bin/c++
-# gcc --version
