@@ -10,6 +10,9 @@ sudo apt install openssh-client -y
 sudo apt install golang-go -y
 go env -w GOPROXY=https://goproxy.cn,direct
 
+# to solve "Python.h: No such file or directory" for vllm
+sudo apt-get install python3-dev python3-venv python3-pip -y
+
 
 # for cuda
 # sudo apt remove gcc -y

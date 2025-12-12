@@ -90,11 +90,10 @@ CUDA_VISIBLE_DEVICES=0 vllm serve /home/sss/.cache/huggingface/hub/models/dots_o
 --served-model-name model \
 --trust-remote-code
 
-# offline
-python examples/offline_inference/vision_language.py -m dots_ocr
-```
 
----
+```
 
 Signed-off-by: shen-shanshan <467638484@qq.com>
 Co-authored-by: gcanlin <canlinguosdu@gmail.com>
+
+AscendSiluAndMul

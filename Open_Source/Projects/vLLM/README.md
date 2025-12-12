@@ -121,8 +121,16 @@ cd vllm
 git remote add upstream git@github.com:vllm-project/vllm.git
 git sync
 
-uv venv --python 3.12 --seed
+export UV_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+export UV_HTTP_TIMEOUT=1000000000
+
+uv venv --python 3.12 --seed -v
 source .venv/bin/activate
+
+uv pip install pre-commit -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+pre-commit install
+
+uv pip install "modelscope>=1.18.1" -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
 # VLLM_USE_PRECOMPILED=1 uv pip install \
 # --editable . \
@@ -148,10 +156,39 @@ VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
 
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . --extra-index-url https://download.pytorch.org/whl/cu124 --index-strategy unsafe-best-match --prerelease=allow -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-uv pip install torch==2.9.0 -f https://mirrors.aliyun.com/pytorch-wheels/cu124  # 秒装 cuda pytorch
+# 秒装 cuda pytorch
+uv pip install torch==2.9.0 \
+-i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+-f https://mirrors.aliyun.com/pytorch-wheels/cu124
 
 # https://github.com/vllm-project/vllm/issues/30464
+VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
+-i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+torch==2.9.0 -f https://mirrors.aliyun.com/pytorch-wheels/cu124 \
+--index-strategy unsafe-best-match \
+--prerelease=allow
+```
 
-uv pip install pre-commit -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
-pre-commit install
+RemoteForward 7890 127.0.0.1:7890
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+ssh coder.sss-gpu-a100.main
+curl https://google.com -I
+
+```bash
+# 本地运行：
+ssh -D 1080 shanshan-shen@remote-server
+# 然后服务器配置：
+export all_proxy="socks5://127.0.0.1:1080"
+
+
+# 在远程服务器执行：
+ssh -R 9999:localhost:7890 user@你的本地IP
+# 服务器上设置代理：
+export http_proxy="http://127.0.0.1:9999"
+export https_proxy="http://127.0.0.1:9999"
+export all_proxy="http://127.0.0.1:9999"
+
+ssh -R 9999:localhost:7890 shanshan-shen@141.11.146.70
+ssh -R 9999:localhost:7890 shanshan-shen@7.249.188.223
+ssh shanshan-shen@7.249.188.223
 ```
