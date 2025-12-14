@@ -9,6 +9,8 @@
 - qk apply_rotary_emb 合并
 - 优化 xgrammar npu 性能
 - `@support_torch_compile`
+- CustomOp 文档
+- 拆分多模态编译配置
 
 ## 源码学习
 
@@ -90,7 +92,8 @@ vllm_config.scheduler_config.async_scheduling
 
 - [ ] vLLM 分离式架构 - 从 PD 分离到 AF 分离
 - [ ] vLLM 推理可靠性 - 弹性伸缩与容错
-- [ ] 多模态推理流程
+- [ ] vLLM 多模态推理流程
+- [ ] vLLM CustomOp 文档
 - [x] 卷积计算加速
 - [x] V1 整体流程
 - [x] Guided Decoding V0/V1

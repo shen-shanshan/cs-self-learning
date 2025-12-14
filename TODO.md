@@ -34,7 +34,18 @@
 - [x] **DMA**: By enabling a direct-memory access (DMA) engine near the network adapter or storage, it moves data into or out of GPU memory—without burdening the CPU.
 - [x] **零拷贝**：即不需要在用户空间和内核空间中来回复制数据。
 
+**环境搭建：**
+
+- [ ] 远程服务器配置代理
+- [ ] 远程访问公司 IP
+
 ## LLM 基础
+
+基础知识：
+
+- [ ] [大模型推理必学：专业术语与概念引导（上）](https://mp.weixin.qq.com/s/sfRFrvT3s1PGHjjiT0pi5A)
+- [ ] [大模型推理必学：专业术语与概念引导（下）](https://mp.weixin.qq.com/s/FGQzmFlZ6MTkVizeGSJoXQ)
+- [ ] [2025 年最全面的 LLM 架构技术解析](https://mp.weixin.qq.com/s/7qVwBhE5JcJFnyOKpYNCeA)
 
 NLP：
 
@@ -66,6 +77,7 @@ MoE：
 
 多模态：
 
+- [ ] [统一多模态理解与生成综述：83页长文梳理进展和挑战](https://mp.weixin.qq.com/s/MjAzSf-EFG6TlZk_zOQy9Q)
 - [ ] [深度研读 Qwen3-VL：当视觉模型学会“慢思考”与 256K 超长视野 🌟](https://zhuanlan.zhihu.com/p/1980240971909337328?share_code=n5piaWev0MEt&utm_psn=1980718678996707264)
 - [ ] [多模态技术梳理：ViT 系列 🌟](https://zhuanlan.zhihu.com/p/26719287825)
 - [ ] [Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解 🌟](https://zhuanlan.zhihu.com/p/28205969434)
@@ -261,6 +273,7 @@ Blogs:
 
 ## Others
 
+- [ ] [TileLang+TVM-FFI: 极致压榨CPU性能](https://zhuanlan.zhihu.com/p/1982449607435903684?share_code=1namqWxZu7LC4&utm_psn=1982944873624663147)
 - [ ] [面向 ML 玩家的 Docker 零帧起手 🌟](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
 - [ ] 昇腾社区 msprof 工具使用文档（Mind Studio）🌟
 - [ ] [GPU/NPU 推理 Profiling 阅读引导（上）🌟](https://mp.weixin.qq.com/s/xNKdTl5cUPnpVe3OQ3wXKg)
