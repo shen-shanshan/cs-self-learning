@@ -77,6 +77,7 @@ MoE：
 
 多模态：
 
+- [ ] [Encoder Disaggregation for Scalable Multimodal Model Serving 🌟](https://blog.vllm.ai/2025/12/15/vllm-epd.html)
 - [ ] [统一多模态理解与生成综述：83页长文梳理进展和挑战](https://mp.weixin.qq.com/s/MjAzSf-EFG6TlZk_zOQy9Q)
 - [ ] [深度研读 Qwen3-VL：当视觉模型学会“慢思考”与 256K 超长视野 🌟](https://zhuanlan.zhihu.com/p/1980240971909337328?share_code=n5piaWev0MEt&utm_psn=1980718678996707264)
 - [ ] [多模态技术梳理：ViT 系列 🌟](https://zhuanlan.zhihu.com/p/26719287825)
