@@ -288,6 +288,7 @@ print(f"Download {MODEL} to {model_dir} finished.")
 /home/sss/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
 # Ascend 01 docker
 /root/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B-Instruct
+/root/.cache/modelscope/hub/models/Qwen/Qwen3-8B
 /root/.cache/modelscope/hub/models/deepseek-ai/DeepSeek-V2-Lite
 
 # Coder

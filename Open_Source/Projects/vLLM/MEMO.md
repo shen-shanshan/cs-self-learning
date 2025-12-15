@@ -194,3 +194,7 @@ curl http://localhost:8000/v1/completions \
         "temperature": 0
     }'
 ```
+
+## Multi-Modal Models Test
+
+[模型测试命令](./Features/Multi_Modal/模型测试命令.md)

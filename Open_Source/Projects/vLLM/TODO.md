@@ -6,11 +6,19 @@
 
 ## 开发任务
 
-- qk apply_rotary_emb 合并
+- qk `apply_rotary_emb` 合并，学习看 profiling
 - 优化 xgrammar npu 性能
-- `@support_torch_compile`
-- CustomOp 文档
+- 了解 `@support_torch_compile` 原理
+- 补充 CustomOp 文档
 - 拆分多模态编译配置
+- 抽取 ApplyRotaryEmb 公共函数：to float、3D to 4D
+- 解决 vllm-ascend structured output nanobind 内存泄露
+- 将 ModelRunner 中的多模态方法移动到 MMModelRunnerMixin（`_extract_mm_kwargs`, `_execute_mm_encoder`, `_extract_encoder_inputs`, `_get_mm_dummy_batch`）
+
+- `_preprocess` -> `_prepare_inputs`
+  - `_execute_mm_encoder`
+  - `_extract_mm_kwargs`
+  - `_extract_encoder_inputs`
 
 ## 源码学习
 
@@ -34,6 +42,7 @@
 - [ ] DP Coordinator: API-server scaleout with many-to-many server-engine comms [#17546](https://github.com/vllm-project/vllm/pull/17546)
 - [ ] External DPLB [#19790](https://github.com/vllm-project/vllm/pull/19790)
 - [ ] Internal DPLB [#21238](https://github.com/vllm-project/vllm/pull/21238)
+- [ ] Enable DP-aware routing in OpenAI API requests [#24945](https://github.com/vllm-project/vllm/pull/24945)
 
 ### Expert Parallel
 
@@ -68,13 +77,12 @@ vllm_config.scheduler_config.async_scheduling
 
 - [ ] [Disaggregated Prefilling](https://docs.vllm.ai/en/latest/features/disagg_prefill.html)
 
-### AF Disaggregation
-
 ### Multi-Modal
 
 - [ ] [Multi-Modal Data Processing](https://docs.vllm.ai/en/stable/design/mm_processing/)
-- [ ] Move multimodal_cpu_fields definition to field config [#30181](https://github.com/vllm-project/vllm/pull/30181)
 - [ ] Add PrefixLM support to FlexAttention backend [#27938](https://github.com/vllm-project/vllm/pull/27938)
+- [ ] Use non-blocking CPU-GPU copy of multimodal data [#28141](https://github.com/vllm-project/vllm/pull/28141)
+- [ ] Move multimodal_cpu_fields definition to field config [#30181](https://github.com/vllm-project/vllm/pull/30181)
 
 ### Others
 
@@ -87,6 +95,7 @@ vllm_config.scheduler_config.async_scheduling
 - [ ] model_runner input_batch
 - [ ] DeviceMemoryProfiler
 - [ ] [GPU Model Runner V2](https://github.com/vllm-project/vllm/pull/25266)
+- [ ] Support MP Executor for multi node distributed inference [#23691](https://github.com/vllm-project/vllm/pull/23691)
 
 ## 技术博客
 
