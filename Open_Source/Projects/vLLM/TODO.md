@@ -14,11 +14,7 @@
 - 抽取 ApplyRotaryEmb 公共函数：to float、3D to 4D
 - 解决 vllm-ascend structured output nanobind 内存泄露
 - 将 ModelRunner 中的多模态方法移动到 MMModelRunnerMixin（`_extract_mm_kwargs`, `_execute_mm_encoder`, `_extract_encoder_inputs`, `_get_mm_dummy_batch`）
-
-- `_preprocess` -> `_prepare_inputs`
-  - `_execute_mm_encoder`
-  - `_extract_mm_kwargs`
-  - `_extract_encoder_inputs`
+- structured output CI 看护
 
 ## 源码学习
 
