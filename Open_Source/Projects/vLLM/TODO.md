@@ -6,15 +6,16 @@
 
 ## 开发任务
 
-- qk `apply_rotary_emb` 合并，学习看 profiling
-- 优化 xgrammar npu 性能
-- 了解 `@support_torch_compile` 原理
-- 补充 CustomOp 文档
-- 拆分多模态编译配置
-- 抽取 ApplyRotaryEmb 公共函数：to float、3D to 4D
-- 解决 vllm-ascend structured output nanobind 内存泄露
-- 将 ModelRunner 中的多模态方法移动到 MMModelRunnerMixin（`_extract_mm_kwargs`, `_execute_mm_encoder`, `_extract_encoder_inputs`, `_get_mm_dummy_batch`）
-- structured output CI 看护
+1. qk `apply_rotary_emb` 合并，学习看 profiling
+2. 优化 xgrammar npu 性能
+3. 了解 `@support_torch_compile` 原理
+4. 补充 CustomOp 文档
+5. 拆分 vllm 多模态编译配置
+6. 抽取 ApplyRotaryEmb 公共函数：to float、3D to 4D
+7. 解决 vllm-ascend structured output nanobind 内存泄露
+8. 将 ModelRunner 中的多模态方法移动到 MMModelRunnerMixin（`_extract_mm_kwargs`, `_execute_mm_encoder`, `_extract_encoder_inputs`, `_get_mm_dummy_batch`）
+9. structured output CI 看护
+10. 解决多模态 profiling OOM 问题
 
 ## 源码学习
 
