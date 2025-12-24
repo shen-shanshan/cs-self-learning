@@ -168,3 +168,115 @@ model = MySigmoidModule()
 x = torch.tensor([1.0, 2.0, 3.0], requires_grad=True)
 y = model(x)
 ```
+
+---
+
+| Category | OP Name | OP Class |
+|----------|---------|----------|
+| Attention | `mm_encoder_attn` | `MMEncoderAttention` |
+| Attention | `multi_head_latent_attention` | `MultiHeadLatentAttentionWrapper` |
+| Activation | `fatrelu_and_mul` | `FatreluAndMul` |
+| Activation | `silu_and_mul` | `SiluAndMul` |
+| Activation | `mul_and_silu` | `MulAndSilu` |
+| Activation | `gelu_and_mul_sparse` | `GeluAndMulSparse` |
+| Activation | `gelu_and_mul` | `GeluAndMul` |
+| Activation | `swigluoai_and_mul` | `SwigluOAIAndMul` |
+| Activation | `gelu_new` | `NewGELU` |
+| Activation | `gelu_fast` | `FastGELU` |
+| Activation | `quick_gelu` | `QuickGELU` |
+| Activation | `relu2` | `ReLUSquaredActivation` |
+| Activation | `xielu` | `XIELU` |
+| Conv | `conv2d` | `Conv2dLayer` |
+| Conv | `conv3d` | `Conv3dLayer` |
+| Conv | `short_conv` | `ShortConv` |
+| Embedding | `vocab_parallel_embedding` | `VocabParallelEmbedding` |
+| Embedding | `parallel_lm_head` | `ParallelLMHead` |
+| Linear | `row_parallel_linear` | `RowParallelLinear` |
+| Linear | `column_parallel_linear` | `ColumnParallelLinear` |
+| Linear | `replicated_linear` | `ReplicatedLinear` |
+| Logits Processor | `logits_processor` | `LogitsProcessor` |
+| Mamba | `mamba_mixer` | `MambaMixer` |
+| Mamba | `mamba_mixer2` | `MambaMixer2` |
+| Mamba | `plamo2_mamba_mixer` | `Plamo2MambaMixer` |
+| Mamba | `mixer2_gated_rms_norm` | `Mixer2RMSNormGated` |
+| MoE | `fused_moe` | `FusedMoE` |
+| MoE | `modular_fused_moe` | `FusedMoEModularMethod` |
+| MoE | `unquantized_fused_moe` | `UnquantizedFusedMoEMethod` |
+| MoE | `transformers_fused_moe` | `TransformersFusedMoE` |
+| MoE | `grouped_topk` | `GroupedTopk` |
+| Norm | `rms_norm` | `RMSNorm` |
+| Norm | `gemma_rms_norm` | `GemmaRMSNorm` |
+| Norm | `rms_norm_gated` | `RMSNormGated` |
+| Quantization | `quant_fp8` | `QuantFP8` |
+| Rope | `rotary_embedding` | `RotaryEmbeddingBase` |
+| Rope | `dual_chunk_rotary_embedding` | `DualChunkRotaryEmbedding` |
+| Rope | `apply_rotary_emb` | `ApplyRotaryEmb` |
+
+---
+
+```
+Attention:
+mm_encoder_attn
+multi_head_latent_attention
+
+Activation:
+silu_and_mul
+mul_and_silu
+gelu_new
+gelu_fast
+quick_gelu
+gelu_and_mul
+gelu_and_mul_sparse
+relu2
+xielu
+swigluoai_and_mul
+fatrelu_and_mul
+
+MM-Conv:
+conv2d
+conv3d
+
+Embedding:
+vocab_parallel_embedding
+parallel_lm_head
+
+Linear:
+row_parallel_linear
+column_parallel_linear
+replicated_linear
+
+Logits Processor:
+logits_processor
+
+Mamba:
+mamba_mixer
+mamba_mixer2
+mixer2_gated_rms_norm
+plamo2_mamba_mixer
+short_conv
+
+MoE:
+fused_moe
+modular_fused_moe
+unquantized_fused_moe
+transformers_fused_moe
+grouped_topk
+
+Norm:
+rms_norm
+rms_norm_gated
+gemma_rms_norm
+
+Quantization:
+quant_fp8
+
+Rope:
+rotary_embedding
+dual_chunk_rotary_embedding
+apply_rotary_emb
+
+register("short_conv")
+# --8<-- [start:mm_encoder_attn]
+# --8<-- [end:mm_encoder_attn]
+--8<-- "example.py:mm_encoder_attn"
+```

@@ -176,16 +176,30 @@ $ git commit -m "Refactor usability tests. \
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
 git lfs install
+```
 
+pre-commit：
+
+```bash
+pip install pre-commit
 pre-commit install
+
 # 安装 pre-commit 报错 --> 需要安装 go 并设置国内代理
 sudo apt update
 # apt search golang-go
 sudo apt install golang-go -y
 go version
 go env -w GOPROXY=https://goproxy.cn,direct
+
 # 禁用 pre-commit 检查
 --no-verify
+
+# pre-commit 初始化时一直卡住
+git config --global http.version HTTP/1.1
+pre-commit clean
+rm -rf ~/.cache/pre-commit
+pre-commit install
+pre-commit run --all-files
 ```
 
 ## Pip
@@ -193,6 +207,13 @@ go env -w GOPROXY=https://goproxy.cn,direct
 ```bash
 pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 pip install --upgrade transformers
+```
+
+Conda:
+
+```bash
+# 升级 python
+conda install python=3.11
 ```
 
 ## CANN

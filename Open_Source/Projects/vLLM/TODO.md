@@ -6,16 +6,19 @@
 
 ## 开发任务
 
-1. qk `apply_rotary_emb` 合并，学习看 profiling
+1. qk `apply_rotary_emb` 合并
 2. 优化 xgrammar npu 性能
 3. 了解 `@support_torch_compile` 原理
-4. 补充 CustomOp 文档
+4. 补充 CustomOp 文档（写中文版，发知乎）
 5. 拆分 vllm 多模态编译配置
-6. 抽取 ApplyRotaryEmb 公共函数：to float、3D to 4D
-7. 解决 vllm-ascend structured output nanobind 内存泄露
-8. 将 ModelRunner 中的多模态方法移动到 MMModelRunnerMixin（`_extract_mm_kwargs`, `_execute_mm_encoder`, `_extract_encoder_inputs`, `_get_mm_dummy_batch`）
-9. structured output CI 看护
-10. 解决多模态 profiling OOM 问题
+6. 解决 vllm-ascend structured output nanobind 内存泄露
+7. structured output CI 看护 https://github.com/vllm-project/vllm-ascend/issues/3979
+8. 解决多模态 profiling OOM 问题 https://github.com/vllm-project/vllm/pull/29431
+9. 修改 hf 多模态配置 https://github.com/vllm-project/vllm-ascend/pull/5205
+
+## 查漏补缺
+
+- torch compile mode 和 CUDA Graphs mode 的区别？
 
 ## 源码学习
 
