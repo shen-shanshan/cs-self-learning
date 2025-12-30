@@ -19,7 +19,6 @@
 ## 查漏补缺
 
 - torch compile mode 和 CUDA Graphs mode 的区别？
-- [vllm-torch-compile-integration](https://riverclouds.net/p/3525412134/)
 
 ## 源码学习
 

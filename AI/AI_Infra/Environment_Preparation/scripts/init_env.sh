@@ -70,7 +70,7 @@ cd /home/sss/software/miniconda/
 bash Miniconda3-latest-Linux-aarch64.sh
 source ~/.bashrc
 # eval "$(/root/miniconda3/bin/conda shell.bash hook)"
-conda create -n vllm python=3.10 -y
+conda create -n vllm python=3.11 -y
 conda activate vllm
 
 # install vllm
@@ -92,7 +92,7 @@ git sync
 source /usr/local/Ascend/ascend-toolkit/set_env.sh
 source /usr/local/Ascend/nnal/atb/set_env.sh
 # export COMPILE_CUSTOM_KERNELS=1
-export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
+# export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
 pip install -v -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install -r requirements-dev.txt
 pip install modelscope>=1.18.1 -i https://pypi.tuna.tsinghua.edu.cn/simple

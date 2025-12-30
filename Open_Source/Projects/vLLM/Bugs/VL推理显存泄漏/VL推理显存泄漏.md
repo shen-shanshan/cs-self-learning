@@ -23,9 +23,12 @@ Qwen/Qwen3-VL-32B-Instruct \
 --dtype bfloat16 \
 
 --max-model-len 16384 \
---gpu-memory-utilization 0.8 \
+--gpu-memory-utilization 0.97 \
 --limit-mm-per-prompt.video=0 \
 --max-num-seqs 4 \
+
+# dataset
+opendatalab/OmniDocBench
 
 # client
 export VLLM_USE_MODELSCOPE=False
@@ -94,3 +97,48 @@ Encoder cache will be initialized with a budget of 16384 tokens, and profiled wi
 Available memory: 21540531712
     total memory: 65452113920
 ```
+
+---
+
+准备数据：
+
+```bash
+scp *.jpg root@139.9.155.20:/home/sss/images
+
+# large size
+scp pexels-bertellifotografia-16094061.jpg root@139.9.155.20:/home/sss/large_images
+```
+
+启动服务：
+
+```bash
+vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
+--tensor-parallel-size 2 \
+--max-model-len 65536 \
+--max-num-seqs 8 \
+--max-num-batched-tokens 32768 \
+--gpu-memory-utilization 0.97
+```
+
+启动前：3409
+启动后：55441
+推理后：
+
+---
+
+```bash
+conda create -n vllm-v0.12.0 python=3.11 -y
+
+cd vllm
+git fetch --tags
+git tag -l | grep v0.12.0
+git checkout -b v0.12.0 v0.12.0
+
+cd vllm-ascend
+git fetch --tags
+git tag -l | grep v0.12.0rc1
+git checkout -b v0.12.0rc1 v0.12.0rc1
+```
+
+Qwen3-VL dummy_mm_data target_width: 4096.
+Qwen3-VL dummy_mm_data target_height: 4096.

@@ -1,4 +1,3 @@
-```python
 import time
 import os
 import torch_npu
@@ -55,4 +54,3 @@ def monitor(interval=1):
 
 if __name__ == "__main__":
     monitor(interval=1)
-```
