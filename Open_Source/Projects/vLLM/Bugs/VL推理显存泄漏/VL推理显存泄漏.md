@@ -53,19 +53,6 @@ curl http://localhost:8000/server_info
 curl http://localhost:8000/is_sleeping
 ```
 
-服务启动前：3400/65536
-服务启动后：57766/65536
-压测之后：61548/65536 (增长 3.7 G)
-调用 reset_mm_cache 后：61548/65536
-
-```bash
-Loading model weights took 31.4592 GB
-Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
-
-Available memory: 21540531712
-    total memory: 65452113920
-```
-
 ---
 
 准备数据：
@@ -80,38 +67,13 @@ scp pexels-bertellifotografia-16094061.jpg root@139.9.155.20:/home/sss/large_ima
 启动服务：
 
 ```bash
+VLLM_LOGGING_LEVEL=DEBUG \
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
 --tensor-parallel-size 2 \
 --max-model-len 65536 \
 --max-num-seqs 8 \
 --max-num-batched-tokens 32768 \
 --gpu-memory-utilization 0.95
-```
-
-旧 profiling 方法：
-
-```bash
-comm buffer memory used: 6.103515625e-05 GB.
-Loading model weights took 9.1948 GB
-Encoder cache will be initialized with a budget of 32768 tokens, and profiled with 2 image items of the maximum feature size.
-Available memory: 43.39572334289551 GiB, total memory: 60.95703125 GiB
-```
-
-新 profiling 方法：
-
-服务启动前：3409 / 65536
-服务启动后：53566 / 65536
-peak：65160
-
-```bash
-Loading model weights took 9.1948 GB
-Encoder cache will be initialized with a budget of 32768 tokens, and profiled with 2 image items of the maximum feature size.
-Qwen3-VL dummy_mm_data target_width: 4096.
-Qwen3-VL dummy_mm_data target_height: 4096.
-Available KV cache memory: 38.41 GiB
-GPU KV cache size: 559,232 tokens
-encoder_compute_budget: 32768
-encoder_cache_size: 32768
 ```
 
 ---

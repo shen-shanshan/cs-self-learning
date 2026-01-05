@@ -189,10 +189,8 @@ PD/AF 分离：
 - [ ] [Graph Mode 🌟](./Open_Source/Projects/vLLM/Features/Graph_Mode/README.md)
 - [ ] [PyTorch internals 🌟](http://blog.ezyang.com/2019/05/pytorch-internals/)
 - [ ] [PyTorch dispatcher 🌟](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)
-- [ ] [PyTorch 显存管理介绍与源码解析（一）](https://zhuanlan.zhihu.com/p/680769942)
 - [ ] [PyTorch 显存管理介绍与源码解析（二）](https://zhuanlan.zhihu.com/p/681651660)
 - [ ] [PyTorch 显存管理介绍与源码解析（三）](https://zhuanlan.zhihu.com/p/692614846)
-- [ ] [PyTorch 显存可视化与 Snapshot 数据分析](https://zhuanlan.zhihu.com/p/677203832)
 
 ## CUDA
 
@@ -271,6 +269,7 @@ Blogs:
 - [ ] [Awesome Reading Material for phd](https://galeselee.gitbook.io/awesome-papers/awesome_reading_material)
 - [ ] [Doing The PhD](https://github.com/shengyp/doing_the_PhD)
 - [ ] [博士申请套磁信的撰写模板](https://mp.weixin.qq.com/s/u1YtAqHKmFrfpG1KI_lBSg)
+- [ ] [如何高效阅读学术论文，快速抓住核心信息？](https://www.zhihu.com/question/1984218203400979561/answer/1985100908015678961)
 
 ## Others
 
