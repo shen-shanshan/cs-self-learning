@@ -8,6 +8,7 @@
 
 - [ ] profiling 博客与实操
 - [ ] vllm-omni 源码
+- [ ] [LLM推理优化的上半场：单实例推理优化接近尾声](https://zhuanlan.zhihu.com/p/1912580139667154389)
 
 **Python:**
 

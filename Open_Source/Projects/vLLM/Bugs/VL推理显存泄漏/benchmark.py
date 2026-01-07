@@ -81,9 +81,13 @@ class QwenVLInference:
         print(f"Found {len(image_files)} image files.")
 
         results = []
+        total = len(image_files)
+        cnt = 1
         for image_path in image_files:
             print(f"\n{'-' * 100}")
+            print(f"{cnt}/{total}:")
             print(f"Processing: {image_path.name}")
+            cnt += 1
 
             result = self.send_request(image_path)
             if result:
@@ -110,14 +114,13 @@ class QwenVLInference:
 
 
 def main():
-    IMAGE_PATH = "/home/sss/images-2"
+    IMAGE_PATH_1 = "/home/sss/images"
+    IMAGE_PATH_2 = "/home/sss/large_images"
 
     client = QwenVLInference()
 
-    results = client.process_folder_images(IMAGE_PATH)
-
-    if results:
-        client.save_results(results)
+    client.process_folder_images(IMAGE_PATH_1)
+    # client.process_folder_images(IMAGE_PATH_2)
 
 
 if __name__ == "__main__":
