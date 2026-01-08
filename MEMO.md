@@ -384,7 +384,6 @@ services:
       - /home/sss:/home/sss
       - /data/disk2/cache:/root/.cache
     ports:
-      - 8333:22
       - 8009:8009
     restart: unless-stopped
     hostname: ascend-01
