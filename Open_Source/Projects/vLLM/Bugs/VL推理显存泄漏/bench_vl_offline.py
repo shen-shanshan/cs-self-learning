@@ -5,6 +5,7 @@
 
 import base64
 import os
+import gc
 import json
 import requests
 from pathlib import Path
@@ -13,15 +14,19 @@ from transformers import AutoProcessor
 import datetime
 from PIL import Image
 
+import torch
 import torch_npu
-from torch_npu.contrib import transfer_to_npu
+# from torch_npu.contrib import transfer_to_npu
 from vllm import LLM, SamplingParams
-from qwen_vl_utils import process_vision_info
+from vllm.utils.mem_constants import GiB_bytes
+from vllm.distributed.parallel_state import (destroy_distributed_environment,
+                                             destroy_model_parallel)
 
 
 MODEL_PATH = "/root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct"
 IMAGE_PATH_1 = "/home/sss/images"
-IMAGE_PATH_2 = "/home/sss/large_images"
+IMAGE_PATH_2 = "/home/sss/images-2"
+IMAGE_PATH_3 = "/home/sss/large_images"
 
 
 def process_folder_images(folder_path):
@@ -57,42 +62,79 @@ def encode_image(image_path):
         return None
 
 
+def resize_and_pad_4096(
+    img: Image.Image,
+    target_size: int = 4096,
+    fill_color=(0, 0, 0),
+) -> Image.Image:
+    """
+    等比 resize + pad 到 4096x4096
+    - 保持宽高比
+    - 最终 shape 恒定
+    """
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+
+    w, h = img.size
+
+    # 等比缩放比例
+    scale = min(target_size / w, target_size / h)
+    new_w = int(round(w * scale))
+    new_h = int(round(h * scale))
+
+    # resize
+    img_resized = img.resize((new_w, new_h), Image.BICUBIC)
+
+    # pad 到固定尺寸
+    canvas = Image.new("RGB", (target_size, target_size), fill_color)
+    left = (target_size - new_w) // 2
+    top = (target_size - new_h) // 2
+    canvas.paste(img_resized, (left, top))
+
+    return canvas
+
+
 def send_request(llm, sampling_params, image_path):
-    image_data = self.encode_image(image_path)
-    if image_data is None:
-        return None
-
-    image_messages = [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": [
-            {"type": "image_url", "image_url": {"url": image_data}},
-            {"type": "text", "text": "What is the text in the illustrate?"},
-        ]},
+    image = Image.open(image_path).convert("RGB")
+    image = resize_and_pad_4096(image)
+    
+    questions = [
+        "What is the content of this image?",
+        # "Describe the content of this image in detail.",
+        # "What's in the image?",
+        # "Where is this image taken?",
     ]
-    messages = image_messages
-    processor = AutoProcessor.from_pretrained(MODEL_PATH)
-    prompt = processor.apply_chat_template(
-        messages,
-        tokenize=False,
-        add_generation_prompt=True,
-    )
-    image_inputs, _, _ = process_vision_info(messages, return_video_kwargs=True)
-    mm_data = {}
-    if image_inputs is not None:
-        mm_data["image"] = image_inputs
+    placeholder = "<|image_pad|>"
+    prompts = [
+        (
+            "<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n"
+            f"<|im_start|>user\n<|vision_start|>{placeholder}<|vision_end|>"
+            f"{question}<|im_end|>\n"
+            "<|im_start|>assistant\n"
+        )
+        for question in questions
+    ]
 
-    llm_inputs = {
-        "prompt": prompt,
-        "multi_modal_data": mm_data,
+    # Single inference
+    # uuid = "uuid_0"
+    inputs = {
+        "prompt": prompts[0],
+        "multi_modal_data": {"image": image},
+        # "multi_modal_uuids": {modality: uuid},
     }
-    outputs = llm.generate([llm_inputs], sampling_params=sampling_params)
-    generated_text = outputs[0].outputs[0].text
-    print(generated_text)
+
+    outputs = llm.generate(inputs, sampling_params=sampling_params)
+    # outputs = llm.generate([llm_inputs], sampling_params=sampling_params)
+    for o in outputs:
+        generated_text = o.outputs[0].text
+        print(generated_text)
 
 
 def bench_vl():
     # Pre-process image input
     image_files = process_folder_images(IMAGE_PATH_1)
+
+    # torch_npu.npu.memory._record_memory_history(max_entries=100000)
 
     # NOTE: The default `max_num_seqs` and `max_model_len` may result in OOM on lower-end GPUs.
     llm = LLM(
@@ -101,8 +143,11 @@ def bench_vl():
         max_num_seqs=8,
         max_num_batched_tokens=32768,
         gpu_memory_utilization=0.95,
+        tensor_parallel_size=2,
+        # enforce_eager=True,
         # limit_mm_per_prompt={"image": 10},
     )
+    sampling_params = SamplingParams(max_tokens=1024)
 
     total = len(image_files)
     cnt = 1
@@ -112,7 +157,19 @@ def bench_vl():
         print(f"Processing: {image_path.name}")
         send_request(llm, sampling_params, image_path)
         cnt += 1
+        # torch_npu.npu.memory._dump_snapshot("./mem_snapshot/bench_vl.pickle")
+        # torch_npu.npu.memory._record_memory_history(enabled=None)
+    
+    del llm
+
+def clean_up():
+    destroy_model_parallel()
+    destroy_distributed_environment()
+    gc.collect()
+    torch.npu.empty_cache()
 
 
 if __name__ == "__main__":
+    # torch.npu.set_device(0)
     bench_vl()
+    clean_up()

@@ -21,7 +21,7 @@ vllm 显存：
 
 PyTorch：
 
-- [PyTorch Docs: Understanding CUDA Memory Usage](https://docs.pytorch.org/docs/2.1/torch_cuda_memory.html#understanding-cuda-memory-usage)
+- [PyTorch Docs: Understanding CUDA Memory Usage](https://docs.pytorch.org/docs/stable/torch_cuda_memory.html#non-pytorch-alloc)
 
 Ascend NPU：
 
