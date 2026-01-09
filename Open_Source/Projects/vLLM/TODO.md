@@ -17,7 +17,9 @@
 9. 修改 hf 多模态配置 https://github.com/vllm-project/vllm-ascend/pull/5205
 10. 插件化 vllm profiling 工具并替换 ascend 中的方法
 11. profling 阶段加入 merge 操作
-12. 替换 mm encoder attention 算子
+12. 替换 mm encoder attention 算子 (做 benchmark)
+13. 解决 profiling non-torch 显存差异（通信？）
+14. 默认设置环境变量 export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 
 ## 查漏补缺
 
