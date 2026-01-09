@@ -16,6 +16,8 @@
 8. 解决多模态 profiling OOM 问题 https://github.com/vllm-project/vllm/pull/29431
 9. 修改 hf 多模态配置 https://github.com/vllm-project/vllm-ascend/pull/5205
 10. 插件化 vllm profiling 工具并替换 ascend 中的方法
+11. profling 阶段加入 merge 操作
+12. 替换 mm encoder attention 算子
 
 ## 查漏补缺
 

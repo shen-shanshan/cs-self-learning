@@ -1,4 +1,12 @@
 ```bash
+[ERROR] RUNTIME(2070482,):2026-01-09-02:28:27.541.034 [npu_driver.cc:1579]2070482 DevMemAllocManaged:[drv api] halMemAlloc failed:size=306184192(bytes), type=0, moduleId=33, drvFlag=2377900603261076481, drvRetCode=6, device_id=1, ErrCode=207001, desc=[driver error:out of memory], InnerCode=0x7020016
+[ERROR] ASCENDCL(2070482,):2026-01-09-02:28:27.541.046 [memory.cpp:163]2070482 aclMallocMemInner: alloc device memory failed, runtime result = 207001
+
+
+[INFO] RUNTIME(2072792,):2026-01-09-02:52:03.031.455 [context.cc:211] 2072867 TryToRecycleProgPool: recycle prog pool
+[INFO] RUNTIME(2072792,):2026-01-09-02:52:03.031.699 [raw_device.cc:263] 2072867 TryToRecycleModulesPool: recycle raw dev pool
+
+
 [INFO] DRV(1993875,):2026-01-08-12:04:58.967.194 [svm_mem_statistics.c:146][ascend][curpid:1993875,1993875][drv][devmm][_svm_mem_stats_show]SVM_MEM Mem stats (Bytes). (module_name=HCCL; module_id=3; current_alloced_size=840957952; allocated_peak_size=840957952; alloc_cnt=3; free_cnt=0)
 [INFO] DRV(1993875,):2026-01-08-12:04:58.967.229 [svm_mem_statistics.c:146][ascend][curpid:1993875,1993875][drv][devmm][_svm_mem_stats_show]MEM_DEV_SMALL_HBM dev1 Mem stats (Bytes). (module_name=RUNTIME; module_id=7; current_alloced_size=5611520; allocated_peak_size=5611520; alloc_cnt=1355; free_cnt=0)
 [INFO] DRV(1993875,):2026-01-08-12:04:58.967.241 [svm_mem_statistics.c:152][ascend][curpid:1993875,1993875][drv][devmm][_svm_mem_stats_show]MEM_DEV_SMALL_HBM dev1 Cached_size:679936Bytes
