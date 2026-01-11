@@ -1,0 +1,43 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2">
+  <diagram name="第 1 页" id="mxS5EB81sBHEy-ZX-uXx">
+    <mxGraphModel dx="741" dy="439" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-1" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;get_pass_manager_cls()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="540" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-2" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;get_attn_backend_cls()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="360" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-3" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;set&amp;nbsp;parallel_config.worker_cls = xxx&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="300" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-4" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;get_pass_manager_cls()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="254" y="200" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-5" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;GraphFusionPassManager&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="540" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-6" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;AscendCompiler&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="480" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-7" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;NPUWorker&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="300" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-8" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;get_compile_backend()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="480" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-9" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;AscendAttentionBackend&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="360" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-10" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;get_device_communicator_cls()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="420" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JdgIGwYLsD9hdwGj6c8b-11" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;NPUCommunicator&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="420" width="200" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

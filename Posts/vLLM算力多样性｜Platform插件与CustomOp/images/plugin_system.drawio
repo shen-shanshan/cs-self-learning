@@ -1,0 +1,125 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2">
+  <diagram name="第 1 页" id="hzdTgyLoQSHnV8H8RhXf">
+    <mxGraphModel dx="1073" dy="636" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-24" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="580" width="400" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-17" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;gradientColor=#ea6b66;" vertex="1" parent="1">
+          <mxGeometry x="520" y="200" width="280" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="400" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-1" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;General Plugins&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;" vertex="1" parent="1">
+          <mxGeometry x="100" y="250" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-2" target="iX1WaiiBG4RmILQ7hSFf-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="330" as="sourcePoint" />
+            <mxPoint x="80" y="655" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="60" y="330" />
+              <mxPoint x="60" y="655" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-2" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;Platform Plugins&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;gradientColor=#ea6b66;" vertex="1" parent="1">
+          <mxGeometry x="100" y="310" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-3" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;IO Processor Plugins&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;" vertex="1" parent="1">
+          <mxGeometry x="100" y="370" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-4" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;Stat Logger Plugins&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;" vertex="1" parent="1">
+          <mxGeometry x="100" y="430" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-6" target="iX1WaiiBG4RmILQ7hSFf-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-6" target="iX1WaiiBG4RmILQ7hSFf-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-6" target="iX1WaiiBG4RmILQ7hSFf-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-6" target="iX1WaiiBG4RmILQ7hSFf-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-6" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;load_plugins_by_group()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;" vertex="1" parent="1">
+          <mxGeometry x="300" y="340" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-12" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;b&gt;vLLM Plugin System&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="200" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-13" target="iX1WaiiBG4RmILQ7hSFf-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-13" target="iX1WaiiBG4RmILQ7hSFf-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-13" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&quot;vllm.platform_plugins&quot;:&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Comic Sans MS&quot;&gt;[&quot;ascend = vllm_ascend:register&quot;]&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="540" y="320" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-14" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;def register():&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Comic Sans MS&quot;&gt;return&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font face=&quot;Comic Sans MS&quot;&gt;&quot;xxx.NPUPlatform&quot;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="540" y="430" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-18" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;b&gt;vLLM-Ascend Hardware Plugin&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="560" y="200" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-20" target="iX1WaiiBG4RmILQ7hSFf-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-20" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;call vllm_ascend:register():&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Comic Sans MS&quot;&gt;return&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font face=&quot;Comic Sans MS&quot;&gt;&quot;xxx.NPUPlatform&quot;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="100" y="630" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-21" target="iX1WaiiBG4RmILQ7hSFf-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-21" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;current_platform&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="340" y="635" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-23" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;plugins[&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&quot;ascend&quot;&lt;/font&gt;] =&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;font-family: &amp;quot;Comic Sans MS&amp;quot;; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;vllm_ascend:&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Comic Sans MS&amp;quot;; background-color: transparent;&quot;&gt;&lt;font style=&quot;color: light-dark(rgb(204, 0, 0), rgb(255, 255, 255));&quot;&gt;register&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="300" y="390" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-25" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;b&gt;vLLM Platform&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="580" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-27" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;resolve_current_platform_cls_qualname()&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="520" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-28" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;init&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="635" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-29" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="540" y="690" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iX1WaiiBG4RmILQ7hSFf-30" target="iX1WaiiBG4RmILQ7hSFf-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-30" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;xxx_method()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="340" y="730" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-33" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;call&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="690" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-34" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;NPUPlatform&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="540" y="690" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-35" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;npu_xxx_method()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#ffcccc;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="580" y="730" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-37" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;call&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="480" y="730" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-38" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;setup.py:&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="540" y="320" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="iX1WaiiBG4RmILQ7hSFf-39" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;load&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="480" y="340" width="40" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
