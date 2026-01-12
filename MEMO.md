@@ -67,6 +67,9 @@ set number
 其它：
 
 ```bash
+# 查看文件大小（human readable）
+ls -lhS
+
 # sudo apt install tmux -y
 tmux ls
 tmux new -s download

@@ -17,6 +17,8 @@
 
 This repo is used for archiving my **notes**, **codes** and **materials** of cs learning. 😄
 
+You can read the technical blogs written by myself [here](./Posts/). 📖
+
 ## 📌 Contents
 
 |            **Section**            |                                                                **Subsection**                                                                |
