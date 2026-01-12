@@ -28,7 +28,7 @@
 
 老规矩，先上图，一切尽在图中～
 
-![](./images/img2col.drawio.png)
+![](./images/img2col.drawio.svg)
 
 **img2col 的计算过程：**
 
