@@ -1,7 +1,5 @@
 # vLLM 学习笔记｜Guided Decoding
 
-[toc]
-
 ## 一、引言
 
 目前，在大模型推理领域中，Guided Decoding 技术广泛用于生成一些特定格式的输出，如：SQL、JSON 等。本文将基于 vLLM 以及 Outlines 后端，深入解析 Guided Decoding 背后的技术原理。

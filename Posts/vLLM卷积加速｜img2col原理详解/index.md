@@ -1,3 +1,5 @@
+# vLLM 卷积加速｜img2col 原理详解
+
 ## 一、引言
 
 **卷积运算**是 VL 等多模态模型在处理图像、视频等数据时的核心步骤之一，使用 **img2col** 算法可以将输入数据和卷积核展平为两个大的矩阵，并通过一次高效的矩阵乘法得到卷积结果，从而极大地提升计算的效率。本文将详细讲解 img2col 算法的基本原理和代码实现，并对 vLLM 中的卷积算子进行介绍。
@@ -8,11 +10,15 @@
 
 简单来说，卷积运算就是一个小窗口（一般称为“**卷积核**”或“**滤波器**”）在一个大的输入数据（如图片）上滑动，并在每个位置计算点积，最终生成一个新的、更精炼的特征图的过程。其中，卷积核一般使用正方形，比如在下图中，使用的就是一个 3 x 3 的卷积核（卷积核的通道数 = 输入的通道数，一般为 3，代表图像的红、绿、蓝三钟颜色）。
 
+![](./images/conv_1.png)
+
 **卷积的计算过程：**
 
 1. 属于同一输入通道的卷积核在对应的图像数据上进行滑动，并在每一个位置处计算这 9 个数据的点积和；
 2. 将每个输入通道的计算结果在每个位置上进行相加，得到形状为 `(1, 3, 3)` 的输出；
 3. 当有多个卷积核（卷积核的个数等于输出通道数）时，将输入数据依次和每个卷积核进行步骤 1. 和 2. 的计算，最终将所有结果拼接为一个形状为 `(m, 3, 3)` 张量。
+
+![](./images/conv_2.png)
 
 > 注意：上图摘自“刘二大人”的 PyTorch 深度学习实践，感兴趣的朋友可以自行移步 B 站进行学习；关于卷积更多参数的含义和用法，也可以自行浏览 PyTorch 官方文档进行了解。
 
@@ -21,6 +27,8 @@
 在了解了卷积的基本原理之后，下面我们将通过一个简单的例子来对 **img2col** 的原理进行讲解。
 
 老规矩，先上图，一切尽在图中～
+
+![](./images/img2col.drawio.png)
 
 **img2col 的计算过程：**
 
@@ -31,7 +39,7 @@
 5. 两个大矩阵直接做一把 matmul（可以用到高度优化的 GEMM 库，计算效率高）；
 6. 将矩阵运算的结果 reshape 为标准卷积的输出形式。
 
-> 高清图片链接：https://github.com/shen-shanshan/cs-self-learning/tree/master/Open_Source/Projects/vLLM/Multi-Modal/Posts/Conv%E4%BC%98%E5%8C%96/images，画图不易，走过路过欢迎点一个 Star！
+> 高清图片链接：[<u>link</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/Open_Source/Projects/vLLM/Multi-Modal/Posts/Conv%E4%BC%98%E5%8C%96/images)，画图不易，走过路过欢迎点一个 Star！
 
 **PyTorch 代码实现：**
 
@@ -68,6 +76,6 @@ def _forward_mulmat(self, x: torch.Tensor) -> torch.Tensor:
 
 ## 六、参考资料
 
-- PyTorch 深度学习实践：https://www.bilibili.com/video/BV1Y7411d7Ys/?vd_source=2754a9b73cb316d2cad8eb1195f5aa23
-- PyTorch doc - Conv2d：https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html
-- vLLM GitHub：https://github.com/vllm-project/vllm
+- [<u>PyTorch 深度学习实践</u>](https://www.bilibili.com/video/BV1Y7411d7Ys/?vd_source=2754a9b73cb316d2cad8eb1195f5aa23)
+- [<u>PyTorch doc - Conv2d</u>](https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html)
+- [<u>vLLM GitHub</u>](https://github.com/vllm-project/vllm)

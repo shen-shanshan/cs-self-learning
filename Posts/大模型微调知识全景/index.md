@@ -47,20 +47,36 @@
 - **全量参数微调（Full Fine-tuning，FFT）**：对预训练模型的所有参数进行更新，训练速度较慢，消耗机器资源较多；
 - **参数高效微调（Parameter-Efficient Fine-Tuning，PEFT）**：只对部分参数进行更新，训练速度快，消耗机器资源少。
 
-### 4.1 FFT 的缺点
+此外，还有一种不需要更新模型权重就可以完成微调的方法，叫做 **In-Context Learning**，通过在输入的 prompt 中提供与任务相关的上下文和例子，从而让模型能够更好地了理解我们的意图。
 
-- **训练成本高**：全参微调所需要计算的参数量与预训练相同，随着模型规模变得越来越大，这使得在消费级硬件上进行全量微调变得不可行；、
+**最新进展**：
+
+在 OpenAI 最新的发布会中，还提出了一种叫做 **RFT（Reinforcement Fine-Tuning）** 的微调技术，能够以奖励驱动的方式不断完善大模型所掌握的知识，更多细节可以参考这篇文章：[<u>What Is OpenAI's Reinforcement Fine-Tuning?</u>](https://www.datacamp.com/blog/reinforcement-fine-tuning)。
+
+### 4.1 FFT 的优缺点
+
+**优点：**
+
+- **提升特定任务性能**：全参微调可以对所有模型参数进行优化，从而在某些任务上获得更好的性能。
+
+**缺点：**
+
+- **训练成本高**：全参微调所需要计算的参数量与预训练相同，随着模型规模变得越来越大，这使得在消费级硬件上进行全量微调变得不可行；
 - **灾难性遗忘**：用特定训练数据去微调可能会把这个领域的表现变好，但也可能会把原来表现好的别的领域的能力变差。
 
-### 4.2 PEFT 的优点
+### 4.2 PEFT 的优缺点
 
-参数高效微调只对模型中的少量参数进行更新，极大地减少了计算和资源的消耗，同时还能在特定任务上保证模型的表现和性能。
+**优点：**
 
-总结一下：
+- **降低训练成本**：减少计算消耗，缩短训练时间，降低对硬件性能的要求；
+- **保证模型性能**：针对特定下游任务，能够在一定程度上保证模型的表现和性能；
+- **节省存储空间**：降低存储占用，大部分的参数都可以在不同任务之间共享，只需额外保存经过不同任务微调后更新的参数。
 
-- 减少计算消耗，缩短训练时间，降低对硬件性能的要求；
-- 针对特定下游任务，保证模型的表现和性能；
-- 降低存储占用，大部分的参数都可以在不同任务之间共享，只需额外保存经过不同任务微调后更新的参数。
+**缺点：**
+
+- **特定任务性能有限**：可能无法达到全参数微调在某些特定任务上的性能水平。
+
+因此，在实际应用中，我们应该根据具体任务的要求和可用资源情况，在服务效率和模型质量之间做出权衡。对于资源有限或对训练时间有严格要求的场景，使用 PEFT 会是一个比较好的选择；而对于需要最佳性能的任务，使用 FFT 可能会更加合适。
 
 ### 4.3 PEFT 的分类
 
@@ -83,15 +99,15 @@
   - **LoRA+**；
   - **LoRA-drop**；
   - ……
-- **Hybrid methods**。
+- **Hybrid methods**：根据实际情况，可以对上述方法进行组合，从而达到更好的效果。
 
 目前比较主流的几种参数高效微调方法包括：Prompt Tuning、Prefix Tuning、LoRA、QLoRA 等。
 
-下图展示了各类参数高效微调方法及其所属的类别：
+论文[<u>《Scaling Down to Scale Up: A Guide to Parameter-Efficient Fine-Tuning》</u>](https://arxiv.org/abs/2303.15647)中展示了各类参数高效微调方法及其所属的类别，如下所示：
 
 ![1](./images/peft分类.png)
 
-下图对比了各类参数高效微调方法的表现和性能：
+该论文中还对比了各类参数高效微调方法的表现和性能，如下所示：
 
 ![1](./images/peft对比.png)
 
@@ -216,9 +232,9 @@ def transformer_block_with_adapter(x):
 
 ### 5.5 LoRA
 
-**核心原理：**
+关于 LoRA（Low-Rank Adaptation，低秩适配器）的相关原理，请参考我之前写的这篇文章：
 
-关于 LoRA（Low-Rank Adaptation，低秩适配器）的相关原理，请参考我之前写的这篇文章：[<u>大模型 LoRA 微调的数学原理</u>](https://zhuanlan.zhihu.com/p/6646407396)。
+{{< article link="/articles/%E5%A4%A7%E6%A8%A1%E5%9E%8B-lora-%E5%BE%AE%E8%B0%83%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86/" >}}
 
 ### 5.6 QLoRA
 
@@ -355,6 +371,8 @@ QLoRA 的分页优化其实就是当显存不足时，将保存的部分梯度�
 
 ![1](./images/finetune-overview-1.png)
 
+<!--
+
 ## 六、大模型微调的框架有哪些
 
 - **huggingface/transformers**：提供了丰富的预训练模型和微调工具，支持大多数主流的 NLP 任务（如文本分类、序列标注、生成任务等），适合进行快速实验和生产部署；
@@ -363,11 +381,11 @@ QLoRA 的分页优化其实就是当显存不足时，将保存的部分梯度�
 - **hiyouga/LLaMA-Factory**：全栈微调工具，支持海量模型和各种主流微调方法；支持通过脚本微调、基于 Web 端微调（使用简单）；自带基础训练数据集；除微调外，支持增量预训练和全量微调；
 - **NVIDIA/Megatron-LM**：NVIDIA 开发的大模型训练框架，支持大规模的预训练和微调，适用于需要极高性能和规模的大模型训练和微调。
 
-<!-- **总结：**
+**总结：**
 
 - 快速实验选择 transformers；
 - 普通规模选择 LLaMA-Factory；
-- 超大规模选择 Megatron-LM。 -->
+- 超大规模选择 Megatron-LM。
 
 ## 七、如何在生产环境中进行微调
 
@@ -426,7 +444,9 @@ Kubeflow Ecosystem：
 
 > "The [<u>PyTorchJob</u>](https://www.kubeflow.org/docs/components/training/user-guides/pytorch/) is a Kubernetes custom resource to run PyTorch training jobs on Kubernetes. The Kubeflow implementation of the PyTorchJob is in the training-operator."
 
-## 八、参考资料
+-->
+
+## 六、参考资料
 
 - [<u>Scaling Down to Scale Up: A Guide to Parameter-Efficient Fine-Tuning</u>](https://arxiv.org/abs/2303.15647)
 - [<u>Prefix-Tuning: Optimizing Continuous Prompts for Generation</u>](https://arxiv.org/abs/2101.00190)

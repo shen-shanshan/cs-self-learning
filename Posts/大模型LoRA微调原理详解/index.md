@@ -1,7 +1,5 @@
 # 大模型 LoRA 微调的数学原理
 
-[toc]
-
 ## 一、概述
 
 **LoRA**（Low-Rank Adaptation，低秩适配器）是目前非常热门的大模型微调技术之一，网上已经有许多关于其原理的分析和讲解，本文将着重从 LoRA 背后的数学原理进行解读。
@@ -188,6 +186,6 @@ $$
 
 ## 五、参考资料
 
-[1] [<u>LoRA: Low-Rank Adaptation of Large Language Models</u>](https://arxiv.org/abs/2106.09685)
-[2] [<u>《统计学习方法》</u>](https://book.douban.com/subject/33437381/)
-[3] [<u>图解大模型微调系列之：大模型低秩适配器 LoRA（原理篇）</u>](https://zhuanlan.zhihu.com/p/646831196)
+- [<u>LoRA: Low-Rank Adaptation of Large Language Models</u>](https://arxiv.org/abs/2106.09685)
+- [<u>《统计学习方法》</u>](https://book.douban.com/subject/33437381/)
+- [<u>图解大模型微调系列之：大模型低秩适配器 LoRA（原理篇）</u>](https://zhuanlan.zhihu.com/p/646831196)

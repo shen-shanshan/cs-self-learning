@@ -1,6 +1,4 @@
-# NVIDIA GPU 架构 & CUDA 平台入门学习
-
-[toc]
+# NVIDIA GPU 硬件架构入门
 
 ## 一、概述
 
