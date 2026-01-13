@@ -6,20 +6,18 @@
 
 ## 开发任务
 
-1. qk `apply_rotary_emb` 合并
-2. 优化 xgrammar npu 性能
-3. 了解 `@support_torch_compile` 原理
-4. 拆分 vllm 多模态编译配置
-5. 解决 vllm-ascend structured output nanobind 内存泄露
-6. structured output CI 看护 https://github.com/vllm-project/vllm-ascend/issues/3979
-7. 解决多模态 profiling OOM 问题 https://github.com/vllm-project/vllm/pull/29431
-8. 插件化 vllm profiling 工具并替换 ascend 中的方法
-9. profling 阶段加入 merge 操作
-10. 替换 mm encoder attention 算子 (做 benchmark) https://github.com/vllm-project/vllm-ascend/issues/2239
-11. 解决 profiling non-torch 显存差异（通信？）
-12. 默认设置环境变量 export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True https://www.hiascend.com/document/detail/zh/Pytorch/700/comref/Envvariables/Envir_012.html
-13. Qwen3-VL-MoE 文档
-14. vLLM 算力多样性 -> 发微信公众号
+- 优化 xgrammar npu 性能
+- 了解 `@support_torch_compile` 原理
+- 拆分 vllm 多模态编译配置
+- 解决 vllm-ascend structured output nanobind 内存泄露
+- structured output CI 看护 https://github.com/vllm-project/vllm-ascend/issues/3979
+- 插件化 vllm profiling 工具并替换 ascend 中的方法
+- profling 阶段加入 merge 操作
+- 替换 mm encoder attention 算子 (做 benchmark) https://github.com/vllm-project/vllm-ascend/issues/2239
+- 解决 profiling non-torch 显存差异（通信？）
+- 默认设置环境变量 export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True https://www.hiascend.com/document/detail/zh/Pytorch/700/comref/Envvariables/Envir_012.html
+- Qwen3-VL-MoE 文档
+- ViT SP patch 移除
 
 ## 查漏补缺
 
