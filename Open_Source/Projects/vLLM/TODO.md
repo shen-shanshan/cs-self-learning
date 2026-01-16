@@ -16,7 +16,6 @@
 - 替换 mm encoder attention 算子 (做 benchmark) https://github.com/vllm-project/vllm-ascend/issues/2239
 - 解决 profiling non-torch 显存差异（通信？）
 - 默认设置环境变量 export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True https://www.hiascend.com/document/detail/zh/Pytorch/700/comref/Envvariables/Envir_012.html
-- Qwen3-VL-MoE 文档
 - ViT SP patch 移除
 
 ## 查漏补缺
