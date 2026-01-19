@@ -27,4 +27,8 @@ coder list
 
 coder config-ssh
 ssh coder.<workspaceName>
+
+# 查看模板参数
+coder templates list
+coder templates list -o json
 ```

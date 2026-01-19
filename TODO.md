@@ -24,8 +24,8 @@
 
 - [x] 动态通信链
 - [ ] SSD and DRAM
-- [ ] PCIe
-- [ ] Pinned Memory (in-memory storage)
+- [x] PCIe
+- [x] Pinned Memory (in-memory storage)
 - [ ] 计算访存比
 - [ ] MFU
 - [ ] Roofline
@@ -47,6 +47,7 @@
 - [ ] [大模型推理必学：专业术语与概念引导（上）](https://mp.weixin.qq.com/s/sfRFrvT3s1PGHjjiT0pi5A)
 - [ ] [大模型推理必学：专业术语与概念引导（下）](https://mp.weixin.qq.com/s/FGQzmFlZ6MTkVizeGSJoXQ)
 - [ ] [2025 年最全面的 LLM 架构技术解析](https://mp.weixin.qq.com/s/7qVwBhE5JcJFnyOKpYNCeA)
+- [ ] [开源大模型推理引擎现状及常见推理优化方法](https://zhuanlan.zhihu.com/p/755874470?share_code=13fdP1R6gsoY8&utm_psn=1995146863595254830)
 
 NLP：
 
@@ -132,6 +133,7 @@ DeepSeek：
 
 vLLM：
 
+- [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记](https://zhuanlan.zhihu.com/p/1955402895890560120)
 - [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems](https://blog.vllm.ai/2025/11/13/shm-ipc-cache.html)
 - [ ] [大模型推理框架，SGLang和vLLM有哪些区别？](https://www.zhihu.com/question/666943660/answer/1914348903668651349?share_code=X0cS0WZalNIH&utm_psn=1980344296080164538)
 - [ ] [Ray symmetric-run：让 vLLM 多节点部署更轻盈 🌟](https://mp.weixin.qq.com/s/1cZtyTDr97qLZ40VfOQ5xw)
@@ -141,7 +143,6 @@ vLLM：
 - [ ] [LMCache + vLLM 实战指南，让大模型的推理速度显著提升！🌟](https://mp.weixin.qq.com/s/J2iyrSjJ7JYjoHoIMAQP4w)
 - [ ] [Distributed Inference with vLLM](https://blog.vllm.ai/2025/02/17/distributed-inference.html)
 - [ ] [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention](https://blog.vllm.ai/2023/06/20/vllm.html)
-- [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记](https://zhuanlan.zhihu.com/p/1955402895890560120)
 - [ ] [图解大模型计算加速系列之：vLLM 核心技术 PagedAttention 原理](https://zhuanlan.zhihu.com/p/691038809)
 - [ ] [图解 vLLM V1 系列 7：使用 AsyncLLM 做异步推理](https://zhuanlan.zhihu.com/p/1916187125931554299)
 - [ ] [图解 vLLM V1 系列 6：KVCacheManager 与 PrefixCaching](https://zhuanlan.zhihu.com/p/1916181593229334390)
@@ -313,3 +314,7 @@ Blogs:
 - GPU-mode（GitHub）
 - [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
 - [LeetCode 刷题路线图](https://labuladong.online/algo/intro/quick-learning-plan/)
+
+**访谈：**
+
+- [OpenAI 核心贡献者翁家翌访谈：想法很廉价，模型的成败全在 Infra](https://mp.weixin.qq.com/s/iTx0DnFfjikgRfzcxNRcqw)

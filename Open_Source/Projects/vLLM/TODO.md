@@ -7,19 +7,17 @@
 ## 开发任务
 
 - 优化 xgrammar npu 性能
-- 了解 `@support_torch_compile` 原理
 - 拆分 vllm 多模态编译配置
 - 解决 vllm-ascend structured output nanobind 内存泄露
 - structured output CI 看护 https://github.com/vllm-project/vllm-ascend/issues/3979
-- 插件化 vllm profiling 工具并替换 ascend 中的方法
 - profling 阶段加入 merge 操作
 - 替换 mm encoder attention 算子 (做 benchmark) https://github.com/vllm-project/vllm-ascend/issues/2239
 - 解决 profiling non-torch 显存差异（通信？）
-- 默认设置环境变量 export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True https://www.hiascend.com/document/detail/zh/Pytorch/700/comref/Envvariables/Envir_012.html
 - ViT SP patch 移除
 
 ## 查漏补缺
 
+- 了解 `@support_torch_compile` 原理
 - torch compile mode 和 CUDA Graphs mode 的区别？
 
 ## 源码学习
