@@ -13,7 +13,8 @@
 - profling 阶段加入 merge 操作
 - 替换 mm encoder attention 算子 (做 benchmark) https://github.com/vllm-project/vllm-ascend/issues/2239
 - 解决 profiling non-torch 显存差异（通信？）
-- ViT SP patch 移除
+- 支持 huggingface 音频数据集 benchmark (zxl/audiobench_datasets/alpaca_audio_test, class MultiModalConversationDataset)
+- vllm 添加 benchmark 新数据集指导
 
 ## 查漏补缺
 

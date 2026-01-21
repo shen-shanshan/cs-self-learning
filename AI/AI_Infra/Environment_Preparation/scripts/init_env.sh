@@ -19,11 +19,11 @@ go env -w GOPROXY=https://goproxy.cn,direct
 echo "export VLLM_USE_V1=1" >> ~/.bashrc
 echo "export VLLM_WORKER_MULTIPROC_METHOD=spawn" >> ~/.bashrc
 echo "export VLLM_USE_MODELSCOPE=True" >> ~/.bashrc
-echo "export PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256" >> ~/.bashrc
 echo "export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi" >> ~/.bashrc
 echo "export LD_LIBRARY_PATH=/usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/devlib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo "export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo "export COMPILE_CUSTOM_KERNELS=1" >> ~/.bashrc
+# echo "export PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256" >> ~/.bashrc
 # source ~/.bashrc
 # export LD_LIBRARY_PATH=/usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/devlib:$LD_LIBRARY_PATH
 # export LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH

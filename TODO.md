@@ -298,6 +298,7 @@ Blogs:
 - [ezyang's Blog](http://blog.ezyang.com/archives/)
 - [Research Journey](https://xtra-computing.github.io/raintreebook/)
 - [How to Scale Your Model](https://jax-ml.github.io/scaling-book/)
+- [Insu Jang's Blog](https://insujang.github.io/posts/)
 
 **论文合集：**
 

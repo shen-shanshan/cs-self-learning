@@ -282,10 +282,10 @@ import os
 from modelscope import snapshot_download
 
 os.environ["MODELSCOPE_CACHE"] = "/home/sss/.cache/modelscope/hub"  # Coder
-os.environ["MODELSCOPE_CACHE"] = "/data/disk2/cache/modelscope/hub"  # A2 (01)
+os.environ["MODELSCOPE_CACHE"] = "/root/.cache/modelscope/hub"  # A2 (01)
 os.environ["MODELSCOPE_CACHE"] = "/root/.cache/modelscope/hub"  # A3
 
-model_dir = snapshot_download('deepseek-ai/DeepSeek-V2-Lite')
+model_dir = snapshot_download("Qwen/Qwen3-Omni-30B-A3B-Thinking")
 
 
 # huggingface 下载
