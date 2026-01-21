@@ -89,51 +89,25 @@ P99 ITL (ms):                            1131.78
 下载数据集：
 
 ```python
-from huggingface_hub import hf_hub_download, list_repo_files
-from tqdm import tqdm
-import os
+# ds = load_dataset(
+#     path="zxl/audiobench_datasets",
+#     name="alpaca_audio_test",  # subset
+#     split="train",
+# )
 
-REPO_ID = "ddwang2000/MMSU"
-LOCAL_DIR = "/root/.cache/huggingface/datasets/mmsu"
-
-# os.makedirs(LOCAL_DIR, exist_ok=True)
-
-# 1. 列出数据集所有文件
-files = list_repo_files(
-    repo_id=REPO_ID,
-    repo_type="dataset"
-)
-
-print(f"发现 {len(files)} 个文件")
-
-# 2. 逐个下载
-for filename in tqdm(files, desc="Downloading MMSU"):
-    hf_hub_download(
-        repo_id=REPO_ID,
-        filename=filename,
-        repo_type="dataset",
-        local_dir=LOCAL_DIR,
-        local_dir_use_symlinks=False
-    )
-
-print("✅ MMSU 数据集下载完成")
-```
-
-```python
-#!/usr/bin/env python3
 from datasets import load_dataset
 
-def download_alpaca_audio_test():
+def download():
     ds = load_dataset(
-        "zxl/audiobench_datasets",
-        "alpaca_audio_test",  # subset / config
-        split="train",
+        path="openslr/librispeech_asr",
+        name="clean",  # subset
+        split="test",
     )
     print(ds)
     print("Downloaded samples:", len(ds))
 
 if __name__ == "__main__":
-    download_alpaca_audio_test()
+    download()
 ```
 
 ```bash
@@ -142,9 +116,9 @@ vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-Omni-30B-A3B-Thinking \
 --max-model-len 16384 \
 --max-num-batched-tokens 16384 \
 --tensor-parallel-size 2 \
---limit-mm-per-prompt '{"audio": 1}' \
+--limit-mm-per-prompt '{"audio": 1}'
 
---allowed-local-media-path /path/to/sharegpt4v/images
+# --allowed-local-media-path /path/to/sharegpt4v/images
 ```
 
 ```bash
@@ -156,12 +130,16 @@ vllm bench serve \
 --backend openai-chat \
 --endpoint /v1/chat/completions \
 --dataset-name hf \
---hf-split train \
---dataset-path zxl/audiobench_datasets/alpaca_audio_test \
+--dataset-path openslr/librispeech_asr \
+--hf-subset clean \
+--hf-split test \
 --num-prompts 100 \
 --no-stream
 ```
 
-```bash
-ValueError: Unsupported dataset path: zxl/audiobench_datasets/alpaca_audio_test. Huggingface dataset only supports dataset_path from one of following: {'zed-industries/zeta', 'kensho/spgispeech', 'mgoin/mlperf-inference-llama3.1-data', 'AI-MO/aimo-validation-aime', 'Lin-Chen/MMStar', 'lmarena-ai/VisionArena-Chat', 'edinburghcstr/ami', 'lmms-lab/LLaVA-OneVision-Data', 'vdaita/edit_5k_char', 'mgoin/mlperf-inference-llama2-data', 'LIUM/tedlium', 'vdaita/edit_10k_char', 'lmarena-ai/vision-arena-bench-v0.1', 'speechcolab/gigaspeech', 'yale-nlp/MMVU', 'facebook/voxpopuli', 'AI-MO/NuminaMath-CoT', 'AI-MO/NuminaMath-1.5', 'likaixin/InstructCoder', 'Aeala/ShareGPT_Vicuna_unfiltered', 'philschmid/mt-bench', 'openslr/librispeech_asr'}. Please consider contributing if you would like to add support for additional dataset formats.
+需要修改 vllm 代码：
+
+```python
+dataset_class = ASRDataset
+# args.hf_split = "train"
 ```
