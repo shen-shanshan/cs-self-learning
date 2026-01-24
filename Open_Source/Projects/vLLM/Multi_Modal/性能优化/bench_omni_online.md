@@ -49,5 +49,5 @@ curl http://localhost:8000/v1/chat/completions \
 
 curl -X POST http://localhost:8000/stop_profile
 
-scp root@139.9.155.20:/workspace/vllm_profile/ascend-01_328066_20260122115949617_ascend_pt/ASCEND_PROFILER_OUTPUT/ .
+scp -P 8333 root@139.9.155.20:/workspace/vllm_profile/ascend-01_328066_20260122115949617_ascend_pt/ASCEND_PROFILER_OUTPUT/trace_view.json .
 ```

@@ -6,15 +6,12 @@
 
 ## 开发任务
 
-- 优化 xgrammar npu 性能
 - 拆分 vllm 多模态编译配置
 - 解决 vllm-ascend structured output nanobind 内存泄露
 - structured output CI 看护 https://github.com/vllm-project/vllm-ascend/issues/3979
 - profling 阶段加入 merge 操作
 - 替换 mm encoder attention 算子 (做 benchmark) https://github.com/vllm-project/vllm-ascend/issues/2239
 - 解决 profiling non-torch 显存差异（通信？）
-- 支持 huggingface 音频数据集 benchmark (zxl/audiobench_datasets/alpaca_audio_test, class MultiModalConversationDataset)
-- vllm 添加 benchmark 新数据集指导
 
 ## 查漏补缺
 
