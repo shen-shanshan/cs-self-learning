@@ -436,10 +436,8 @@ npu-smi info
 export IMAGE=quay.io/ascend/vllm-ascend:main
 export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
-export IMAGE=quay.io/ascend/vllm-ascend:v0.10.1rc1-a3
-export IMAGE=quay.io/ascend/vllm-ascend:v0.10.0rc1-a3
 
-export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
+export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 docker run \
 --privileged=true \
 --name sss \
