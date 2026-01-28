@@ -447,18 +447,6 @@ docker run \
 --device /dev/davinci1 \
 --device /dev/davinci2 \
 --device /dev/davinci3 \
---device /dev/davinci4 \
---device /dev/davinci5 \
---device /dev/davinci6 \
---device /dev/davinci7 \
---device /dev/davinci8 \
---device /dev/davinci9 \
---device /dev/davinci10 \
---device /dev/davinci11 \
---device /dev/davinci12 \
---device /dev/davinci13 \
---device /dev/davinci14 \
---device /dev/davinci15 \
 --device /dev/davinci_manager \
 --device /dev/devmm_svm \
 --device /dev/hisi_hdc \
@@ -474,6 +462,19 @@ docker run \
 -e VLLM_USE_MODELSCOPE=True \
 -e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
 -it $IMAGE /bin/bash
+
+--device /dev/davinci4 \
+--device /dev/davinci5 \
+--device /dev/davinci6 \
+--device /dev/davinci7 \
+--device /dev/davinci8 \
+--device /dev/davinci9 \
+--device /dev/davinci10 \
+--device /dev/davinci11 \
+--device /dev/davinci12 \
+--device /dev/davinci13 \
+--device /dev/davinci14 \
+--device /dev/davinci15 \
 
 # --net=host
 # host 模式直接使用宿主机的网络空间，该模式下无法使用 -p 命令选项映射端口，容器和宿主机直接共享端口
