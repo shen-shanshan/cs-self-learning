@@ -69,12 +69,7 @@ MM cache hit rate: 50.0%
 [2432, 3072, 3200,  720,  360, 2176, 3072, 4096, 1900, 4096]
 dtype=torch.int32
 shape: torch.Size([1])
-
 origin cu_seqlens: tensor([   0, 1800, 2864], device='npu:0', dtype=torch.int32).
 seq_lens_npu: tensor([1800, 1064], device='npu:0', dtype=torch.int32).
 self.buffer.copy_(x, non_blocking=True)
 (EngineCore_DP0 pid=626364) RuntimeError: The expanded size of the tensor (128) must match the existing size (2) at non-singleton dimension 0.  Target sizes: [128].  Tensor sizes: [2]
-
-TODO:
-1.max-seq-len 的值 global 不更新
-2.只 copy bsz 长度的 tensor

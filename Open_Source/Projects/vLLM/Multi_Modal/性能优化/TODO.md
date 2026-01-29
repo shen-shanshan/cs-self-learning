@@ -1,0 +1,2 @@
+- [ ] reshape to 4D 在上游 MM encoder 算子加入开关
+- [ ] 加入模型权重 padding 能力
