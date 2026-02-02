@@ -21,7 +21,7 @@ FAILED tests/e2e/multicard/2-cards/test_external_launcher.py::test_qwen3_externa
 # FIA 算子报错：
 # pytest -sv --durations=0 tests/e2e/singlecard/test_models.py
 FAILED tests/e2e/singlecard/test_models.py::test_whisper[openai-mirror/whisper-large-v3-turbo]
-# pytest -sv tests/e2e/singlecard/test_models.py::test_whisper
+# pytest -sv tests/e2e/singlecard/test_models.py::test_whisper[openai-mirror/whisper-large-v3-turbo]
 # 精度问题：
 # pytest -sv tests/e2e/singlecard/test_aclgraph_accuracy.py::test_piecewise_res_consistency[cur_case0]
 
@@ -43,6 +43,17 @@ unified_kv_cache_update(custom_op)
 
 reshape_and_cache
 
+CANN商用版
+ATB加速库接口
+atb/infer_op_params.h
+ReshapeAndCacheOperation
+输入输出
+不开启多头压缩功能
+
+```python
+forward_includes_kv_cache_update: bool = True
+```
+
 ```bash
 # MoE 测试：
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-30B-A3B \
@@ -53,3 +64,12 @@ vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-30B-A3B \
 --enable-expert-parallel \
 --enforce-eager
 ```
+
+```bash
+export ATB_LOG_LEVEL=INFO
+export ATB_LOG_TO_STDOUT=1
+export ATB_DUMP_GRAPH=1
+```
+
+print(torch_npu.get_npu_format(v))runner: ${{ matrix.test_config.os }}
+
