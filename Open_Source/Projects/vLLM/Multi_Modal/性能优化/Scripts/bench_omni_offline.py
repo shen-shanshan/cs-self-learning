@@ -10,7 +10,13 @@ from modelscope import Qwen3OmniMoeProcessor
 from qwen_omni_utils import process_mm_info
 from torch_npu.profiler.profiler import analyse
 
+
 os.environ["HCCL_BUFFSIZE"] = "1024"
+os.environ["VLLM_TORCH_PROFILER_DIR"] = "./vllm_profile"
+
+
+MODEL_PATH = "/root/.cache/modelscope/hub/models/Qwen/Qwen3-Omni-30B-A3B-Thinking"
+
 
 def clean_up():
     """Clean up distributed resources and NPU memory"""
@@ -21,23 +27,26 @@ def clean_up():
 
 
 def main():
-    os.environ["VLLM_TORCH_PROFILER_DIR"] = "./vllm_profile"
 
-    MODEL_PATH = "/root/.cache/modelscope/hub/models/Qwen/Qwen3-Omni-30B-A3B-Thinking"
     llm = LLM(
         model=MODEL_PATH,
         tensor_parallel_size=2,
         enable_expert_parallel=True,
         distributed_executor_backend="mp",
-        limit_mm_per_prompt={'image': 5, 'video': 2, 'audio': 3},
-        max_model_len=32768,
+        limit_mm_per_prompt={'image': 1, 'video': 1, 'audio': 1},
+        max_model_len=16384,
+        profiler_config={
+            "profiler": "torch",
+            "torch_profiler_dir": "./vllm_profile",
+            "max_iterations": 2,
+        },
     )
 
     sampling_params = SamplingParams(
         temperature=0.6,
         top_p=0.95,
         top_k=20,
-        max_tokens=16384,
+        max_tokens=2,
     )
 
     processor = Qwen3OmniMoeProcessor.from_pretrained(MODEL_PATH)
@@ -71,12 +80,12 @@ def main():
     if audios is not None:
         inputs['multi_modal_data']['audio'] = audios
 
-    llm.start_profile()
+    # llm.start_profile()
 
     outputs = llm.generate([inputs], sampling_params=sampling_params)
 
-    llm.stop_profile()
-    analyse(profiler_path="./vllm_profile")
+    # llm.stop_profile()
+    # analyse(profiler_path="./vllm_profile")
 
     for output in outputs:
         prompt = output.prompt

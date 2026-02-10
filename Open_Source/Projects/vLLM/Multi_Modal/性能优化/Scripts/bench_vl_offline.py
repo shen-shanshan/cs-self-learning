@@ -15,7 +15,7 @@ from torch_npu.profiler.profiler import analyse
 
 
 os.environ["HCCL_BUFFSIZE"] = "1024"
-os.environ["VLLM_TORCH_PROFILER_DIR"] = "./vllm_profile"
+# os.environ["VLLM_TORCH_PROFILER_DIR"] = "./vllm_profile"
 
 
 MODEL_PATH = "/root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct"
@@ -35,6 +35,7 @@ def main():
         max_model_len=16384,
         limit_mm_per_prompt={"image": 1},
         tensor_parallel_size=2,
+        mm_encoder_tp_mode="data",
         profiler_config={
             "profiler": "torch",
             "torch_profiler_dir": "./vllm_profile",
@@ -43,7 +44,7 @@ def main():
     )
 
     sampling_params = SamplingParams(
-        max_tokens=512
+        max_tokens=2
     )
 
     image_messages = [
