@@ -10,13 +10,13 @@
   <p>
 </div align='left'>
 
-<p align="center">
+<!-- <p align="center">
     <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
-</p>
+</p> -->
 
 ## 📌 Overview
 
-This repository archives my **notes** and **materials** during my computer science self-learning jouney. Currently, I mainly focus on **LLM/VLM inference engine** and **GPU/NPU computing**, thus I have gathered many **technical blogs** for AI infra beginners and **MLSys papers** for researchers.
+This repository archives my notes and materials during my computer science self-learning jouney. Currently, I mainly focus on LLM/VLM inference engine and GPU/NPU computing, thus I have gathered many technical blogs for AI infra beginners and MLSys papers for researchers.
 
 Contents:
 
@@ -30,30 +30,21 @@ In addition, I have also published some blogs and papers on the internet, you ca
 - 📖 My technical blogs: [zhihu](https://www.zhihu.com/people/sss-53-26), [personal website](https://shen-shanshan.github.io/).
 - 📖 My publications: [papers](./Research/Publications/).
 
-<p align="center">
-    <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
-</p>
-
 ## 📚 Learning Notes
 
 ### 🧱 Basic Knowledges
 
 - Programming Languages:
-  - [<u>Python Learning Notes</u>](./Languages/Python/Notes/)
-  - [<u>C/C++ Learning Notes</u>](./Languages/C&C++/Notes/)
-  - [<u>Java Learning Notes</u>](./Languages/Java/Notes/)
-  - [<u>Go Learning Notes</u>](./Languages/Go/Notes/)
+  - [<u>Python</u>](./Languages/Python/Notes/)
+  - [<u>C/C++</u>](./Languages/C&C++/Notes/)
+  - [<u>Java</u>](./Languages/Java/Notes/)
+  - [<u>Go</u>](./Languages/Go/Notes/)
 - Data Structure & Algorithm:
-  - [<u>Data Structure & Algorithm Learning Notes</u>](./Data_Structure&Algorithm/Notes/)
+  - [<u>Data Structure & Algorithm</u>](./Data_Structure&Algorithm/Notes/)
   - [<u>LeetCode Practices</u>](./Data_Structure&Algorithm/Codes/)
-- Network:
-  - [<u>Network Learning Notes</u>](./Network/Notes/)
-- Operating System:
-  - [<u>Operating System Learning Notes</u>](./Operating_System/Notes/)
-- Design Pattern:
-  - [<u>Design Pattern Notes</u>](./Design_Pattern/Notes/)
-
----
+- [<u>Network</u>](./Network/Notes/)
+- [<u>Operating System</u>](./Operating_System/Notes/)
+- [<u>Design Pattern</u>](./Design_Pattern/Notes/)
 
 ### 🤖 AI
 
@@ -75,16 +66,14 @@ In addition, I have also published some blogs and papers on the internet, you ca
   - [<u>Environment Preparation</u>](./AI/AI_Infra/Environment_Preparation/README.md)
   - [<u>Basic Knowledges</u>](./AI/AI_Infra/Basic/)
   - [<u>Inference Engine</u>](./AI/AI_Infra/Inference_Engine/Notes/)
-    - [<u>vLLM Learning Notes</u>](./AI/AI_Infra/Inference_Engine/vLLM/Notes/)
+    - [<u>vLLM</u>](./AI/AI_Infra/Inference_Engine/vLLM/Notes/)
   - [<u>HPC</u>](./AI/AI_Infra/HPC/)
-    - [<u>CUDA Learning Notes</u>](./AI/AI_Infra/HPC/CUDA/README.md)
-    - [<u>CANN Learning Notes</u>](./AI/AI_Infra/HPC/CANN/README.md)
+    - [<u>CUDA</u>](./AI/AI_Infra/HPC/CUDA/README.md)
+    - [<u>CANN</u>](./AI/AI_Infra/HPC/CANN/README.md)
   - [<u>Communication</u>](./AI/AI_Infra/Communication/)
-    - [<u>NCCL Learning Notes</u>](./AI/AI_Infra/Communication/NCCL/)
+    - [<u>NCCL</u>](./AI/AI_Infra/Communication/NCCL/)
   - [<u>Distributed System</u>](./AI/AI_Infra/Distributed_System/)
-    - [<u>Ray Learning Notes</u>](./AI/AI_Infra/Distributed_System/Ray/)
-
----
+    - [<u>Ray</u>](./AI/AI_Infra/Distributed_System/Ray/)
 
 ### 🚀 Backend & Big Data
 
@@ -99,22 +88,18 @@ In addition, I have also published some blogs and papers on the internet, you ca
   - [<u>Flink</u>](./Backend&Big_Data/Flink/)
   - [<u>Hudi</u>](./Backend&Big_Data/Hudi/)
 
----
-
 ### 🛠️ Tools
 
-- [<u>Git Learning Notes</u>](./Tools/Git/Notes/)
-- [<u>Docker Learning Notes</u>](./Tools/Docker/README.md)
-- [<u>CMake Learning Notes</u>](./Tools/CMake/)
+- [<u>Git</u>](./Tools/Git/Notes/)
+- [<u>Docker</u>](./Tools/Docker/README.md)
+- [<u>CMake</u>](./Tools/CMake/)
 - Documentation:
-  - [<u>Markdown Learning Notes</u>](./Tools/Markdown/)
-  - [<u>reStructuredText Learning Notes</u>](./Tools/reStructuredText/Notes/)
+  - [<u>Markdown</u>](./Tools/Markdown/)
+  - [<u>reStructuredText</u>](./Tools/reStructuredText/Notes/)
 - IDE:
   - [<u>VSCode Shortcut Key</u>](./Tools/VSCode/VSCode常用快捷键.md)
 - AI Agent:
   - [<u>Skills</u>](./Tools/Agent/Skills/)
-
----
 
 ### 🔗 Others
 
@@ -125,8 +110,6 @@ In addition, I have also published some blogs and papers on the internet, you ca
 - Employment:
   - [<u>Interview Experience</u>](./Employment/Interview/Experience/)
   - [<u>Working Insights</u>](./Employment/Working/)
-
----
 
 ## 📚 Technical Blogs
 <!--
@@ -363,8 +346,6 @@ In addition, I have also published some blogs and papers on the internet, you ca
 [3028]: https://github.com/ZJY0516
 <!----------------------------- Links: 2001~4000 ------------------------------>
 
----
-
 ## 📚 Papers
 <!--
 | Title | Institute | Conference/Jounal | Date | GitHub/Codes | Note | Read/In-depth Reading |
@@ -588,8 +569,6 @@ Clarification for symbols in the following tables:
 <!-- Pro-Prophet: A Systematic Load Balancing Method for Efficient Parallel Training of Large-scale MoE Models -->
 [191]: https://arxiv.org/abs/2411.10003
 <!------------------------------- Links: 1~2000 ------------------------------->
-
----
 
 ## 📚 Learning Projects
 <!--
