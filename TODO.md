@@ -6,39 +6,8 @@
 
 **TODO（P0）：**
 
-- [ ] profiling 博客与实操
-- [ ] vllm-omni 源码
+- [ ] 了解 vllm-omni 项目
 - [ ] [LLM推理优化的上半场：单实例推理优化接近尾声](https://zhuanlan.zhihu.com/p/1912580139667154389)
-
-**Python:**
-
-- [x] python: async/await/future
-- [x] copy.deepcopy
-- [x] threading: Event(set/is_set), Thread(start/join/daemon=True)
-- [x] time: perf_counter
-- [x] functools: cache
-- [x] with torch.cuda.graph(graph, pool=xxx)
-- [ ] vllm.distributed.parallel_state: graph_capture
-
-**Concepts:**
-
-- [x] 动态通信链
-- [ ] SSD and DRAM
-- [x] PCIe
-- [x] Pinned Memory (in-memory storage)
-- [ ] 计算访存比
-- [ ] MFU
-- [ ] Roofline
-- [x] 消融实验
-- [ ] NIXL
-- [ ] NVMe
-- [x] **DMA**: By enabling a direct-memory access (DMA) engine near the network adapter or storage, it moves data into or out of GPU memory—without burdening the CPU.
-- [x] **零拷贝**：即不需要在用户空间和内核空间中来回复制数据。
-
-**环境搭建：**
-
-- [ ] 远程服务器配置代理
-- [ ] 远程访问公司 IP
 
 ## LLM 基础
 

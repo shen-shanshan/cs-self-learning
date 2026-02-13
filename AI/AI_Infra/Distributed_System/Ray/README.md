@@ -1,0 +1,17 @@
+# Ray
+
+- [x] [Ray - GitHub](https://github.com/ray-project/ray)
+- [x] [Ray - Officail doc](https://docs.ray.io/en/latest/index.html)
+- [x] [What’s Ray Core?](https://docs.ray.io/en/latest/ray-core/walkthrough.html)
+- [x] [Key Concepts](https://docs.ray.io/en/latest/ray-core/key-concepts.html#core-key-concepts)
+  - [ ] [Tasks](https://docs.ray.io/en/latest/ray-core/tasks.html#ray-remote-functions)
+  - [x] [Actors](https://docs.ray.io/en/latest/ray-core/actors.html#ray-remote-classes)
+  - [ ] [Objects](https://docs.ray.io/en/latest/ray-core/objects.html#objects-in-ray)
+- [x] [Scheduling](https://docs.ray.io/en/latest/ray-core/scheduling/index.html#ray-scheduling)
+  - [x] [Placement Groups](https://docs.ray.io/en/latest/ray-core/scheduling/placement-group.html#ray-placement-group-doc-ref)
+  - [ ] [Scheduling API](https://docs.ray.io/en/latest/ray-core/api/scheduling.html)
+- [ ] [Fault tolerance](https://docs.ray.io/en/latest/ray-core/fault-tolerance.html#fault-tolerance)
+  - [ ] [Actor Fault Tolerance](https://docs.ray.io/en/latest/ray-core/fault_tolerance/actors.html)
+- [ ] [Ray Serve Autoscaling](https://docs.ray.io/en/latest/serve/autoscaling-guide.html#ray-serve-autoscaler-vs-ray-autoscaler)
+- [ ] [Monitoring with the CLI or SDK](https://docs.ray.io/en/latest/ray-observability/user-guides/cli-sdk.html#state-api-overview-ref)
+- [x] [Programming in Ray: Tips for first-time users](https://rise.cs.berkeley.edu/blog/ray-tips-for-first-time-users/)

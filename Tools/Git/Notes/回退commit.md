@@ -66,6 +66,7 @@ git revert HEAD
 ## 恢复误操作
 
 如果不小心用`reset`回退错了，可以用以下命令找回：
+
 ```bash
 # 查看所有操作记录
 git reflog
