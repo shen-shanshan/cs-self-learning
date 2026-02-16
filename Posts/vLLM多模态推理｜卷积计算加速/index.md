@@ -8,7 +8,7 @@
 
 在讲解 img2col 算法之前，我们先简单介绍下什么是**卷积运算（Convolution）**。
 
-简单来说，卷积运算就是一个小窗口（一般称为“**卷积核**”或“**滤波器**”）在一个大的输入数据（如图片）上滑动，并在每个位置计算点积，最终生成一个新的、更精炼的特征图的过程。其中，卷积核一般使用正方形，比如在下图中，使用的就是一个 3 x 3 的卷积核（卷积核的通道数 = 输入的通道数，一般为 3，代表图像的红、绿、蓝三钟颜色）。
+简单来说，卷积运算就是一个小窗口（一般称为“**卷积核**”或“**滤波器**”）在一个大的输入数据（如图片）上滑动，并在每个位置计算点积，最终生成一个新的、更精炼的特征图的过程。其中，卷积核一般使用正方形，比如在下图中，使用的就是一个 3 x 3 的卷积核（卷积核的通道数 = 输入的通道数，一般为 3，代表图像的红、绿、蓝三种颜色）。
 
 ![](./images/conv_1.png)
 
@@ -39,7 +39,7 @@
 5. 两个大矩阵直接做一把 matmul（可以用到高度优化的 GEMM 库，计算效率高）；
 6. 将矩阵运算的结果 reshape 为标准卷积的输出形式。
 
-> 高清图片链接：[<u>link</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/Open_Source/Projects/vLLM/Multi-Modal/Posts/Conv%E4%BC%98%E5%8C%96/images)，画图不易，走过路过欢迎点一个 Star！
+> 高清图片链接：[<u>link</u>](https://github.com/shen-shanshan/cs-self-learning/tree/master/Posts/vLLM%E5%A4%9A%E6%A8%A1%E6%80%81%E6%8E%A8%E7%90%86%EF%BD%9C%E5%8D%B7%E7%A7%AF%E8%AE%A1%E7%AE%97%E5%8A%A0%E9%80%9F/images)，画图不易，走过路过欢迎点一个 Star！
 
 **PyTorch 代码实现：**
 
@@ -66,7 +66,7 @@ def _forward_mulmat(self, x: torch.Tensor) -> torch.Tensor:
 
 以 `Qwen2.5-VL-7B` 为例，我在 Ascend A2 硬件上进行了一个简单的 benchmark，对比了在 `qps=16` 时，直接进行卷积以及使用矩阵乘进行优化后的性能数据。
 
-实验结果表明，使用矩阵乘进行优化后，TTFT（Time to First Token）和 TPOT（Time per Output Token）都得到了一定程度（10% 以内）的改善。
+实验结果表明，使用矩阵乘进行优化后，TTFT（Time to First Token）得到了一定程度（10% 左右）的改善。
 
 ## 五、总结
 
