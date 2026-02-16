@@ -33,21 +33,6 @@ In addition, I have also published some blogs and papers on the internet, you ca
 
 😊 Welcome to follow me!
 
-<div style="display: flex; width: 100%;">
-  <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-    <figure style="text-align: center;">
-      <figcaption><b>Zhihu:</b></figcaption>
-      <img src="./images/zhihu_link.jpg">
-    </figure>
-  </div>
-  <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-    <figure style="text-align: center;">
-      <figcaption><b>WeChat:</b></figcaption>
-      <img src="./images/wechat_link.jpg">
-    </figure>
-  </div>
-</div>
-
 ## 📚 Learning Notes
 
 ### 🧱 Basic Knowledges
