@@ -28,8 +28,25 @@ Contents:
 
 In addition, I have also published some blogs and papers on the internet, you can read them at links below.
 
-- 📖 My technical blogs: [zhihu](https://www.zhihu.com/people/sss-53-26), [personal website](https://shen-shanshan.github.io/).
-- 📖 My publications: [papers](./Research/Publications/).
+- 📖 My technical blogs: [Zhihu](https://www.zhihu.com/people/sss-53-26), [Personal Website](https://shen-shanshan.github.io/).
+- 📖 My publications: [Google Scholar](./Research/Publications/).
+
+😊 Welcome to follow me!
+
+<div style="display: flex; width: 100%;">
+  <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+    <figure style="text-align: center;">
+      <figcaption><b>Zhihu:</b></figcaption>
+      <img src="./images/zhihu_link.jpg">
+    </figure>
+  </div>
+  <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+    <figure style="text-align: center;">
+      <figcaption><b>WeChat:</b></figcaption>
+      <img src="./images/wechat_link.jpg">
+    </figure>
+  </div>
+</div>
 
 ## 📚 Learning Notes
 
