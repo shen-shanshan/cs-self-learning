@@ -1,14 +1,15 @@
-# TODO
-
-- Multi-Modal Tasks [#3508](https://github.com/vllm-project/vllm-ascend/issues/3508)
-- vLLM Ascend On Call Dashboard [#4748](https://github.com/vllm-project/vllm-ascend/issues/4748)
-- Elegant main2main scrolling upgrade [#4709](https://github.com/vllm-project/vllm-ascend/issues/4709)
+# TODO List
 
 ## 开发任务
 
-- 拆分 vllm 多模态编译配置
-- profling 阶段加入 merge 操作
-- 替换 mm encoder attention 算子 (做 benchmark) https://github.com/vllm-project/vllm-ascend/issues/2239
+## 技术博客
+
+- [ ] vLLM 推理可靠性 - 弹性伸缩与容错
+- [ ] vLLM 多模态推理 - 显存管理
+- [x] vLLM CustomOp 文档
+- [x] vLLM 多模态推理 - 卷积计算加速
+- [x] vLLM V1 整体流程
+- [x] Guided Decoding V0/V1
 
 ## 查漏补缺
 
@@ -91,13 +92,3 @@ vllm_config.scheduler_config.async_scheduling
 - [ ] DeviceMemoryProfiler
 - [ ] [GPU Model Runner V2](https://github.com/vllm-project/vllm/pull/25266)
 - [ ] Support MP Executor for multi node distributed inference [#23691](https://github.com/vllm-project/vllm/pull/23691)
-
-## 技术博客
-
-- [ ] vLLM 分离式架构 - 从 PD 分离到 AF 分离
-- [ ] vLLM 推理可靠性 - 弹性伸缩与容错
-- [ ] vLLM 多模态推理流程
-- [x] vLLM CustomOp 文档
-- [x] 卷积计算加速
-- [x] V1 整体流程
-- [x] Guided Decoding V0/V1

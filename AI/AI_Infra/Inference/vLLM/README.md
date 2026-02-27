@@ -169,10 +169,14 @@ uv pip install torch==2.9.1 \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
 -f https://mirrors.aliyun.com/pytorch-wheels/cu124
 
+uv pip install torch==2.10.0 \
+-i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+-f https://mirrors.aliyun.com/pytorch-wheels/cu124
+
 # https://github.com/vllm-project/vllm/issues/30464
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
-torch==2.9.1 -f https://mirrors.aliyun.com/pytorch-wheels/cu124 \
+torch==2.10.0 -f https://mirrors.aliyun.com/pytorch-wheels/cu124 \
 --index-strategy unsafe-best-match \
 --prerelease=allow
 ```
