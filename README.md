@@ -181,7 +181,7 @@ In addition, I have also published some blogs and papers on the internet, you ca
 | [<u>LLM 推理数据并行负载均衡（DPLB）浅析</u>][2042] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM PD 分离方案浅析</u>][2022] | PD Disaggregation | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM PD 分离 KV Cache 传递机制详解与演进分析</u>][2023] | PD Disaggregation | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM 卷积计算加速｜img2col 原理详解</u>][2057] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️ | ✅ |
+| [<u>vLLM 多模态推理｜卷积计算加速</u>][2057] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️ | ✅ |
 
 ### 📖 Dive into PyTorch
 
