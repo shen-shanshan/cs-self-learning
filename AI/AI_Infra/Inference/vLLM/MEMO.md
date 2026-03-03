@@ -1,5 +1,29 @@
 # vLLM MEMO
 
+## 开发常用
+
+```bash
+# init env
+cd github/vllm/
+source .venv/bin/activate
+
+export VLLM_USE_MODELSCOPE=False
+export HF_ENDPOINT="https://hf-mirror.com"
+
+export VLLM_USE_MODELSCOPE=True
+# def run_qwen2_5_vl
+# /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
+python examples/offline_inference/vision_language.py -m qwen2_5_vl
+
+# def run_dots_ocr
+# /home/sss/.cache/huggingface/hub/models/dots_ocr
+python examples/offline_inference/vision_language.py -m dots_ocr
+
+# def run_deepseek_ocr
+# /home/sss/.cache/modelscope/hub/models/deepseek-ai/DeepSeek-OCR
+python examples/offline_inference/vision_language.py -m deepseek_ocr
+```
+
 ## Args
 
 ```bash
