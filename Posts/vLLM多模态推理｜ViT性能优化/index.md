@@ -26,13 +26,13 @@
 
 ### 2.2 多模态理解模型的推理流程
 
-本文将主要聚焦于多模态理解模型，以 VL 类模型为例，其推理流程大致如下：
+本文将主要聚焦于多模态理解模型，以 VL 模型为例，其推理流程大致如下：
 
-1. **多模态输入预处理**：推理引擎的 Preprocessor 将原始的图像输入转换为 ？？？ 形式；
-2. **多模态输入编码**：（1）ViT 先将 ？？？ 切分为许多固定大小的 Patch（即图像 Token），再将这些 Patch 展平为向量后通过 Patch Embedding 映射为 `hidden_states`，整个过程其实就是一种卷积运算；（2）ViT Attention 对 `hidden_states` 进行编码，最终生成结构化的图像特征序列；
-3. **文本输入与图像特征合并**：将整条输入中为多模态特征预留的部分替换为我们编码过后的视觉特征；
+1. **多模态输入预处理**：推理引擎的 Preprocessor 将现实世界数据（图像或视频）整理成模型输入格式（Tensor），包括：图像的 Resize 和 Pad、归一化、处理 Prompt 中的模态占位符 Token（比如：`<image>`、`<audio>`）等；
+2. **多模态输入编码**：（1）ViT 先将输入的视觉张量切分为许多固定大小的 Patch（即图像 Token），再将这些 Patch 展平为向量后通过 Patch Embedding 映射为 `hidden_states`，整个过程其实就是一种卷积运算；（2）ViT Attention 对 `hidden_states` 进行编码，最终生成图像特征序列；
+3. **文本输入与图像特征合并**：将输入 Prompt 中为多模态特征预留的位置替换为我们编码过后的视觉 Embedding；
 4. **LLM Prefill**：将合并后的输入整个喂给语言模型，让它去做 Prefill 计算，生成初始的 KV Cache；
-5. **LLM Decode**：语言模型自回归地生成后续 Token。
+5. **LLM Decode**：语言模型自回归地生成后续 Token，并更新 KV Cache。
 
 ![](./images/vit.png)
 
@@ -40,13 +40,34 @@
 
 ## 三、多模态推理的性能瓶颈
 
-推理性能分析
-ViT结构、特性
-引擎级优化
+还是以 VL 模型为例，在其推理的整个 Pipeline 中，我们可以看到耗时主要集中在输入预处理、ViT 计算以及 LLM Prefill 这三个阶段。
+
+image
+
+其中，ViT 部分为 Compute-Bound（类似于 LLM Prefill，不需要读取 KV Cache），直接对整个输入进行计算并生成对应的视觉特征。稍后我们将介绍针对 ViT 部分常见的一些性能优化手段（主要是框架侧的优化、不涉及算子的优化）。
+
+另外，在整个推理引擎层面，vLLM 通过将预处理进程与模型实际推理进程分离（异步处理、互相掩盖）、视觉预处理 Cache、视觉 Embedding Cache 跨请求共享以及 EPD（Encoder-Prefill-Decode）分离等手段极大地优化了多模态推理的性能。关于这一部分，后面有机会再另写文章做详细的介绍。
 
 ## 四、ViT 性能优化手段
 
+### 4.1 使用 img2col 算法优化卷积计算
+
+### 4.2 使用融合算子减少 Host 侧 Kernel Launch 开销
+
+### 4.3 使用 Cos/Sin Cache 优化 Rope 计算
+
+### 4.4 使用异步 Copy 掩盖 H2D 同步流
+
+### 4.5 使用 Encoder DP 替代 TP 减少通信开销
+
+### 4.6 Ascend NPU 特定优化
+
+FA 算子输入 padding
+CPU cache 减少 d2h copy
+
 ## 五、总结
+
+profiling 指导
 
 ## 六、参考资料
 
