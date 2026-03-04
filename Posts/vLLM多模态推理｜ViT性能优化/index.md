@@ -16,7 +16,7 @@
 
 ![](./images/多模态理解.svg)
 
-对于多模态理解与生成统一模型，我们更进一步，再看看 Qwen3-Omni、Qwen-Image、BAGLE 这三条技术路线的区别。
+对于“多模态理解与生成统一模型”，我们更进一步，再看看 Qwen3-Omni、Qwen-Image、BAGLE 这三条技术路线的区别。
 
 ![](./images/多模态理解生成统一.svg)
 
@@ -26,7 +26,7 @@
 
 ### 2.2 多模态理解模型的推理流程
 
-本文将主要聚焦于多模态理解模型，以 VL 模型为例，其推理流程大致如下：
+本文将主要聚焦于“多模态理解模型”，以 VL 模型为例，其推理流程大致如下：
 
 1. **多模态输入预处理**：推理引擎的 Preprocessor 将现实世界数据（图像或视频）整理成模型输入格式（Tensor），包括：图像的 Resize 和 Pad、归一化、处理 Prompt 中的模态占位符 Token（比如：`<image>`、`<audio>`）等；
 2. **多模态输入编码**：（1）ViT 先将输入的视觉张量切分为许多固定大小的 Patch（即图像 Token），再将这些 Patch 展平为向量后通过 Patch Embedding 映射为 `hidden_states`，整个过程其实就是一种卷积运算；（2）ViT Attention 对 `hidden_states` 进行编码，最终生成图像特征序列；
@@ -38,38 +38,36 @@
 
 ![](./images/vit2.png)
 
-## 三、多模态推理的性能瓶颈
+### 2.3 多模态推理的性能瓶颈
 
-还是以 VL 模型为例，在其推理的整个 Pipeline 中，我们可以看到耗时主要集中在输入预处理、ViT 计算以及 LLM Prefill 这三个阶段。
-
-image
-
-其中，ViT 部分为 Compute-Bound（类似于 LLM Prefill，不需要读取 KV Cache），直接对整个输入进行计算并生成对应的视觉特征。稍后我们将介绍针对 ViT 部分常见的一些性能优化手段（主要是框架侧的优化、不涉及算子的优化）。
+还是以 VL 模型为例，对于短输出请求（即 `max_completion_tokens` 较小），在其推理的整个 Pipeline 中，耗时主要集中在输入预处理、ViT 计算以及 LLM Prefill 这三个阶段。其中，ViT 部分为 Compute-Bound（类似于 LLM Prefill，不需要读取 KV Cache），直接对整个输入进行计算并生成对应的视觉特征。稍后我们将介绍针对 ViT 部分常见的一些性能优化手段（主要是框架侧的优化、不涉及算子的优化）。
 
 另外，在整个推理引擎层面，vLLM 通过将预处理进程与模型实际推理进程分离（异步处理、互相掩盖）、视觉预处理 Cache、视觉 Embedding Cache 跨请求共享以及 EPD（Encoder-Prefill-Decode）分离等手段极大地优化了多模态推理的性能。关于这一部分，后面有机会再另写文章做详细的介绍。
 
-## 四、ViT 性能优化手段
+## 三、ViT 性能优化手段
 
-### 4.1 使用 img2col 算法优化卷积计算
+### 3.1 使用 img2col 算法优化卷积计算
 
-### 4.2 使用融合算子减少 Host 侧 Kernel Launch 开销
+### 3.2 使用融合算子减少 Host 侧 Kernel Launch 开销
 
-### 4.3 使用 Cos/Sin Cache 优化 Rope 计算
+### 3.3 使用 Cos/Sin Cache 优化 Rope 计算
 
-### 4.4 使用异步 Copy 掩盖 H2D 同步流
+### 3.4 使用异步 Copy 掩盖 H2D 同步流
 
-### 4.5 使用 Encoder DP 替代 TP 减少通信开销
+### 3.5 使用 Encoder DP 替代 TP 减少通信开销
 
-### 4.6 Ascend NPU 特定优化
+https://github.com/vllm-project/vllm/pull/22742
+
+### 3.6 Ascend NPU 特定优化
 
 FA 算子输入 padding
 CPU cache 减少 d2h copy
 
-## 五、总结
+## 四、总结
 
 profiling 指导
 
-## 六、参考资料
+## 五、参考资料
 
 - [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/pdf/2010.11929)
 - [VILA: OnPre-training for Visual Language Models](https://arxiv.org/pdf/2312.07533)

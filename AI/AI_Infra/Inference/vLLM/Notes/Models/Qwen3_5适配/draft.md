@@ -6,6 +6,7 @@ Unknown vLLM environment variable detected: VLLM_USE_V1
 
 ---
 
+```bash
 NotImplementedError: Shard id with multiple indices is not supported in weight_loader, please use weight_loader_v2 instead.
 
 WEIGHT_LOADER_V2_SUPPORTED
@@ -21,6 +22,11 @@ RuntimeError: NPU out of memory. Tried to allocate 5.79 GiB (NPU 0; 60.96 GiB to
 Linear layer sharding
 Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
 Linear layer sharding enabled with config: None.
+
+(Worker_TP1 pid=1208680) [WARNING] Please DO NOT tune args ['num_warps', 'num_stages']!
+```
+
+---
 
 ```bash
 vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3___5-4B \
