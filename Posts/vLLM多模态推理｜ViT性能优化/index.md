@@ -24,7 +24,7 @@
 
 ![](./images/多模态理解生成统一.svg)
 
-目前，vLLM 主要关注多模态的理解能力，而与多模态生成相关的能力则放到了 vLLM-Omni 项目中。[vLLM-Omni](https://github.com/vllm-project/vllm-omni) 是一个 vLLM 主仓的扩展项目，聚焦全模态推理和生成能力，感兴趣的可以去 GitHub 上看看。
+目前，vLLM 主要关注多模态的理解能力，而与多模态生成相关的能力则放到了 vLLM-Omni 项目中。[vLLM-Omni](https://github.com/vllm-project/vllm-omni) 是一个 vLLM 主仓的扩展项目，聚焦全模态推理和生成能力，感兴趣的读者可以去他们的 GitHub 上看看。
 
 ### 2.2 多模态理解模型的推理流程
 
@@ -42,9 +42,9 @@
 
 ### 2.3 多模态推理的性能瓶颈
 
-还是以 VL 模型为例，对于短输出请求（即 `max_completion_tokens` 较小的请求），在其推理的整个 Pipeline 中，耗时主要集中在输入预处理、ViT 计算以及 LLM Prefill 这三个阶段。其中，ViT 部分为 **Compute-Bound**（类似于 LLM Prefill，不需要读取 KV Cache），直接对整个输入进行计算并生成对应的视觉特征。稍后我们将介绍针对 ViT 部分常见的一些性能优化手段（主要是框架侧的优化、不涉及算子的优化）。
+还是以 VL 模型为例，对于短输出请求（即 `max_completion_tokens` 较小的请求），在其推理的整个 Pipeline 中，耗时主要集中在输入预处理、ViT 计算以及 LLM Prefill 这三个阶段。其中，ViT 部分为 **Compute-Bound**（类似于 LLM Prefill，不需要不断地读 KV Cache），直接对整个输入进行计算并生成对应的视觉特征。稍后我们将介绍针对 ViT 模块常见的一些性能优化手段（主要是一些框架侧的优化、不涉及算子的优化）。
 
-另外，在整个推理引擎层面，vLLM 通过将预处理进程与模型实际推理进程分离（异步处理、互相掩盖）、视觉预处理 Cache、视觉 Embedding Cache 跨请求共享以及 EPD（Encoder-Prefill-Decode）分离等手段极大地优化了多模态推理的性能。关于这一部分，后面有机会再另写文章做详细的介绍。
+另外，在整个推理引擎层面，vLLM 通过将预处理进程与模型实际推理进程分离（异步处理、互相掩盖）、视觉预处理 Cache、视觉 Embedding Cache 跨请求共享以及 EPD（Encoder-Prefill-Decode）分离等手段极大地提升了多模态推理的性能。关于这一部分，后面有机会再另写文章做详细的介绍。
 
 ## 三、常见 ViT 性能优化手段
 
@@ -57,23 +57,29 @@
 
 这一步本质上是一个 `kernel_size` = `stride` 的卷积运算，但是可以通过将卷积核的权重转换为一个二维矩阵，然后输入和这个二维矩阵直接相乘得到最终的结果。通过这种方式，极大地提升了卷积计算的性能，这就是 img2col 算法。
 
-关于 img2col 算法的更多细节，可以参考我之前写的这篇文章：……
+关于 img2col 算法的更多原理和细节，可以参考我之前写的这篇文章：
 
-经过 Profiling，我们发现与直接使用卷积计算相比，使用 img2col 算法后
+link
+
+目前，通过调用 PyTorch 提供的 `conv2d` 和 `conv3d` 接口（其底层会用到已经深度优化过的 CUDNN 算子），我们直接就能获得较好的性能收益。
 
 ### 3.2 使用融合算子减少 Host 侧 Kernel Launch 开销
 
-在整个 ViT 的计算过程中，会涉及到 MRope、RMSNorm 以及 SwiGelu 等许多算子，如果完全使用小算子拼接去实现，会造成严重的 Host 侧 Kernel Launch 开销，导致 GPU 利用率不高。
+在 ViT 的计算过程中，会涉及到 MRope、RMSNorm 以及 SwiGelu 等算子，如果完全使用小算子拼接去实现，会造成严重的 Host 侧 Kernel Launch 开销，导致 GPU 利用率不高。
 
-在这种情况下，可以考虑对这些操作接入融合算子，每个融合算子只下发一次，可以更好地压榨 GPU 的性能。关于算子实现的具体细节，本文不做讨论。
+在这种情况下，可以考虑对这些操作接入融合算子，每个融合算子只需下发一次，从而可以更好地压榨 GPU 的性能。关于融合算子实现的具体细节，本文不做讨论。
 
-### 3.3 使用 Cos/Sin Cache 优化 Rope 计算
+### 3.3 使用 cos/sin Cache 优化 Rope 计算
 
-### 3.4 使用异步 Copy 掩盖 H2D 同步流
+在 ViT 的计算过程中，每一次 forward 都需要根据输入像素值的 H（Height）和 W（Width）去重新计算 cos/sin 值，从而导致了许多冗余的计算。
 
-以 Qwen3-VL 为例，其 ViT Attention 的计算需要 `cu_seqlens` 作为入参，且该 Tensor 必须要放到 GPU 上。因此，vLLM 会在进入 VisionBlock 之前提前计算好 `cu_seqlens` 并通过异步拷贝的方式将其从 CPU 拷贝到 GPU 上，形如：`xxx.to(self.device, non_blocking=True)`。
+在 vLLM 中，`RotaryEmbeddingBase` 类提供了一种 cos/sin Cache 机制——在创建 `RotaryEmbedding` 模块时，它会根据我们传入的 `base` 和 `max_position_embeddings` 等参数，提前计算好 cos/sin freq 值，并存入一个 1D Cache。后面，当我们在 ViT 中需要用到 cos/sin freq 时，我们能够以 `seqlen` 作为索引直接从这个 Cache 中获取已经计算好的值，从而避免了重复的计算。
 
-通过这种方式，可以避免在调用算子之前（推理的关键路径上）再去临时计算该 Tensor 并拷贝到 GPU 上，这会触发 H2D 的同步流，非常影响性能。
+### 3.4 使用异步 copy 掩盖 H2D 同步流
+
+以 Qwen3-VL 为例，其 ViT Attention 的计算需要 `cu_seqlens` 作为入参，且该 Tensor 必须要放到 GPU 上。如果在每次调用算子之前，才临时去计算该 Tensor 并拷贝到 GPU 上，这会导致大量的重复计算（在每一步推理中，`cu_seqlens` 在每个 VisionBlock layer 上都是相同的），且会触发 H2D 同步流，从而导致非常严重的 Host 开销，非常影响性能。
+
+在 vLLM 中，ViT 模块会在进入 VisionBlock 之前提前计算好 `cu_seqlens` 并通过异步拷贝的方式将其从 CPU 拷贝到 GPU 上，如：`xxx.to(self.device, non_blocking=True)`，从而可以掩盖掉 H2D 同步流带来的开销。另外，`cu_seqlens` 会在 VisionBlock 的所有 layer 间传递和共享，减少了冗余的计算。通过这种方式，我们减少了 ViT 推理的关键路径上的重复操作，从而提高了整体的性能。
 
 ### 3.5 使用 Encoder DP 代替 TP 减少通信开销
 
@@ -91,5 +97,13 @@ profiling 指导
 ## 五、参考资料
 
 - [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/pdf/2010.11929)
-- [VILA: OnPre-training for Visual Language Models](https://arxiv.org/pdf/2312.07533)
+- [万字长文图解 Qwen2.5-VL 实现细节](https://zhuanlan.zhihu.com/p/1921289925552210138?share_code=oQnxmXt37SUD&utm_psn=1921301797538076351)
 - [Qwen3-Omni：新一代原生全模态大模型！](https://qwen.ai/blog?id=65f766fc2dcba7905c1cb69cc4cab90e94126bf4&from=research.latest-advancements-list)
+
+**TODO:**
+
+- [ ] [万字长文图解 Qwen2.5-VL 实现细节](https://zhuanlan.zhihu.com/p/1921289925552210138?share_code=oQnxmXt37SUD&utm_psn=1921301797538076351)
+- [ ] [深度研读 Qwen3-VL：当视觉模型学会“慢思考”与 256K 超长视野 🌟](https://zhuanlan.zhihu.com/p/1980240971909337328?share_code=n5piaWev0MEt&utm_psn=1980718678996707264)
+- [ ] [多模态技术梳理：ViT 系列 🌟](https://zhuanlan.zhihu.com/p/26719287825)
+- [ ] [Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解 🌟](https://zhuanlan.zhihu.com/p/28205969434)
+- [ ] [多模态技术梳理：Qwen-VL 系列 🌟](https://zhuanlan.zhihu.com/p/25267823390)

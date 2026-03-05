@@ -6,10 +6,10 @@
 
 **TODO（P0）：**
 
-- [ ] 了解 vllm-omni 项目
-- [ ] [LLM推理优化的上半场：单实例推理优化接近尾声](https://zhuanlan.zhihu.com/p/1912580139667154389)
-- [ ] 学习 triton https://github.com/gpu-mode/lectures/tree/main/lecture_014 https://gitcode.com/Ascend/triton-ascend
-- [ ] 了解 diffusion 模型原理
+- [ ] 学习 Triton 算子开发
+  - https://github.com/gpu-mode/lectures/tree/main/lecture_014
+  - https://gitcode.com/Ascend/triton-ascend
+- [ ] 了解 Diffusion 模型原理与推理技术
 
 ## LLM 基础
 
@@ -19,6 +19,7 @@
 - [ ] [大模型推理必学：专业术语与概念引导（下）](https://mp.weixin.qq.com/s/FGQzmFlZ6MTkVizeGSJoXQ)
 - [ ] [2025 年最全面的 LLM 架构技术解析](https://mp.weixin.qq.com/s/7qVwBhE5JcJFnyOKpYNCeA)
 - [ ] [开源大模型推理引擎现状及常见推理优化方法](https://zhuanlan.zhihu.com/p/755874470?share_code=13fdP1R6gsoY8&utm_psn=1995146863595254830)
+- [ ] [LLM推理优化的上半场：单实例推理优化接近尾声](https://zhuanlan.zhihu.com/p/1912580139667154389)
 
 NLP：
 
@@ -28,20 +29,13 @@ NLP：
 Transformer：
 
 - [ ] [缓存与效果的极限拉扯：从 MHA、MQA、GQA 到 MLA - 苏剑林](https://spaces.ac.cn/archives/10091)
-- [ ] GQA
-- [ ] MQA
+- [ ] MQA/GQA
 - [ ] [避开复数推导，我们还可以怎么理解 RoPE？](https://zhuanlan.zhihu.com/p/863378538?share_code=kfC2mCzqjeww&utm_psn=1925889251461031860)
 - [ ] [为什么当前主流的大模型都使用 RMS-Norm？](https://zhuanlan.zhihu.com/p/12392406696)
 - [ ] [Transformer Pre-Norm 和 Post-Norm 如何选择？](https://zhuanlan.zhihu.com/p/12228475399)
 - [ ] [Transformer 似懂非懂的 Norm 方法](https://zhuanlan.zhihu.com/p/12113221623)
 - [ ] [LLM预训练MFU计算公式&计算工具构建思路分享（上）](https://mp.weixin.qq.com/s/Og_iggeQBmicg2OWQo2spw)
 - [ ] [The Big LLM Architecture Comparison 🌟](https://sebastianraschka.com/blog/2025/the-big-llm-architecture-comparison.html)
-
-LinearAttention：
-
-- [ ] [Qwen/Kimi带火的LinearAttention：原理与细节解析（上）](https://mp.weixin.qq.com/s/GSplGYVQYU42M-zrazJp8g)
-- [ ] [Qwen/Kimi带火的LinearAttention：原理与细节解析（下）](https://mp.weixin.qq.com/s/Z6a1Fq_bnnZSSaVs-rn8vg)
-- [ ] [LinearAttention在KV cache的存储上有多大优势？用计算来推演](https://mp.weixin.qq.com/s/LPKzHcHLx2pMMcr2foMsUQ)
 
 MoE：
 
@@ -52,10 +46,12 @@ MoE：
 
 - [ ] [Encoder Disaggregation for Scalable Multimodal Model Serving 🌟](https://blog.vllm.ai/2025/12/15/vllm-epd.html)
 - [ ] [统一多模态理解与生成综述：83页长文梳理进展和挑战](https://mp.weixin.qq.com/s/MjAzSf-EFG6TlZk_zOQy9Q)
-- [ ] [深度研读 Qwen3-VL：当视觉模型学会“慢思考”与 256K 超长视野 🌟](https://zhuanlan.zhihu.com/p/1980240971909337328?share_code=n5piaWev0MEt&utm_psn=1980718678996707264)
-- [ ] [多模态技术梳理：ViT 系列 🌟](https://zhuanlan.zhihu.com/p/26719287825)
-- [ ] [Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解 🌟](https://zhuanlan.zhihu.com/p/28205969434)
-- [ ] [多模态技术梳理：Qwen-VL 系列 🌟](https://zhuanlan.zhihu.com/p/25267823390)
+
+Linear Attention：
+
+- [ ] [Qwen/Kimi带火的LinearAttention：原理与细节解析（上）](https://mp.weixin.qq.com/s/GSplGYVQYU42M-zrazJp8g)
+- [ ] [Qwen/Kimi带火的LinearAttention：原理与细节解析（下）](https://mp.weixin.qq.com/s/Z6a1Fq_bnnZSSaVs-rn8vg)
+- [ ] [LinearAttention在KV cache的存储上有多大优势？用计算来推演](https://mp.weixin.qq.com/s/LPKzHcHLx2pMMcr2foMsUQ)
 
 DeepSeek：
 
@@ -70,11 +66,9 @@ DeepSeek：
 
 Others：
 
-- [ ] [深入理解 AWQ 量化技术](https://zhuanlan.zhihu.com/p/697761176)
-- [ ] [阿里通义千问 Qwen3 系列模型正式发布，该模型有哪些技术亮点？](https://www.zhihu.com/question/1900300358229652607/answer/1900452232018767979)
 - [ ] [聊聊 Reasoning Model 的精巧实现（ReFT, Kimi K1.5, DeepSeek R1）](https://zhuanlan.zhihu.com/p/20356958978)
 - [ ] [从系统 1 到系统 2 推理范式，300+ 文献总结 o1/R1 类推理大模型的技术路线](https://zhuanlan.zhihu.com/p/27230460558)
-- [ ] [超全解析！大模型面试宝典 60 题](https://mp.weixin.qq.com/s/Q6FPYenia1aHl-8e8Nhx4g)
+- [ ] [超全解析！大模型面试宝典 60 题 🌟](https://mp.weixin.qq.com/s/Q6FPYenia1aHl-8e8Nhx4g)
 
 ## LLM 推理加速
 
@@ -84,7 +78,6 @@ Others：
 - [ ] [25 种 LLM 部署框架你知道多少？](https://zhuanlan.zhihu.com/p/1933217002698306629)
 - [ ] [大模型推理各方向新发展整理](https://zhuanlan.zhihu.com/p/693680304)
 - [ ] [LLM (18)：LLM 的推理优化技术纵览](https://zhuanlan.zhihu.com/p/642412124?utm_psn=1897433318875693188)
-- [ ] MoE survey 论文
 - [ ] [3 万字长文！通俗解析大语言模型 LLM 原理](https://mp.weixin.qq.com/s/EX8uQUfZvFbYlrbpiGhd9Q)
 
 基础知识：
@@ -96,11 +89,6 @@ Others：
 - [x] [图文详解 Continuous Batch：不写 CUDA Kernel 也能成倍优化推理效率](https://zhuanlan.zhihu.com/p/876908831)
 - [x] [AI Infra 之模型显存管理分析](https://mp.weixin.qq.com/s/lNcszOFnGVktBRAAsHDVIA)
 - [x] [为什么现在大模型在推理阶段都是左 padding？](https://mp.weixin.qq.com/s/qNSHpmUZrHQsTeXLwSZVCA)
-
-DeepSeek：
-
-- [ ] [DeepSeek-V3/R1 推理效率分析: 满血版逆向工程分解](https://mp.weixin.qq.com/s/oa7ZW7qNW-B05K_iF5YNYA)（PD 分离数据分析）
-- [ ] [DeepSeek-V3/R1 推理系统概览](https://zhuanlan.zhihu.com/p/27181462601)
 
 vLLM：
 
@@ -128,7 +116,7 @@ vLLM：
 - [x] [vLLM调度器解密（上）：Continuous Batch 是如何工作的？](https://zhuanlan.zhihu.com/p/1117099341?share_code=3OZ9bBQsRAHV&utm_psn=1909578321869637005)
 - [x] [vLLM调度器解密（下）：chunked prefill是如何进一步优化的？](https://zhuanlan.zhihu.com/p/6144374775?share_code=w9CKto9eLSq2&utm_psn=1909578492246466702)
 
-并行策略（Parallel Strategy）：
+并行策略：
 
 - [ ] [全面解析 MoE 专家并行 EP all-to-all 算子 🌟](https://mp.weixin.qq.com/s/yFy9pKTcMfB4ciLF4uEs1g)
 - [ ] [大模型数据并行 - DP、DDP 和 FSDP](https://zhuanlan.zhihu.com/p/28960311154)
@@ -153,13 +141,9 @@ PD/AF 分离：
 - [ ] [通过 PD 分离实现 LLM 服务中的最大有效吞吐量](https://mp.weixin.qq.com/s/Zprd13tHXfUVRs21eKtMWQ)
 - [ ] [LLM 推理优化：MLA 算力均衡实践（提升 0.3x）](https://mp.weixin.qq.com/s/Hl0D3OJ1nk-4ANgUAoZPNw)
 
-通信库：
-
-- [ ] [集合通信库 VCCL 释放 GPU 极致算力，创智、基流、智谱、联通、北航、清华、东南重磅开源](https://mp.weixin.qq.com/s/_Tb5FGApGrAl7_Wjym1Ejg)
-
 ## PyTorch
 
-- [ ] [Graph Mode 🌟](./Open_Source/Projects/vLLM/Features/Graph_Mode/README.md)
+- [ ] [torch.compile 🌟](./Open_Source/Projects/vLLM/Features/Graph_Mode/README.md)
 - [ ] [PyTorch internals 🌟](http://blog.ezyang.com/2019/05/pytorch-internals/)
 - [ ] [PyTorch dispatcher 🌟](http://blog.ezyang.com/2020/09/lets-talk-about-the-pytorch-dispatcher/)
 - [ ] [PyTorch 显存管理介绍与源码解析（二）](https://zhuanlan.zhihu.com/p/681651660)
@@ -199,38 +183,6 @@ PD/AF 分离：
 - [x] [CUDA 全局内存高效访问——对齐访问和合并内存访问](https://zhuanlan.zhihu.com/p/1921229353515189126?share_code=1eLd5u0xlqUqc&utm_psn=1921481712455624310)
 - [x] [CUDA 编程之 Memory Coalescing](https://zhuanlan.zhihu.com/p/300785893)
 
----
-
-**[NVIDIA Developer](https://developer.nvidia.com/)：**
-
-Docs:
-
-- [ ] [An Even Easier Introduction to CUDA (Updated)](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
-- [x] [NVIDIA CUDA-X Libraries](https://developer.nvidia.com/gpu-accelerated-libraries)
-  - [ ] [CUTLASS](https://docs.nvidia.com/cutlass/index.html)
-  - [ ] [TensorRT](https://developer.nvidia.com/tensorrt)
-  - [ ] [cuDNN](https://developer.nvidia.com/cudnn)
-- [x] [NVIDIA Magnum IO](https://www.nvidia.com/en-us/data-center/magnum-io/)
-  - [x] [GPUDirect](https://developer.nvidia.com/gpudirect)
-    - [x] [GPUDirect Storage](https://developer.nvidia.com/gpudirect-storage)
-    - [ ] [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/?ncid=no-ncid)
-    - [ ] GPUDirect P2P
-    - [ ] GPUDirect Video
-  - [x] [NVSHMEM](https://developer.nvidia.com/nvshmem)
-    - [ ] [NVSHMEM Introduction](https://docs.nvidia.com/nvshmem/api/introduction.html)
-    - [ ] IBGDA (InfiniBand GPUDirect Async)
-  - [ ] NCCL
-
-Blogs:
-
-- [ ] [Getting Started with CUDA Graphs](https://developer.nvidia.com/blog/cuda-graphs/)
-- [ ] [Accelerating IO in the Modern Data Center: Magnum IO Architecture](https://developer.nvidia.com/blog/accelerating-io-in-the-modern-data-center-magnum-io-architecture?ncid=no-ncid)
-- [ ] [GPUDirect Storage: A Direct Path Between Storage and GPU Memory](https://developer.nvidia.com/blog/gpudirect-storage/?ncid=no-ncid)
-- [x] [Scaling Scientific Computing with NVSHMEM](https://developer.nvidia.com/blog/scaling-scientific-computing-with-nvshmem/)
-- [x] [IBGDA: Improving Network Performance of HPC Systems Using NVIDIA Magnum IO NVSHMEM and GPUDirect Async](https://developer.nvidia.com/blog/improving-network-performance-of-hpc-systems-using-nvidia-magnum-io-nvshmem-and-gpudirect-async/)
-
-> Find More: [NV Blogs: Inference Performance](https://developer.nvidia.com/blog/tag/inference-performance/)
-
 ## Research
 
 - [ ] [当 CEO 重读 PhD：论智慧与勇气 🌟](https://zhuanlan.zhihu.com/p/1893638374646079902)
@@ -254,6 +206,8 @@ Blogs:
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
 - [ ] 云服务器租赁平台：优云智算
 - [ ] [python实现异步的底层原理是什么？🌟](https://www.zhihu.com/question/432814091/answer/1969082606936110671)
+
+---
 
 ## 学习资料
 
@@ -289,3 +243,34 @@ Blogs:
 **访谈：**
 
 - [OpenAI 核心贡献者翁家翌访谈：想法很廉价，模型的成败全在 Infra](https://mp.weixin.qq.com/s/iTx0DnFfjikgRfzcxNRcqw)
+
+---
+**[NVIDIA Developer](https://developer.nvidia.com/)**
+
+**Docs:**
+
+- [ ] [An Even Easier Introduction to CUDA (Updated)](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
+- [x] [NVIDIA CUDA-X Libraries](https://developer.nvidia.com/gpu-accelerated-libraries)
+  - [ ] [CUTLASS](https://docs.nvidia.com/cutlass/index.html)
+  - [ ] [TensorRT](https://developer.nvidia.com/tensorrt)
+  - [ ] [cuDNN](https://developer.nvidia.com/cudnn)
+- [x] [NVIDIA Magnum IO](https://www.nvidia.com/en-us/data-center/magnum-io/)
+  - [x] [GPUDirect](https://developer.nvidia.com/gpudirect)
+    - [x] [GPUDirect Storage](https://developer.nvidia.com/gpudirect-storage)
+    - [ ] [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/?ncid=no-ncid)
+    - [ ] GPUDirect P2P
+    - [ ] GPUDirect Video
+  - [x] [NVSHMEM](https://developer.nvidia.com/nvshmem)
+    - [ ] [NVSHMEM Introduction](https://docs.nvidia.com/nvshmem/api/introduction.html)
+    - [ ] IBGDA (InfiniBand GPUDirect Async)
+  - [ ] NCCL
+
+**Blogs:**
+
+- [ ] [Getting Started with CUDA Graphs](https://developer.nvidia.com/blog/cuda-graphs/)
+- [ ] [Accelerating IO in the Modern Data Center: Magnum IO Architecture](https://developer.nvidia.com/blog/accelerating-io-in-the-modern-data-center-magnum-io-architecture?ncid=no-ncid)
+- [ ] [GPUDirect Storage: A Direct Path Between Storage and GPU Memory](https://developer.nvidia.com/blog/gpudirect-storage/?ncid=no-ncid)
+- [x] [Scaling Scientific Computing with NVSHMEM](https://developer.nvidia.com/blog/scaling-scientific-computing-with-nvshmem/)
+- [x] [IBGDA: Improving Network Performance of HPC Systems Using NVIDIA Magnum IO NVSHMEM and GPUDirect Async](https://developer.nvidia.com/blog/improving-network-performance-of-hpc-systems-using-nvidia-magnum-io-nvshmem-and-gpudirect-async/)
+
+> Find More: [NV Blogs: Inference Performance](https://developer.nvidia.com/blog/tag/inference-performance/)
