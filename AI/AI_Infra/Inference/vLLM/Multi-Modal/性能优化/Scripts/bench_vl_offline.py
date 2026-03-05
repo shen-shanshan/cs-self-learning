@@ -1,3 +1,16 @@
+"""
+def profile(self, is_start: bool = True, profile_prefix: str | None = None):
+
+torch_npu.profiler.profile(
+    activities=[
+        torch_npu.profiler.ProfilerActivity.CPU,
+        torch_npu.profiler.ProfilerActivity.NPU,
+    ],
+    with_stack=True, -> 改为 True
+    ...
+)
+"""
+
 from transformers import AutoProcessor
 from vllm import LLM, SamplingParams
 from qwen_vl_utils import process_vision_info
@@ -33,9 +46,8 @@ def main():
     llm = LLM(
         model=MODEL_PATH,
         max_model_len=16384,
-        limit_mm_per_prompt={"image": 1},
-        tensor_parallel_size=2,
-        mm_encoder_tp_mode="data",
+        limit_mm_per_prompt={"image": 2},
+        # tensor_parallel_size=2,
         profiler_config={
             "profiler": "torch",
             "torch_profiler_dir": "./vllm_profile",
