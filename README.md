@@ -141,16 +141,12 @@ In addition, I have also published some blogs and papers on the internet, you ca
 | :---- | :------- | :----- | :--- | :-- | :--- |
 | [<u>The Illustrated Transformer</u>][2016] | Transformer | [<u>@Jay Alammar</u>][3008] | Transformer 原理详解 | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>The Illustrated GPT-2 (Visualizing Transformer Language Models)</u>][2021] | Transformer | [<u>@Jay Alammar</u>][3008] | Transformer 推理过程 | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>Mixture of Experts Explained</u>][2038] | MoE | [<u>@HuggingFace Blog</u>][3017] | MoE 综述 | ⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>ViT 论文速读</u>][2018] | Multi-Modal | [<u>@Zhang</u>][3010] | ViT 原理详解 | ⭐️⭐️ | ✅ |
-| [<u>LLaVA 系列模型结构详解</u>][2019] | Multi-Modal | [<u>@Zhang</u>][3010] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>图文详解 LLM inference：KV Cache</u>][2024] | KV Cache | [<u>@季叶</u>][3011] | | ⭐️⭐️⭐️ | ✅ |
-| [<u>图解大模型计算加速系列：分离式推理架构 2，模糊分离与合并边界的 chunked-prefills</u>][2044] | Schedule | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>LLM 推理并行优化的必备知识</u>][2032] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | | |
-| [<u>分布式推理优化思路</u>][2051] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | | |
-| [<u>MoE 并行负载均衡：EPLB 的深度解析与可视化</u>][2040] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>Mixture of Experts Explained</u>][2038] | MoE | [<u>@HuggingFace Blog</u>][3017] | MoE 综述 | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>MoE 并行负载均衡：EPLB 的深度解析与可视化</u>][2040] | MoE | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>The Ultra-Scale Playbook: Training LLMs on GPU Clusters</u>][2039] | Parallel Strategy | [<u>@HuggingFace Blog</u>][3017] | | | |
 | [<u>图解大模型计算加速系列：分离式推理架构 1，从 DistServe 谈起/u>][2049] | PD Disaggregation | [<u>@猛猿</u>][3003] | PD 分离原理详解 | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>图解大模型计算加速系列：分离式推理架构 2，模糊分离与合并边界的 chunked-prefills</u>][2044] | Schedule | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>LLM 推理提速：Attention 与 FFN 分离方案解析</u>][2046] | AF Disaggregation | [<u>@kaiyuan</u>][3005] | AF 分离原理详解 | ⭐️⭐️⭐️ | ✅ |
 | [<u>Step-3 AF 分离推理系统 vs Deepseek EP 推理系统，谁更好？</u>][2029] | AF Disaggregation | [<u>@不归牛顿管的熊猫</u>][3013] | AF 分离与大 EP 优劣对比 | ⭐️⭐️ | ✅ |
 | [<u>Step-3 推理系统：从 PD 分离到 AF 分离（AFD）</u>][2026] | AF Disaggregation | [<u>@Yibo Zhu</u>][3012] | Step3 作者杂谈 | ⭐️⭐️ | ✅ |
@@ -164,24 +160,24 @@ In addition, I have also published some blogs and papers on the internet, you ca
 | [<u>vLLM V1 整体流程｜从请求到算子执行</u>][2003] | Architecture | [<u>@SSS不知-道</u>][3001] | vLLM 推理流程 | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>图解 vLLM V1 系列 1：整体流程</u>][2011] | Architecture | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>图解 vLLM V1 系列 2：Executor-Workers 架构</u>][2012] | Architecture | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️ | ✅ |
-| [<u>图解 vLLM V1 系列 5：调度器策略</u>][2006] | Scheduler | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>图解 vLLM V1 系列 3：KV Cache 初始化</u>][2013] | KV Cache | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>图解 vLLM V1 系列 4：加载模型权重</u>][2005] | Model | [<u>@猛猿</u>][3003] | | ⭐️⭐️ | ✅ |
 | [<u>vLLM 模型权重加载：使用 setattr</u>][2007] | Model | [<u>@风之魔术师</u>][3004] | | ⭐️⭐️ | ✅ |
 | [<u>ColumnParallelLinear 和 RowParallelLinear</u>][2008] | Model | [<u>@风之魔术师</u>][3004] | | ⭐️⭐️ | ✅ |
-| [<u>图解 vLLM V1 系列 3：KV Cache 初始化</u>][2013] | KV Cache | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM 显存管理详解</u>][2009] | Memory | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM 算力多样性｜Platform 插件与 CustomOp</u>][2064] | Platform | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>图解 vLLM V1 系列 5：调度器策略</u>][2006] | Scheduler | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>Introducing vLLM Hardware Plugin, Best Practice from Ascend NPU</u>][2010] | Platform | [<u>@The Ascend Team on vLLM</u>][3006] | vLLM 硬件插件化机制 | ⭐️⭐️⭐️ | ✅ |
+| [<u>vLLM 算力多样性｜Platform 插件与 CustomOp</u>][2064] | Platform | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 算子开发流程：“保姆级”详细记录</u>][2004] | Kernel | [<u>@DefTruth</u>][3002] | | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>Introduction to torch.compile and How It Works with vLLM</u>][2052] | Torch Compile | [<u>@vLLM Blog</u>][3019] | | ⭐️⭐️ | ✅ |
 | [<u>vLLM torch.compile Integration</u>][2060] | Torch Compile | [<u>@Jiangyun Zhu</u>][3028] | 自定义 Pass 方法 | ⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM 结构化输出｜Guided Decoding (V0)</u>][2001] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM 结构化输出｜Guided Decoding (V1)</u>][2002] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM DP 特性与演进方案分析</u>][2041] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>LLM 推理数据并行负载均衡（DPLB）浅析</u>][2042] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>vLLM 结构化输出｜Guided Decoding (V0)</u>][2001] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>vLLM 结构化输出｜Guided Decoding (V1)</u>][2002] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>vLLM 多模态推理｜卷积计算加速</u>][2057] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️ | ✅ |
 | [<u>vLLM PD 分离方案浅析</u>][2022] | PD Disaggregation | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM PD 分离 KV Cache 传递机制详解与演进分析</u>][2023] | PD Disaggregation | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM 多模态推理｜卷积计算加速</u>][2057] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️ | ✅ |
+| [<u>vLLM 显存管理详解</u>][2009] | Memory | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
 
 ### 📖 Dive into PyTorch
 
@@ -202,27 +198,37 @@ In addition, I have also published some blogs and papers on the internet, you ca
 | Title | Category | Author | Note | Rec | Read |
 | :---- | :------- | :----- | :--- | :-- | :--- |
 | [<u>NCCL: Collective Operations</u>][2050] | Collective Communication | [<u>@NVIDIA Developer</u>][3022] | 集合通信常用操作 | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>LLM 推理并行优化的必备知识</u>][2032] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | | |
+| [<u>分布式推理优化思路</u>][2051] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | | |
 | [<u>一文读懂｜RDMA 原理</u>][2035] | Network | [<u>@Linux内核库</u>][3015] | | ⭐️⭐️⭐️ | ✅ |
+
+### 📖 Multi-Modality
+
+| Title | Category | Author | Note | Rec | Read |
+| :---- | :------- | :----- | :--- | :-- | :--- |
+| [<u>ViT 论文速读</u>][2018] | ViT | [<u>@Zhang</u>][3010] | | ⭐️⭐️ | ✅ |
+| [<u>LLaVA 系列模型结构详解</u>][2019] | ViT | [<u>@Zhang</u>][3010] | | ⭐️⭐️⭐️ | ✅ |
+
+### 📖 Dive into Qwen
+
+| Title | Category | Author | Note | Rec | Read |
+| :---- | :------- | :----- | :--- | :-- | :--- |
+| [<u>万字长文图解 Qwen2.5-VL 实现细节</u>][2020] | VL | [<u>@猛猿</u>][3003] | Qwen2.5-VL 技术报告解读 | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
+
+### 📖 Dive into DeepSeek
+
+| Title | Category | Author | Note | Rec | Read |
+| :---- | :------- | :----- | :--- | :-- | :--- |
+| [<u>DeepSeek 技术解读（1）- 彻底理解 MLA（Multi-Head Latent Attention）</u>][2031] | Attention | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>DeepSeek 技术解读（2）- MTP（Multi-Token Prediction）的前世今生</u>][2034] | Parallel Decoding | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>DeepSeek 技术解读（3）- MoE 的演进之路</u>][2033] | MoE | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
 
 ### 📖 Development
 
 | Title | Category | Author | Note | Rec | Read |
 | :---- | :------- | :----- | :--- | :-- | :--- |
 | [<u>LLM Inference 高效 Debug 方法汇总</u>][2043] | Debug | [<u>@CarryPls</u>][3018] | vLLM Debug 经验 | ⭐️⭐️ | ✅ |
-
-### 📖 Dive into Qwen
-
-| Title | Category | Author | Note | Rec | Read |
-| :---- | :------- | :----- | :--- | :-- | :--- |
-| [<u>万字长文图解 Qwen2.5-VL 实现细节</u>][2020] | Multi-Modal | [<u>@猛猿</u>][3003] | Qwen2.5-VL 技术报告解读 | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
-
-### 📖 Dive into DeepSeek
-
-| Title | Category | Author | Note | Rec | Read |
-| :---- | :------- | :----- | :--- | :-- | :--- |
-| [<u>DeepSeek 技术解读（1）- 彻底理解 MLA（Multi-Head Latent Attention）</u>][2031] | Transformer | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>DeepSeek 技术解读（2）- MTP（Multi-Token Prediction）的前世今生</u>][2034] | Parallel Decoding | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>DeepSeek 技术解读（3）- MoE 的演进之路</u>][2033] | MoE | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>推理性能优化：GPU/NPU Profiling 阅读引导</u>][2065] | Profiling | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
 
 <!----------------------------- Links: 2001~4000 ------------------------------>
 <!------------------------------ Article Links -------------------------------->
@@ -290,6 +296,7 @@ In addition, I have also published some blogs and papers on the internet, you ca
 [2062]: https://zhuanlan.zhihu.com/p/677203832
 [2063]: https://zhuanlan.zhihu.com/p/462191421
 [2064]: https://zhuanlan.zhihu.com/p/1993988455059963960
+[2065]: https://zhuanlan.zhihu.com/p/1981436859470074335
 <!------------------------------- Author Links -------------------------------->
 <!-- SSS不知-道 -->
 [3001]: https://www.zhihu.com/people/sss-53-26

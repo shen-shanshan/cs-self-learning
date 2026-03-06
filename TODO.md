@@ -200,8 +200,6 @@ PD/AF 分离：
 
 - [ ] [TileLang+TVM-FFI: 极致压榨CPU性能](https://zhuanlan.zhihu.com/p/1982449607435903684?share_code=1namqWxZu7LC4&utm_psn=1982944873624663147)
 - [ ] [面向 ML 玩家的 Docker 零帧起手 🌟](https://zhuanlan.zhihu.com/p/1916764175230801287?share_code=FFpFk5rroxTE&utm_psn=1918221276146800528)
-- [x] [GPU/NPU 推理 Profiling 阅读引导（上）🌟](https://mp.weixin.qq.com/s/xNKdTl5cUPnpVe3OQ3wXKg)
-- [x] [GPU/NPU 推理 Profiling 阅读引导（下）🌟](https://mp.weixin.qq.com/s/Qv15u-dw3jWz3IFCaBnS9A)
 - [ ] [Nsight Systems 工具原理与 GPU 性能优化实战详解](https://zhuanlan.zhihu.com/p/1966508767869932083?share_code=UqBOEuwTgHss&utm_psn=1967250648773928246)
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
 - [ ] 云服务器租赁平台：优云智算

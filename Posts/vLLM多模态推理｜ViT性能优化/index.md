@@ -48,7 +48,34 @@
 
 ## 三、常见 ViT 性能优化手段
 
-### 3.1 使用 img2col 算法优化卷积计算
+### 3.1 使用 MMEncoder DP 代替 TP 减少通信开销
+
+当我们需要加载的模型比较大时，一张卡可能放不下整个权重，这时我们就会用 TP（Tensor Parallel）切分权重并放到不同的卡上。通过这种方式，每张卡上的计算量减少了，因此计算延迟会更低，但缺点是引入了额外的通信开销。
+
+一种经典的切分方式是先“列切”，中间各自做计算，然后再“行切”，最后做一次 AllReduce。通过这种方式，避免了多次 AllGather，只需最后做一次 AllReduce，并且中间值的计算量和存储大小减半。
+
+![](./images/tp-mode.png)
+
+以 Attention 计算为例，当采用 TP 时，一般会对 `qkv_proj` 做列切（在 vLLM 中使用 `QKVParallelLinear` 实现，包含对 MQA/GQA 的特殊处理），对 `out_proj` 做行切（在 vLLM 中使用 `RowParallelLinear` 实现），最后接 AllReduce 操作。
+
+上述这种组合模式就是[《LLM 推理并行优化的必备知识》](https://zhuanlan.zhihu.com/p/1937449564509545940)这篇文章中介绍的“场景四”，关于 TP 切分的更多方式和分析也可以参考这篇文章。
+
+对于 ViT 部分来说，由于其参数量较少，使用 TP 切分带来的收益并不大，反而会引入额外的通信开销。如下图所示，红框内的部分为一个 ViT layer，每层都会做两次 AllReduce。
+
+![](./images/vit-tp2.png)
+
+- **第一次 AllReduce**：对 Attention 的输出做 `out_proj`，采用行切的方式，然后做第一次 AllReduce；
+- **第二次 AllReduce**：MLP 的 `gate_up_proj` 做列切，`down_proj` 做行切，然后做第二次 AllReduce。
+
+为了减少通信开销，vLLM 引入了一种单独对 ViT 部分使用 DP（Data Parallel），LLM 部分仍然使用 TP 的机制，可以避免 TP 模式下每层两次的通信操作。在多 batch 场景下，使用 ViT DP 可以在 forward 前把数据按图片分片到多张卡上，中间过程不需要再通信，只需在最后调用一次 AllGather 来收集每张卡上的结果。
+
+![](./images/vit-dp2.png)
+
+该特性由 PR [#22742](https://github.com/vllm-project/vllm/pull/22742) 引入，可以通过 `--mm-encoder-tp-mode data` 开启。以 Qwen2.5-VL-72B 为例，PR 中的 Benchmark 结果表明开启 ViT DP 后，TTFT 减少了大约 55%，整体吞吐提升了大约 47%。
+
+关于该特性的更多信息可以参考 vLLM 官方文档：[Batch-level DP for Multi-Modal Encoders](https://docs.vllm.ai/en/stable/configuration/optimization/?h=mm_encoder_tp_mode#batch-level-dp-for-multi-modal-encoders)。
+
+### 3.2 使用 img2col 算法优化卷积计算
 
 以 Qwen3-VL 为例，其 ViT 计算的第一步就是做 `VisionPatchEmbed`，输入为像素值：
 
@@ -61,13 +88,7 @@
 
 link
 
-目前，通过调用 PyTorch 提供的 `conv2d` 和 `conv3d` 接口（其底层会用到已经深度优化过的 CUDNN 算子），我们直接就能获得较好的性能收益。
-
-### 3.2 使用融合算子减少 Host 侧 Kernel Launch 开销
-
-在 ViT 的计算过程中，会涉及到 MRope、RMSNorm 以及 SwiGelu 等算子，如果完全使用小算子拼接去实现，会造成严重的 Host 侧 Kernel Launch 开销，导致 GPU 利用率不高。
-
-在这种情况下，可以考虑对这些操作接入融合算子，每个融合算子只需下发一次，从而可以更好地压榨 GPU 的性能。关于融合算子实现的具体细节，本文不做讨论。
+目前，通过调用 PyTorch 提供的 `conv2d` 和 `conv3d` 接口（其底层会用到已经优化过的 CUDNN 算子），我们直接就能获得较好的性能收益。
 
 ### 3.3 使用 cos/sin Cache 优化 Rope 计算
 
@@ -75,15 +96,17 @@ link
 
 在 vLLM 中，`RotaryEmbeddingBase` 类提供了一种 cos/sin Cache 机制——在创建 `RotaryEmbedding` 模块时，它会根据我们传入的 `base` 和 `max_position_embeddings` 等参数，提前计算好 cos/sin freq 值，并存入一个 1D Cache。后面，当我们在 ViT 中需要用到 cos/sin freq 时，我们能够以 `seqlen` 作为索引直接从这个 Cache 中获取已经计算好的值，从而避免了重复的计算。
 
-### 3.4 使用异步 copy 掩盖 H2D 同步流
+### 3.4 使用异步拷贝掩盖 H2D 同步流
 
-以 Qwen3-VL 为例，其 ViT Attention 的计算需要 `cu_seqlens` 作为入参，且该 Tensor 必须要放到 GPU 上。如果在每次调用算子之前，才临时去计算该 Tensor 并拷贝到 GPU 上，这会导致大量的重复计算（在每一步推理中，`cu_seqlens` 在每个 VisionBlock layer 上都是相同的），且会触发 H2D 同步流，从而导致非常严重的 Host 开销，非常影响性能。
+以 Qwen3-VL 为例，其 ViT Attention 的计算需要 `cu_seqlens` 作为入参，且该 Tensor 必须要放到 GPU 上。如果在每次调用算子之前，才临时去计算该 Tensor 并拷贝到 GPU 上，这会导致大量的重复计算（因为在每一步推理中，`cu_seqlens` 在每个 layer 上都是相同的），且会触发 H2D 同步流，从而导致非常严重的 Host 开销，非常影响性能。
 
-在 vLLM 中，ViT 模块会在进入 VisionBlock 之前提前计算好 `cu_seqlens` 并通过异步拷贝的方式将其从 CPU 拷贝到 GPU 上，如：`xxx.to(self.device, non_blocking=True)`，从而可以掩盖掉 H2D 同步流带来的开销。另外，`cu_seqlens` 会在 VisionBlock 的所有 layer 间传递和共享，减少了冗余的计算。通过这种方式，我们减少了 ViT 推理的关键路径上的重复操作，从而提高了整体的性能。
+在 vLLM 中，ViT 模块会在进入 VisionBlock 之前提前计算好 `cu_seqlens` 并通过异步拷贝的方式将其从 CPU 拷贝到 GPU 上，形如：`xxx.to(self.device, non_blocking=True)`，从而可以掩盖掉 H2D 同步流带来的开销。另外，`cu_seqlens` 会在 VisionBlock 的所有 layer 间传递和共享，减少了冗余的计算。通过这种方式，我们减少了 ViT 推理关键路径上的重复操作，从而提高了整体的性能。
 
-### 3.5 使用 Encoder DP 代替 TP 减少通信开销
+### 3.5 使用融合算子减少 Host 侧 Kernel Launch 开销
 
-https://github.com/vllm-project/vllm/pull/22742
+在 ViT 的计算过程中，会涉及到 MRope、RMSNorm 以及 SwiGelu 等算子，如果完全使用小算子拼接去实现，会造成严重的 Host 侧 Kernel Launch 开销，导致 GPU 利用率不高。
+
+在这种情况下，可以考虑对这些操作接入融合算子，每个融合算子只需下发一次，从而可以更好地压榨 GPU 的性能。关于融合算子实现的具体细节，本文不做讨论。
 
 ### 3.6 Ascend NPU 特定优化
 
@@ -97,8 +120,11 @@ profiling 指导
 ## 五、参考资料
 
 - [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/pdf/2010.11929)
-- [万字长文图解 Qwen2.5-VL 实现细节](https://zhuanlan.zhihu.com/p/1921289925552210138?share_code=oQnxmXt37SUD&utm_psn=1921301797538076351)
 - [Qwen3-Omni：新一代原生全模态大模型！](https://qwen.ai/blog?id=65f766fc2dcba7905c1cb69cc4cab90e94126bf4&from=research.latest-advancements-list)
+- [LLM 推理并行优化的必备知识](https://zhuanlan.zhihu.com/p/1937449564509545940)
+- [vLLM Official Doc: Batch-level DP for Multi-Modal Encoders](https://docs.vllm.ai/en/stable/configuration/optimization/?h=mm_encoder_tp_mode#batch-level-dp-for-multi-modal-encoders)
+- [GPU/NPU 推理 Profiling 阅读引导（上）](https://mp.weixin.qq.com/s/xNKdTl5cUPnpVe3OQ3wXKg)
+- [GPU/NPU 推理 Profiling 阅读引导（下）](https://mp.weixin.qq.com/s/Qv15u-dw3jWz3IFCaBnS9A)
 
 **TODO:**
 
