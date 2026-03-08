@@ -1,5 +1,16 @@
 # Graph Mode
 
+## TODO
+
+- [ ] CUDA Graph：
+  - 哪些操作能和不能被捕获入图？
+  - 需要占用一定的显存资源，vLLM 是如何管理的？
+  - 什么是动态参数？
+  - prefill 与 decode 通信同步等待，这里 event 是 cpu 操作，cuda graph 抓不到也不好做，除非又搞子图（？）
+  - 学习资料：https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb
+
+## 参考资料
+
 **PyTorch Dynamo:**
 
 - [ ] [Optimizing Production PyTorch Models’ Performance with Graph Transformations](https://pytorch.org/blog/optimizing-production-pytorch-performance-with-graph-transformations/)

@@ -62,19 +62,13 @@ def _forward_mulmat(self, x: torch.Tensor) -> torch.Tensor:
 
 **需要特别注意的是：只有当 `kernel_size` = `stride` 时才适合使用上述优化，因为此时卷积核在每次移动之后，处理的数据互相不重叠，能够完美地展开为一个大的矩阵。当不满足上述条件时，重叠的窗口会导致重排矩阵中存在大量的数据冗余，从而带来更大的内存占用。特别是对于大尺寸的输入、大卷积核或小步长，这个重排矩阵会非常庞大，可能成为内存的瓶颈。**
 
-## 四、Benchmark
-
-以 `Qwen2.5-VL-7B` 为例，我在 Ascend A2 硬件上进行了一个简单的 benchmark，对比了在 `qps=16` 时，直接进行卷积以及使用矩阵乘进行优化后的性能数据。
-
-实验结果表明，使用矩阵乘进行优化后，TTFT（Time to First Token）得到了一定程度（10% 左右）的改善。
-
-## 五、总结
+## 四、总结
 
 目前，vLLM 中的卷积 layer 已经专门抽象为了一个 `CustomOp`，可供第三方硬件平台注册和使用，并将上述 img2col 的优化集成到了该算子中，可以根据卷积核的参数动态地决定是否开启该优化。
 
 该工作由我和梓峰（Isotr0py）共同完成，感兴趣的朋友可以自行阅读 vLLM 最新的源码（`vllm/model_executor/layers/conv.py`）进行了解。
 
-## 六、参考资料
+## 五、参考资料
 
 - [<u>PyTorch 深度学习实践</u>](https://www.bilibili.com/video/BV1Y7411d7Ys/?vd_source=2754a9b73cb316d2cad8eb1195f5aa23)
 - [<u>PyTorch doc - Conv2d</u>](https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html)

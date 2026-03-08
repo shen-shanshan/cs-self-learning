@@ -9,7 +9,21 @@
 - [ ] 学习 Triton 算子开发
   - https://github.com/gpu-mode/lectures/tree/main/lecture_014
   - https://gitcode.com/Ascend/triton-ascend
-- [ ] 了解 Diffusion 模型原理与推理技术
+- [ ] 学习 Diffusion 模型原理与推理技术
+  - https://www.zhihu.com/question/1919814183635093018
+- [ ] 学习 CUDA Graph 原理
+  - https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb
+- [ ] 梳理多模态弹性推理技术综述
+  - https://arxiv.org/abs/2401.13601
+- [ ] 学习 Qwen3.5 模型结构
+
+**疑惑：**
+
+- [ ] CUDA Graph：
+  - 哪些操作能和不能被捕获入图？
+  - 需要占用一定的显存资源，vLLM 是如何管理的？
+  - 什么是动态参数？
+  - prefill 与 decode 通信同步等待，这里 event 是 cpu 操作，cuda graph 抓不到也不好做，除非又搞子图（？）
 
 ## LLM 基础
 
