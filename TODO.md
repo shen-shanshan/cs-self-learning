@@ -16,6 +16,8 @@
 - [ ] 梳理多模态弹性推理技术综述
   - https://arxiv.org/abs/2401.13601
 - [ ] 学习 Qwen3.5 模型结构
+- [ ] 学习 RoPE 原理
+  - https://zhuanlan.zhihu.com/p/1948048954689295110
 
 **疑惑：**
 

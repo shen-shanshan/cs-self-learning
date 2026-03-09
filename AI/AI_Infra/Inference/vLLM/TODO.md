@@ -2,12 +2,13 @@
 
 ## 开发任务
 
-- [ ] 优化 vllm 多模态预处理 CPU 并行度控制
+- [ ] 写 QKV Padding Triton kernel
 
 ## 技术博客
 
 - [ ] vLLM 推理可靠性 - 弹性伸缩与容错
 - [ ] vLLM 多模态推理 - 显存管理
+- [x] vLLM 多模态推理 - ViT 性能优化
 - [x] vLLM CustomOp 文档
 - [x] vLLM 多模态推理 - 卷积计算加速
 - [x] vLLM V1 整体流程

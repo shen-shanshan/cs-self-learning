@@ -108,9 +108,9 @@
 
 - **负载均衡**：根据每张图像的 Patch 数量（而非图像数量）将图像分配到不同的 GPU 上，确保各 GPU 的计算负载尽可能均衡（因为这些模型支持动态分辨率输入，即不同图像可能有不同的 Patch 数量）；
 - **分片处理**：每个 TP Rank 只处理分配给它的图像子集，避免重复计算；
-- **结果聚合**：通过 `tensor_model_parallel_all_gather()` 收集所有 Rank 的输出，并恢复到原始图像顺序；
+- **结果聚合**：通过 `tensor_model_parallel_all_gather()` 收集所有 Rank 的输出，并恢复到原始图像顺序。
 
-**举个例子：**
+**🌰 举个例子：**
 
 假设有 4 张图像，它们的 Patch 数量分别为 `[1000, 100, 200, 50]`，共有 2 张 GPU。在这种情况下，ViT Encoder DP Mode 的处理流程如下：
 
@@ -150,19 +150,14 @@
 
 具体地，以 Qwen2.5-VL 为例，其 2D-RoPE 的计算流程如下：
 
-……
+1. **初始化时预计算 Cos/Sin 缓存**：vLLM 中的 `RotaryEmbeddingBase` 类提供了一种 Cos/Sin Cache 机制——在创建 `RotaryEmbedding` 模块时，它会根据我们传入的 `base` 和 `max_position` 等参数，提前计算好 Cos/Sin Freq 并存入一个 1D Cache，其 Shape 为 `(max_position, rotary_dim)`，Cos 和 Sin 各占一半，即 `rotary_dim // 2`；
+2. **为每张图像/视频计算 2D 空间位置 ID**：根据输入的 `grid_thw`，计算每个 Patch 的 `hpos_ids` 和 `wpos_ids`，然后做 Spatial Merge 分组重排，使相邻的 Merge Unit 在序列中连续。`spatial_merge_size=2` 意味着相邻的 `2 × 2 = 4` 个 Patch 最终会被合并为一个 LLM Token，这里将它们在序列中排列到一起（调换顺序并做 `flatten()`），便于后续 PatchMerger 做特征压缩；接着将 `hpos_ids` 和 `wpos_ids` 拼接，然后将 T 帧的位置也全部拼接，得到当前图像/视频的 `pos_ids`，其 Shape 为 `(t * h * w, 2)`，每一行都是一个 Patch 的位置 `(hpos_id, wpos_id)`；
+3. **从 Cos/Sin Cache 中查表，分别编码 H 和 W**：从 Cache 中获取前 `max(h, w)` 个位置的值，切成两半就得到 Cos Freq 和 Sin Freq，其 Shape 为 `(max(h, w), rotary_dim // 2)`。然后，为每个 Patch 同时查其 `hpos_id` 和 `wpos_id` 对应的 cos 值，比如：当前 Patch 的位置为 `(2, 3)`，那么就会分别查到 Cos Freq 中的第 2 个和第 3 个值，然后将这两个值拼接到一起得到 `cos_combined`，其 Shape 为 `(t * h * w, rotary_dim)`。**这就是 2D-RoPE 的核心——前 `rotary_dim // 2` 维用 H 位置的 Cos Freq 编码，后 `rotary_dim // 2` 维用 W 位置的 Cos Freq 编码，即用 H 和 W 各自独立的位置频率拼接成完整的 `rotary_pos_emb_cos`；`rotary_pos_emb_sin` 的计算同理**；
+4. **重排 Cos/Sin 值**：包括按 Spatial Merge Unit 分组重排、按窗口注意力顺序重排；
+5. **多图/多视频拼接**：遍历 `grid_thw` 中的每一个元素（即每个图像/视频的 `(t, h, w)`，单位是 Patch 数量），执行上述步骤 1-4，得到当前图像/视频的 `rotary_pos_emb_cos` 和 `rotary_pos_emb_sin`。然后，将每个图像/视频的 `rotary_pos_emb_cos` 拼接到一起，得到最终的 `rotary_pos_emb_cos`，其 Shape 为 `(num_patches_all, rotary_dim)`；`rotary_pos_emb_sin` 的计算同理；
+6. **在每个 VisionBlock 中将 RoPE 应用到 Q/K**。
 
----
-
-2D-RoPE 的计算方式大致如下：
-
-1. 针对一个位置 `(x, y)`，将维度为 `d` 的输入向量切成前后两半（各 `d/2`）；
-2. 前一半向量用 `x` 的 1D-RoPE 矩阵处理，后一半向量用 `y` 的 1D-RoPE 矩阵处理；
-3. 将处理后的两半结果拼接在一起，就完成了 2D-RoPE 的处理。
-
-具体地，在 ViT 的计算过程中，由于每一次 Forward 都需要根据当前图像的 `grid_thw` 去计算 1D-RoPE 矩阵（`rotary_pos_emb_cos` 和 `rotary_pos_emb_sin`，即 Cos/Sin Freq），从而导致了许多冗余的计算。
-
-在 vLLM 中，`RotaryEmbeddingBase` 类提供了一种 Cos/Sin Cache 机制——在创建 `RotaryEmbedding` 模块时，它会根据我们传入的 `base` 和 `max_position_embeddings` 等参数，提前计算好 Cos/Sin Freq 并存入一个 1D Cache。在后续的实际推理中，当我们在 ViT Encoder 中需要用到 Cos/Sin Freq 时，我们就能够用 `seqlen`（取当前图像的 `grid_thw` 中 H 和 W 的最大值）作为索引直接从这个 Cache 中获取已经计算好的 Cos/Sin Freq，从而避免了重复的计算。
+基于该 Cos/Sin Cache 机制，当 ViT Encoder 在后续推理中需要用到 Cos/Sin Freq 时，就可以直接从这个 Cache 中获取已经计算好的 Cos/Sin Freq，从而避免了重复的计算并提升了推理的性能。
 
 ### 3.4 使用异步拷贝掩盖 H2D 同步流
 
@@ -231,12 +226,6 @@ Padding 输入（`head_dim` = 128）：
 - [LLM 推理并行优化的必备知识](https://zhuanlan.zhihu.com/p/1937449564509545940)
 - [vLLM Official Doc: Batch-level DP for Multi-Modal Encoders](https://docs.vllm.ai/en/stable/configuration/optimization/?h=mm_encoder_tp_mode#batch-level-dp-for-multi-modal-encoders)
 - [vLLM 多模态推理｜卷积计算加速](https://zhuanlan.zhihu.com/p/1974125856852034422)
-- [Transformer 升级之路：4、二维位置的旋转式位置编码](https://kexue.fm/archives/8397)
+- [通俗理解 RoPE、2D-RoPE、M-RoPE](https://zhuanlan.zhihu.com/p/1948048954689295110)
 - [GPU/NPU 推理 Profiling 阅读引导（上）](https://mp.weixin.qq.com/s/xNKdTl5cUPnpVe3OQ3wXKg)
 - [GPU/NPU 推理 Profiling 阅读引导（下）](https://mp.weixin.qq.com/s/Qv15u-dw3jWz3IFCaBnS9A)
-
-**TODO:**
-
-- [万字长文图解 Qwen2.5-VL 实现细节](https://zhuanlan.zhihu.com/p/1921289925552210138?share_code=oQnxmXt37SUD&utm_psn=1921301797538076351)
-- [深度研读 Qwen3-VL：当视觉模型学会“慢思考”与 256K 超长视野](https://zhuanlan.zhihu.com/p/1980240971909337328?share_code=n5piaWev0MEt&utm_psn=1980718678996707264)
-- [Transformer升级之路：4、二维位置的旋转式位置编码](https://kexue.fm/archives/8397)
