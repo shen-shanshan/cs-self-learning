@@ -2,7 +2,7 @@
 
 ## Tasks
 
-- [vLLM & vLLM-Ascend Tasks](./Open_Source/Projects/vLLM/TODO.md)
+- [vLLM & vLLM-Ascend Tasks](https://docs.google.com/document/d/1Agjc8Lg3emmqaUo4FLO9PV5MKQl8BxP9TOHPjPqcIOM/edit?tab=t.0)
 
 **TODO（P0）：**
 
@@ -11,6 +11,8 @@
   - https://gitcode.com/Ascend/triton-ascend
 - [ ] 学习 Diffusion 模型原理与推理技术
   - https://www.zhihu.com/question/1919814183635093018
+  - https://github.com/xdit-project/xDiT
+  - EPD：https://lmsys.org/blog/2026-01-12-epd/
 - [ ] 学习 CUDA Graph 原理
   - https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb
 - [ ] 梳理多模态弹性推理技术综述
@@ -18,6 +20,7 @@
 - [ ] 学习 Qwen3.5 模型结构
 - [ ] 学习 RoPE 原理
   - https://zhuanlan.zhihu.com/p/1948048954689295110
+- [ ] 学习 nvlink for nixl/ucx（弹性扩缩）
 
 **疑惑：**
 
