@@ -11,3 +11,5 @@ Find more details at .
 Ascend PR:
 
 ...
+
+support cpu seq_lens for OOT MMEncoderAttention kernels

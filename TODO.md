@@ -11,24 +11,26 @@
   - https://gitcode.com/Ascend/triton-ascend
 - [ ] 学习 Diffusion 模型原理与推理技术
   - https://www.zhihu.com/question/1919814183635093018
-  - https://github.com/xdit-project/xDiT
   - EPD：https://lmsys.org/blog/2026-01-12-epd/
 - [ ] 学习 CUDA Graph 原理
   - https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb
 - [ ] 梳理多模态弹性推理技术综述
   - https://arxiv.org/abs/2401.13601
 - [ ] 学习 Qwen3.5 模型结构
+  - https://zhuanlan.zhihu.com/p/2013669483248633430?share_code=itxwnfoMs5pD&utm_psn=2014832176290603560
 - [ ] 学习 RoPE 原理
   - https://zhuanlan.zhihu.com/p/1948048954689295110
 - [ ] 学习 nvlink for nixl/ucx（弹性扩缩）
-
-**疑惑：**
-
-- [ ] CUDA Graph：
-  - 哪些操作能和不能被捕获入图？
-  - 需要占用一定的显存资源，vLLM 是如何管理的？
-  - 什么是动态参数？
-  - prefill 与 decode 通信同步等待，这里 event 是 cpu 操作，cuda graph 抓不到也不好做，除非又搞子图（？）
+  - https://github.com/openucx/ucx
+  - https://github.com/ai-dynamo/nixl
+- [ ] 学习推理性能优化手段
+  - [Fused QKV GEMM + QKNorm + RoPE](https://zhuanlan.zhihu.com/p/2013745638005817781)
+  - Optimize split_qkv_rmsnorm_rope operator. [#6827](https://github.com/vllm-project/vllm-ascend/pull/6827)
+  - Implement global CPU slicing and improve IRQ binding for Ascend NPUs, ensuring non-overlapping CPU partitions and better resource management. [#6945](https://github.com/vllm-project/vllm-ascend/pull/6945)
+  - Optimize MTP execution by reordering state update operation. [#6844](https://github.com/vllm-project/vllm-ascend/pull/6844)
+  - Avoid CPU sync in mrope_positions copy by using full tensor copy. [#7014](https://github.com/vllm-project/vllm-ascend/pull/7014)
+  - Remove H2D synchronization for expert_map in MoE models. [#7000](https://github.com/vllm-project/vllm-ascend/pull/7000)
+  - [A guide on good usage of non_blocking and pin_memory() in PyTorch](https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html#what-you-will-learn)
 
 ## LLM 基础
 

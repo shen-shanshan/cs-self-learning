@@ -26,6 +26,33 @@ Mean ITL (ms):                           256.36
 Median ITL (ms):                         94.64     
 P99 ITL (ms):                            1934.30   
 ==================================================
+
+开启异步调度 + 新版本：
+============ Serving Benchmark Result ============
+Successful requests:                     500       
+Failed requests:                         0         
+Request rate configured (RPS):           10.00     
+Benchmark duration (s):                  78.79     
+Total input tokens:                      33418     
+Total generated tokens:                  61562     
+Request throughput (req/s):              6.35      
+Output token throughput (tok/s):         781.30    
+Peak output token throughput (tok/s):    2816.00   
+Peak concurrent requests:                384.00    
+Total token throughput (tok/s):          1205.42   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          8629.91   
+Median TTFT (ms):                        5443.81   
+P99 TTFT (ms):                           19204.26  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          242.99    
+Median TPOT (ms):                        257.68    
+P99 TPOT (ms):                           439.13    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           240.95    
+Median ITL (ms):                         97.49     
+P99 ITL (ms):                            1467.92   
+==================================================
 ```
 
 After this PR:
@@ -56,35 +83,58 @@ Mean ITL (ms):                           253.68
 Median ITL (ms):                         97.55     
 P99 ITL (ms):                            1882.26   
 ==================================================
-```
 
-TTFT: 2.32% ⬇️
-Throughput: 1.37% ⬆️
+开启异步调度 + 新版本：
+============ Serving Benchmark Result ============
+Successful requests:                     500       
+Failed requests:                         0         
+Request rate configured (RPS):           10.00     
+Benchmark duration (s):                  78.53     
+Total input tokens:                      33418     
+Total generated tokens:                  61571     
+Request throughput (req/s):              6.37      
+Output token throughput (tok/s):         784.04    
+Peak output token throughput (tok/s):    2560.00   
+Peak concurrent requests:                378.00    
+Total token throughput (tok/s):          1209.58   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          8328.36   
+Median TTFT (ms):                        5585.51   
+P99 TTFT (ms):                           18813.79  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          240.06    
+Median TPOT (ms):                        253.22    
+P99 TPOT (ms):                           359.47    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           239.94    
+Median ITL (ms):                         100.19    
+P99 ITL (ms):                            1423.15   
+==================================================
+```
 
 ---
 
-```bash
-vllm serve /root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
---max-model-len 65536 \
---max-num-batched-tokens 65536 \
---tensor-parallel-size 2 \
---dtype bfloat16 \
---gpu-memory-utilization 0.8 \
---enforce-eager
+Skill
 
-curl -X POST http://localhost:8000/v1/chat/completions \
-    -H "Content-Type: application/json" \
-    -d '{
-        "model": "/root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct",
-        "messages": [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": [
-                {"type": "image_url", "image_url": {"url": "https://s41.ax1x.com/2026/02/13/pZqlADU.jpg"}},
-                {"type": "text", "text": "Describe this image."}
-            ]}
-        ],
-        "max_tokens": 100
-    }'
+请帮我创建一个skill，名字叫做 benchmark-summary，用于对比做了某个改动后，vllm前后的性能差异。
+1.需要对比每项数据前后的差异，比如：TTFT下降了xx.xx%，并生成一个markdown表格到当前目录的results目录下；
+2.生成的markdown文件中，需要有一些关键变化特征的总结；
+3.生成的报告全部使用英文，不要有中文。
 
-{"id":"chatcmpl-ac04bebce4d9ce15","object":"chat.completion","created":1773113285,"model":"/root/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct","choices":[{"index":0,"message":{"role":"assistant","content":"The text in the image reads:\n\n**TONGYI Qwen**\n\n- **TONGYI** is written in uppercase letters in a light blue color.\n- **Qwen** is written in lowercase letters in a dark gray color.\n\nThe logo also features a stylized geometric icon to the left of the text, which appears to be composed of interlocking shapes forming a hexagonal or star-like pattern, also in light blue. This is likely the logo for the Tongyi Qwen series","refusal":null,"annotations":null,"audio":null,"function_call":null,"tool_calls":[],"reasoning":null},"logprobs":null,"finish_reason":"length","stop_reason":null,"token_ids":null}],"service_tier":null,"system_fingerprint":null,"usage":{"prompt_tokens":112,"total_tokens":212,"completion_tokens":100,"prompt_tokens_details":null},"prompt_logprobs":null,"prompt_token_ids":null,"kv_transfer_params":null}
-```
+| Metric | Before this PR | After this PR | Comparison |
+| :----- | :------------- | :------------ | :--------- |
+| **Throughput** | | | |
+| Request throughput (req/s)|1.79|2.63|+47%|
+| Output token throughput (tok/s)|206.66|302.89|+47%|
+| Total token throughput (tok/s)|375.53|551.31|+47%|
+| **Latency** | | | |
+| Benchmark duration (s)|558.57|379.70|-32%|
+| Mean TTFT (ms)|4,584.50|2,062.35|-55%|
+| Median TTFT (ms)|2,280.17|1,513.51|-34%|
+| P99 TTFT (ms)|25,097.62|10,313.05|-59%|
+| Mean TPOT (ms)|285.83|198.03|-31%|
+| Median TPOT (ms)|283.86|203.93|-28%|
+| P99 TPOT (ms)|515.32|274.71|-47%|
+| Mean ITL (ms)|337.49|249.15|-26%|
+| Median ITL (ms)|33.11|131.26|+296%|
+| P99 ITL (ms)|3,699.28|1,291.46|-65%|

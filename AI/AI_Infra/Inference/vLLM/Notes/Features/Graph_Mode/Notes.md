@@ -1,4 +1,10 @@
-# vLLM Graph Mode
+# Cuda Graph Notes
+
+## Basic
+
+...
+
+## Cuda Graph in vLLM
 
 **vLLM 为什么没在 Prefill 阶段支持 Cuda Graph？**
 

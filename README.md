@@ -122,20 +122,7 @@ In addition, I have also published some technical blogs on the internet, you can
 <!--
 | [<u>Title</u>][] | Category | [<u>@Author</u>][] | Note | ⭐️ | ✅ |
 
-### 📚 Roadmap
-| Title | Category | Author | Note | Rec | Read |
-| :---- | :------- | :----- | :--- | :-- | :--- |
-| [<u>了解/从事机器学习/深度学习系统相关的研究需要什么样的知识结构？</u>][2036] | MLSys | [<u>@月球大叔</u>][3016] | | ⭐️⭐️ | ✅ |
-| [<u>无痛的机器学习系统入门指南（一）</u>][2037] | MLSys | [<u>@月球大叔</u>][3016] | | ⭐️⭐️ | ✅ |
-
-### 📚 Basic Knowledge
-| [<u>大模型 - MoE 混合专家系统</u>][2030] | MoE | [<u>@马队之声</u>][3009] | MoE 简介 | ⭐️⭐️ | ✅ |
-| [<u>KV Cache - 高效推理必备技术</u>][2025] | KV Cache | [<u>@马队之声</u>][3009] | | ⭐️⭐️ | ✅ |
-| [<u>大模型推理 - 为什么要 PD 分离？</u>][2017] | PD Disaggregation | [<u>@马队之声</u>][3009] | PD 分离简介 | ⭐️⭐️ | ✅ |
-
-### 📚 Dive into vLLM
-| [<u>vLLM V1 源码阅读</u>][2014] | Architecture | [<u>@BoLi2001</u>][3007] | | ⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM V1 Scheduler 的调度逻辑 & 优先级分析</u>][2015] | Scheduler | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
+TODO:
 | [<u>Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems</u>][2058] | Multi-Modal | [<u>@vLLM Blog</u>][3019] | | | |
 -->
 
@@ -175,15 +162,17 @@ In addition, I have also published some technical blogs on the internet, you can
 | [<u>vLLM 算力多样性｜Platform 插件与 CustomOp</u>][2064] | Platform | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 算子开发流程：“保姆级”详细记录</u>][2004] | Kernel | [<u>@DefTruth</u>][3002] | | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>Introduction to torch.compile and How It Works with vLLM</u>][2052] | Graph | [<u>@vLLM Blog</u>][3019] | | ⭐️⭐️ | ✅ |
-| [<u>vLLM torch.compile Integration</u>][2060] | Graph | [<u>@Jiangyun Zhu</u>][3028] | 自定义 Pass 方法 | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 为什么没在 Prefill 阶段支持 Cuda Graph？</u>][2066] | Graph | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>Piecewise CUDA Graph：面向变长 Prefill 的分段图捕获与自动算子融合</u>][2070] | Graph | [<u>@注意力机制不集中</u>][3029] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>vLLM torch.compile Integration</u>][2060] | Graph | [<u>@Jiangyun Zhu</u>][3028] | 自定义 Pass 方法 | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 显存管理详解</u>][2009] | Memory | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>vLLM 结构化输出｜Guided Decoding (V0)</u>][2001] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>vLLM 结构化输出｜Guided Decoding (V1)</u>][2002] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM DP 特性与演进方案分析</u>][2041] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>LLM 推理数据并行负载均衡（DPLB）浅析</u>][2042] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM PD 分离方案浅析</u>][2022] | PD Disaggregation | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM PD 分离 KV Cache 传递机制详解与演进分析</u>][2023] | PD Disaggregation | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM 结构化输出｜Guided Decoding (V0)</u>][2001] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
-| [<u>vLLM 结构化输出｜Guided Decoding (V1)</u>][2002] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>vLLM 多模态推理｜ViT 性能优化</u>][2071] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 多模态推理｜卷积计算加速</u>][2057] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️ | ✅ |
 
 ### 📖 Dive into PyTorch
@@ -309,6 +298,8 @@ In addition, I have also published some technical blogs on the internet, you can
 [2067]: https://zhuanlan.zhihu.com/p/26719287825
 [2068]: https://zhuanlan.zhihu.com/p/25267823390
 [2069]: https://zhuanlan.zhihu.com/p/28205969434
+[2070]: https://zhuanlan.zhihu.com/p/2014332192474543407
+[2071]: https://zhuanlan.zhihu.com/p/2014798839354247087
 <!------------------------------- Author Links -------------------------------->
 <!-- SSS不知-道 -->
 [3001]: https://www.zhihu.com/people/sss-53-26
@@ -366,6 +357,8 @@ In addition, I have also published some technical blogs on the internet, you can
 [3027]: https://www.zhihu.com/people/faithwong-30
 <!-- Jiangyun Zhu -->
 [3028]: https://github.com/ZJY0516
+<!-- 注意力机制不集中 -->
+[3029]: https://www.zhihu.com/people/joncy-we
 <!----------------------------- Links: 2001~4000 ------------------------------>
 
 ## 📚 Papers
