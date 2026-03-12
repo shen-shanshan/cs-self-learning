@@ -36,14 +36,7 @@
 
 基础知识：
 
-- [ ] [大模型推理必学：专业术语与概念引导（上）](https://mp.weixin.qq.com/s/sfRFrvT3s1PGHjjiT0pi5A)
-- [ ] [大模型推理必学：专业术语与概念引导（下）](https://mp.weixin.qq.com/s/FGQzmFlZ6MTkVizeGSJoXQ)
 - [ ] [2025 年最全面的 LLM 架构技术解析](https://mp.weixin.qq.com/s/7qVwBhE5JcJFnyOKpYNCeA)
-- [ ] [开源大模型推理引擎现状及常见推理优化方法](https://zhuanlan.zhihu.com/p/755874470?share_code=13fdP1R6gsoY8&utm_psn=1995146863595254830)
-- [ ] [LLM推理优化的上半场：单实例推理优化接近尾声](https://zhuanlan.zhihu.com/p/1912580139667154389)
-
-NLP：
-
 - [ ] [The Unreasonable Effectiveness of Recurrent Neural Networks](https://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 - [ ] [The Illustrated Word2vec - Jay Alammar](https://jalammar.github.io/illustrated-word2vec/)
 
@@ -63,8 +56,13 @@ MoE：
 - [ ] [MoE 中的路由机制 🌟](https://apxml.com/zh/courses/how-to-build-a-large-language-model/chapter-14-advanced-architectural-modifications/routing-mechanisms-moe)
 - [ ] [全面解析MoE专家并行EP all-to-all Pytorch算子 🌟](https://zhuanlan.zhihu.com/p/1967192540953425479)
 
-多模态：
+**多模态：**
 
+- [ ] [文生图模型之Stable Diffusion](https://zhuanlan.zhihu.com/p/617134893?share_code=7BxfNnri6m9K&utm_psn=1995147091631166588)
+- [ ] [vLLM 多模态cache缓存机制分析](https://zhuanlan.zhihu.com/p/1984342789287343828?share_code=UKyCzIVku8YY&utm_psn=1994008703599396772)
+- [ ] [Cohere × vLLM：共享内存让多模态推理吞吐量提升70%](https://mp.weixin.qq.com/s/--mJ81mDt0tu2jY77Tv5Rg)
+- [ ] [Encoder Disaggregation：让多模态推理服务的尾延迟更稳](https://mp.weixin.qq.com/s/96ErFSwmAezrfYcVRulA4g)
+- [ ] [Qwen3.5：迈向原生多模态智能体](https://mp.weixin.qq.com/s/AAanKh5uiCuvFVMAP4nIvw)
 - [ ] [Encoder Disaggregation for Scalable Multimodal Model Serving 🌟](https://blog.vllm.ai/2025/12/15/vllm-epd.html)
 - [ ] [统一多模态理解与生成综述：83页长文梳理进展和挑战](https://mp.weixin.qq.com/s/MjAzSf-EFG6TlZk_zOQy9Q)
 
@@ -95,14 +93,22 @@ Others：
 
 综述：
 
+- [ ] [2025 年终总结：LLM 推理系统创新的四大趋势与五项代表作](https://zhuanlan.zhihu.com/p/1991153206219257611?share_code=1c2oj0UITbAd0&utm_psn=1991435176971085654)
+- [ ] [2026-mlsys展望](https://zhuanlan.zhihu.com/p/1986933352662593942?share_code=jdVYQXmkBXb8&utm_psn=1988562673047205331)
 - [ ] [3 万字详细解析清华大学最新综述工作：大模型高效推理综述](https://mp.weixin.qq.com/s/U9ESiWehnoKc9SnDz7DVKg)
 - [ ] [25 种 LLM 部署框架你知道多少？](https://zhuanlan.zhihu.com/p/1933217002698306629)
 - [ ] [大模型推理各方向新发展整理](https://zhuanlan.zhihu.com/p/693680304)
 - [ ] [LLM (18)：LLM 的推理优化技术纵览](https://zhuanlan.zhihu.com/p/642412124?utm_psn=1897433318875693188)
 - [ ] [3 万字长文！通俗解析大语言模型 LLM 原理](https://mp.weixin.qq.com/s/EX8uQUfZvFbYlrbpiGhd9Q)
+- [ ] [深度剖析！大模型推理系统的关键技术与架构演进](https://mp.weixin.qq.com/s/IBaP5k0-HU8NfrESs81vbQ?poc_token=HKrhsmmjAYgIx78KOf5KKjjtWRgYQsl3h9h_2468)
+- [ ] [开源大模型推理引擎现状及常见推理优化方法](https://zhuanlan.zhihu.com/p/755874470?share_code=13fdP1R6gsoY8&utm_psn=1995146863595254830)
+- [ ] [LLM推理优化的上半场：单实例推理优化接近尾声](https://zhuanlan.zhihu.com/p/1912580139667154389)
 
 基础知识：
 
+- [ ] [大模型推理必学：专业术语与概念引导（上）](https://mp.weixin.qq.com/s/sfRFrvT3s1PGHjjiT0pi5A)
+- [ ] [大模型推理必学：专业术语与概念引导（下）](https://mp.weixin.qq.com/s/FGQzmFlZ6MTkVizeGSJoXQ)
+- [ ] [春节充电进行时：LLM 推理知识指南](https://mp.weixin.qq.com/s/u7r0DUgtR8k5Q1TBg_fHPA)
 - [ ] [LLM 推理基础：采样(Sampling)常见知识概览](https://mp.weixin.qq.com/s/ohUN2SzTfYMCCcH_OgyRKw)
 - [ ] [LLM 确定性推理](https://mp.weixin.qq.com/s/5XJNolYVhYTCvI5TjNQrkA)
 - [ ] [大模型显存计算公式与优化 🌟](https://mp.weixin.qq.com/s/DLOJwXJfr5cdswRJDMlzhA)
@@ -113,6 +119,7 @@ Others：
 
 vLLM：
 
+- [ ] [vLLM KV Offloading Connector 与 LMCache：架构设计与性能深度对比](https://mp.weixin.qq.com/s/gu9qY3gyX2tL22q37uq5Tg)
 - [ ] [vLLM PIECEWISE CUDA Graph 技术学习笔记](https://zhuanlan.zhihu.com/p/1955402895890560120)
 - [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems](https://blog.vllm.ai/2025/11/13/shm-ipc-cache.html)
 - [ ] [大模型推理框架，SGLang和vLLM有哪些区别？](https://www.zhihu.com/question/666943660/answer/1914348903668651349?share_code=X0cS0WZalNIH&utm_psn=1980344296080164538)
@@ -204,6 +211,10 @@ PD/AF 分离：
 - [x] [CUDA 全局内存高效访问——对齐访问和合并内存访问](https://zhuanlan.zhihu.com/p/1921229353515189126?share_code=1eLd5u0xlqUqc&utm_psn=1921481712455624310)
 - [x] [CUDA 编程之 Memory Coalescing](https://zhuanlan.zhihu.com/p/300785893)
 
+## 通信
+
+- [ ] [一文讲清 NCCL 集合通信原理与优化](https://zhuanlan.zhihu.com/p/720502061?share_code=VWmj2eJCz1V9&utm_psn=1995147255682967212)
+
 ## Research
 
 - [ ] [当 CEO 重读 PhD：论智慧与勇气 🌟](https://zhuanlan.zhihu.com/p/1893638374646079902)
@@ -217,6 +228,30 @@ PD/AF 分离：
 - [ ] [博士申请套磁信的撰写模板](https://mp.weixin.qq.com/s/u1YtAqHKmFrfpG1KI_lBSg)
 - [ ] [如何高效阅读学术论文，快速抓住核心信息？](https://www.zhihu.com/question/1984218203400979561/answer/1985100908015678961)
 
+## AI 工具
+
+- [ ] [OpenClaw免费小白安装教程来了！养成你的第一个龙虾 🦞](https://mp.weixin.qq.com/s/DJoQtMACiE1UY6x8SCq2Yw)
+- [ ] [了解下 FlashInfer SKILLS 写法](https://zhuanlan.zhihu.com/p/2006148549893711820?share_code=A6NInlnGt92M&utm_psn=2007469685323624489)
+- [ ] [Don't fall into the anti-AI hype](https://www.antirez.com/news/158)
+- [ ] [Claude Code创始人再次公开：团队的10个使用技巧！](https://mp.weixin.qq.com/s/y92swgU8FnbdyhEpY1xD-A)
+- [ ] [吴恩达手把手教《Claude Code》](https://www.bilibili.com/video/BV1t665BXEJR/?buvid=XX2B85123A6E3620FBE6F07AAE685A90544DF&from_spmid=search.search-result.0.0&is_story_h5=false&mid=wq%2FhBpG1lpYar9rUfZ6abw%3D%3D&plat_id=116&share_from=ugc&share_medium=android&share_plat=android&share_session_id=00e02916-b396-4b08-91b3-ada531ba498f&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1770645598&unique_k=9X7KhOR&up_id=3493089096239369&vd_source=2754a9b73cb316d2cad8eb1195f5aa23)
+- [ ] [Leader 禁止实习生碰代码，我不听，用 Agent Skills 修了个线上 Bug。他找我谈话：今天转正！](https://mp.weixin.qq.com/s/CEBTFlnHdWc56XCGxId1eQ)
+- [ ] [研发场景十大热门 Skill 推荐](https://docs.trae.ai/ide/top-10-recommended-skills-for-development-scenarios?_lang=zh)
+
+```
+更正下: 看完这个视频，觉得信息量比原文更多而且很有道理，还纳闷我咋看原文没看出来
+
+重复看了遍文章，最后发现是N篇antirez的文章汇总。记录了从240天前的吐槽，190天前的尝试的惊喜，以及20天已经在解决实际问题的全过程。
+
+顺便在推荐下，16H前的一篇:
+https://www.antirez.com/news/159
+
+vibe VS automatic
+
+【淘宝】https://e.tb.cn/h.7vICqAiogzlk3vP?tk=YV7XUluaaZH HU591 「官网Claude4.5 Pro会员克劳德独享账号代订阅Opus和sonnet一个月」
+点击链接直接打开 或者 淘宝搜索直接打开
+```
+
 ## Others
 
 - [ ] [TileLang+TVM-FFI: 极致压榨CPU性能](https://zhuanlan.zhihu.com/p/1982449607435903684?share_code=1namqWxZu7LC4&utm_psn=1982944873624663147)
@@ -225,6 +260,18 @@ PD/AF 分离：
 - [ ] [Visual Studio Code 配置 C/C++ 开发环境的最佳实践(VSCode + Clangd + XMake)](https://zhuanlan.zhihu.com/p/398790625)
 - [ ] 云服务器租赁平台：优云智算
 - [ ] [python实现异步的底层原理是什么？🌟](https://www.zhihu.com/question/432814091/answer/1969082606936110671)
+
+---
+
+**开源：**
+
+- [ ] [第一视角参与开源推理框架开发的一年](https://zhuanlan.zhihu.com/p/1989802218837278723?share_code=1fDwLZIN46e5W&utm_psn=1989976041880564183)
+
+**访谈：**
+
+- [ ] [OpenAI 核心贡献者翁家翌访谈：想法很廉价，模型的成败全在 Infra](https://mp.weixin.qq.com/s/iTx0DnFfjikgRfzcxNRcqw)
+- [ ] [OpenAI 核心员工翁家翌预判：纯 Researcher 可能是第一波被 AI 取代的人，2026 属于 AI-Infra](https://zhuanlan.zhihu.com/p/1996342927560054323?share_code=13KfLKYB7mzna&utm_psn=1997054217207162368)
+- [ ] [OpenAI 翁家翌在 WhynotTV 的采访中，关于后训练、infra等观点中，哪些令你受到启发？](https://www.zhihu.com/question/1996908423174910237/answer/1998749198905021998?share_code=7MFd8cS1RDE4&utm_psn=1999228344730923171)
 
 ---
 
@@ -258,10 +305,6 @@ PD/AF 分离：
 - GPU-mode（GitHub）
 - [面向 AI-Infra 的 Cuda 零基础入门](https://tvle9mq8jh.feishu.cn/docx/BnqMdyaJ9oyXb1xwktgc7esMn4c)
 - [LeetCode 刷题路线图](https://labuladong.online/algo/intro/quick-learning-plan/)
-
-**访谈：**
-
-- [OpenAI 核心贡献者翁家翌访谈：想法很廉价，模型的成败全在 Infra](https://mp.weixin.qq.com/s/iTx0DnFfjikgRfzcxNRcqw)
 
 ---
 **[NVIDIA Developer](https://developer.nvidia.com/)**

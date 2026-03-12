@@ -14,6 +14,8 @@
 
 - [ ] [一文读懂cuda stream与cuda event](https://zhuanlan.zhihu.com/p/699754357)
 - [ ] [一文读懂cudagraph](https://zhuanlan.zhihu.com/p/700224642)
+- [ ] [CUDA Graph 学习笔记](https://mp.weixin.qq.com/s/9SAW3kgI_G1CzvNM9_aLTg)
+- [ ] [CUDA效率优化之：CUDA Graph](https://zhuanlan.zhihu.com/p/467466998?share_code=DqtX35OwcCmM&utm_psn=1995146988220597445)
 
 **PyTorch Dynamo:**
 
