@@ -4,16 +4,16 @@
 
 **疑惑：**
 
-- 哪些操作能和不能被捕获入图？
 - 需要占用一定的显存资源，vLLM 是如何管理的？
-- 什么是动态 shape？
 - prefill 与 decode 通信同步等待，这里 event 是 cpu 操作，cuda graph 抓不到也不好做，除非又搞子图（？）
+- 了解 torch compile mode 和 CUDA Graphs mode 的区别？
 
 ## 学习资料
 
-https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb
+**CUDA Graph:**
 
-## 参考资料
+- [ ] [一文读懂cuda stream与cuda event](https://zhuanlan.zhihu.com/p/699754357)
+- [ ] [一文读懂cudagraph](https://zhuanlan.zhihu.com/p/700224642)
 
 **PyTorch Dynamo:**
 
@@ -27,3 +27,7 @@ https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb
 **vLLM Graph Mode:**
 
 - [x] [vllm PR - Allow full cudagraph with separate attention routines and orthogonal to compilation, add support for FA2 and FlashInfer](https://github.com/vllm-project/vllm/pull/20059)
+
+## 代码练习
+
+- [x] https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb

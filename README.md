@@ -181,6 +181,7 @@ TODO:
 | :---- | :------- | :----- | :--- | :-- | :--- |
 | [<u>PyTorch 显存管理介绍与源码解析（一）</u>][2061] | Memory | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>PyTorch 显存可视化与 Snapshot 数据分析</u>][2062] | Memory | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>A guide on good usage of `non_blocking` and `pin_memory()` in PyTorch</u>][2072] | Data Transfer | [<u>@Vincent Moens</u>][3030] | | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
 
 ### 📖 CUDA Programming
 
@@ -300,6 +301,7 @@ TODO:
 [2069]: https://zhuanlan.zhihu.com/p/28205969434
 [2070]: https://zhuanlan.zhihu.com/p/2014332192474543407
 [2071]: https://zhuanlan.zhihu.com/p/2014798839354247087
+[2072]: https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html
 <!------------------------------- Author Links -------------------------------->
 <!-- SSS不知-道 -->
 [3001]: https://www.zhihu.com/people/sss-53-26
@@ -359,6 +361,8 @@ TODO:
 [3028]: https://github.com/ZJY0516
 <!-- 注意力机制不集中 -->
 [3029]: https://www.zhihu.com/people/joncy-we
+<!-- Vincent Moens -->
+[3030]: https://github.com/vmoens
 <!----------------------------- Links: 2001~4000 ------------------------------>
 
 ## 📚 Papers

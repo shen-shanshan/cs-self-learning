@@ -1,25 +1,63 @@
 # TODO List
 
-## 开发任务
+## Tasks
 
-- [ ] 写 QKV Padding Triton kernel
+- should_torch_compile_mm_encoder
 
-## 技术博客
+## 待看 PR/Issue/源码
 
-- [ ] vLLM 推理可靠性 - 弹性伸缩与容错
-- [ ] vLLM 多模态推理 - 显存管理
-- [x] vLLM 多模态推理 - ViT 性能优化
-- [x] vLLM CustomOp 文档
-- [x] vLLM 多模态推理 - 卷积计算加速
-- [x] vLLM V1 整体流程
-- [x] Guided Decoding V0/V1
+### 未分类
 
-## 查漏补缺
+**Critical RFC:**
 
-- 了解 `@support_torch_compile` 原理
-- 了解 torch compile mode 和 CUDA Graphs mode 的区别？
+- [ ] Disaggregated Everything - Token In <> Token Out API Server [#22817](https://github.com/vllm-project/vllm/issues/22817)
+- [ ] Unified Input Formatting and Processing via Renderer [#22880](https://github.com/vllm-project/vllm/issues/22880)
 
-## 源码学习
+### Multi-Modal 🌟
+
+- [ ] [Multi-Modal Data Processing](https://docs.vllm.ai/en/stable/design/mm_processing/)
+- [x] Schedule failure due to wrong `get_image_size_with_most_features` [#29692](https://github.com/vllm-project/vllm/pull/29692)
+
+**CUDA Graph:**
+
+- [ ] Enable supports_torch_compile on generic nn.Module and demonstrate speedup on Qwen Vision model [#23207](https://github.com/vllm-project/vllm/pull/23207)
+- [ ] Compile LLaMa Vision Encoder [#30709](https://github.com/vllm-project/vllm/pull/30709)
+- [ ] Enable Piecewise CUDA Graphs for Qwen3-VL and Qwen2.5-VL ViT to Improve Performance [#33232](https://github.com/vllm-project/vllm/pull/33232)
+- [ ] ViT Full CUDA Graph [#35963](https://github.com/vllm-project/vllm/pull/35963)
+- [ ] Modify cudagraph callable to check for is_forward_context_set [#36288](https://github.com/vllm-project/vllm/pull/36288)
+- [ ] Remove requirement to set_model_tag to avoid cache conflict [#36555](https://github.com/vllm-project/vllm/pull/36555)
+
+**EPD:**
+
+- [ ] SHMConnector: Share Memory based EC Connector [#33714](https://github.com/vllm-project/vllm/pull/33714)
+
+**vLLM-Omni/SGLang:**
+
+- [ ] Support torch compile for diffusers backend [#19673](https://github.com/sgl-project/sglang/pull/19673)
+
+### CUDA Graph
+
+- [ ] [torch.compile integration](https://docs.vllm.ai/en/latest/design/torch_compile.html)
+- [ ] Allow full cudagraph with separate attention routines and orthogonal to compilation [#20059](https://github.com/vllm-project/vllm/pull/20059)
+
+### vLLM IR
+
+- [ ] [Fusion torch.compile passes](https://docs.vllm.ai/en/latest/design/fusions/)
+- [ ] vLLM IR: A Functional Intermediate Representation for vLLM [#32358](https://github.com/vllm-project/vllm/issues/32358)
+- [ ] Central fusion work tracker [#36066](https://github.com/vllm-project/vllm/issues/36066)
+
+### Triton
+
+- [ ] Add `fused_sigmoid_gating_delta_rule_update` kernel for Qwen3 Next [#35777](https://github.com/vllm-project/vllm/pull/35777)
+
+### 性能优化
+
+- [ ] Overlap shared experts with send/recv [#23273](https://github.com/vllm-project/vllm/pull/23273)
+
+**RFC:**
+
+- [ ] Optimizations for MOE models (GLM4.7, DeepSeek series) [#31755](https://github.com/vllm-project/vllm/issues/31755)
+- [ ] Performance optimation of decode in DeepSeek Large EP situation [#2905](https://github.com/vllm-project/vllm-ascend/issues/2905)
 
 ### Parallelism
 
@@ -27,7 +65,7 @@
 - [ ] vllm.distributed (✅ learn `torch.distributed` first)
 - [ ] Data Parallel Attention and Expert Parallel MoEs [#16037](https://github.com/vllm-project/vllm/issues/16037)
 
-### Data Parallel
+**Data Parallel:**
 
 - [ ] [Data Parallel Deployment](https://docs.vllm.ai/en/latest/serving/data_parallel_deployment.html)
 - [ ] DP Server [Design Doc](https://docs.google.com/document/d/10jhCNxJYvsUhtMtiMAaW2MxU5LU8HVje2pGDnj49gH4/edit?tab=t.0#heading=h.4yilyuecj4k)
@@ -43,7 +81,7 @@
 - [ ] Internal DPLB [#21238](https://github.com/vllm-project/vllm/pull/21238)
 - [ ] Enable DP-aware routing in OpenAI API requests [#24945](https://github.com/vllm-project/vllm/pull/24945)
 
-### Expert Parallel
+**Expert Parallel:**
 
 - [ ] [Expert Parallel Deployment](https://docs.vllm.ai/en/latest/serving/expert_parallel_deployment.html)
 - [ ] [Fused MoE Modular Kernel](https://docs.vllm.ai/en/latest/design/fused_moe_modular_kernel.html)
@@ -55,10 +93,6 @@
 - [x] Restructure the core loop to allow more asynchrony [#23233](https://github.com/vllm-project/vllm/issues/23233)
 - [ ] Fully overlap model execution [#23569](https://github.com/vllm-project/vllm/pull/23569)
 
-```
-vllm_config.scheduler_config.async_scheduling
-```
-
 ### Dual Batch Overlap
 
 - [x] [Dual Batch Overlap](https://docs.vllm.ai/en/latest/design/dbo.html?h=dual+batch+overlap)
@@ -67,31 +101,36 @@ vllm_config.scheduler_config.async_scheduling
 - [ ] Dual-Batch Overlap add DeepEP High Throughput support and Prefill support [#24845](https://github.com/vllm-project/vllm/pull/24845)
 - [ ] Reduce the Cuda Graph memory footprint when running with DBO [#25779](https://github.com/vllm-project/vllm/pull/25779)
 
-### CUDA Graph
-
-- [ ] [torch.compile integration](https://docs.vllm.ai/en/latest/design/torch_compile.html)
-- [ ] Allow full cudagraph with separate attention routines and orthogonal to compilation [#20059](https://github.com/vllm-project/vllm/pull/20059)
-
 ### PD Disaggregation
 
 - [ ] [Disaggregated Prefilling](https://docs.vllm.ai/en/latest/features/disagg_prefill.html)
 
-### Multi-Modal
+### Model Runner V2
 
-- [ ] [Multi-Modal Data Processing](https://docs.vllm.ai/en/stable/design/mm_processing/)
-- [ ] Add PrefixLM support to FlexAttention backend [#27938](https://github.com/vllm-project/vllm/pull/27938)
-- [ ] Use non-blocking CPU-GPU copy of multimodal data [#28141](https://github.com/vllm-project/vllm/pull/28141)
-- [ ] Move multimodal_cpu_fields definition to field config [#30181](https://github.com/vllm-project/vllm/pull/30181)
+- [ ] Remove UvaBufferPool for cpu->gpu copy [#33055](https://github.com/vllm-project/vllm/pull/33055)
+- [ ] Use a different stream for grammar bitmask h2d copy [#33059](https://github.com/vllm-project/vllm/pull/33059)
+- [ ] Add dummy profile_cudagraph_memory API [#36520](https://github.com/vllm-project/vllm/pull/36520)
+- [ ] Add model_state inputs to CUDA graph capture [#36544](https://github.com/vllm-project/vllm/pull/36544)
 
 ### Others
 
-- [ ] [Profiling vLLM](https://docs.vllm.ai/en/latest/contributing/profiling.html)
+- [x] [Profiling vLLM](https://docs.vllm.ai/en/latest/contributing/profiling.html)
 - [ ] [Integration with Hugging Face](https://docs.vllm.ai/en/latest/design/huggingface_integration.html)
 - [ ] [Hybrid KV Cache Manager](https://docs.vllm.ai/en/latest/design/hybrid_kv_cache_manager.html)
 - [ ] [Paged Attention](https://docs.vllm.ai/en/latest/design/paged_attention.html)
-- [ ] [Plugin System](https://docs.vllm.ai/en/latest/design/plugin_system.html)
+- [x] [Plugin System](https://docs.vllm.ai/en/latest/design/plugin_system.html)
 - [x] forward_context
 - [ ] model_runner input_batch
-- [ ] DeviceMemoryProfiler
-- [ ] [GPU Model Runner V2](https://github.com/vllm-project/vllm/pull/25266)
 - [ ] Support MP Executor for multi node distributed inference [#23691](https://github.com/vllm-project/vllm/pull/23691)
+
+## 写技术博客
+
+- [ ] vLLM 推理可靠性 - 弹性伸缩与容错
+- [ ] vLLM 多模态推理 - EPD 分离
+- [ ] vLLM 多模态推理 - Encoder Cache & 显存管理
+- [x] vLLM 多模态推理 - ViT 性能优化
+- [x] vLLM 算力多样性 - 硬件插件与 CustomOp
+- [x] vLLM 多模态推理 - 卷积计算加速
+- [x] vLLM V1 整体流程
+- [x] Guided Decoding V1
+- [x] Guided Decoding V0
