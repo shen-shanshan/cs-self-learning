@@ -2,7 +2,13 @@
 
 ## Tasks
 
-- should_torch_compile_mm_encoder
+**ViT support CUDA graph:**
+ViT Full CUDA Graph [#35963](https://github.com/vllm-project/vllm/pull/35963)
+**TODO：**
+1.昇腾适配 ACLGraph 适配；
+2.支持更多模型，比如：Qwen3-Omni；
+3.支持更多模态，比如：视频、音频；
+4.移除 CustomOp 中遗留的 comment；
 
 ## 待看 PR/Issue/源码
 
@@ -20,8 +26,9 @@
 
 **CUDA Graph:**
 
-- [ ] Enable supports_torch_compile on generic nn.Module and demonstrate speedup on Qwen Vision model [#23207](https://github.com/vllm-project/vllm/pull/23207)
-- [ ] Compile LLaMa Vision Encoder [#30709](https://github.com/vllm-project/vllm/pull/30709)
+- [x] Enable supports_torch_compile on generic nn.Module and demonstrate speedup on Qwen Vision model [#23207](https://github.com/vllm-project/vllm/pull/23207)
+- [x] Add torch.compile support for Qwen3VL [#27741](https://github.com/vllm-project/vllm/pull/27741)
+- [x] Compile LLaMa Vision Encoder [#30709](https://github.com/vllm-project/vllm/pull/30709)
 - [ ] Enable Piecewise CUDA Graphs for Qwen3-VL and Qwen2.5-VL ViT to Improve Performance [#33232](https://github.com/vllm-project/vllm/pull/33232)
 - [ ] ViT Full CUDA Graph [#35963](https://github.com/vllm-project/vllm/pull/35963)
 - [ ] Modify cudagraph callable to check for is_forward_context_set [#36288](https://github.com/vllm-project/vllm/pull/36288)
@@ -53,6 +60,16 @@
 ### 性能优化
 
 - [ ] Overlap shared experts with send/recv [#23273](https://github.com/vllm-project/vllm/pull/23273)
+- [ ] Enable dual stream execution of input projection for Qwen3 Next 🌟 [#36795](https://github.com/vllm-project/vllm/pull/36795)
+
+**vllm-ascend:**
+
+- [ ] Optimize split_qkv_rmsnorm_rope operator. [#6827](https://github.com/vllm-project/vllm-ascend/pull/6827)
+- [ ] Implement global CPU slicing and improve IRQ binding for Ascend NPUs, ensuring non-overlapping CPU partitions and better resource management. [#6945](https://github.com/vllm-project/vllm-ascend/pull/6945)
+- [ ] Optimize MTP execution by reordering state update operation. [#6844](https://github.com/vllm-project/vllm-ascend/pull/6844)
+- [ ] Avoid CPU sync in mrope_positions copy by using full tensor copy. [#7014](https://github.com/vllm-project/vllm-ascend/pull/7014)
+- [ ] Remove H2D synchronization for expert_map in MoE models. [#7000](https://github.com/vllm-project/vllm-ascend/pull/7000)
+
 
 **RFC:**
 

@@ -25,12 +25,6 @@
   - https://github.com/ai-dynamo/nixl
 - [ ] 学习推理性能优化手段
   - [Fused QKV GEMM + QKNorm + RoPE](https://zhuanlan.zhihu.com/p/2013745638005817781)
-  - Optimize split_qkv_rmsnorm_rope operator. [#6827](https://github.com/vllm-project/vllm-ascend/pull/6827)
-  - Implement global CPU slicing and improve IRQ binding for Ascend NPUs, ensuring non-overlapping CPU partitions and better resource management. [#6945](https://github.com/vllm-project/vllm-ascend/pull/6945)
-  - Optimize MTP execution by reordering state update operation. [#6844](https://github.com/vllm-project/vllm-ascend/pull/6844)
-  - Avoid CPU sync in mrope_positions copy by using full tensor copy. [#7014](https://github.com/vllm-project/vllm-ascend/pull/7014)
-  - Remove H2D synchronization for expert_map in MoE models. [#7000](https://github.com/vllm-project/vllm-ascend/pull/7000)
-  - [A guide on good usage of non_blocking and pin_memory() in PyTorch](https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html#what-you-will-learn)
 
 ## LLM 基础
 

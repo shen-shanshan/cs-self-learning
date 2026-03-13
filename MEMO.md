@@ -324,7 +324,6 @@ print(f"Download {MODEL} to {model_dir} finished.")
 /shared/cache/modelscope/hub/models/ZhipuAI/glm-4-9b
 # A100
 /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
-/home/sss/.cache/huggingface/hub/models/dots_ocr
 # Spec Decode
 /shared/cache/modelscope/hub/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
 /home/sss/models/models/models/vllm-ascend/EAGLE3-LLaMA3.1-Instruct-8B

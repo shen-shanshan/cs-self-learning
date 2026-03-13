@@ -24,7 +24,7 @@ python examples/offline_inference/vision_language.py -m dots_ocr
 python examples/offline_inference/vision_language.py -m deepseek_ocr
 ```
 
-## Args
+## Launch Args
 
 ```bash
 # 环境变量
@@ -53,18 +53,7 @@ vllm serve Qwen/Qwen3-8B \
 --enable-expert-parallel \
 --no-enable-expert-parallel \
 
-enable_expert_parallel
---additional-config '{"multistream_overlap_shared_expert": true}'
-
-# vllm-ascend format
-yapf -i <file>
-isort <file>
-ruff check <file>
-
-# Clear process
-ps -ef | grep vllm | cut -c 9-16 | xargs kill -9
-ps -ef | grep VLLM | cut -c 9-16 | xargs kill -9
-ps -ef | grep python | cut -c 9-16 | xargs kill -9
+# MM related:
 ```
 
 ## Debug
@@ -80,17 +69,60 @@ logger = init_logger(__name__)
 logger.info_once(f"...")
 ```
 
-## Version
-
-```python
-if not vllm_version_is("v0.10.2"):
-    ...
-```
-
-## Comments
+## Models
 
 ```bash
-# Return a dummy tensor for interface compatibility
+# Coder A100 GPU
+/home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-4B-Instruct
+```
+
+## Benchmark Datasets
+
+下载 huggingface 工具：
+
+```bash
+uv pip install huggingface_hub -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+export HF_ENDPOINT=https://hf-mirror.com
+```
+
+下载数据集：
+
+```python
+# Default path:
+# ~/.cache/huggingface/datasets/
+# ├── dataset_name/
+# │   └── config_name/
+# │       └── version/
+# │           └── hash/
+# │               ├── dataset_info.json
+# │               ├── dataset.arrow
+# │               └── ...
+
+# lmarena-ai/VisionArena-Chat (too big)
+# lmarena-ai/vision-arena-bench-v0.1 (small version)
+import os
+from huggingface_hub import snapshot_download
+
+
+os.environ['HF_DATASETS_CACHE'] = '/home/sss/.cache/huggingface/datasets'
+snapshot_download(
+    repo_id="lmarena-ai/vision-arena-bench-v0.1",
+    repo_type="dataset",
+)
+```
+
+## Commands
+
+```bash
+# vllm-ascend format
+yapf -i <file>
+isort <file>
+ruff check <file>
+
+# Clear process
+ps -ef | grep vllm | cut -c 9-16 | xargs kill -9
+ps -ef | grep VLLM | cut -c 9-16 | xargs kill -9
+ps -ef | grep python | cut -c 9-16 | xargs kill -9
 ```
 
 ## Structured Output
