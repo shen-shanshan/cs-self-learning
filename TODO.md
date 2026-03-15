@@ -26,6 +26,20 @@
 - [ ] 学习推理性能优化手段
   - [Fused QKV GEMM + QKNorm + RoPE](https://zhuanlan.zhihu.com/p/2013745638005817781)
 
+## 研究综述
+
+- [ ] [2025 年终总结：LLM 推理系统创新的四大趋势与五项代表作](https://zhuanlan.zhihu.com/p/1991153206219257611?share_code=1c2oj0UITbAd0&utm_psn=1991435176971085654)
+- [ ] [2026-mlsys展望](https://zhuanlan.zhihu.com/p/1986933352662593942?share_code=jdVYQXmkBXb8&utm_psn=1988562673047205331)
+- [ ] [3 万字详细解析清华大学最新综述工作：大模型高效推理综述](https://mp.weixin.qq.com/s/U9ESiWehnoKc9SnDz7DVKg)
+- [ ] [25 种 LLM 部署框架你知道多少？](https://zhuanlan.zhihu.com/p/1933217002698306629)
+- [ ] [大模型推理各方向新发展整理](https://zhuanlan.zhihu.com/p/693680304)
+- [ ] [LLM (18)：LLM 的推理优化技术纵览](https://zhuanlan.zhihu.com/p/642412124?utm_psn=1897433318875693188)
+- [ ] [3 万字长文！通俗解析大语言模型 LLM 原理](https://mp.weixin.qq.com/s/EX8uQUfZvFbYlrbpiGhd9Q)
+- [ ] [深度剖析！大模型推理系统的关键技术与架构演进](https://mp.weixin.qq.com/s/IBaP5k0-HU8NfrESs81vbQ?poc_token=HKrhsmmjAYgIx78KOf5KKjjtWRgYQsl3h9h_2468)
+- [ ] [开源大模型推理引擎现状及常见推理优化方法](https://zhuanlan.zhihu.com/p/755874470?share_code=13fdP1R6gsoY8&utm_psn=1995146863595254830)
+- [ ] [LLM推理优化的上半场：单实例推理优化接近尾声](https://zhuanlan.zhihu.com/p/1912580139667154389)
+- [ ] [统一多模态理解与生成综述：83页长文梳理进展和挑战](https://mp.weixin.qq.com/s/MjAzSf-EFG6TlZk_zOQy9Q)
+
 ## LLM 基础
 
 基础知识：
@@ -47,24 +61,26 @@ Transformer：
 
 MoE：
 
-- [ ] [MoE 中的路由机制 🌟](https://apxml.com/zh/courses/how-to-build-a-large-language-model/chapter-14-advanced-architectural-modifications/routing-mechanisms-moe)
-- [ ] [全面解析MoE专家并行EP all-to-all Pytorch算子 🌟](https://zhuanlan.zhihu.com/p/1967192540953425479)
+- [ ] [MoE 中的路由机制](https://apxml.com/zh/courses/how-to-build-a-large-language-model/chapter-14-advanced-architectural-modifications/routing-mechanisms-moe)
+- [ ] [全面解析MoE专家并行EP all-to-all Pytorch算子](https://zhuanlan.zhihu.com/p/1967192540953425479)
 
-**多模态：**
+📌 多模态：
 
-- [ ] [文生图模型之Stable Diffusion](https://zhuanlan.zhihu.com/p/617134893?share_code=7BxfNnri6m9K&utm_psn=1995147091631166588)
-- [ ] [vLLM 多模态cache缓存机制分析](https://zhuanlan.zhihu.com/p/1984342789287343828?share_code=UKyCzIVku8YY&utm_psn=1994008703599396772)
-- [ ] [Cohere × vLLM：共享内存让多模态推理吞吐量提升70%](https://mp.weixin.qq.com/s/--mJ81mDt0tu2jY77Tv5Rg)
-- [ ] [Encoder Disaggregation：让多模态推理服务的尾延迟更稳](https://mp.weixin.qq.com/s/96ErFSwmAezrfYcVRulA4g)
-- [ ] [Qwen3.5：迈向原生多模态智能体](https://mp.weixin.qq.com/s/AAanKh5uiCuvFVMAP4nIvw)
+- [ ] [Cache 加速 - TaylorSeer 算法简析](https://zhuanlan.zhihu.com/p/1937477466475197176)
+- [ ] [深入浅出扩散模型系列 🌟](https://zhuanlan.zhihu.com/p/1991564549669810188)
+- [ ] [vLLM 多模态 Cache 缓存机制分析 🌟](https://zhuanlan.zhihu.com/p/1984342789287343828?share_code=UKyCzIVku8YY&utm_psn=1994008703599396772)
+- [ ] [Cohere × vLLM：共享内存让多模态推理吞吐量提升70% 🌟](https://mp.weixin.qq.com/s/--mJ81mDt0tu2jY77Tv5Rg)
+- [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems 🌟](https://vllm.ai/blog/shm-ipc-cache)
+- [ ] [Encoder Disaggregation：让多模态推理服务的尾延迟更稳 🌟](https://mp.weixin.qq.com/s/96ErFSwmAezrfYcVRulA4g)
 - [ ] [Encoder Disaggregation for Scalable Multimodal Model Serving 🌟](https://blog.vllm.ai/2025/12/15/vllm-epd.html)
-- [ ] [统一多模态理解与生成综述：83页长文梳理进展和挑战](https://mp.weixin.qq.com/s/MjAzSf-EFG6TlZk_zOQy9Q)
 
 Linear Attention：
 
 - [ ] [Qwen/Kimi带火的LinearAttention：原理与细节解析（上）](https://mp.weixin.qq.com/s/GSplGYVQYU42M-zrazJp8g)
 - [ ] [Qwen/Kimi带火的LinearAttention：原理与细节解析（下）](https://mp.weixin.qq.com/s/Z6a1Fq_bnnZSSaVs-rn8vg)
 - [ ] [LinearAttention在KV cache的存储上有多大优势？用计算来推演](https://mp.weixin.qq.com/s/LPKzHcHLx2pMMcr2foMsUQ)
+
+Qwen：
 
 DeepSeek：
 
@@ -84,19 +100,6 @@ Others：
 - [ ] [超全解析！大模型面试宝典 60 题 🌟](https://mp.weixin.qq.com/s/Q6FPYenia1aHl-8e8Nhx4g)
 
 ## LLM 推理加速
-
-综述：
-
-- [ ] [2025 年终总结：LLM 推理系统创新的四大趋势与五项代表作](https://zhuanlan.zhihu.com/p/1991153206219257611?share_code=1c2oj0UITbAd0&utm_psn=1991435176971085654)
-- [ ] [2026-mlsys展望](https://zhuanlan.zhihu.com/p/1986933352662593942?share_code=jdVYQXmkBXb8&utm_psn=1988562673047205331)
-- [ ] [3 万字详细解析清华大学最新综述工作：大模型高效推理综述](https://mp.weixin.qq.com/s/U9ESiWehnoKc9SnDz7DVKg)
-- [ ] [25 种 LLM 部署框架你知道多少？](https://zhuanlan.zhihu.com/p/1933217002698306629)
-- [ ] [大模型推理各方向新发展整理](https://zhuanlan.zhihu.com/p/693680304)
-- [ ] [LLM (18)：LLM 的推理优化技术纵览](https://zhuanlan.zhihu.com/p/642412124?utm_psn=1897433318875693188)
-- [ ] [3 万字长文！通俗解析大语言模型 LLM 原理](https://mp.weixin.qq.com/s/EX8uQUfZvFbYlrbpiGhd9Q)
-- [ ] [深度剖析！大模型推理系统的关键技术与架构演进](https://mp.weixin.qq.com/s/IBaP5k0-HU8NfrESs81vbQ?poc_token=HKrhsmmjAYgIx78KOf5KKjjtWRgYQsl3h9h_2468)
-- [ ] [开源大模型推理引擎现状及常见推理优化方法](https://zhuanlan.zhihu.com/p/755874470?share_code=13fdP1R6gsoY8&utm_psn=1995146863595254830)
-- [ ] [LLM推理优化的上半场：单实例推理优化接近尾声](https://zhuanlan.zhihu.com/p/1912580139667154389)
 
 基础知识：
 

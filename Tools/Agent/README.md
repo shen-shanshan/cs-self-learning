@@ -2,7 +2,7 @@
 
 ## 环境配置
 
-- Token 购买：[灵芽 API](https://api.lingyaai.cn/)
+- [灵芽 API](https://api.lingyaai.cn/)
 - [Claude Code in VSCode 配置](https://api.lingyaai.cn/model_intro/Claude-Code.html)
 
 ## 使用教程

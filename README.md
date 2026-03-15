@@ -11,9 +11,9 @@
   <p>
 </div align='left'>
 
-<p align="center">
+<!-- <p align="center">
     <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
-</p>
+</p> -->
 
 ## 📌 Overview
 
@@ -33,9 +33,9 @@ In addition, I have also published some technical blogs on the internet, you can
 
 😊 Welcome to star this repository!
 
-<p align="center">
+<!-- <p align="center">
     <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
-</p>
+</p> -->
 
 ## 📚 Learning Notes
 
@@ -69,6 +69,9 @@ In addition, I have also published some technical blogs on the internet, you can
   - [<u>MoE</u>](./AI/LLM/MoE/)
   - [<u>Multi-Modality</u>](./AI/LLM/Multi-Modality)
     - [<u>ViT</u>](./AI/LLM/Multi-Modality/ViT/)
+- **Diffusion:**
+  - [<u>Basic Knowledges</u>](./AI/Diffusion/Basic.md)
+  - [<u>Inference Acceleration</u>](./AI/Diffusion/Inference.md)
 - **AI Infra:**
   - [<u>Environment Preparation</u>](./AI/AI_Infra/Environment_Preparation/README.md)
   - [<u>Basic Knowledges</u>](./AI/AI_Infra/Basic/)
@@ -121,9 +124,6 @@ In addition, I have also published some technical blogs on the internet, you can
 ## 📚 Technical Blogs
 <!--
 | [<u>Title</u>][] | Category | [<u>@Author</u>][] | Note | ⭐️ | ✅ |
-
-TODO:
-| [<u>Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems</u>][2058] | Multi-Modal | [<u>@vLLM Blog</u>][3019] | | | |
 -->
 
 ### 📖 Basic Knowledges
@@ -174,6 +174,7 @@ TODO:
 | [<u>vLLM PD 分离 KV Cache 传递机制详解与演进分析</u>][2023] | PD Disaggregation | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 多模态推理｜ViT 性能优化</u>][2071] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 多模态推理｜卷积计算加速</u>][2057] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️ | ✅ |
+| [<u>Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems</u>][2058] | Multi-Modal | [<u>@vLLM Blog</u>][3019] | | | |
 
 ### 📖 Dive into PyTorch
 
@@ -202,8 +203,9 @@ TODO:
 | Title | Category | Author | Note | Rec | Read |
 | :---- | :------- | :----- | :--- | :-- | :--- |
 | [<u>多模态技术梳理：ViT 系列</u>][2067] | ViT | [<u>@姜富春</u>][3014] | ViT 研究综述 | ⭐️⭐️⭐️ | ✅ |
-| [<u>ViT 论文速读</u>][2018] | ViT | [<u>@Zhang</u>][3010] | | ⭐️⭐️ | ✅ |
 | [<u>LLaVA 系列模型结构详解</u>][2019] | ViT | [<u>@Zhang</u>][3010] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>文生图模型之 Stable Diffusion</u>][2077] | Diffusion | [<u>@小小将</u>][3033] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>DiT 推理加速综述: Caching</u>][2078] | Diffusion | [<u>@DefTruth</u>][3002] | | ⭐️⭐️⭐️⭐️ | ✅ |
 
 ### 📖 Dive into Qwen
 
@@ -212,20 +214,24 @@ TODO:
 | [<u>多模态技术梳理：Qwen-VL 系列</u>][2068] | VL | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>Qwen2-VL 源码解读：从准备一条样本到模型生成全流程图解</u>][2069] | VL | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>万字长文图解 Qwen2.5-VL 实现细节</u>][2020] | VL | [<u>@猛猿</u>][3003] | | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>Qwen3-VL 解剖</u>][2073] | VL | [<u>@Plunck</u>][3031] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>Qwen3-Omni：统一多模态大模型再升级</u>][2074] | Omni | [<u>@tomsheep</u>][3032] | | | |
+| [<u>Gated Attention：Qwen3-Next 背后的门控机制</u>][2075] | Attention | [<u>@Plunck</u>][3031] | | | |
+| [<u>Qwen3.5 解剖</u>][2076] | | [<u>@Plunck</u>][3031] | | | |
 
 ### 📖 Dive into DeepSeek
 
 | Title | Category | Author | Note | Rec | Read |
 | :---- | :------- | :----- | :--- | :-- | :--- |
 | [<u>DeepSeek 技术解读（1）- 彻底理解 MLA（Multi-Head Latent Attention）</u>][2031] | Attention | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>DeepSeek 技术解读（2）- MTP（Multi-Token Prediction）的前世今生</u>][2034] | Parallel Decoding | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>DeepSeek 技术解读（2）- MTP（Multi-Token Prediction）的前世今生</u>][2034] | Decoding | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>DeepSeek 技术解读（3）- MoE 的演进之路</u>][2033] | MoE | [<u>@姜富春</u>][3014] | | ⭐️⭐️⭐️⭐️ | ✅ |
 
 ### 📖 Development
 
 | Title | Category | Author | Note | Rec | Read |
 | :---- | :------- | :----- | :--- | :-- | :--- |
-| [<u>LLM Inference 高效 Debug 方法汇总</u>][2043] | Debug | [<u>@CarryPls</u>][3018] | vLLM Debug 经验 | ⭐️⭐️ | ✅ |
+| [<u>LLM Inference 高效 Debug 方法汇总</u>][2043] | Debug | [<u>@CarryPls</u>][3018] | | ⭐️⭐️ | ✅ |
 | [<u>推理性能优化：GPU/NPU Profiling 阅读引导</u>][2065] | Profiling | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
 
 <!----------------------------- Links: 2001~4000 ------------------------------>
@@ -302,6 +308,12 @@ TODO:
 [2070]: https://zhuanlan.zhihu.com/p/2014332192474543407
 [2071]: https://zhuanlan.zhihu.com/p/2014798839354247087
 [2072]: https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html
+[2073]: https://zhuanlan.zhihu.com/p/1956306982970586546
+[2074]: https://zhuanlan.zhihu.com/p/1954190930811810835
+[2075]: https://zhuanlan.zhihu.com/p/2001460429721997501
+[2076]: https://zhuanlan.zhihu.com/p/2005306558997882654
+[2077]: https://zhuanlan.zhihu.com/p/617134893
+[2078]: https://zhuanlan.zhihu.com/p/711223667
 <!------------------------------- Author Links -------------------------------->
 <!-- SSS不知-道 -->
 [3001]: https://www.zhihu.com/people/sss-53-26
@@ -363,230 +375,23 @@ TODO:
 [3029]: https://www.zhihu.com/people/joncy-we
 <!-- Vincent Moens -->
 [3030]: https://github.com/vmoens
+<!-- Plunck -->
+[3031]: https://www.zhihu.com/people/plunck
+<!-- tomsheep -->
+[3032]: https://www.zhihu.com/people/tomsheep
+<!-- 小小将 -->
+[3033]: https://www.zhihu.com/people/xiaohuzc
 <!----------------------------- Links: 2001~4000 ------------------------------>
 
 ## 📚 Papers
-<!--
-| Title | Institute | Conference/Jounal | Date | GitHub/Codes | Note | Read/In-depth Reading |
-| [<u>Title</u>][] | 20xx/xx | | | |
-| [<u>link</u>][]  | ✅ |
--->
 
-Refer to [**_How to Read a Paper_**](./Research/Notes/How_to_Read_Papers.pdf) to master a practical and efficient **three-pass** method for reading research papers.
+Refer to **[_How to Read a Paper_](./Research/Materials/How_to_Read_Papers.pdf)** to master a practical and efficient **three-pass** method for reading **[_papers_](./Research/Papers/README.md)**.
 
 Clarification for symbols in the following tables:
 
 - ✅: **The first pass** that gives you a general idea about the paper.
 - ✅ ✅: **The second pass** that lets you grasp the paper's content, but not its details.
 - ✅ ✅ ✅: **The third pass** that helps you understand the paper in depth.
-
-### 📖 LLM Backbone
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>Mamba: Linear-Time Sequence Modeling with Selective State Spaces</u>][86] | 2023/12 | [![arXiv][0]][86] | [<u>Mamba</u>][87] | [<u>link</u>][88] | ✅ |
-| [<u>Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality</u>][151] | 2024/05 | [![arXiv][0]][151] | | | |
-
-### 📖 LLM Inference Survey
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-
-### 📖 Framework
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>Efficient Memory Management for Large Language Model Serving with PagedAttention</u>][1] | 2023/09 | [![arXiv][0]][1] | [<u>vLLM</u>][2] | | ✅ ✅ ✅ |
-| [<u>SGLang: Efficient Execution of Structured Language Model Programs</u>][6] | 2023/12 | [![arXiv][0]][6] | [<u>SGLang</u>][7] | | ✅ |
-| [<u>A Survey on Inference Engines for Large Language Models: Perspectives on Optimization and Efficiency</u>][51] | 2025/05 | [![arXiv][0]][51] | | | |
-
-### 📖 Schedule
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-
-### 📖 Speculative Decoding
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>Blockwise Parallel Decoding for Deep Autoregressive Models</u>][91] | 2018/11 | [![arXiv][0]][91] | | | |
-| [<u>Fast Inference from Transformers via Speculative Decoding</u>][136] | 2022/11 | [![arXiv][0]][136] | | [<u>link</u>][92] | ✅ |
-| [<u>Accelerating Large Language Model Decoding with Speculative Sampling</u>][141] | 2023/02 | [![arXiv][0]][141] | | | |
-| [<u>SpecInfer: Accelerating Generative Large Language Model Serving with Tree-based Speculative Inference and Verification</u>][146] | 2023/05 | [![arXiv][0]][146] | | [<u>link</u>][92] | ✅ |
-| [<u>Unlocking Efficiency in Large Language Model Inference: A Comprehensive Survey of Speculative Decoding</u>][131] | 2024/01 | [![arXiv][0]][131] | | | |
-| [<u>Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads</u>][111] | 2024/01 | [![arXiv][0]][111] | | [<u>link</u>][92] | ✅ |
-| [<u>EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty</u>][101] | 2024/01 | [![arXiv][0]][101] | | [<u>link</u>][92] | ✅ |
-| [<u>Break the Sequential Dependency of LLM Inference Using Lookahead Decoding</u>][126] | 2024/02 | [![arXiv][0]][126] | | [<u>link</u>][92] | ✅ |
-| [<u>Accelerating Production LLMs with Combined Token/Embedding Speculators</u>][116] | 2024/04 | [![arXiv][0]][116] | | | |
-| [<u>Better & Faster Large Language Models via Multi-token Prediction</u>][121] | 2024/04 | [![arXiv][0]][121] | | | |
-| [<u>Optimizing Speculative Decoding for Serving Large Language Models Using Goodput</u>][96] | 2024/06 | [![arXiv][0]][96] | | | |
-| [<u>Scaling Speculative Decoding with Lookahead Reasoning</u>][106] | 2025/06 | [![arXiv][0]][106] | | | |
-
-### 📖 Guided Decoding
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>Robust Text-to-SQL Generation with Execution-Guided Decoding</u>][31] | 2018/07 | [![arXiv][0]][31] | | | ✅ |
-| [<u>Efficient Guided Generation for Large Language Models</u>][36] | 2023/07 | [![arXiv][0]][36] | [<u>Outlines</u>][37] | | ✅ ✅ |
-| [<u>XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models</u>][41] | 2024/11 | [![arXiv][0]][41] | [<u>XGrammar</u>][42] | | |
-| [<u>Pre<sup>3</sup>: Enabling Deterministic Pushdown Automata for Faster Structured LLM Generation</u>][46] | 2025/06 | [![arXiv][0]][46] | | | |
-
-### 📖 Long Sequence Processing
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-
-### 📖 Memory Offloading
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>MoE-Infinity: Efficient MoE Inference on Personal Machines with Sparsity-Aware Expert Cache</u>][181] | 2024/01 | [![arXiv][0]][181] | | | |
-| [<u>ProMoE: Fast MoE-based LLM Serving using Proactive Caching</u>][176] | 2024/10 | [![arXiv][0]][176] | | | ✅ |
-
-### 📖 Large Scale Serving
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>AccelGen: Heterogeneous SLO-Guaranteed High-Throughput LLM Inference Serving for Diverse Applications</u>][61] | 2025/03 | [![arXiv][0]][61] | | | |
-| [<u>Serving Large Language Models on Huawei CloudMatrix384</u>][66] | 2025/06 | [![arXiv][0]][66] | | | |
-
-### 📖 Load Balancing
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>Lynx: Enabling Efficient MoE Inference through Dynamic Batch-Aware Expert Selection</u>][186] | 2024/11 | [![arXiv][0]][186] | | | |
-| [<u>Pro-Prophet: A Systematic Load Balancing Method for Efficient Parallel Training of Large-scale MoE Models</u>][191] | 2024/11 | [![arXiv][0]][191] | | | |
-
-### 📖 KVCache Store
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>CacheBlend: Fast Large Language Model Serving for RAG with Cached Knowledge Fusion</u>][26] | 2024/05 | [![arXiv][0]][26] | [<u>LMCache</u>][27] | | |
-| [<u>Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving</u>][21] | 2024/07 | [![arXiv][0]][21] | [<u>Mooncake</u>][22] | | |
-
-### 📖 Disaggregated Architecture
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>Splitwise: Efficient generative LLM inference using phase splitting</u>][76] | 2023/11 | [![arXiv][0]][76] | [<u>splitwise-sim</u>][78] | [<u>link</u>][77] | ✅ |
-| [<u>DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving</u>][11] | 2024/01 | [![arXiv][0]][11] | [<u>DistServe</u>][12] | | |
-| [<u>MegaScale-Infer: Serving Mixture-of-Experts at Scale with Disaggregated Expert Parallelism</u>][56] | 2025/04 | [![arXiv][0]][56] | | [<u>link</u>][57] | ✅ ✅ |
-| [<u>Step-3 is Large yet Affordable: Model-system Co-design for Cost-effective Decoding</u>][16] | 2025/07 | [![arXiv][0]][16] | [<u>Step3</u>][17], [<u>StepMesh</u>][18] | [<u>link</u>][19] | ✅ ✅ ✅ |
-| [<u>xDeepServe: Model-as-a-Service on Huawei CloudMatrix384</u>][81] | 2025/08 | [![arXiv][0]][81] | | | |
-
-### 📖 Elasticity and Fault Tolerance
-
-| Title | Date | arXiv | GitHub | Note | Read |
-| :---- | :--- | :---- | :----- | :--- | :--- |
-| [<u>ServerlessLLM: Low-Latency Serverless Inference for Large Language Models</u>][71] | 2024/01 | [![arXiv][0]][71] | [<u>ServerlessLLM</u>][72] | [<u>link</u>][73] | ✅ ✅ |
-| [<u>Expert-as-a-Service: Towards Efficient, Scalable, and Robust Large-scale MoE Serving</u>][156] | 2025/09 | [![arXiv][0]][156] | | [<u>link</u>][157] | ✅ ✅ |
-| [<u>ElasWave: An Elastic-Native System for Scalable Hybrid-Parallel Training</u>][161] | 2025/10 | [![arXiv][0]][161] | | [<u>link</u>][162] | ✅ ✅ |
-| [<u>MoE-Prism: Disentangling Monolithic Experts for Elastic MoE Services via Model-System Co-Designs</u>][166] | 2025/10 | [![arXiv][0]][166] | | [<u>link</u>][167] | ✅ ✅ |
-| [<u>From Models to Operators: Rethinking Autoscaling Granularity for Large Generative Models</u>][171] | 2025/11 | [![arXiv][0]][171] | | [<u>link</u>][172] | ✅ |
-
-[0]: https://img.shields.io/badge/arXiv-b31b1b.svg
-<!------------------------------- Links: 1~2000 ------------------------------->
-<!-- Efficient Memory Management for Large Language Model Serving with PagedAttention -->
-[1]: https://arxiv.org/abs/2309.06180
-[2]: https://github.com/vllm-project/vllm
-<!-- SGLang: Efficient Execution of Structured Language Model Programs -->
-[6]: https://arxiv.org/abs/2312.07104
-[7]: https://github.com/sgl-project/sglang
-<!-- DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving -->
-[11]: https://arxiv.org/abs/2401.09670
-[12]: https://github.com/LLMServe/DistServe
-<!-- Step-3 is Large yet Affordable: Model-system Co-design for Cost-effective Decoding -->
-[16]: https://arxiv.org/abs/2507.19427v1
-[17]: https://github.com/stepfun-ai/Step3
-[18]: https://github.com/stepfun-ai/StepMesh
-[19]: ./Papers/Disaggregated_Architecture/Step3/Notes.md
-<!-- Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving -->
-[21]: https://arxiv.org/abs/2407.00079
-[22]: https://github.com/kvcache-ai/Mooncake
-<!-- CacheBlend: Fast Large Language Model Serving for RAG with Cached Knowledge Fusion -->
-[26]: https://arxiv.org/abs/2405.16444
-[27]: https://github.com/LMCache/LMCache
-<!-- Robust Text-to-SQL Generation with Execution-Guided Decoding -->
-[31]: https://arxiv.org/abs/1807.03100
-<!-- Efficient Guided Generation for Large Language Models -->
-[36]: https://arxiv.org/abs/2307.09702
-[37]: https://github.com/dottxt-ai/outlines
-<!-- XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models -->
-[41]: https://arxiv.org/abs/2411.15100
-[42]: https://github.com/mlc-ai/xgrammar
-<!-- Pre<sup>3</sup>: Enabling Deterministic Pushdown Automata for Faster Structured LLM Generation -->
-[46]: https://arxiv.org/abs/2506.03887
-<!-- A Survey on Inference Engines for Large Language Models: Perspectives on Optimization and Efficiency -->
-[51]: https://arxiv.org/abs/2505.01658
-<!-- MegaScale-Infer: Serving Mixture-of-Experts at Scale with Disaggregated Expert Parallelism -->
-[56]: https://arxiv.org/abs/2504.02263
-[57]: ./Papers/Disaggregated_Architecture/MegaScale-Infer/Notes.md
-<!-- AccelGen: Heterogeneous SLO-Guaranteed High-Throughput LLM Inference Serving for Diverse Applications -->
-[61]: https://arxiv.org/abs/2503.13737
-<!-- Serving Large Language Models on Huawei CloudMatrix384 -->
-[66]: https://arxiv.org/abs/2506.12708
-<!-- ServerlessLLM: Low-Latency Serverless Inference for Large Language Models -->
-[71]: https://arxiv.org/abs/2401.14351
-[72]: https://github.com/ServerlessLLM/ServerlessLLM
-[73]: ./Papers/Elasticity/serverlessLLM/Notes.md
-<!-- Splitwise: Efficient generative LLM inference using phase splitting -->
-[76]: https://arxiv.org/abs/2311.18677
-[77]: ./Papers/Disaggregated_Architecture/Splitwise/Notes.md
-[78]: https://github.com/Mutinifni/splitwise-sim
-<!-- xDeepServe: Model-as-a-Service on Huawei CloudMatrix384 -->
-[81]: https://arxiv.org/abs/2508.02520
-<!-- Mamba: Linear-Time Sequence Modeling with Selective State Spaces -->
-[86]: https://arxiv.org/abs/2312.00752
-[87]: https://github.com/state-spaces/mamba
-[88]: ./Papers/LLM_Basic/Mamba/Mamba/Notes.md
-<!-- Blockwise Parallel Decoding for Deep Autoregressive Models -->
-[91]: https://arxiv.org/abs/1811.03115
-[92]: ./Papers/Speculative_Decoding/Notes.md
-<!-- Optimizing Speculative Decoding for Serving Large Language Models Using Goodput -->
-[96]: https://arxiv.org/abs/2406.14066
-<!-- EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty -->
-[101]: https://arxiv.org/abs/2401.15077
-<!-- Scaling Speculative Decoding with Lookahead Reasoning -->
-[106]: https://arxiv.org/abs/2506.19830
-<!-- Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads -->
-[111]: https://arxiv.org/abs/2401.10774
-<!-- Accelerating Production LLMs with Combined Token/Embedding Speculators -->
-[116]: https://arxiv.org/abs/2404.19124
-<!-- Better & Faster Large Language Models via Multi-token Prediction -->
-[121]: https://arxiv.org/abs/2404.19737
-<!-- Break the Sequential Dependency of LLM Inference Using Lookahead Decoding -->
-[126]: https://arxiv.org/abs/2402.02057
-<!-- Unlocking Efficiency in Large Language Model Inference: A Comprehensive Survey of Speculative Decoding -->
-[131]: https://arxiv.org/abs/2401.07851
-<!-- Fast Inference from Transformers via Speculative Decoding -->
-[136]: https://arxiv.org/abs/2211.17192
-<!-- Accelerating Large Language Model Decoding with Speculative Sampling -->
-[141]: https://arxiv.org/abs/2302.01318
-<!-- SpecInfer: Accelerating Generative Large Language Model Serving with Tree-based Speculative Inference and Verification -->
-[146]: https://arxiv.org/abs/2305.09781
-<!-- Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality -->
-[151]: https://arxiv.org/abs/2405.21060
-<!-- Expert-as-a-Service: Towards Efficient, Scalable, and Robust Large-scale MoE Serving -->
-[156]: https://arxiv.org/abs/2509.17863
-[157]: ./Papers/Elasticity/EaaS/Notes.md
-<!-- ElasWave: An Elastic-Native System for Scalable Hybrid-Parallel Training -->
-[161]: https://arxiv.org/abs/2510.00606
-[162]: ./Papers/Elasticity/ElasWave/Notes.md
-<!-- MoE-Prism: Disentangling Monolithic Experts for Elastic MoE Services via Model-System Co-Designs -->
-[166]: https://arxiv.org/abs/2510.19366
-[167]: ./Papers/Elasticity/MoE-Prism/Notes.md
-<!-- From Models to Operators: Rethinking Autoscaling Granularity for Large Generative Models -->
-[171]: https://arxiv.org/abs/2511.02248
-[172]: ./Papers/Elasticity/Autoscaling_Granularity/Notes.md
-<!-- ProMoE: Fast MoE-based LLM Serving using Proactive Caching -->
-[176]: https://arxiv.org/abs/2410.22134
-<!-- MoE-Infinity: Efficient MoE Inference on Personal Machines with Sparsity-Aware Expert Cache -->
-[181]: https://arxiv.org/abs/2401.14361
-<!-- Lynx: Enabling Efficient MoE Inference through Dynamic Batch-Aware Expert Selection -->
-[186]: https://arxiv.org/abs/2411.08982
-<!-- Pro-Prophet: A Systematic Load Balancing Method for Efficient Parallel Training of Large-scale MoE Models -->
-[191]: https://arxiv.org/abs/2411.10003
-<!------------------------------- Links: 1~2000 ------------------------------->
 
 ## 📚 Learning Projects
 <!--
@@ -595,7 +400,7 @@ Clarification for symbols in the following tables:
 
 | Project | Category | Author/Organization | About |
 | :------ | :------- | :------------------ | :---- |
-| [<u>llm-action</u>][4022] | LLM | [<u>@liguodongiot</u>][4021] | 本项目旨在分享大模型相关技术原理以及实战经验（大模型工程化、大模型应用落地）。 |
+| [<u>llm-action</u>][4022] | MLSys | [<u>@liguodongiot</u>][4021] | 本项目旨在分享大模型相关技术原理以及实战经验（大模型工程化、大模型应用落地）。 |
 | [<u>awesomeMLSys</u>][4012] | MLSys | [<u>@GPU MODE</u>][4011] | An ML Systems Onboarding list. |
 | [<u>InfraTech</u>][4032] | MLSys | [<u>@CalvinXKY</u>][4031] | 分享AI Infra知识&代码练习：PyTorch/vLLM/SGLang框架入门⚡️、性能加速🚀、大模型基础🧠、AI软硬件🔧等。 |
 | [<u>AI-Infra-from-Zero-to-Hero</u>][4002] | MLSys | [<u>@HuaizhengZhang</u>][4001] | 🚀 Awesome System for Machine Learning ⚡️ AI System Papers and Industry Practice. ⚡️ System for Machine Learning, LLM (Large Language Model), GenAI (Generative AI). 🍻 OSDI, NSDI, SIGCOMM, SoCC, MLSys, etc. 🗃️ Llama3, Mistral, etc. 🧑‍💻 Video Tutorials. |

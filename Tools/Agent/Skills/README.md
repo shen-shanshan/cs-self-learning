@@ -1,11 +1,21 @@
 # Skill Invocation Prompts
 
-`/skill-creator`:
+## vLLM
 
-Create a simple and valid claude code skill template for me, just remain necessary factors, don't include useless contents. Save the generated files to `~/.claude/skills/test`. /skill-creator
+- [vllm-dev-skills](https://github.com/shen-shanshan/vllm-dev-skills)
 
-`/open-source-engineer-schedule-planning-master`:
+## Others
 
+- `/skill-creator`:
+
+```text
+Create a simple and valid claude code skill template for me, just remain necessary factors, don't include useless contents.
+Save the generated files to `~/.claude/skills/test`. /skill-creator
+```
+
+- `/open-source-engineer-schedule-planning-master`:
+
+```text
 I'm an open source engineer, please help me to plan my schedule for the next week.
 I want to focus on the vllm-project/vllm and vllm-project/vllm-ascend repositories, especially on multi-modal, structured output and elastic scaling modules.
 My GitHub username is shen-shanshan.
@@ -14,3 +24,4 @@ I have the following tasks to include in my schedule:
 2. Resolve issues related to multi-modal models, such as VL, Omni, OCR models or directly assigned to me in vllm-ascend with priority 2.
 3. Review PRs related to multi-modal models in vllm-ascend with priority 3.
 4. Keep up with recent news about large language models and their applications with priority 4.
+```
