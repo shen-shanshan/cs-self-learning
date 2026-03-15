@@ -14,6 +14,9 @@ ViT Full CUDA Graph [#35963](https://github.com/vllm-project/vllm/pull/35963)
 
 ### 未分类
 
+- [Disaggregated-encoder 🌟](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/epd_disaggregation.html)
+- [Ascend PyTorch Profiler](https://docs.vllm.ai/projects/ascend/en/latest/developer_guide/performance_and_debug/service_profiling_guide.html#ascend-pytorch-profiler)
+
 **Critical RFC:**
 
 - [ ] Disaggregated Everything - Token In <> Token Out API Server [#22817](https://github.com/vllm-project/vllm/issues/22817)
