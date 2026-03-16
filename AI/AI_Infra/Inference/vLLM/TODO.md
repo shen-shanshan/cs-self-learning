@@ -10,6 +10,10 @@ ViT Full CUDA Graph [#35963](https://github.com/vllm-project/vllm/pull/35963)
 3.支持更多模态，比如：视频、音频；
 4.移除 CustomOp 中遗留的 comment；
 
+deepstack 支持 cache?
+
+支持 fish-speech 模型？
+
 ## 待看 PR/Issue/源码
 
 ### 未分类

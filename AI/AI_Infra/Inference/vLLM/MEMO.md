@@ -24,6 +24,13 @@ python examples/offline_inference/vision_language.py -m dots_ocr
 python examples/offline_inference/vision_language.py -m deepseek_ocr
 ```
 
+```bash
+# vllm
+git fetch --tags
+git tag -l | grep v0.17.0
+git checkout -b v0.17.0-dev v0.17.0
+```
+
 ## Launch Args
 
 ```bash
