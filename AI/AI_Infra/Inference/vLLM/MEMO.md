@@ -4,16 +4,20 @@
 
 ```bash
 # init env
-cd github/vllm/
+cd ~/github/vllm/
 source .venv/bin/activate
 
+export VLLM_USE_MODELSCOPE=True
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
 
-export VLLM_USE_MODELSCOPE=True
 # def run_qwen2_5_vl
 # /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
 python examples/offline_inference/vision_language.py -m qwen2_5_vl
+
+# def run_qwen3_vl
+# /home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-4B-Instruct
+python examples/offline_inference/vision_language.py -m qwen3_vl --modality "video"
 
 # def run_dots_ocr
 # /home/sss/.cache/huggingface/hub/models/dots_ocr

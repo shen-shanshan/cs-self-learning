@@ -9,6 +9,7 @@ ViT Full CUDA Graph [#35963](https://github.com/vllm-project/vllm/pull/35963)
 2.支持更多模型，比如：Qwen3-Omni；
 3.支持更多模态，比如：视频、音频；
 4.移除 CustomOp 中遗留的 comment；
+5.补充 doc；
 
 deepstack 支持 cache?
 
