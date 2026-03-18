@@ -1,5 +1,11 @@
 # Papers
 
+Clarification for symbols in the following tables:
+
+- ✅: **The first pass** that gives you a general idea about the paper.
+- ✅ ✅: **The second pass** that lets you grasp the paper's content, but not its details.
+- ✅ ✅ ✅: **The third pass** that helps you understand the paper in depth.
+
 <!--
 | Title | Date | arXiv | GitHub | Note | Read |
 | [<u>Title</u>][] | 20xx/xx | [![arXiv][0]][] | | | ✅ |

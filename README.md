@@ -387,12 +387,6 @@ In addition, I have also published some technical blogs on the internet, you can
 
 Refer to **[_How to Read a Paper_](./Research/Materials/How_to_Read_Papers.pdf)** to master a practical and efficient **three-pass** method for reading **[_papers_](./Research/Papers/README.md)**.
 
-Clarification for symbols in the following tables:
-
-- ✅: **The first pass** that gives you a general idea about the paper.
-- ✅ ✅: **The second pass** that lets you grasp the paper's content, but not its details.
-- ✅ ✅ ✅: **The third pass** that helps you understand the paper in depth.
-
 ## 📚 Learning Projects
 <!--
 | [<u></u>][] | | [<u>@</u>][] | |
