@@ -8,7 +8,6 @@
   <img src=https://img.shields.io/github/watchers/shen-shanshan/cs-self-learning?color=9cc >
   <img src=https://img.shields.io/github/forks/shen-shanshan/cs-self-learning.svg?style=social >
   <img src=https://img.shields.io/github/stars/shen-shanshan/cs-self-learning.svg?style=social >
-  <p>
 </div align='left'>
 
 <!-- <p align="center">
