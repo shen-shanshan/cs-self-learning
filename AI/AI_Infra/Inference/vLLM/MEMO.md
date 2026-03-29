@@ -6,10 +6,10 @@
 # init env
 cd ~/github/vllm/
 source .venv/bin/activate
-
-export VLLM_USE_MODELSCOPE=True
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
+# export VLLM_USE_MODELSCOPE=True
+pre-commit install
 
 # def run_qwen2_5_vl
 # /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct
@@ -17,6 +17,7 @@ python examples/offline_inference/vision_language.py -m qwen2_5_vl
 
 # def run_qwen3_vl
 # /home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-4B-Instruct
+# /home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct
 python examples/offline_inference/vision_language.py -m qwen3_vl --modality "video"
 
 # def run_dots_ocr
@@ -30,9 +31,11 @@ python examples/offline_inference/vision_language.py -m deepseek_ocr
 
 ```bash
 # vllm
+git sync
 git fetch --tags
-git tag -l | grep v0.17.0
-git checkout -b v0.17.0-dev v0.17.0
+git tag -l | grep v0.18.0
+git checkout -b v0.18.0-dev v0.18.0
+git checkout -b v0.14.0-dev v0.14.0
 ```
 
 ## Launch Args
@@ -260,4 +263,13 @@ curl http://localhost:8000/v1/completions \
         "max_tokens": 100,
         "temperature": 0
     }'
+```
+
+## PR Desc
+
+```markdown
+> [!NOTE]
+>
+
+**🤖 AI Summary:**
 ```

@@ -4,7 +4,7 @@
 
 ### 通用环境配置
 
-参考：[link](../../../AI/AI_Infra/Environment_Preparation/scripts/init_env_coder.sh)
+参考：[link](../../../AI_Infra/Environment_Preparation/scripts/init_env.sh)
 
 Coder 配置：
 
@@ -15,7 +15,7 @@ cp /etc/skel/.bash_logout /etc/skel/.bashrc /etc/skel/.profile ~/
 
 ### NPU 环境搭建
 
-参考：[link](../../../AI/AI_Infra/Environment_Preparation/README.md)
+参考：[link](../../../AI_Infra/Environment_Preparation/README.md)
 
 ### GPU 环境搭建（A100 为例）
 
@@ -132,15 +132,6 @@ pre-commit install
 
 uv pip install "modelscope>=1.18.1" -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
-# VLLM_USE_PRECOMPILED=1 uv pip install \
-# --editable . \
-# --extra-index-url https://download.pytorch.org/whl/cu124 \
-# --index-strategy unsafe-best-match \
-# --prerelease=allow
-
-# -i https://pypi.tuna.tsinghua.edu.cn/simple \
-# VLLM_USE_PRECOMPILED=1 uv pip install --editable . --extra-index-url https://download.pytorch.org/whl/cu124 --index-strategy unsafe-best-match --prerelease=allow
-
 # vLLM supports different CUDA versions but you need to install pytorch that corresponds to your CUDA version and then build vLLM from source.
 uv pip install -v torch torchvision torchaudio \
 --index-url https://download.pytorch.org/whl/cu124  # cu121 与 CUDA 12.4 runtime 完全兼容
@@ -150,28 +141,32 @@ VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
 --extra-index-url https://download.pytorch.org/whl/cu124 \
 --index-strategy unsafe-best-match \
 --prerelease=allow
+# --index-url https://mirrors.aliyun.com/pypi/simple
 
-# --index-url https://mirrors.aliyun.com/pypi/simple \
+# VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
 # --extra-index-url https://download.pytorch.org/whl/cu124 \
+# --index-strategy unsafe-best-match \
+# --prerelease=allow \
+# -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
---extra-index-url https://download.pytorch.org/whl/cu124 \
---index-strategy unsafe-best-match \
---prerelease=allow \
--i https://pypi.tuna.tsinghua.edu.cn/simple
+# 卸载 torch 相关的包：
+uv pip uninstall torch torchvision torchaudio torchtext triton xformers
+# 确认是否卸载干净：
+uv pip list | grep torch
 
 # 秒装 cuda pytorch
-uv pip install torch==2.9.0 \
--i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
--f https://mirrors.aliyun.com/pytorch-wheels/cu124
-
-uv pip install torch==2.9.1 \
--i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
--f https://mirrors.aliyun.com/pytorch-wheels/cu124
-
 uv pip install torch==2.10.0 \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
 -f https://mirrors.aliyun.com/pytorch-wheels/cu124
+
+# 用这个，避免自动装成 cu128 的 torch
+uv pip install torch==2.10.0 \
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+# 验证 torch 使用的 cuda 版本：
+# import torch
+# print(torch.version.cuda)
 
 # https://github.com/vllm-project/vllm/issues/30464
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \

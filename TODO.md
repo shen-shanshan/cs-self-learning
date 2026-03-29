@@ -47,6 +47,8 @@
 - [ ] [2025 年最全面的 LLM 架构技术解析](https://mp.weixin.qq.com/s/7qVwBhE5JcJFnyOKpYNCeA)
 - [ ] [The Unreasonable Effectiveness of Recurrent Neural Networks](https://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 - [ ] [The Illustrated Word2vec - Jay Alammar](https://jalammar.github.io/illustrated-word2vec/)
+- [ ] [The Big LLM Architecture Comparison 🌟](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)
+- [ ] [A Visual Guide to Attention Variants in Modern LLMs 🌟](https://magazine.sebastianraschka.com/p/visual-attention-variants)
 
 Transformer：
 
@@ -68,7 +70,6 @@ MoE：
 
 - [ ] [Cache 加速 - TaylorSeer 算法简析](https://zhuanlan.zhihu.com/p/1937477466475197176)
 - [ ] [深入浅出扩散模型系列 🌟](https://zhuanlan.zhihu.com/p/1991564549669810188)
-- [ ] [vLLM 多模态 Cache 缓存机制分析 🌟](https://zhuanlan.zhihu.com/p/1984342789287343828?share_code=UKyCzIVku8YY&utm_psn=1994008703599396772)
 - [ ] [Cohere × vLLM：共享内存让多模态推理吞吐量提升70% 🌟](https://mp.weixin.qq.com/s/--mJ81mDt0tu2jY77Tv5Rg)
 - [ ] [Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems 🌟](https://vllm.ai/blog/shm-ipc-cache)
 - [ ] [Encoder Disaggregation：让多模态推理服务的尾延迟更稳 🌟](https://mp.weixin.qq.com/s/96ErFSwmAezrfYcVRulA4g)

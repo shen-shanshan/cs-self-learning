@@ -173,6 +173,7 @@ In addition, I have also published some technical blogs on the internet, you can
 | [<u>vLLM PD 分离 KV Cache 传递机制详解与演进分析</u>][2023] | PD Disaggregation | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 多模态推理｜ViT 性能优化</u>][2071] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 多模态推理｜卷积计算加速</u>][2057] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️ | ✅ |
+| [<u>vLLM 多模态 Cache 缓存机制分析</u>][2079] | Multi-Modal | [<u>@黑白</u>][3034] | | ⭐️⭐️ | ✅ |
 | [<u>Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems</u>][2058] | Multi-Modal | [<u>@vLLM Blog</u>][3019] | | | |
 
 ### 📖 Dive into PyTorch
@@ -313,6 +314,7 @@ In addition, I have also published some technical blogs on the internet, you can
 [2076]: https://zhuanlan.zhihu.com/p/2005306558997882654
 [2077]: https://zhuanlan.zhihu.com/p/617134893
 [2078]: https://zhuanlan.zhihu.com/p/711223667
+[2079]: https://zhuanlan.zhihu.com/p/1984342789287343828?share_code=UKyCzIVku8YY&utm_psn=1994008703599396772
 <!------------------------------- Author Links -------------------------------->
 <!-- SSS不知-道 -->
 [3001]: https://www.zhihu.com/people/sss-53-26
@@ -380,6 +382,8 @@ In addition, I have also published some technical blogs on the internet, you can
 [3032]: https://www.zhihu.com/people/tomsheep
 <!-- 小小将 -->
 [3033]: https://www.zhihu.com/people/xiaohuzc
+<!-- 黑白 -->
+[3034]: https://www.zhihu.com/people/hei-bai-51-99
 <!----------------------------- Links: 2001~4000 ------------------------------>
 
 ## 📚 Papers

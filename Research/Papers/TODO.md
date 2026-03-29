@@ -19,6 +19,10 @@
 
 - [Approximate Caching for Efficiently Serving Diffusion Models](https://arxiv.org/abs/2312.04429)
 
+## Agent
+
+- [AVO: Agentic Variation Operators for Autonomous Evolutionary Search](https://arxiv.org/abs/2603.24517)
+
 ## Others
 
 - [LightTransfer: Your Long-Context LLM is Secretly a Hybrid Model with Effortless Adaptation](https://arxiv.org/abs/2410.13846)
