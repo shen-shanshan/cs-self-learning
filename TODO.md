@@ -267,9 +267,9 @@ vibe VS automatic
 
 **访谈：**
 
-- [ ] [OpenAI 核心贡献者翁家翌访谈：想法很廉价，模型的成败全在 Infra](https://mp.weixin.qq.com/s/iTx0DnFfjikgRfzcxNRcqw)
-- [ ] [OpenAI 核心员工翁家翌预判：纯 Researcher 可能是第一波被 AI 取代的人，2026 属于 AI-Infra](https://zhuanlan.zhihu.com/p/1996342927560054323?share_code=13KfLKYB7mzna&utm_psn=1997054217207162368)
-- [ ] [OpenAI 翁家翌在 WhynotTV 的采访中，关于后训练、infra等观点中，哪些令你受到启发？](https://www.zhihu.com/question/1996908423174910237/answer/1998749198905021998?share_code=7MFd8cS1RDE4&utm_psn=1999228344730923171)
+- [x] [OpenAI 核心贡献者翁家翌访谈：想法很廉价，模型的成败全在 Infra](https://mp.weixin.qq.com/s/iTx0DnFfjikgRfzcxNRcqw)
+- [x] [OpenAI 核心员工翁家翌预判：纯 Researcher 可能是第一波被 AI 取代的人，2026 属于 AI-Infra](https://zhuanlan.zhihu.com/p/1996342927560054323?share_code=13KfLKYB7mzna&utm_psn=1997054217207162368)
+- [x] [OpenAI 翁家翌在 WhynotTV 的采访中，关于后训练、infra等观点中，哪些令你受到启发？](https://www.zhihu.com/question/1996908423174910237/answer/1998749198905021998?share_code=7MFd8cS1RDE4&utm_psn=1999228344730923171)
 
 ---
 
