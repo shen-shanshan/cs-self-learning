@@ -3,7 +3,7 @@
 Build images:
 
 ```bash
-docker build -t sss:base .
+docker build -t sss-gpu-dev:base .
 ```
 
 ```bash

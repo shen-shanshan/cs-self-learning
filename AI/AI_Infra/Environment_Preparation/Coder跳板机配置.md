@@ -31,3 +31,12 @@ ssh coder.<workspaceName>
 coder templates list
 coder templates list -o json
 ```
+
+---
+
+裸机登陆：
+
+```bash
+ssh -p 40022 root@121.36.26.18
+# FD%WHJf42gfFsvh8Wwjp
+```

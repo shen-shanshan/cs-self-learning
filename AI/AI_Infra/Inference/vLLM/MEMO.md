@@ -35,7 +35,18 @@ git sync
 git fetch --tags
 git tag -l | grep v0.18.0
 git checkout -b v0.18.0-dev v0.18.0
-git checkout -b v0.14.0-dev v0.14.0
+```
+
+## Models
+
+```bash
+# A100
+/mnt/sfs_turbo/models/modelscope/models/Qwen/Qwen3-VL-8B-Instruct
+/mnt/sfs_turbo/models/modelscope/models/Qwen/Qwen3-VL-32B-Instruct
+
+# A100 GPU Coder
+/home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-4B-Instruct
+/shared/models/modelscope/models/Qwen/Qwen3-VL-32B-Instruct
 ```
 
 ## Launch Args
@@ -81,13 +92,6 @@ from vllm.logger import init_logger
 logger = init_logger(__name__)
 
 logger.info_once(f"...")
-```
-
-## Models
-
-```bash
-# Coder A100 GPU
-/home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-4B-Instruct
 ```
 
 ## Benchmark Datasets

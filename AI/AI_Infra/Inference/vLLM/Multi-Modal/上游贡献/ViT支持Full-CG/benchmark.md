@@ -257,7 +257,7 @@ export HF_ENDPOINT="https://hf-mirror.com"
 
 vllm bench mm-processor \
 --model /home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
---max-model-len 8192 \
+--max-model-len 16384 \
 --dataset-name random-mm \
 --random-mm-base-items-per-request 1 \
 --random-mm-num-mm-items-range-ratio 0.0 \
@@ -327,18 +327,51 @@ export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
 
 vllm bench mm-processor \
---model /home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
---max-model-len 16384 \
+--model /mnt/sfs_turbo/models/modelscope/models/Qwen/Qwen3-VL-32B-Instruct \
+--max-model-len 8192 \
 --dataset-name random-mm \
---random-mm-base-items-per-request 8 \
+--random-mm-base-items-per-request 4 \
 --random-mm-num-mm-items-range-ratio 0.0 \
 --random-mm-bucket-config '{(224, 224, 8): 1.0}' \
---random-mm-limit-mm-per-prompt '{"image": 0, "video": 1}' \
---num-prompts 100 \
---num-warmups 10 \
+--random-mm-limit-mm-per-prompt '{"image": 0, "video": 4}' \
+--num-prompts 400 \
 --seed 42 \
 --tensor-parallel-size 4 \
 --mm-encoder-tp-mode data \
---mm-encoder-attn-backend FLASH_ATTN \
---compilation-config '{"cudagraph_mm_encoder": true, "encoder_cudagraph_token_budgets": [128, 256, 512, 1024, 1536, 2048], "encoder_cudagraph_max_mm_items_per_batch": 4, "encoder_cudagraph_max_frames_per_batch": 32}'
+--mm-encoder-attn-backend FLASHINFER \
+--compilation-config '{"cudagraph_mm_encoder": true, "encoder_cudagraph_token_budgets": [128, 256, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096], "encoder_cudagraph_max_mm_items_per_batch": 4, "encoder_cudagraph_max_frames_per_batch": 32}'
+# --gpu-memory-utilization 0.8
 ```
+
+Eager:
+
+```bash
+# FLASH_ATTN
+# (224, 224, 8) * 4 / 400 prompts / max-model-len 8192
+4.20/17.35
+# (224, 224, 8) * 8 / 1000 prompts / max-model-len 16384 ❌
+7.81/16.96
+
+# FLASHINFER
+# (224, 224, 8) * 4 / 400 prompts / max-model-len 8192
+5.72/81.95
+```
+
+CG:
+
+```bash
+# FLASH_ATTN
+# (224, 224, 8) * 4 / 400 prompts / max-model-len 8192
+4.86/13.04
+# (224, 224, 8) * 8 / 1000 prompts / max-model-len 16384 ❌
+8.99/18.43
+
+# FLASHINFER
+# (224, 224, 8) * 4 / 400 prompts / max-model-len 8192
+6.91/12.84
+```
+
+| Backend | Mean | P99 |
+| :-----: | :--: | :-: |
+| FLASH_ATTN | -% (ms -> ms) | +% (ms -> ms) |
+| FLASHINFER | +% (ms -> ms) | +% (ms -> ms) |

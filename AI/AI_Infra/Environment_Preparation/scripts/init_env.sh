@@ -57,8 +57,8 @@ echo "-------------------------------------------------------------------------"
 cat ~/.ssh/id_ed25519.pub  # Add it to your github
 echo "-------------------------------------------------------------------------"
 ## config ssh server
-echo "Port 22" >> /etc/ssh/sshd_config
-echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+sudo echo "Port 22" >> /etc/ssh/sshd_config
+sudo echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 sudo /etc/init.d/ssh restart
 echo "-------------------------------------------------------------------------"
 ps -ef | grep sshd

@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] 用 AI 重新生成 PR 描述（写 skill）
+- [x] 用 AI 重新生成 PR 描述（写 skill）
 - [x] cuda graph replay buffer 增加驱逐策略，设置长度上限
 - [x] 用 AI 重新生成测试用例
 - [ ] 测试多卡 vit dp mode 性能
