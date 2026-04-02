@@ -72,12 +72,13 @@ docker run \
 --privileged=true \
 --name sss-vllm-gpu \
 --gpus all \
--v /home/sss:/home/sss/host_data \
 -v /mnt/sfs_turbo:/shared \
 -p 8000:8000 \
 -p 8333:22 \
 --ipc=host \
+--shm-size=8g \
 -it sss-ubuntu-base:v1.0 /bin/bash
+
 # --runtime nvidia \
 # --net=host \
 

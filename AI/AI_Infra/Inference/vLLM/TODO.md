@@ -11,9 +11,9 @@ ViT Full CUDA Graph [#35963](https://github.com/vllm-project/vllm/pull/35963)
 4.移除 CustomOp 中遗留的 comment；
 5.补充 doc；
 
-deepstack 支持 cache?
+https://github.com/vllm-project/vllm/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22
+http://github.com/vllm-project/vllm/issues?q=is%3Aissue%20state%3Aopen%20label%3Amulti-modality
 
-支持 fish-speech 模型？
 
 ## 待看 PR/Issue/源码
 

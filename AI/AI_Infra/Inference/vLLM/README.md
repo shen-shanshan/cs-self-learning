@@ -149,10 +149,15 @@ pip install torch torchvision torchaudio \
 --index-url https://download.pytorch.org/whl/cu121
 
 # Install requirements
-uv pip install -r requirements/common.txt
-uv pip install -r requirements/cuda.txt
-uv pip install -r benchmarks/multi_turn/requirements.txt
-+
+uv pip install -r requirements/common.txt \
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+uv pip install -r requirements/cuda.txt \
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+uv pip install -r benchmarks/multi_turn/requirements.txt \
 --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 --extra-index-url https://download.pytorch.org/whl/cu124
 
@@ -220,4 +225,26 @@ export all_proxy="http://127.0.0.1:9999"
 ssh -R 9999:localhost:7890 shanshan-shen@141.11.146.70
 ssh -R 9999:localhost:7890 shanshan-shen@7.249.188.223
 ssh shanshan-shen@7.249.188.223
+```
+
+最终版（cuda-12.4）：
+
+```bash
+export UV_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+export UV_HTTP_TIMEOUT=1000000000
+
+uv venv --python 3.12 --seed -v
+source .venv/bin/activate
+
+uv pip install pre-commit -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+pre-commit install
+
+uv pip install torch==2.10.0 torchaudio==2.10.0 torchvision==0.25.0 \
+-i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+-f https://mirrors.aliyun.com/pytorch-wheels/cu124
+
+VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
+--index-url https://download.pytorch.org/whl/cu124 \
+--index-strategy unsafe-best-match \
+--prerelease=allow
 ```

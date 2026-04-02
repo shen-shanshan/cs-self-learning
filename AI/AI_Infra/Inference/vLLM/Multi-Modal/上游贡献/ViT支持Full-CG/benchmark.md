@@ -256,66 +256,60 @@ export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
 
 vllm bench mm-processor \
---model /home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct \
+--model /shared/models/modelscope/models/Qwen/Qwen3-VL-8B-Instruct \
 --max-model-len 16384 \
 --dataset-name random-mm \
 --random-mm-base-items-per-request 1 \
 --random-mm-num-mm-items-range-ratio 0.0 \
 --random-mm-bucket-config '{(224, 224, 8): 1.0}' \
 --random-mm-limit-mm-per-prompt '{"image": 0, "video": 1}' \
---num-prompts 1000 \
+--num-prompts 10 \
 --seed 42 \
---mm-encoder-attn-backend FLASHINFER \
---compilation-config '{"cudagraph_mm_encoder": true, "encoder_cudagraph_token_budgets": [128, 256, 512, 1024, 1536, 2048], "encoder_cudagraph_max_mm_items_per_batch": 4, "encoder_cudagraph_max_frames_per_batch": 32}'
+--mm-encoder-attn-backend FLASH_ATTN \
+--compilation-config '{"cudagraph_mm_encoder": true, "encoder_cudagraph_token_budgets": [128, 256, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096], "encoder_cudagraph_max_mm_items_per_batch": 4, "encoder_cudagraph_max_frames_per_batch": 32}'
 
 # Sampling input_len from [1024, 1024] and output_len from [128, 128]
---mm-encoder-attn-backend FLASH_ATTN or FLASHINFER \
---num-warmups 20 \
-
-# --random-mm-bucket-config '{(224, 224, 4): 1.0}' \ "encoder_cudagraph_token_budgets": [128, 256, 512, 1024] ❌（P99 都打不过了）
-# --random-mm-bucket-config '{(224, 224, 8): 1.0}' \ "encoder_cudagraph_token_budgets": [128, 256, 512, 1024, 1536, 2048] ❌（只有 Mean 打不过）
-# --random-mm-bucket-config '{(448, 448, 16): 1.0}' \ "encoder_cudagraph_token_budgets": [256, 512, 1024, 2048, 4096] ❌（P99 都打不过了）
+# --mm-encoder-attn-backend FLASH_ATTN or FLASHINFER \
+# --num-warmups 20 \
 ```
 
 Eager:
 
 ```bash
 # FLASH_ATTN
-# (224, 224, 4) / 1000 prompts / max-model-len 8192
-3.27/5.84
+# (224, 224, 8) / 100 prompts / max-model-len 8192
+3.66/17.73
 # (224, 224, 8) / 100 prompts / max-model-len 16384 ✅
 3.67/10.62 3.99/9.92 3.60/15.77
+3.59/17.03
 
 # FLASHINFER
+# (224, 224, 8) / 100 prompts / max-model-len 8192
+8.45/64.69
 # (224, 224, 8) / 100 prompts / max-model-len 16384 ✅
 9.11/77.83 8.38/58.62
-# (224, 224, 8) / 200 prompts / max-model-len 8192
-5.99/57.88
-# (224, 224, 8) / 1000 prompts / max-model-len 8192
-4.50/20.23
 ```
 
 CG:
 
 ```bash
 # FLASH_ATTN
-# (224, 224, 4) / 1000 prompts / max-model-len 8192
-4.32/6.35
+# (224, 224, 8) / 100 prompts / max-model-len 8192
+4.62/6.50
 # (224, 224, 8) / 100 prompts / max-model-len 16384 ✅
 4.38/6.27 4.37/5.85 4.54/5.62 4.58/6.11(no-cache)
+4.57/6.53
 
 # FLASHINFER
+# (224, 224, 8) / 100 prompts / max-model-len 8192
+6.74/7.28
 # (224, 224, 8) / 100 prompts / max-model-len 16384 ✅
 6.55/7.27 6.80/7.42 6.83/7.01(no-cache)
-# (224, 224, 8) / 200 prompts / max-model-len 8192
-6.62/8.58 6.87/7.33 6.84/8.14(no-cache)
-# (224, 224, 8) / 1000 prompts / max-model-len 8192
-6.63/7.72 6.80/7.19 6.89/8.18(no-cache)
 ```
 
 | Backend | Mean | P99 |
 | :-----: | :--: | :-: |
-| FLASH_ATTN | -9.52% (3.99ms -> 4.37ms) | +41.03% (9.92ms -> 5.85ms) |
+| FLASH_ATTN | -24.52% (3.67ms -> 4.57ms) | +61.66% (17.03ms -> 6.53ms) |
 | FLASHINFER | +21.84% (8.38ms -> 6.55ms) | +87.60% (58.62ms -> 7.27ms) |
 
 ## Multi GPU
@@ -325,16 +319,18 @@ cd ~/github/vllm/
 source .venv/bin/activate
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
+export OMP_NUM_THREADS=1
+export CUDA_VISIBLE_DEVICES=4,5,6,7
 
 vllm bench mm-processor \
---model /mnt/sfs_turbo/models/modelscope/models/Qwen/Qwen3-VL-32B-Instruct \
+--model /shared/models/modelscope/models/Qwen/Qwen3-VL-32B-Instruct \
 --max-model-len 8192 \
 --dataset-name random-mm \
 --random-mm-base-items-per-request 4 \
 --random-mm-num-mm-items-range-ratio 0.0 \
 --random-mm-bucket-config '{(224, 224, 8): 1.0}' \
 --random-mm-limit-mm-per-prompt '{"image": 0, "video": 4}' \
---num-prompts 400 \
+--num-prompts 100 \
 --seed 42 \
 --tensor-parallel-size 4 \
 --mm-encoder-tp-mode data \
@@ -347,12 +343,18 @@ Eager:
 
 ```bash
 # FLASH_ATTN
+# (224, 224, 8) * 4 / 100 prompts / max-model-len 8192 ✅
+5.43/51.25
 # (224, 224, 8) * 4 / 400 prompts / max-model-len 8192
 4.20/17.35
-# (224, 224, 8) * 8 / 1000 prompts / max-model-len 16384 ❌
+# (224, 224, 8) * 8 / 1000 prompts / max-model-len 16384
 7.81/16.96
 
 # FLASHINFER
+# (224, 224, 8) * 4 / 100 prompts / max-model-len 8192 ✅
+8.75/77.77
+# (224, 224, 8) * 4 / 100 prompts / max-model-len 16384
+9.10/87.58
 # (224, 224, 8) * 4 / 400 prompts / max-model-len 8192
 5.72/81.95
 ```
@@ -361,17 +363,23 @@ CG:
 
 ```bash
 # FLASH_ATTN
+# (224, 224, 8) * 4 / 100 prompts / max-model-len 8192 ✅
+4.70/8.60
 # (224, 224, 8) * 4 / 400 prompts / max-model-len 8192
 4.86/13.04
-# (224, 224, 8) * 8 / 1000 prompts / max-model-len 16384 ❌
+# (224, 224, 8) * 8 / 1000 prompts / max-model-len 16384
 8.99/18.43
 
 # FLASHINFER
+# (224, 224, 8) * 4 / 100 prompts / max-model-len 8192 ✅
+6.88/13.34
+# (224, 224, 8) * 4 / 100 prompts / max-model-len 16384
+6.73/12.55
 # (224, 224, 8) * 4 / 400 prompts / max-model-len 8192
 6.91/12.84
 ```
 
 | Backend | Mean | P99 |
 | :-----: | :--: | :-: |
-| FLASH_ATTN | -% (ms -> ms) | +% (ms -> ms) |
-| FLASHINFER | +% (ms -> ms) | +% (ms -> ms) |
+| FLASH_ATTN | +13.44% (5.43ms -> 4.70ms) | +83.22% (51.25ms -> 8.60ms) |
+| FLASHINFER | +21.37% (8.75ms -> 6.88ms) | +82.85% (77.77ms -> 13.34ms) |

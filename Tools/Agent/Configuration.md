@@ -39,6 +39,10 @@ vim ~/.claude/settings.json
 cd ~/your-project
 claude
 
+# Configure network
+export HTTP_PROXY=http://127.0.0.1:10808
+export HTTPS_PROXY=http://127.0.0.1:10808
+
 # Install claude-hud (https://github.com/jarrodwatts/claude-hud)
 claude
 /plugin marketplace add jarrodwatts/claude-hud
