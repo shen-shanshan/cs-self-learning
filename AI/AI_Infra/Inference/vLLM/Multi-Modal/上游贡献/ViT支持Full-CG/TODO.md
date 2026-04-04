@@ -1,5 +1,13 @@
 # TODO
 
+## Future Works
+
+- [ ] Support replay buffer cache
+- [ ] Support mixed (image + video) inputs
+- [ ] Support more models
+
+## Support Video Inference
+
 - [x] 用 AI 重新生成 PR 描述（写 skill）
 - [x] cuda graph replay buffer 增加驱逐策略，设置长度上限
 - [x] 用 AI 重新生成测试用例

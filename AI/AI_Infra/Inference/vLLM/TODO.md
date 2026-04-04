@@ -2,18 +2,8 @@
 
 ## Tasks
 
-**ViT support CUDA graph:**
-ViT Full CUDA Graph [#35963](https://github.com/vllm-project/vllm/pull/35963)
-**TODO：**
-1.昇腾适配 ACLGraph 适配；
-2.支持更多模型，比如：Qwen3-Omni；
-3.支持更多模态，比如：视频、音频；
-4.移除 CustomOp 中遗留的 comment；
-5.补充 doc；
-
 https://github.com/vllm-project/vllm/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22
 http://github.com/vllm-project/vllm/issues?q=is%3Aissue%20state%3Aopen%20label%3Amulti-modality
-
 
 ## 待看 PR/Issue/源码
 
