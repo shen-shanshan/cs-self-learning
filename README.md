@@ -165,6 +165,7 @@ In addition, I have also published some technical blogs on the internet, you can
 | [<u>Piecewise CUDA Graph：面向变长 Prefill 的分段图捕获与自动算子融合</u>][2070] | Graph | [<u>@注意力机制不集中</u>][3029] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM torch.compile Integration</u>][2060] | Graph | [<u>@Jiangyun Zhu</u>][3028] | 自定义 Pass 方法 | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 显存管理详解</u>][2009] | Memory | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems</u>][2058] | IPC | [<u>@vLLM Blog</u>][3019] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 结构化输出｜Guided Decoding (V0)</u>][2001] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 结构化输出｜Guided Decoding (V1)</u>][2002] | Guided Decoding | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM DP 特性与演进方案分析</u>][2041] | Parallel Strategy | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
@@ -174,7 +175,6 @@ In addition, I have also published some technical blogs on the internet, you can
 | [<u>vLLM 多模态推理｜ViT 性能优化</u>][2071] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>vLLM 多模态推理｜卷积计算加速</u>][2057] | Multi-Modal | [<u>@SSS不知-道</u>][3001] | | ⭐️⭐️ | ✅ |
 | [<u>vLLM 多模态 Cache 缓存机制分析</u>][2079] | Multi-Modal | [<u>@黑白</u>][3034] | | ⭐️⭐️ | ✅ |
-| [<u>Shared Memory IPC Caching: Accelerating Data Transfer in LLM Inference Systems</u>][2058] | Multi-Modal | [<u>@vLLM Blog</u>][3019] | | | |
 
 ### 📖 Dive into PyTorch
 
@@ -195,8 +195,9 @@ In addition, I have also published some technical blogs on the internet, you can
 
 | Title | Category | Author | Note | Rec | Read |
 | :---- | :------- | :----- | :--- | :-- | :--- |
-| [<u>NCCL: Collective Operations</u>][2050] | Collective Communication | [<u>@NVIDIA Developer</u>][3022] | 集合通信常用操作 | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
-| [<u>一文读懂｜RDMA 原理</u>][2035] | Network | [<u>@Linux内核库</u>][3015] | | ⭐️⭐️⭐️ | ✅ |
+| [<u>NCCL: Collective Operations</u>][2050] | Collective Communication | [<u>@NVIDIA Developer</u>][3022] | 集合通信常用操作 | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>一文读懂｜RDMA 原理</u>][2035] | Network | [<u>@Linux内核库</u>][3015] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>PyTorch 中基于 CUDA IPC 的进程间 Tensor 共享简介</u>][2080] | IPC | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️ | ✅ |
 
 ### 📖 Multi-Modality
 
@@ -315,6 +316,7 @@ In addition, I have also published some technical blogs on the internet, you can
 [2077]: https://zhuanlan.zhihu.com/p/617134893
 [2078]: https://zhuanlan.zhihu.com/p/711223667
 [2079]: https://zhuanlan.zhihu.com/p/1984342789287343828?share_code=UKyCzIVku8YY&utm_psn=1994008703599396772
+[2080]: https://zhuanlan.zhihu.com/p/2019510762004050171
 <!------------------------------- Author Links -------------------------------->
 <!-- SSS不知-道 -->
 [3001]: https://www.zhihu.com/people/sss-53-26

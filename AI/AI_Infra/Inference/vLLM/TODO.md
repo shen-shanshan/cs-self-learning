@@ -127,6 +127,11 @@ http://github.com/vllm-project/vllm/issues?q=is%3Aissue%20state%3Aopen%20label%3
 - [ ] Add dummy profile_cudagraph_memory API [#36520](https://github.com/vllm-project/vllm/pull/36520)
 - [ ] Add model_state inputs to CUDA graph capture [#36544](https://github.com/vllm-project/vllm/pull/36544)
 
+### IPC
+
+- [ ] Shared memory based object store for Multimodal data caching and IPC [#20452](https://github.com/vllm-project/vllm/pull/20452)
+- [ ] Add tensor IPC transfer mechanism for multimodal data [#32104](https://github.com/vllm-project/vllm/pull/32104)
+
 ### Others
 
 - [x] [Profiling vLLM](https://docs.vllm.ai/en/latest/contributing/profiling.html)
