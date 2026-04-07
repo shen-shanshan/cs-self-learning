@@ -19,5 +19,6 @@
 
 **Projects:**
 
+- 入门教程：https://github.com/xinli2008/diffusion_from_scratch
 - [cache-dit](https://github.com/vipshop/cache-dit)
 - vllm-omni

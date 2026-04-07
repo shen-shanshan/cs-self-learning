@@ -1,77 +1,8 @@
-# Support Mooncake Based ECConnector for EPD
+# RDMA
 
-## TODO
+## 基本原理
 
-整理笔记：RDMA Mooncake(看 API) SHM
-请介绍 Mooncake store 和 Mooncake transfer engine 的原理是什么？具体的应用场景是什么？
-
-Mooncake 的 session / endpoint 是怎么管理 RDMA 连接的？
-Mooncake vs NCCL connector 本质区别？
-block table 如何跨节点保持一致？
-GPUDirect RDMA 是怎么绕过 CPU page table 的？
-为什么 zero-copy 会限制内存管理？
-pickle？
-
-## Background & Motivation
-
-https://github.com/vllm-project/vllm/pull/33714
-
-From my perspective, the SHM connector, while simple and useful, could potentially be subsumed by a more general connector as a fallback mode (for example, in Mooncake). Therefore, at this stage, I prefer to focus on providing **a Mooncake-based ECConnector** implementation that supports multiple transport backends. This would allow us to cover different throughput and deployment requirements in a unified, production-ready transfer stack.
-
-- `ExampleECConnector` can serve as a lightweight implementation for debugging and experimentation.
-- `MooncakeECConnector` can serve as the industrial-grade solution for real-world deployments.
-
-One technical difference compared to KV Cache transfer is that **encoder cache tensors do not have fixed, pre-allocated memory addresses**. Because of this, we may need to explicitly **allocate a dedicated transmission buffer for encoder cache transfer**. To keep overall memory usage under control, this buffer space might need to be carved out from the encoder cache memory budget itself, ensuring that total memory consumption remains bounded.
-
----
-**SHM？**
-
-Shared Memory = 多个进程/设备可以“直接访问同一块内存”的机制。
-
-- 普通进程通信（非 SHM）：进程 A → 拷贝 → 内核 → 拷贝 → 进程 B（数据被复制多次）；
-- Shared Memory：进程 A ↔ 同一块内存 ↔ 进程 B（没有中间 copy）。
-
-SHM 在不同层的含义：
-
-- 操作系统：POSIX / System V SHM。OS 分配一块内存，映射到多个进程的虚拟地址空间。特点：零拷贝（进程间）、需要同步机制（锁、信号量）。比如：`from multiprocessing import shared_memory`；
-- GPU / CUDA：GPU SM 内部的片上共享内存，给 thread block 用。特点：超快（比 global memory 快很多）。比如：`__shared__ float buf[256]`；
-- 容器 / Docker：是一个 tmpfs（内存文件系统），用来做进程间共享内存。比如 `docker run --shm-size=8g`，对应 `/dev/shm`。
-
-在 vLLM / Mooncake 里的 SHM：跨进程 / 跨 worker 的共享内存，用来避免 KV cache 或 metadata 的复制。
-
-如果在同一台机器上：KV cache → 放在 shared memory。Prefill worker 写，Decode worker 直接读。
-
-|     | SHM    | Mooncake    |
-| --- | ------ | ----------- |
-| 范围  | 单机     | 跨机器         |
-| 机制  | 共享内存映射 | RDMA        |
-| 地址  | 虚拟地址映射 | 物理地址 + rkey |
-| 拷贝  | 0 copy | 0 copy      |
-| 复杂度 | 低      | 高           |
-
-SHM 为什么快？
-
-- 避免数据复制；
-- 避免内核参与。
-
-因此：延迟低、带宽高、CPU 占用低。
-
-SHM 的代价？
-
-- 需要同步：两个进程同时写 → 数据竞争；
-- 生命周期管理复杂：谁分配？谁释放？
-- 内存不可随意移动：地址被多个进程引用，不能 realloc / compact。
-
-总结：SHM / RDMA / Mooncake 本质都是让“多个执行单元共享同一块物理数据”，而不是复制数据。
-
-## Mooncake in vLLM & RDMA 原理
-
-在 vLLM 的 mooncake connector 里，KV cache 是这样处理的：
-取每个 tensor 的 `data_ptr`（GPU 地址），传输用的是裸指针（地址）。
-
-远程共享内存系统：
-“zero-copy + 远程内存访问”
-GPU A memory  <–RDMA–>  GPU B
+RDMA 本质：“zero-copy + 远程内存访问”。
 
 ---
 **zero-copy？**
@@ -232,36 +163,6 @@ NIC 不认识虚拟地址！
 - 加上 rkey：只有拿到 rkey 才能访问。
 
 **lkey / rkey 本质是：让 NIC 在“没有 CPU / page table 参与”的情况下，既能安全地验证访问权限，又能完成虚拟地址 → 物理地址的转换，从而实现真正的 zero-copy RDMA 访问。**
-
----
-**在 vLLM 的 PD 分离场景下，Mooncake 是怎么应用的？**
-
-Mooncake 是以 KV Connector 插件的形式接入 vLLM 的（抽象层：KV Connector）。
-
-MooncakeConnector (实现 KVConnector)：
-
-1. 注册 KV cache 内存：在 Prefill / Decode 初始化时，`batch_register_memory(kv_ptrs, kv_sizes)` 把 GPU KV cache 注册成 RDMA 可访问内存，建立 address → rkey 映射；
-2. 建立 session（P ↔ D）：管理远程内存权限、建立连接（类似 RDMA QP）；
-3. 执行 KV 传输（核心）：`batch_transfer_sync_write(src_ptrs, dst_ptrs, lengths)` 直接把 P 的 GPU 内存 copy 到 D 的 GPU 内存（绕过 CPU）。Decode 侧：`recv_kv(...)`， 没有“接收 buffer copy”这个动作，而是直接写入 Decode 的 KV cache 内存（可以优化为 async pipeline？）。
-
-> Mooncake API:
-> [batch-register-memory](https://kvcache-ai.github.io/Mooncake/python-api-reference/transfer-engine.html#batch-register-memory)
-> [batch-transfer-sync-write](https://kvcache-ai.github.io/Mooncake/python-api-reference/transfer-engine.html#batch-transfer-sync-write)
-
-KV cache 是 block 化的（PagedAttention）：每个 block → 一个固定地址，远程直接 copy block。
-地址是稳定的：vLLM 提前分配 KV cache arena，不做 relocation。
-不走“逻辑 KV”，而是“物理 KV”，vLLM 用 block table 维护逻辑关系：request → block_ids → addr。
-vLLM 管“索引”，Mooncake 管“内存搬运”。
-
-- 传统方案：KV → serialize → network → deserialize → GPU；
-- Mooncake：KV (GPU addr) → RDMA → KV (GPU addr)，少了三层开销：CPU copy、编解码、框架参与。
-
-局限性：
-
-1. 强依赖固定内存布局：无法灵活扩容 KV cache；
-2. 同步传输：Prefill / Decode overlap 不充分；
-3. 强耦合 block size：不同模型/层不灵活；
-4. 不支持 KV compaction：内存碎片问题。
 
 ## 参考资料
 

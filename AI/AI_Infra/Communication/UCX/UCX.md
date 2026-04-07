@@ -1,11 +1,4 @@
-**TODO：**
-
-- UCX vs NCCL 的本质区别？
-
----
-**UCX是什么？**
-
-**UCX** 是你现在这条技术链（RDMA / zero-copy / vLLM / Mooncake）里一个非常关键但容易被忽略的组件。很多系统其实不是直接用 RDMA verbs，而是站在 UCX 之上。
+# UCX
 
 ---
 

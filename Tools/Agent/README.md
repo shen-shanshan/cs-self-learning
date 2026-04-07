@@ -68,3 +68,11 @@ Use plan mode. Only modify files under src/api/, do not touch core logic.
 ```
 
 Plan → Review → Refine → Execute
+
+### 切换模型
+
+`/model`
+
+### 其它
+
+- [不再触发 Claude 使用限制，大幅降低 Token 的 10 个有效习惯！](https://mp.weixin.qq.com/s/HRehP9A9AFs8quxcc2WVhQ)

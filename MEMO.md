@@ -147,6 +147,8 @@ db = "!f() { git branch -D $1 && git branch; }; f"
 git checkout <commit>
 git checkout -b <commit>
 git stash
+# 解决：error: The following untracked working tree files would be overwritten by checkout
+git stash push -u
 git stash pop
 git stash drop [stash_id]
 git stash clear

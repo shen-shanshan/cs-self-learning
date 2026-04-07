@@ -65,24 +65,29 @@ In addition, I have also published some technical blogs on the internet, you can
 - **LLM:**
   - [<u>Basic Knowledges</u>](./AI/LLM/Basic/)
     - [<u>Transformer</u>](./AI/LLM/Basic/Transformer/)
-  - [<u>MoE</u>](./AI/LLM/MoE/)
-  - [<u>Multi-Modality</u>](./AI/LLM/Multi-Modality)
-    - [<u>ViT</u>](./AI/LLM/Multi-Modality/ViT/)
-- **Diffusion:**
-  - [<u>Basic Knowledges</u>](./AI/Diffusion/Basic.md)
-  - [<u>Inference Acceleration</u>](./AI/Diffusion/Inference.md)
+  - [<u>MoE</u>](./AI/LLM/MoE/)  
+- **Multi-Modality:**
+  - [<u>ViT</u>](./AI/Multi_Modality/ViT/README.md)
+  - [<u>Diffusion</u>](./AI/Multi_Modality/Diffusion/README.md)
+    - [<u>Basic Knowledges</u>](./AI/Multi_Modality/Diffusion/Basic.md)
+    - [<u>Inference Acceleration</u>](./AI/Multi_Modality/Diffusion/Inference.md)
 - **AI Infra:**
   - [<u>Environment Preparation</u>](./AI/AI_Infra/Environment_Preparation/README.md)
   - [<u>Basic Knowledges</u>](./AI/AI_Infra/Basic/)
   - [<u>Inference Engine</u>](./AI/AI_Infra/Inference_Engine/Notes/)
     - [<u>vLLM</u>](./AI/AI_Infra/Inference_Engine/vLLM/Notes/)
+  - [<u>Distributed System</u>](./AI/AI_Infra/Distributed_System/)
+    - [<u>Ray</u>](./AI/AI_Infra/Distributed_System/Ray/)
   - [<u>HPC</u>](./AI/AI_Infra/HPC/)
     - [<u>CUDA</u>](./AI/AI_Infra/HPC/CUDA/README.md)
     - [<u>CANN</u>](./AI/AI_Infra/HPC/CANN/README.md)
   - [<u>Communication</u>](./AI/AI_Infra/Communication/)
-    - [<u>NCCL</u>](./AI/AI_Infra/Communication/NCCL/)
-  - [<u>Distributed System</u>](./AI/AI_Infra/Distributed_System/)
-    - [<u>Ray</u>](./AI/AI_Infra/Distributed_System/Ray/)
+    - [<u>NCCL</u>](./AI/AI_Infra/Communication/NCCL/NCCL.md)
+    - [<u>UCX</u>](./AI/AI_Infra/Communication/UCX/)
+    - [<u>NIXL</u>](./AI/AI_Infra/Communication/NIXL/NIXL.md)
+    - [<u>Mooncake</u>](./AI/AI_Infra/Communication/Mooncake/Mooncake.md)
+    - [<u>RDMA</u>](./AI/AI_Infra/Communication/RDMA/RDMA.md)
+    - [<u>SHM</u>](./AI/AI_Infra/Communication/SHM/SHM.md)
 
 ### 🚀 Backend & Big Data
 
