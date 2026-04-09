@@ -68,7 +68,6 @@ http://github.com/vllm-project/vllm/issues?q=is%3Aissue%20state%3Aopen%20label%3
 - [ ] Avoid CPU sync in mrope_positions copy by using full tensor copy. [#7014](https://github.com/vllm-project/vllm-ascend/pull/7014)
 - [ ] Remove H2D synchronization for expert_map in MoE models. [#7000](https://github.com/vllm-project/vllm-ascend/pull/7000)
 
-
 **RFC:**
 
 - [ ] Optimizations for MOE models (GLM4.7, DeepSeek series) [#31755](https://github.com/vllm-project/vllm/issues/31755)

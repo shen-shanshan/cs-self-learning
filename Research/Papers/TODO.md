@@ -19,6 +19,12 @@
 
 - [Approximate Caching for Efficiently Serving Diffusion Models](https://arxiv.org/abs/2312.04429)
 
+## Elastic Serving
+
+https://github.com/ovg-project/kvcached
+Towards Efficient and Practical GPU Multitasking in the Era of LLM
+Prism: Unleashing GPU Sharing for Cost-Efficient Multi-LLM Serving
+
 ## Agent
 
 - [AVO: Agentic Variation Operators for Autonomous Evolutionary Search](https://arxiv.org/abs/2603.24517)
