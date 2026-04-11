@@ -139,3 +139,22 @@ CPU buffer（普通 RDMA）-> DRAM
 GPU buffer（GDR：GPU Direct RDMA）-> VRAM
 
 通常在 CPU 上注册 buffer，原因：GPU 显存紧张、需要跨节点共享、更容易管理。
+
+---
+ZMQ:
+
+ROUTER/DEALER
+PUB/SUB
+send_multipart/recv_multipart
+
+ZMQ 的多种消息模式（PUB/SUB、ROUTER/DEALER）分别是什么意思？应用场景分别是什么？send_multipart/recv_multipart有什么用？
+
+Prompt:
+
+请分析 `vllm/distributed/ec_transfer/ec_connector/mooncake/` 目录下所有关于 zmq/msgspec 相关的代码，包括：交互流程、API 用法、为什么要这么用等。
+将总结的内容保存为一份 markdown 格式的报告，要求图文并貌，并放到当前项目的根目录下。
+
+---
+profiling:
+
+减去 EmbedBlockManager buffer_size
