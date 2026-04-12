@@ -9,6 +9,7 @@
 **Backbone:**
 
 - [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
+- [Fast and Memory-Efficient Video Diffusion Using Streamlined Inference](https://openreview.net/pdf?id=iNvXYQrkpi)
 
 **CFG:**
 

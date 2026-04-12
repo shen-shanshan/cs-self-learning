@@ -2,13 +2,20 @@
 
 ## Motivation
 
-Background:
+Find more details at the [design doc](https://docs.google.com/document/d/1mtvUWnzvJlc2CS6igbB2dTZ2UkjimMlBkp3dWWNfQYE/edit?usp=sharing).
 
-Support EPD disaggregation https://github.com/sgl-project/sglang/pull/12263
+> 参考：https://docs.google.com/document/d/13WD5A03CgPYbuY0fi1wNnp93fcgzSLeIeM_1ot2nIh8/edit?tab=t.0#heading=h.s97lelsb4s5p
 
 ## Proposed Change
 
-Roadmap:
+E 实例后台线程：
+
+- 异步保存；
+- 监听 PD 实例发送请求，调用 mooncake transfer；
+
+关键机制：当 E 节点的 buffer 不够需要清理（需要存入新的 EC）时，要先判断当前需要/正在传输的 mm_hash 有哪些（还不能被清理）。
+
+buffer 的清理机制是什么？TODO：看代码。
 
 ## Future Work
 
