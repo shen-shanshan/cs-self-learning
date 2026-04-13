@@ -20,7 +20,7 @@ buffer 的清理机制是什么？TODO：看代码。
 ## Future Work
 
 Encoder Global Cache Manager https://github.com/sgl-project/sglang/pull/16137
-Support Share Memory based EC Connector https://github.com/vllm-project/vllm/pull/33714
+Support Share Memory based ECConnector https://github.com/vllm-project/vllm/pull/33714
 Configurable encoder compute and cache budget https://github.com/vllm-project/vllm/pull/34051
 Add score encoder cache manager https://github.com/vllm-project/vllm/pull/38330
 Support ViT Full CUDA Graph https://github.com/vllm-project/vllm/issues/38175
