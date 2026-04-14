@@ -149,6 +149,7 @@ pip install torch torchvision torchaudio \
 --index-url https://download.pytorch.org/whl/cu121
 
 # Install requirements
+# --index-strategy unsafe-best-match
 uv pip install -r requirements/common.txt \
 --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 --extra-index-url https://download.pytorch.org/whl/cu124
@@ -182,7 +183,7 @@ uv pip uninstall torch torchvision torchaudio torchtext triton xformers
 uv pip list | grep torch
 
 # 秒装 cuda pytorch
-uv pip install torch==2.10.0 torchaudio==2.10.0 torchvision==0.25.0 \
+uv pip install torch==2.11.0 torchaudio==2.11.0 torchvision==0.26.0 \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
 -f https://mirrors.aliyun.com/pytorch-wheels/cu124
 

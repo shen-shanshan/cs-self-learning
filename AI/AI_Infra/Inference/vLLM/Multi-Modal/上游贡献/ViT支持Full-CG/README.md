@@ -33,6 +33,7 @@ vllm bench mm-processor \
 ### Functional test
 
 ```bash
+export VLLM_USE_MODELSCOPE=True
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
 # export PYTORCH_ALLOC_CONF=expandable_segments:True
