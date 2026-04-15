@@ -163,11 +163,14 @@ uv pip install -r benchmarks/multi_turn/requirements.txt \
 --extra-index-url https://download.pytorch.org/whl/cu124
 
 # Install vllm
+# 查看网络下载情况：nethogs
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
---index-url https://download.pytorch.org/whl/cu124 \
+--index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
 --index-strategy unsafe-best-match \
 --prerelease=allow \
---no-build-isolation
+--no-build-isolation \
+
+--index-url https://download.pytorch.org/whl/cu124 \
 # --extra-index-url https://download.pytorch.org/whl/cu121 \
 # --index-url https://mirrors.aliyun.com/pypi/simple
 
@@ -178,11 +181,20 @@ VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
 # -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # 卸载 torch 相关的包：
-uv pip uninstall torch torchvision torchaudio torchtext triton xformers
+uv pip uninstall torch torchvision torchaudio torchtext triton xformers torch-c-dlpack-ext
 # 确认是否卸载干净：
 uv pip list | grep torch
 
 # 秒装 cuda pytorch
+# --force-reinstall
+uv pip install --force-reinstall torch==2.10.0 torchaudio==2.10.0 torchvision==0.25.0 \
+-i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+-f https://mirrors.aliyun.com/pytorch-wheels/cu124
+##################################################
+uv pip install torchtext triton xformers torch-c-dlpack-ext \
+-i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+-f https://mirrors.aliyun.com/pytorch-wheels/cu124
+##################################################
 uv pip install torch==2.11.0 torchaudio==2.11.0 torchvision==0.26.0 \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
 -f https://mirrors.aliyun.com/pytorch-wheels/cu124
@@ -195,6 +207,10 @@ uv pip install torch \
 # 验证 torch 使用的 cuda 版本：
 import torch
 print(torch.version.cuda)
+
+# torch version 损坏：
+ls .venv/lib/python3.12/site-packages | grep -i torch
+rm -rf .venv/lib/python3.12/site-packages/torch*
 
 # https://github.com/vllm-project/vllm/issues/30464
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \

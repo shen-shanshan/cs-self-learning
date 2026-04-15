@@ -122,10 +122,12 @@ import os
 from huggingface_hub import snapshot_download
 
 
-os.environ['HF_DATASETS_CACHE'] = '/home/sss/.cache/huggingface/datasets'
+# os.environ['HF_DATASETS_CACHE'] = '/home/sss/.cache/huggingface/datasets'
+# os.environ['HF_DATASETS_CACHE'] = '/shared/datasets'
 snapshot_download(
     repo_id="lmarena-ai/vision-arena-bench-v0.1",
     repo_type="dataset",
+    cache_dir="/shared/sss/datasets",
 )
 ```
 
