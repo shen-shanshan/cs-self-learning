@@ -195,12 +195,14 @@ uv pip install torchtext triton xformers torch-c-dlpack-ext \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
 -f https://mirrors.aliyun.com/pytorch-wheels/cu124
 ##################################################
-uv pip install torch==2.11.0 torchaudio==2.11.0 torchvision==0.26.0 \
+uv pip install torch==2.11.0 \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
 -f https://mirrors.aliyun.com/pytorch-wheels/cu124
 
+ torchaudio==2.11.0 torchvision==0.26.0
+
 # 避免自动装成 cu128 的 torch
-uv pip install torch \
+uv pip install torch==2.11.0 \
 --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 --extra-index-url https://download.pytorch.org/whl/cu124
 

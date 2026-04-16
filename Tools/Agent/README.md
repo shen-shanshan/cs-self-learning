@@ -69,6 +69,15 @@ Use plan mode. Only modify files under src/api/, do not touch core logic.
 
 Plan → Review → Refine → Execute
 
+**怎么复制并保存 plan？**
+
+```bash
+# open plan in vim
+/plan open
+# copy the whole file
+:%y+
+```
+
 ### 切换模型
 
 `/model`
