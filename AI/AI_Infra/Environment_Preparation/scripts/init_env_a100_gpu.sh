@@ -96,38 +96,34 @@ uv pip install pre-commit -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simpl
 pre-commit install
 
 UV_HTTP_TIMEOUT=300 UV_MAX_CONCURRENCY=32 \
-uv pip install torch==2.10.0 torchaudio==2.10.0 torchvision==0.25.0 \
+uv pip install torch==2.11.0 torchaudio==2.11.0 torchvision==0.26.0 \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
--f https://mirrors.aliyun.com/pytorch-wheels/cu124
+-f https://mirrors.aliyun.com/pytorch-wheels/cu130
 
-uv pip install "cmake>=3.26.1" "ninja" "packaging>=24.2" "setuptools>=77.0.3, <81.0.0" "setuptools-scm>=8.0" "wheel" "jinja2" \
+uv pip install "cmake>=3.26.1" "ninja" "packaging>=24.2" "setuptools>=77.0.3,<81.0.0" "setuptools-scm>=8.0" "wheel" "jinja2" \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
--f https://mirrors.aliyun.com/pytorch-wheels/cu124
+-f https://mirrors.aliyun.com/pytorch-wheels/cu130
 
 # Install requirements
 uv pip install -r requirements/common.txt \
 --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
---extra-index-url https://download.pytorch.org/whl/cu124
+--extra-index-url https://download.pytorch.org/whl/cu130
 
 uv pip install -r requirements/cuda.txt \
 --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
---extra-index-url https://download.pytorch.org/whl/cu124
+--extra-index-url https://download.pytorch.org/whl/cu130 \
+--index-strategy unsafe-best-match \
+--prerelease=allow
 
 uv pip install -r benchmarks/multi_turn/requirements.txt \
 --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
---extra-index-url https://download.pytorch.org/whl/cu124
+--extra-index-url https://download.pytorch.org/whl/cu130
 
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
---index-url https://download.pytorch.org/whl/cu124 \
+--index-url https://download.pytorch.org/whl/cu130 \
 --index-strategy unsafe-best-match \
 --prerelease=allow \
 --no-build-isolation
 
-
-# clear memory
-df -h
-du -h . | sort -hr | head -20
-# sudo mv /home/sss/host_data/* /shared/sss/
-# sudo rsync -a --whole-file --info=progress2 /home/sss/host_data/github/* /shared/sss/github/
-# sudo rsync -av --progress /shared/sss/cuda-12.4/* /home/sss/host_data/cuda-12.4/
-# rsync -a --delete
+# vllm
+export VLLM_WORKER_MULTIPROC_METHOD=spawn

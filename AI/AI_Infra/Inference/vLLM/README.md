@@ -165,54 +165,16 @@ uv pip install -r benchmarks/multi_turn/requirements.txt \
 # Install vllm
 # 查看网络下载情况：nethogs
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
---index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+--index-url https://download.pytorch.org/whl/cu130 \
 --index-strategy unsafe-best-match \
 --prerelease=allow \
 --no-build-isolation \
 
---index-url https://download.pytorch.org/whl/cu124 \
-# --extra-index-url https://download.pytorch.org/whl/cu121 \
-# --index-url https://mirrors.aliyun.com/pypi/simple
-
-# VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
-# --extra-index-url https://download.pytorch.org/whl/cu124 \
-# --index-strategy unsafe-best-match \
-# --prerelease=allow \
-# -i https://pypi.tuna.tsinghua.edu.cn/simple
-
-# 卸载 torch 相关的包：
-uv pip uninstall torch torchvision torchaudio torchtext triton xformers torch-c-dlpack-ext
-# 确认是否卸载干净：
-uv pip list | grep torch
-
 # 秒装 cuda pytorch
 # --force-reinstall
-uv pip install --force-reinstall torch==2.10.0 torchaudio==2.10.0 torchvision==0.25.0 \
+uv pip install torch==2.11.0 torchaudio==2.11.0 torchvision==0.26.0 \
 -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
--f https://mirrors.aliyun.com/pytorch-wheels/cu124
-##################################################
-uv pip install torchtext triton xformers torch-c-dlpack-ext \
--i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
--f https://mirrors.aliyun.com/pytorch-wheels/cu124
-##################################################
-uv pip install torch==2.11.0 \
--i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
--f https://mirrors.aliyun.com/pytorch-wheels/cu124
-
- torchaudio==2.11.0 torchvision==0.26.0
-
-# 避免自动装成 cu128 的 torch
-uv pip install torch==2.11.0 \
---index-url https://pypi.tuna.tsinghua.edu.cn/simple \
---extra-index-url https://download.pytorch.org/whl/cu124
-
-# 验证 torch 使用的 cuda 版本：
-import torch
-print(torch.version.cuda)
-
-# torch version 损坏：
-ls .venv/lib/python3.12/site-packages | grep -i torch
-rm -rf .venv/lib/python3.12/site-packages/torch*
+-f https://mirrors.aliyun.com/pytorch-wheels/cu130
 
 # https://github.com/vllm-project/vllm/issues/30464
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
@@ -222,17 +184,18 @@ torch==2.10.0 -f https://mirrors.aliyun.com/pytorch-wheels/cu124 \
 --prerelease=allow
 ```
 
+配置代理：
+
+```bash
 RemoteForward 7890 127.0.0.1:7890
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 ssh coder.sss-gpu-a100.main
 curl https://google.com -I
 
-```bash
 # 本地运行：
 ssh -D 1080 shanshan-shen@remote-server
 # 然后服务器配置：
 export all_proxy="socks5://127.0.0.1:1080"
-
 
 # 在远程服务器执行：
 ssh -R 9999:localhost:7890 user@你的本地IP
@@ -266,4 +229,31 @@ VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
 --index-url https://download.pytorch.org/whl/cu124 \
 --index-strategy unsafe-best-match \
 --prerelease=allow
+```
+
+调整 torch 版本：
+
+```bash
+# 清除所有 torch 相关的安装包
+ls .venv/lib/python3.12/site-packages | grep -i torch
+rm -rf .venv/lib/python3.12/site-packages/torch*
+# 卸载 torch 相关的包：
+uv pip uninstall torch torchvision torchaudio torchtext triton xformers torch-c-dlpack-ext
+# 确认是否卸载干净：
+uv pip list | grep torch
+
+pip uninstall -y nvidia-nccl-cu12 nvidia-nccl-cu13
+
+# 重新安装 torch 相关包
+uv pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu130
+
+# 验证 torch 使用的 cuda 版本：
+# import torch
+# print(torch.version.cuda)
+python - << 'EOF'
+import torch
+print("torch:", torch.__version__)
+print("cuda:", torch.version.cuda)
+print("nccl:", torch.cuda.nccl.version())
+EOF
 ```
