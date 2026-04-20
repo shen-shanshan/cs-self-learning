@@ -33,7 +33,7 @@ vllm bench mm-processor \
 ### Functional test
 
 ```bash
-export VLLM_USE_MODELSCOPE=True
+# export VLLM_USE_MODELSCOPE=True
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
 # export PYTORCH_ALLOC_CONF=expandable_segments:True
@@ -45,7 +45,7 @@ python examples/offline_inference/vision_language.py -m qwen3_vl --modality "vid
 
 ```python
 def run_qwen3_vl(questions: list[str], modality: str) -> ModelRequestData:
-    model_name = "/home/sss/.cache/modelscope/hub/models/Qwen/Qwen3-VL-8B-Instruct"
+    model_name = "/shared/models/modelscope/models/Qwen/Qwen3-VL-8B-Instruct"
     engine_args = EngineArgs(
         model=model_name,
         max_model_len=4096,
@@ -104,5 +104,23 @@ The video is funny because it captures a baby wearing glasses and pretending to 
 Online serving:
 
 ```bash
+vllm serve /shared/models/modelscope/models/Qwen/Qwen3-VL-8B-Instruct \
+--max-model-len 16384 \
+--max-num-batched-tokens 16384 \
+--limit-mm-per-prompt '{"image": 1}' \
+--enforce-eager
 
+curl -X POST http://localhost:8000/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "/shared/models/modelscope/models/Qwen/Qwen3-VL-8B-Instruct",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": [
+                {"type": "image_url", "image_url": {"url": "https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png"}},
+                {"type": "text", "text": "What is the text in the illustrate? How does it look?"}
+            ]}
+        ],
+        "max_tokens": 100
+    }'
 ```

@@ -134,7 +134,7 @@ uv pip install pre-commit -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simpl
 pre-commit install
 
 uv pip install "modelscope>=1.18.1" -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
-uv pip install modelscope -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+uv pip install modelscope -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple -U
 
 # vLLM supports different CUDA versions but you need to install pytorch that corresponds to your CUDA version and then build vLLM from source.
 # cu121 与 CUDA 12.4 runtime 完全兼容

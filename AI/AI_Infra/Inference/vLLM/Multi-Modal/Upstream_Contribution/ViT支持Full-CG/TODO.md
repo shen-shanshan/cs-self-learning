@@ -2,10 +2,6 @@
 
 ## Future Works
 
-- [ ] Support replay buffer cache
-- [ ] Support mixed (image + video) inputs
-- [ ] Support more models
-
 ## Support Video Inference
 
 - [x] 用 AI 重新生成 PR 描述（写 skill）
