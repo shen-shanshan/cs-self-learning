@@ -6,7 +6,9 @@
 
 **ViT CG:**
 
-- [ ] Qwen3-VL ViT CG 支持 mixed inputs -> update doc (WIP)
+- [x] Qwen3-VL ViT CG 支持 mixed inputs -> update doc
 - [ ] vision example add `--enable-cuda-graph` param
-- [ ] update default `max_frames_per_batch` according to model config `_MAX_FRAMES_PER_VIDEO` -> add new CG interface
+- [ ] update default `max_frames_per_batch` according to model config `_MAX_FRAMES_PER_VIDEO` -> add new CG interface (WIP)
 - [ ] Add e2e tests
+- [ ] 测试 Qwen3.5 并更新文档
+- [ ] 梳理 model list 放到 issue

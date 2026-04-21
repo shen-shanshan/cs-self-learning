@@ -18,6 +18,7 @@ python examples/offline_inference/vision_language.py \
 ```python
 def run_qwen3_vl(questions: list[str], modality: str) -> ModelRequestData:
     model_name = "/shared/models/modelscope/models/Qwen/Qwen3-VL-8B-Instruct"
+    mm_limit = {"image": 1, "video": 1} if modality == "image+video" else {modality: 1}
     engine_args = EngineArgs(
         model=model_name,
         max_model_len=4096,
@@ -27,7 +28,7 @@ def run_qwen3_vl(questions: list[str], modality: str) -> ModelRequestData:
             "max_pixels": 1280 * 28 * 28,
             "fps": 1,
         },
-        limit_mm_per_prompt={"image": 1, "video": 1},
+        limit_mm_per_prompt=mm_limit,
         compilation_config={
             "cudagraph_mm_encoder": True,
             "encoder_cudagraph_token_budgets": [512, 1024, 1536, 2048, 2560, 3072, 3584, 4096, 4864],
