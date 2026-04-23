@@ -1,14 +1,19 @@
 # TODO
 
-- [ ] Linear 算子列表 OOT 扩展支持：https://github.com/vllm-project/vllm/pull/39538
-- [ ] 适配 SGLang ViT 新特性：https://github.com/sgl-project/sglang/pull/22038
-- [ ] EPD 支持 Mooncake 传输后端
-
 **ViT CG:**
 
 - [x] Qwen3-VL ViT CG 支持 mixed inputs -> update doc
-- [ ] vision example add `--enable-cuda-graph` param
-- [ ] update default `max_frames_per_batch` according to model config `_MAX_FRAMES_PER_VIDEO` -> add new CG interface (WIP)
+- [ ] VLM example add `--enable-cuda-graph` param
+- [x] update default `max_frames_per_batch` according to model config `_MAX_FRAMES_PER_VIDEO` -> add new CG interface (WIP)
 - [ ] Add e2e tests
 - [ ] 测试 Qwen3.5 并更新文档
-- [ ] 梳理 model list 放到 issue
+- [x] 梳理 model list 放到 issue
+- [ ] 优化 `encoder_cudagraph_token_budgets` max value auto-infer
+
+**EPD:**
+
+- [ ] EPD 支持 Mooncake 传输后端
+
+**OOT:**
+
+- [ ] Linear 算子列表 OOT 扩展支持：https://github.com/vllm-project/vllm/pull/39538

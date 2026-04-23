@@ -29,6 +29,7 @@ def run_qwen3_vl(questions: list[str], modality: str) -> ModelRequestData:
 ```bash
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
+export CUDA_VISIBLE_DEVICES=7
 
 # "encoder_cudagraph_max_frames_per_batch": 64
 python examples/offline_inference/vision_language.py -m qwen3_vl --modality "image"
