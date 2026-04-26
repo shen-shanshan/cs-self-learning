@@ -29,6 +29,10 @@ https://github.com/ovg-project/kvcached
 Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter
 https://arxiv.org/abs/2604.15039
 
+## KV Cache
+
+- [StructKV: Preserving the Structural Skeleton for Scalable Long-Context Inference](https://arxiv.org/abs/2604.06746)
+
 ## Agent
 
 - [AVO: Agentic Variation Operators for Autonomous Evolutionary Search](https://arxiv.org/abs/2603.24517)
