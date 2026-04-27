@@ -4,6 +4,10 @@
 
 - [DeepStack: Deeply Stacking Visual Tokens is Surprisingly Simple and Effective for LMMs](https://arxiv.org/abs/2406.04334)
 
+## Omni
+
+- [VeOmni: Scaling Any Modality Model Training with Model-Centric Distributed Recipe Zoo](https://arxiv.org/abs/2508.02317)
+
 ## Diffusion
 
 **Backbone:**
@@ -26,8 +30,7 @@ Towards Efficient and Practical GPU Multitasking in the Era of LLM
 Prism: Unleashing GPU Sharing for Cost-Efficient Multi-LLM Serving
 https://github.com/ovg-project/kvcached
 
-Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter
-https://arxiv.org/abs/2604.15039
+- [Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter](https://arxiv.org/abs/2604.15039)
 
 ## KV Cache
 
