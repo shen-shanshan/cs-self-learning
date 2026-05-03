@@ -25,16 +25,14 @@ This repository archives my notes and materials during my computer science self-
 - 📚 [<u>Papers</u>](#-papers)
 - 📚 [<u>Learning Projects</u>](#-learning-projects)
 
+<!--
 In addition, I have also published some technical blogs on the internet, you can read them at links below.
 
 - 📖 My technical blogs: [Zhihu](https://www.zhihu.com/people/sss-53-26), [Personal Website](https://shen-shanshan.github.io/articles/%E6%88%91%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E5%90%88%E9%9B%86/).
-<!-- - 📖 My publications: [Google Scholar](./Research/Publications/). -->
+- 📖 My publications: [Google Scholar](https://scholar.google.com.hk/citations?hl=zh-CN&user=QYkrKNwAAAAJ).
+-->
 
-😊 Welcome to star this repository!
-
-<!-- <p align="center">
-    <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
-</p> -->
+Welcome to star this repository! 😊
 
 ## 📚 Learning Notes
 

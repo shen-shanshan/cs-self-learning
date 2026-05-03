@@ -2,8 +2,6 @@
 
 ## Tasks
 
-- [vLLM & vLLM-Ascend Tasks](https://docs.google.com/document/d/1Agjc8Lg3emmqaUo4FLO9PV5MKQl8BxP9TOHPjPqcIOM/edit?tab=t.0)
-
 **TODO（P0）：**
 
 - [ ] 学习 Triton 算子开发
@@ -12,7 +10,7 @@
 - [ ] 学习 Diffusion 模型原理与推理技术
   - https://www.zhihu.com/question/1919814183635093018
   - EPD：https://lmsys.org/blog/2026-01-12-epd/
-- [ ] 学习 CUDA Graph 原理
+- [x] 学习 CUDA Graph 原理
   - https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb
 - [ ] 梳理多模态弹性推理技术综述
   - https://arxiv.org/abs/2401.13601
@@ -47,8 +45,6 @@
 - [ ] [2025 年最全面的 LLM 架构技术解析](https://mp.weixin.qq.com/s/7qVwBhE5JcJFnyOKpYNCeA)
 - [ ] [The Unreasonable Effectiveness of Recurrent Neural Networks](https://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 - [ ] [The Illustrated Word2vec - Jay Alammar](https://jalammar.github.io/illustrated-word2vec/)
-- [ ] [The Big LLM Architecture Comparison 🌟](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)
-- [ ] [A Visual Guide to Attention Variants in Modern LLMs 🌟](https://magazine.sebastianraschka.com/p/visual-attention-variants)
 
 Transformer：
 
