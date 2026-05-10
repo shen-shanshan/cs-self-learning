@@ -94,7 +94,8 @@ source /usr/local/Ascend/nnal/atb/set_env.sh
 # export COMPILE_CUSTOM_KERNELS=1
 # export PIP_EXTRA_INDEX_URL=https://mirrors.huaweicloud.com/ascend/repos/pypi
 pip install -v -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install -r requirements-dev.txt
+pip install -r requirements-dev.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install -r requirements-lint.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install modelscope>=1.18.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pre-commit install
 

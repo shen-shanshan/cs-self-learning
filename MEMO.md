@@ -438,16 +438,19 @@ export IMAGE=quay.io/ascend/vllm-ascend:main
 export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 export IMAGE=quay.nju.edu.cn/ascend/vllm-ascend:main-a3
 
-export IMAGE=quay.io/ascend/vllm-ascend:main-a3
 docker run \
 --privileged=true \
 --name sss \
 --net=host \
--e ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
+-e ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
 --device /dev/davinci0 \
 --device /dev/davinci1 \
 --device /dev/davinci2 \
 --device /dev/davinci3 \
+--device /dev/davinci4 \
+--device /dev/davinci5 \
+--device /dev/davinci6 \
+--device /dev/davinci7 \
 --device /dev/davinci_manager \
 --device /dev/devmm_svm \
 --device /dev/hisi_hdc \
@@ -459,15 +462,12 @@ docker run \
 -v /etc/ascend_install.info:/etc/ascend_install.info \
 -v /home/sss:/home/sss \
 -v /mnt/sfs_turbo/ascend-ci-share-nv-action-vllm-benchmarks:/root/.cache \
--p 8002:8002 \
+-p 8333:22 \
 -e VLLM_USE_MODELSCOPE=True \
 -e PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256 \
 -it $IMAGE /bin/bash
 
---device /dev/davinci4 \
---device /dev/davinci5 \
---device /dev/davinci6 \
---device /dev/davinci7 \
+# -e ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
 --device /dev/davinci8 \
 --device /dev/davinci9 \
 --device /dev/davinci10 \

@@ -61,9 +61,9 @@ mkdir cuda-12.4
 sudo mv /usr/local/cuda-12.4/* /shared/sss/cuda-12.4/
 # 配置环境变量
 sudo vim ~/.bashrc
-export CUDA_HOME=/shared/sss/cuda-12.4
-export PATH=$PATH:$CUDA_HOME/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64
+export CUDA_HOME=/shared/sss/cuda-13.0
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 alias gpus='nvidia-smi'
 alias watch-gpus='watch -n 1 nvidia-smi'
 source ~/.bashrc
@@ -119,11 +119,19 @@ uv pip install -r benchmarks/multi_turn/requirements.txt \
 --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 --extra-index-url https://download.pytorch.org/whl/cu130
 
+# export VLLM_USE_PRECOMPILED=1
+# export VLLM_PRECOMPILED_WHEEL_COMMIT=nightly
+# export VLLM_PRECOMPILED_WHEEL_VARIANT=cu129
+
 VLLM_USE_PRECOMPILED=1 uv pip install -v --editable . \
 --index-url https://download.pytorch.org/whl/cu130 \
 --index-strategy unsafe-best-match \
 --prerelease=allow \
 --no-build-isolation
+
+uv pip install -U vllm \
+--torch-backend=auto \
+--extra-index-url https://wheels.vllm.ai/nightly
 
 # vllm
 export VLLM_WORKER_MULTIPROC_METHOD=spawn
