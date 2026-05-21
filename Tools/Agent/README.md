@@ -69,6 +69,10 @@ Use plan mode. Only modify files under src/api/, do not touch core logic.
 
 Plan → Review → Refine → Execute
 
+Use `/plan open` to edit this plan in Vim.
+
+> Copy the whole file: `:%y+`
+
 **怎么复制并保存 plan？**
 
 ```bash

@@ -56,12 +56,15 @@ cat /etc/hostname  # liteserver-for-vllm-ascend-00001 f26631d36eaa
 sudo vim /etc/hosts
 ```
 
-Vim 配置：d
+Vim：
 
 ```bash
+# 全局配置
 vim ~/.vimrc
-
 set number
+
+# 复制全文
+:%y+
 ```
 
 其它：
@@ -544,16 +547,17 @@ VSCode 调试配置：
 
 ## Open Source
 
-```bash
-# 开源社区常用话术
+**开源社区常用话术：**
+
 The CI is finally passed and this PR can be merged.
+
 I have rebased on the latest main and nothing changed.
 
-Hello Russell, I have worked on some structured output PR before and really thanks for your review and suggestion. I apologize for the intrusion, but I was hoping you could take a look at https://github.com/vllm-project/vllm/pull/21999 and https://github.com/vllm-project/vllm/pull/22481, or if there is a sig about this feature and contributors can share their PRs needed review? Looking forward to your reply~
+Sorry for late, I'm busy with working these days. I'll take a look at this PR today.
+Sorry for late, I'm busy with working these days. I left some comments and questions.
 
-Hello, I'm really thanks for your review and suggestion about https://github.com/vllm-project/vllm/pull/26487. I have updated the code and related doc recently. Could you please help take a look at this PR? Thanks~
+**常用符号：**
 
-# 常用符号
 🎯
 
 > [!NOTE]
@@ -562,16 +566,3 @@ Hello, I'm really thanks for your review and suggestion about https://github.com
 <details>
 <summary>logs</summary>
 </details>
-```
-
-PR 模板：
-
-```markdown
-**Background:**
-
-...
-
-**Proposed Change:**
-
-...
-```

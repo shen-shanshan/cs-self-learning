@@ -6,8 +6,8 @@
 - [x] 看 vLLM 中 Step3-VL 源码及其 ViT CG 实现
 - [x] 看 DeepSeek-OCR AI 总结
 - [x] 看 DeepSeek-OCR 论文
-- [ ] 看 vLLM 中 DeepSeek-OCR 源码（DeepEncoder）
-- [ ] Vibe-Coding ViT CG 新接口设计
+- [x] 看 vLLM 中 DeepSeek-OCR 源码（DeepEncoder）
+- [x] Vibe-Coding ViT CG 新接口设计
 
 ## Background
 
@@ -28,6 +28,19 @@ Resolution: Multi-crop strategy consisting of a 728×728 global view and multipl
 视觉 token 的顺序是 local → global → separator，这确保了局部细节（高分辨率文字）在序列中先出现，全局上下文（文档结构理解）作为补充。
 
 DeepSeek-OCR 官方推荐关闭 prefix caching 和 mm_processor_cache，这是因为其动态分块（Gundam mode）导致每次请求的图像处理结果随图像尺寸变化，缓存命中率极低且浪费显存。
+
+DeepSeek-OCR presents the most complex pattern: SAM → CLIP dual encoder for both global images and local patches, with per-image merge based on variable `crop_shape`.
+
+**Key Features:**
+
+- **Dual encoder:** SAM-B + DeepCLIP in series for both global images and local patches.
+- **Multi-input:** pixel_values (global images) + images_crop (local patches) + images_spatial_crop (tile layout metadata).
+- **Two-pass ViT:** Global and local each go through SAM→CLIP→projector separately.
+- **Per-image merge:** Output combines local patches + global image + view_separator with newline tokens interspersed.
+
+**Strategy:**
+
+Batch the vision encoder forward passes in one CUDA graph, perform CPU-side merge in `postprocess_encoder_output` (mirroring Step3-VL's pattern).
 
 ## ViT CG Interface Design
 
