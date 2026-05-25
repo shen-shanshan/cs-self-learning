@@ -1,5 +1,10 @@
 # Step3-VL & XXX-OCR
 
+## Preliminary Study
+
+- [NVIDIA Docs - Getting Started with CUDA Graphs](https://developer.nvidia.com/blog/cuda-graphs/?utm_source=chatgpt.com)
+- [PyTorch Docs - CUDA Graphs](https://docs.pytorch.org/docs/2.12/notes/cuda.html#cuda-graphs)
+
 ## TODO
 
 - [x] 看 Step3-VL AI 总结
