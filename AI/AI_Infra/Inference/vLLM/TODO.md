@@ -119,12 +119,14 @@ http://github.com/vllm-project/vllm/issues?q=is%3Aissue%20state%3Aopen%20label%3
 
 - [ ] [Disaggregated Prefilling](https://docs.vllm.ai/en/latest/features/disagg_prefill.html)
 
-### Model Runner V2
+### Model Runner V2 🌟
 
 - [ ] Remove UvaBufferPool for cpu->gpu copy [#33055](https://github.com/vllm-project/vllm/pull/33055)
 - [ ] Use a different stream for grammar bitmask h2d copy [#33059](https://github.com/vllm-project/vllm/pull/33059)
 - [ ] Add dummy profile_cudagraph_memory API [#36520](https://github.com/vllm-project/vllm/pull/36520)
 - [ ] Add model_state inputs to CUDA graph capture [#36544](https://github.com/vllm-project/vllm/pull/36544)
+- [ ] Breakable CUDA graph [#42304](https://github.com/vllm-project/vllm/pull/42304)
+- [ ] Support breakable CUDA graph [#44050](https://github.com/vllm-project/vllm/pull/44050)
 
 ### IPC
 
