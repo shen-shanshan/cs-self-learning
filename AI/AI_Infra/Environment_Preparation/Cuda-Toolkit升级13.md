@@ -18,11 +18,11 @@ sudo sh cuda_13.0.0_580.65.06_linux.run
 
 # Move
 mkdir cuda-13.0
-sudo mv /usr/local/cuda-13.0/* /shared/sss/cuda-13.0/
+sudo mv /usr/local/cuda-13.0/* /home/sss-host/cuda-13.0/
 
 # 配置环境变量
 sudo vim ~/.bashrc
-export CUDA_HOME=/shared/sss/cuda-13.0
+export CUDA_HOME=/home/sss-host/cuda-13.0
 export PATH=$PATH:$CUDA_HOME/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64
 source ~/.bashrc

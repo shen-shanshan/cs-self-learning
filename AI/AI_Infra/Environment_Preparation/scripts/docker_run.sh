@@ -5,7 +5,8 @@ docker run \
 --name sss-vllm-gpu \
 --gpus all \
 -v /mnt/sfs_turbo:/shared \
+-v /opt/docker_cache/sss:/home/sss-host \
 -p 8333:22 \
 --ipc=host \
 --shm-size=8g \
--it sss-vllm-gpu:v1.0 /bin/bash
+-it sss-gpu-dev:base /bin/bash

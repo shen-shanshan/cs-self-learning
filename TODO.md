@@ -23,6 +23,7 @@
   - https://github.com/ai-dynamo/nixl
 - [ ] 学习推理性能优化手段
   - [Fused QKV GEMM + QKNorm + RoPE](https://zhuanlan.zhihu.com/p/2013745638005817781)
+- [ ] 什么是 Bilinear Interpolation Algorithm、Bicubic Interpolation Algorithm？
 
 ## 研究综述
 

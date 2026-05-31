@@ -10,9 +10,8 @@
 - [x] 梳理 model list 放到 issue
 - [ ] 优化 `encoder_cudagraph_token_budgets` max value auto-infer
 - [ ] 修复 `max_frames_per_batch` auto-infer 上限过少（=2）的 bug
-- [ ] 支持 model runner v2
-- [ ] 优化接口兼容性，支持 OCR/Step3-VL 模型
-- [ ] 整体重构，简化接口数量
+- [ ] 支持 DeepSeek-OCR 模型
+- [ ] 支持 ModelRunner V2
 
 **EPD:**
 
@@ -26,3 +25,7 @@
 **Ascend:**
 
 - [ ] 移除 vllm-ascend kimi patch
+
+**ModelRunner V2:**
+
+- [ ] 支持 AMD GPU
