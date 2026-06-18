@@ -8,8 +8,6 @@
 
 因此，我整理了自己平时在 vLLM 社区工作的 Workflow 以及一些常用的 Skill，放到了 [vllm-dev-skills](https://github.com/shen-shanshan/vllm-dev-skills) 这个仓库中，分享给同样想做 or 正在做 vLLM 社区贡献的朋友。
 
-> 注意：从这里开始，以下内容都是 AI 生成的（Co-authored-by: Claude Code）。
-
 ## 二、项目介绍
 
 这个仓库按开发流程将 Skill 分为三大类：

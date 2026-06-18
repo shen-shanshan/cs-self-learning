@@ -159,6 +159,14 @@ git clone -b 分支名 仓库地址
 git cherry-pick <commitHash>
 git checkout -b <branch_name> <tag_name>
 
+# 同步 main 最新代码
+git fetch origin
+git merge origin/main
+
+# 重新触发 CI
+git commit --allow-empty -sm "trigger ci"
+git push
+
 git fetch --tags
 # 查看所有 tag
 git tag -l
@@ -557,10 +565,13 @@ I haven't got a chance to take a look but let me add ready label.
 
 Sorry for late, I'm busy with working these days. I'll take a look at this PR today.
 Sorry for late, I'm busy with working these days. I left some comments and questions.
+
 I left some comments and questions. Others LGTM.
 
 Done with my pass. Also CC @
 Could someone with write access approve if it looks good to you?
+
+Sorry for late, I will take a look at this PR this week.
 
 **常用符号：**
 

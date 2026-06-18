@@ -9,7 +9,11 @@ source .venv/bin/activate
 export VLLM_USE_MODELSCOPE=False
 export HF_ENDPOINT="https://hf-mirror.com"
 # export VLLM_USE_MODELSCOPE=True
+
+# lint
+uv pip install pre-commit>=4.5.1
 pre-commit install
+pre-commit run --all-files
 
 # def run_qwen2_5_vl
 # /home/sss/.cache/modelscope/hub/models/Qwen/Qwen2.5-VL-7B-Instruct

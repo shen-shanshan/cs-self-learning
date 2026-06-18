@@ -98,6 +98,7 @@ cd /home/sss-host/github/vllm
 export UV_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 export UV_HTTP_TIMEOUT=1000000000
 export UV_CACHE_DIR=/home/sss-host/uv
+# export UV_CACHE_DIR=/home/sss-host/.cache/uv
 # export UV_LINK_MODE=copy
 uv venv --python 3.12 --seed -v
 source .venv/bin/activate
@@ -131,9 +132,18 @@ uv pip install -r requirements/cuda.txt \
 --index-strategy unsafe-best-match \
 --prerelease=allow
 
+uv pip install -r requirements/test/cuda.txt \
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+--extra-index-url https://download.pytorch.org/whl/cu130 \
+--index-strategy unsafe-best-match \
+--prerelease=allow
+
 uv pip install -r benchmarks/multi_turn/requirements.txt \
 --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 --extra-index-url https://download.pytorch.org/whl/cu130
+
+uv pip install -r requirements/test/cuda.txt \
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 # export VLLM_USE_PRECOMPILED=1
 # export VLLM_PRECOMPILED_WHEEL_COMMIT=nightly

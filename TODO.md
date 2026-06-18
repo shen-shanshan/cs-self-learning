@@ -225,13 +225,12 @@ PD/AF 分离：
 
 ## AI 工具
 
-- [ ] [OpenClaw免费小白安装教程来了！养成你的第一个龙虾 🦞](https://mp.weixin.qq.com/s/DJoQtMACiE1UY6x8SCq2Yw)
-- [ ] [了解下 FlashInfer SKILLS 写法](https://zhuanlan.zhihu.com/p/2006148549893711820?share_code=A6NInlnGt92M&utm_psn=2007469685323624489)
 - [ ] [Don't fall into the anti-AI hype](https://www.antirez.com/news/158)
 - [ ] [Claude Code创始人再次公开：团队的10个使用技巧！](https://mp.weixin.qq.com/s/y92swgU8FnbdyhEpY1xD-A)
 - [ ] [吴恩达手把手教《Claude Code》](https://www.bilibili.com/video/BV1t665BXEJR/?buvid=XX2B85123A6E3620FBE6F07AAE685A90544DF&from_spmid=search.search-result.0.0&is_story_h5=false&mid=wq%2FhBpG1lpYar9rUfZ6abw%3D%3D&plat_id=116&share_from=ugc&share_medium=android&share_plat=android&share_session_id=00e02916-b396-4b08-91b3-ada531ba498f&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1770645598&unique_k=9X7KhOR&up_id=3493089096239369&vd_source=2754a9b73cb316d2cad8eb1195f5aa23)
 - [ ] [Leader 禁止实习生碰代码，我不听，用 Agent Skills 修了个线上 Bug。他找我谈话：今天转正！](https://mp.weixin.qq.com/s/CEBTFlnHdWc56XCGxId1eQ)
 - [ ] [研发场景十大热门 Skill 推荐](https://docs.trae.ai/ide/top-10-recommended-skills-for-development-scenarios?_lang=zh)
+- [ ] [了解下 FlashInfer SKILLS 写法](https://zhuanlan.zhihu.com/p/2006148549893711820?share_code=A6NInlnGt92M&utm_psn=2007469685323624489)
 
 ```
 更正下: 看完这个视频，觉得信息量比原文更多而且很有道理，还纳闷我咋看原文没看出来
