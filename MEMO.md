@@ -162,6 +162,7 @@ git checkout -b <branch_name> <tag_name>
 # 同步 main 最新代码
 git fetch origin
 git merge origin/main
+git merge upstream/main
 
 # 重新触发 CI
 git commit --allow-empty -sm "trigger ci"
