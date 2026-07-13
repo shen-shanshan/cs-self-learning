@@ -9,12 +9,11 @@
 - [x] 梳理 model list 放到 issue
 - [x] 测试 Qwen3.5 并更新文档
 - [x] 支持 DeepSeek-OCR 模型（支持 dual-path graph）
+- [x] 为 Step3-VL 支持 dual-path graph
 - [ ] 为 dual-path graph 支持分别配置 global 和 local 的 token budget
-- [ ] 为 Step3-VL 支持 dual-path graph
 - [ ] 优化 `encoder_cudagraph_token_budgets` max value auto-infer
 - [ ] 修复 `max_frames_per_batch` auto-infer 上限过少（=2）的 bug
 - [ ] 支持 DeepSeek-OCR-2 模型（安排给 Barry Shen 做）
-- [ ] 支持 MiniMax M3 模型
 
 **EPD:**
 

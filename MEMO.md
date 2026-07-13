@@ -217,6 +217,13 @@ pre-commit clean
 rm -rf ~/.cache/pre-commit
 pre-commit install
 pre-commit run --all-files
+
+# 修改 Python 版本后，一定要删除旧环境：
+pre-commit clean
+rm -rf ~/.cache/pre-commit
+# 然后重新执行：
+pre-commit install
+pre-commit run --all-files
 ```
 
 ## Pip

@@ -25,15 +25,6 @@ This repository archives my notes and materials during my computer science self-
 - 📚 [<u>Papers</u>](#-papers)
 - 📚 [<u>Learning Projects</u>](#-learning-projects)
 
-<!--
-In addition, I have also published some technical blogs on the internet, you can read them at links below.
-
-- 📖 My technical blogs: [Zhihu](https://www.zhihu.com/people/sss-53-26), [Personal Website](https://shen-shanshan.github.io/articles/%E6%88%91%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E5%90%88%E9%9B%86/).
-- 📖 My publications: [Google Scholar](https://scholar.google.com.hk/citations?hl=zh-CN&user=QYkrKNwAAAAJ).
--->
-
-Welcome to star this repository! 😊
-
 ## 📚 Learning Notes
 
 ### 🧱 Basic Knowledges
@@ -185,6 +176,7 @@ Welcome to star this repository! 😊
 | :---- | :------- | :----- | :--- | :-- | :--- |
 | [<u>PyTorch 显存管理介绍与源码解析（一）</u>][2061] | Memory | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
 | [<u>PyTorch 显存可视化与 Snapshot 数据分析</u>][2062] | Memory | [<u>@kaiyuan</u>][3005] | | ⭐️⭐️⭐️⭐️ | ✅ |
+| [<u>OOM 解决利器 —— PyTorch Expandable Segments 全链路剖析</u>][2081] | Memory | | | ⭐️⭐️⭐️ | ✅ |
 | [<u>A guide on good usage of `non_blocking` and `pin_memory()` in PyTorch</u>][2072] | Data Transfer | [<u>@Vincent Moens</u>][3030] | | ⭐️⭐️⭐️⭐️⭐️ | ✅ |
 
 ### 📖 CUDA Programming
@@ -320,6 +312,7 @@ Welcome to star this repository! 😊
 [2078]: https://zhuanlan.zhihu.com/p/711223667
 [2079]: https://zhuanlan.zhihu.com/p/1984342789287343828?share_code=UKyCzIVku8YY&utm_psn=1994008703599396772
 [2080]: https://zhuanlan.zhihu.com/p/2019510762004050171
+[2081]: https://mp.weixin.qq.com/s/gaYH3Sir99n-5fTo5jPJIA
 <!------------------------------- Author Links -------------------------------->
 <!-- SSS不知-道 -->
 [3001]: https://www.zhihu.com/people/sss-53-26
