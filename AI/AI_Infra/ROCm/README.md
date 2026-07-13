@@ -9,9 +9,6 @@
 
 ## Key Projects
 
-- [vLLM-ATOM](https://github.com/ROCm/ATOM)
+- [AITER](https://github.com/rocm/aiter)
 - [FlyDSL](https://github.com/ROCm/FlyDSL)
-
-## TODO
-
-- [ ] [Porting High-Performance HIP Kernels to FlyDSL](https://rocm.blogs.amd.com/software-tools-optimization/porting-hip-flydsl/README.html)
+- [vLLM-ATOM](https://github.com/ROCm/ATOM)
