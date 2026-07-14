@@ -20,4 +20,4 @@
 
 - [ ] [vLLM Docs - CUDA Graphs](https://docs.vllm.ai/en/stable/design/cuda_graphs/)
 - [ ] [vLLM Docs - torch.compile integration](https://docs.vllm.ai/en/latest/design/torch_compile/)
-- [ ] [ViT full CUDA Graph](./vit_full_cuda_graph.md)
+- [x] [ViT full CUDA Graph](./vit_full_cuda_graph.md)

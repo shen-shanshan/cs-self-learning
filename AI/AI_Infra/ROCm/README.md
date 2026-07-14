@@ -1,4 +1,6 @@
-# AMD ROCm
+# ROCm Beginner to Master
+
+move to: https://github.com/shen-shanshan/rocm-beginner-to-master
 
 ## Docs & Blogs
 

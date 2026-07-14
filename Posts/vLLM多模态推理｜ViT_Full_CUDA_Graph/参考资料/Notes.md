@@ -1,17 +1,10 @@
 # CUDA Graph 学习笔记
 
-TODO：
-
-- blog writing skill
-- 为什么 capture 之前需要 warmup？
-
 ## 为什么需要 CUDA Graph？
 
 Modern GPUs are so fast that, in many cases of interest, the time taken by each GPU operation (e.g. kernel or memory copy) is now measured in microseconds. However, there are overheads associated with the submission of each operation to the GPU – also at the microsecond scale – which are now becoming significant in an increasing number of cases.
 
 CUDA Graphs have been designed to allow work to be defined as graphs rather than single operations. They address the above issue by providing a mechanism to launch multiple GPU operations through a single CPU operation, and hence reduce overheads.
-
----
 
 Replaying a graph sacrifices the dynamic flexibility of typical eager execution in exchange for greatly reduced CPU overhead. A graph’s arguments and kernels are fixed, so a graph replay skips all layers of argument setup and kernel dispatch, including Python, C++, and CUDA driver overheads. Under the hood, a replay submits the entire graph’s work to the GPU with a single call to cudaGraphLaunch. Kernels in a replay also execute slightly faster on the GPU, but eliding CPU overhead is the main benefit.
 
@@ -25,22 +18,16 @@ Note that in this case, the time to create and instantiate the graph is relative
 
 The severity of the initialization overhead is obviously problem dependent: typically in order to benefit from graphs you need to re-use the same graph enough times.
 
----
-
 Terms:
 
 - Straight line kernel graph: A CUDA Graph made completely out of kernel nodes, where every node has a single dependent node except for the last node.
 - Parallel straight line: A CUDA Graph that has width as the number of entry points. Each entry point is followed by its own set of lengths as the number of nodes arrayed in a straight-line formation. This is also referred to as parallel chain in the charts and source code.
-- First launch: The first launch of a graph, which also includes uploading the instantiated graph to the device.
-- Repeat launch: Launching a graph that has already been uploaded to the device.
 
 ## PyTorch 集成
 
 PyTorch supports the construction of CUDA graphs using stream capture, which puts a CUDA stream in capture mode. CUDA work issued to a capturing stream doesn’t actually run on the GPU. Instead, the work is recorded in a graph.
 
 After capture, the graph can be launched to run the GPU work as many times as needed. Each replay runs the same kernels with the same arguments. For pointer arguments this means the same memory addresses are used. By filling input memory with new data (e.g., from a new batch) before each replay, you can rerun the same work on new data.
-
----
 
 `torch.cuda.graph` is a simple, versatile context manager that captures CUDA work in its context. Before capture, warm up the workload to be captured by running a few eager iterations. Warmup must occur on a side stream. Because the graph reads from and writes to the same memory addresses in every replay, you must maintain long-lived references to tensors that hold input and output data during capture. To run the graph on new input data, copy new data to the capture’s input tensor(s), replay the graph, then read the new output from the capture’s output tensor(s).
 
@@ -81,8 +68,6 @@ However, this performance comes at the cost of flexibility. If the full workflow
 
 > CUDA device graph launch offers a performant way to enable dynamic control flow within CUDA kernels.
 
----
-
 **Constraints:**
 
 Violating any of these will likely cause a runtime error:
@@ -91,8 +76,6 @@ Violating any of these will likely cause a runtime error:
 - **Ops that synchronize the CPU with the GPU (e.g., .item() calls) are prohibited.**
 - CUDA RNG operations are permitted, and when using multiple torch.Generator instances within a graph, they must be registered using CUDAGraph.register_generator_state before graph capture. Avoid using Generator.get_state and Generator.set_state during capture; instead, utilize Generator.graphsafe_set_state and Generator.graphsafe_get_state for managing generator states safely within the graph context. This ensures proper RNG operation and generator management within CUDA graphs. (?)
 - **Dynamic control flow (based on CPU or GPU data) is prohibited**, unless it is based on GPU data and implemented via higher order operator torch.cond(). See Data Dependent Control Flow.
-
-> `tensor.item()` 的核心作用就是将一个只包含单个元素的 Tensor 转换为 Python 标量。它最常用于获取损失值、评估指标等数值，便于打印、记录日志或与普通 Python 代码交互。需要注意的是，它只能用于单元素 Tensor，并且对于 GPU Tensor 会触发一次 GPU 到 CPU 的同步，因此不宜在性能关键路径中频繁调用。
 
 Violating any of these will likely cause silent numerical errors or undefined behavior:
 
@@ -103,25 +86,9 @@ Violating any of these will likely cause silent numerical errors or undefined be
 - **Dynamic shapes are prohibited.** The graph assumes every tensor in the captured op sequence has the same size and layout in every replay.
 - Using multiple streams in a capture is allowed, but there are restrictions.
 
----
-
-CUDA Graph 要求被捕获的计算图中所有 tensor shapes 在 capture 和 replay 间保持一致。
-
-核心约束：
-
-- **无 CPU 同步**: 不能在 graph 内调用 `.item()`、`.cpu()` 或任何触发 D2H copy 的操作；
-- **无动态控制流**: 不能在 graph 内使用依赖 tensor 值的 `if/else` 分支（依赖 shape 的 `if` 在 capture 时 bake）；
-- **固定 shape**: 所有中间 tensor 的 shape 必须在 capture 时确定。
-
-更多细节：[link](./CUDA-Graph捕获限制.md) 🌟
-
----
-
 **Non-constraints:**
 
 Once captured, the graph may be replayed on any stream.
-
----
 
 **Partial-network capture:**
 
@@ -133,15 +100,23 @@ By default, callables returned by `make_graphed_callables()` are autograd-aware,
 
 ---
 
-Data-dependent control flow can with cuda graphs if the control flow is implemented using `torch.cond()`.
+> `tensor.item()` 的核心作用就是将一个只包含单个元素的 Tensor 转换为 Python 标量。它最常用于获取损失值、评估指标等数值，便于打印、记录日志或与普通 Python 代码交互。需要注意的是，它只能用于单元素 Tensor，并且对于 GPU Tensor 会触发一次 GPU 到 CPU 的同步，因此不宜在性能关键路径中频繁调用。
+
+CUDA Graph 要求被捕获的计算图中所有 tensor shapes 在 capture 和 replay 间保持一致。
+
+核心约束：
+
+- **无 CPU 同步**: 不能在 graph 内调用 `.item()`、`.cpu()` 或任何触发 D2H copy 的操作；
+- **无动态控制流**: 不能在 graph 内使用依赖 tensor 值的 `if/else` 分支（依赖 shape 的 `if` 在 capture 时 bake）；
+- **固定 shape**: 所有中间 tensor 的 shape 必须在 capture 时确定。
+
+更多细节：[link](./CUDA-Graph捕获限制.md) 🌟
 
 ## Graph memory management
 
 A captured graph acts on the same virtual addresses every time it replays. If PyTorch frees the memory, a later replay can hit an illegal memory access. If PyTorch reassigns the memory to new tensors, the replay can corrupt the values seen by those tensors. Therefore, the virtual addresses used by the graph must be reserved for the graph across replays. The PyTorch caching allocator achieves this by detecting when capture is underway and satisfying the capture’s allocations from a graph-private memory pool. The private pool stays alive until its CUDAGraph object and all tensors created during capture go out of scope.
 
 Private pools are maintained automatically. **By default, the allocator creates a separate private pool for each capture.** If you capture multiple graphs, this conservative approach ensures graph replays never corrupt each other’s values, but sometimes needlessly wastes memory.
-
----
 
 **Sharing memory across captures:**
 
