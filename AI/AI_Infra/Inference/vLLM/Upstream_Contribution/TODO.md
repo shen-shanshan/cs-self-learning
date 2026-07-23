@@ -14,16 +14,17 @@
 - [ ] 优化 `encoder_cudagraph_token_budgets` max value auto-infer
 - [ ] 修复 `max_frames_per_batch` auto-infer 上限过少（=2）的 bug
 - [ ] 支持 DeepSeek-OCR-2 模型（安排给 Barry Shen 做）
-
-**EPD:**
-
-- [ ] EPD 支持 Mooncake 传输后端
+- [ ] 完善 `get_num_graphs_to_capture()` 方法的测试（`test_num_graphs_to_capture_tracks_budgets()` 增加双路径测试）
 
 **ModelRunner V2:**
 
 - [ ] 支持 AMD GPU
 - [ ] 支持 ViT CUDA graph
 
+**AMD ROCm:**
+
+...
+
 **Others:**
 
-- [ ] Fix DeepSeek-OCR acc issue
+...
