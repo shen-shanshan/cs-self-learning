@@ -1,4 +1,4 @@
-# Claude Code 配置
+# Claude Code 安装与配置
 
 ## 在远程服务器上配置 Claude Code
 
