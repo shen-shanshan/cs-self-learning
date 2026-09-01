@@ -193,6 +193,10 @@ $ git commit -m "Refactor usability tests. \
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
 git lfs install
+
+# cherry-pick 还没 merge 的 PR 到本地（假设没有 conflict）
+git fetch origin pull/<PR号>/head:pr-<PR号>
+git cherry-pick pr-<PR号>
 ```
 
 pre-commit：
