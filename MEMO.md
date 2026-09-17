@@ -228,6 +228,9 @@ rm -rf ~/.cache/pre-commit
 # 然后重新执行：
 pre-commit install
 pre-commit run --all-files
+
+pre-commit run     # runs on staged files
+pre-commit run -a  # runs on all files (short for --all-files)
 ```
 
 ## Pip
@@ -575,8 +578,9 @@ I have rebased on the latest main and nothing changed.
 
 I haven't got a chance to take a look but let me add ready label.
 
-Sorry for late, I'm busy with working these days. I'll take a look at this PR today.
-Sorry for late, I'm busy with working these days. I left some comments and questions.
+Sorry for late reply, I'm busy with working these days. I'll take a look at this PR today.
+Sorry for late reply, I'm busy with working these days. I left some comments and questions.
+Sorry for late reply, I'm busy with working these days. Btw, could you please rebase on the latest main and resolve the conflicts?
 
 I left some comments and questions. Others LGTM.
 
@@ -584,6 +588,8 @@ Done with my pass. Also CC @
 Could someone with write access approve if it looks good to you?
 
 Sorry for late, I will take a look at this PR this week.
+
+Correct me if I misunderstood though.
 
 **常用符号：**
 
