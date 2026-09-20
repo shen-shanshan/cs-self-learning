@@ -591,6 +591,8 @@ Sorry for late, I will take a look at this PR this week.
 
 Correct me if I misunderstood though.
 
+I’m not a ... expert, so I’ll defer the lower-level ... details to other engineers, but from the vLLM side the approach looks reasonable to me.
+
 **常用符号：**
 
 🎯
