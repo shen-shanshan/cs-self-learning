@@ -1,29 +1,4 @@
-# TODO
-
-## Tasks
-
-**TODO（P0）：**
-
-- [ ] 学习 Triton 算子开发
-  - https://github.com/gpu-mode/lectures/tree/main/lecture_014
-  - https://gitcode.com/Ascend/triton-ascend
-- [ ] 学习 Diffusion 模型原理与推理技术
-  - https://www.zhihu.com/question/1919814183635093018
-  - EPD：https://lmsys.org/blog/2026-01-12-epd/
-- [x] 学习 CUDA Graph 原理
-  - https://github.com/CalvinXKY/InfraTech/blob/main/llm_infer/cuda_graph.ipynb
-- [ ] 梳理多模态弹性推理技术综述
-  - https://arxiv.org/abs/2401.13601
-- [ ] 学习 Qwen3.5 模型结构
-  - https://zhuanlan.zhihu.com/p/2013669483248633430?share_code=itxwnfoMs5pD&utm_psn=2014832176290603560
-- [ ] 学习 RoPE 原理
-  - https://zhuanlan.zhihu.com/p/1948048954689295110
-- [ ] 学习 nvlink for nixl/ucx（弹性扩缩）
-  - https://github.com/openucx/ucx
-  - https://github.com/ai-dynamo/nixl
-- [ ] 学习推理性能优化手段
-  - [Fused QKV GEMM + QKNorm + RoPE](https://zhuanlan.zhihu.com/p/2013745638005817781)
-- [ ] 什么是 Bilinear Interpolation Algorithm、Bicubic Interpolation Algorithm？
+# Learning Materials
 
 ## 研究综述
 
@@ -63,7 +38,7 @@ MoE：
 - [ ] [MoE 中的路由机制](https://apxml.com/zh/courses/how-to-build-a-large-language-model/chapter-14-advanced-architectural-modifications/routing-mechanisms-moe)
 - [ ] [全面解析MoE专家并行EP all-to-all Pytorch算子](https://zhuanlan.zhihu.com/p/1967192540953425479)
 
-📌 多模态：
+多模态：
 
 - [ ] [Cache 加速 - TaylorSeer 算法简析](https://zhuanlan.zhihu.com/p/1937477466475197176)
 - [ ] [深入浅出扩散模型系列 🌟](https://zhuanlan.zhihu.com/p/1991564549669810188)
@@ -231,20 +206,6 @@ PD/AF 分离：
 - [ ] [Leader 禁止实习生碰代码，我不听，用 Agent Skills 修了个线上 Bug。他找我谈话：今天转正！](https://mp.weixin.qq.com/s/CEBTFlnHdWc56XCGxId1eQ)
 - [ ] [研发场景十大热门 Skill 推荐](https://docs.trae.ai/ide/top-10-recommended-skills-for-development-scenarios?_lang=zh)
 - [ ] [了解下 FlashInfer SKILLS 写法](https://zhuanlan.zhihu.com/p/2006148549893711820?share_code=A6NInlnGt92M&utm_psn=2007469685323624489)
-
-```
-更正下: 看完这个视频，觉得信息量比原文更多而且很有道理，还纳闷我咋看原文没看出来
-
-重复看了遍文章，最后发现是N篇antirez的文章汇总。记录了从240天前的吐槽，190天前的尝试的惊喜，以及20天已经在解决实际问题的全过程。
-
-顺便在推荐下，16H前的一篇:
-https://www.antirez.com/news/159
-
-vibe VS automatic
-
-【淘宝】https://e.tb.cn/h.7vICqAiogzlk3vP?tk=YV7XUluaaZH HU591 「官网Claude4.5 Pro会员克劳德独享账号代订阅Opus和sonnet一个月」
-点击链接直接打开 或者 淘宝搜索直接打开
-```
 
 ## Others
 
